@@ -7,10 +7,10 @@ public class RegisterView extends JFrame {
 
     public static JButton createButton(String string) {
         JButton button = new JButton(string);
-        button.setPreferredSize(new Dimension(100, 20));
-        button.setBackground(Color.decode("#3B1211"));
+        button.setPreferredSize(new Dimension(70, 15));
+        button.setBackground(Color.decode("#C3986A"));
         button.setForeground(Color.decode("#F8F2F0"));
-        button.setFont(new Font("Bell MT", Font.PLAIN, 16));
+        button.setFont(new Font("Bell MT", Font.PLAIN, 12));
         return button;
     }
 
@@ -129,7 +129,7 @@ public class RegisterView extends JFrame {
         gbcCent = new GridBagConstraints();
         gbcCent.gridx = 0;
         gbcCent.gridy = 9;
-        gbcCent.insets = new Insets(30, 450, 0, 10);
+        gbcCent.insets = new Insets(30, 450, 0, 0);
         panelInfo.add(loginButton, gbcCent);
 
 
