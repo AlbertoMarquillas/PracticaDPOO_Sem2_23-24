@@ -2,6 +2,7 @@ package Presentation.View;
 
 import javax.swing.*;
 import java.awt.*;
+import javax.swing.border.LineBorder;
 
 public class InitialView extends JFrame {
 
@@ -11,6 +12,8 @@ public class InitialView extends JFrame {
         button.setBackground(Color.decode("#3B1211"));
         button.setForeground(Color.decode("#F8F2F0"));
         button.setFont(new Font("Bell MT", Font.PLAIN, 16));
+        button.setBorder(new LineBorder(Color.BLACK, 10, true));
+
         return button;
     }
 

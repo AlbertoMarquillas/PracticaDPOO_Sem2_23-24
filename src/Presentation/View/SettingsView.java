@@ -1,16 +1,54 @@
 package Presentation.View;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.BorderFactory;
 import java.awt.*;
 
 public class SettingsView extends JFrame {
 
+    private static class RoundedBorder implements Border {
+
+        private int radius;
+
+        RoundedBorder(int radius) {
+            this.radius = radius;
+        }
+
+        @Override
+        public Insets getBorderInsets(Component c) {
+            return new Insets(this.radius+1, this.radius+1, this.radius+2, this.radius);
+        }
+
+        @Override
+        public boolean isBorderOpaque() {
+            return true;
+        }
+
+        @Override
+        public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+            g.drawRoundRect(x, y, width-1, height-1, radius, radius);
+        }
+
+    }
+
     public static JButton createButton(String string) {
         JButton button = new JButton(string);
-        button.setPreferredSize(new Dimension(200, 40));
-        button.setBackground(Color.decode("#C3986A"));
-        button.setForeground(Color.decode("#F8F2F0"));
+        button.setPreferredSize(new Dimension(300, 40));
+
         button.setFont(new Font("Bell MT", Font.PLAIN, 20));
+
+
+        button.setBounds(700, 700, 50, 40);
+        button.setBorder(new RoundedBorder(50)); //10 is the radius
+        button.setBackground(Color.blue);
+        button.setForeground(Color.decode("#3B1211"));
+        button.setVisible(true);
+
+
         return button;
     }
 
