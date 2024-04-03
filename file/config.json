@@ -1,7 +1,7 @@
 {
   "port": 3306,
   "ip": "localhost",
-  "dataBase": "coffeeClickerdb",
+  "dataBase": "coffeeclickerdb",
   "username": "root",
   "password": "",
   "time": 2000
