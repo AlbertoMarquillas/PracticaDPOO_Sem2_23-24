@@ -43,7 +43,7 @@ public class Connector {
     private static DBConfig readConfig() {
         Gson gson = new Gson();
         try {
-            JsonReader reader = new JsonReader(new FileReader("config.json"));
+            JsonReader reader = new JsonReader(new FileReader("file/config.json"));
             DBConfig config = gson.fromJson(reader, DBConfig.class);
             return config;
         } catch (FileNotFoundException e) {
