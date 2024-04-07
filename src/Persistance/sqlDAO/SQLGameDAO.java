@@ -124,4 +124,13 @@ public class SQLGameDAO {
         Connector.getInstance().deleteQuery(query);
     }
 
+    /**
+     * method that updates all data related to the games of the user.
+     * @param id the id of the user that will delete the data.
+     */
+    public void upadteUserGameData(int id){
+        String query = "UPDATE FROM game WHERE id = "+id+";";
+        Connector.getInstance().updateQuery(query);
+    }
+
 }
