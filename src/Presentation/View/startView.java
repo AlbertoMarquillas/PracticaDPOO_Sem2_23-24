@@ -1,5 +1,5 @@
 package Presentation.View;
-/*
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -90,8 +90,8 @@ public class startView extends JFrame {
         });
     }
 }
-*/
 
+/*
 
 
 import java.awt.*;
@@ -148,4 +148,4 @@ public class startView extends JButton {
             frame.setVisible(true);
         });
     }
-}
+}*/
