@@ -3,6 +3,8 @@ package Presentation.View;
 import javax.swing.*;
 import java.awt.*;
 
+
+
 public class RegisterView extends JFrame {
 
     public static JButton createButton(String string) {

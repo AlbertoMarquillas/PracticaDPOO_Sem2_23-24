@@ -9,7 +9,7 @@ import javax.swing.BorderFactory;
 import java.awt.*;
 
 public class SettingsView extends JFrame {
-/*
+
     private static class RoundedBorder implements Border {
 
         private int radius;
@@ -34,7 +34,7 @@ public class SettingsView extends JFrame {
         }
 
     }
-*/
+
     public static JButton createButton(String string) {
         JButton button = new JButton(string);
         button.setPreferredSize(new Dimension(300, 40));
@@ -43,7 +43,8 @@ public class SettingsView extends JFrame {
 
 
         button.setBounds(700, 700, 50, 40);
-        button.setBackground(Color.decode("#C3986A"));
+     //   button.setBorder(new RoundedBorder(50)); //10 is the radius
+        button.setBackground(Color.blue);
         button.setForeground(Color.decode("#3B1211"));
         button.setVisible(true);
 

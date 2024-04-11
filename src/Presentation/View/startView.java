@@ -22,11 +22,15 @@ public class startView extends JFrame {
 
     public startView() {
 
+
         JLabel titleLabel = createLabel("COFFEE CLICKER", new Font("Arial", Font.BOLD, 30), Color.decode("#DB5C39"));
         JButton newGameButton = createButton("New Game");
         JButton startGameButton = createButton("Start Game");
-        JButton statisticsButton = createButton("Statistics");
+        //JButton statisticsButton = createButton("Statistics");
 
+        // Canvio del boton statisticsButton a OvalButton
+        //OvalButton statisticsButton = new OvalButton("Statistics");
+        //statisticsButton.setPreferredSize(new Dimension(100, 50)); // Ajusta el tamaño del botón
 
         //PANTALLA GENERAL
         setTitle("Register View");
@@ -77,7 +81,7 @@ public class startView extends JFrame {
         gbcCent.gridx = 0;
         gbcCent.gridy = 3;
         gbcCent.insets = new Insets(20, 0, 0, 0);
-        panelInfo.add(statisticsButton, gbcCent);
+        //panelInfo.add(statisticsButton, gbcCent);
 
         panelInfo.setBackground(Color.decode("#F8F2F0"));
         add(panelInfo, BorderLayout.CENTER);
