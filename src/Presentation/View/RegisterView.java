@@ -4,127 +4,133 @@ import javax.swing.*;
 import java.awt.*;
 
 
-
+/**
+ * Classe de les vistes de la pantalla de registre.
+ */
 public class RegisterView extends JFrame {
-
-    public static JTextField createTextField() {
-        JTextField textField = new JTextField();
-        textField.setPreferredSize(new Dimension(300, 20));
-        textField.setBackground(Color.decode("#C3986A"));
-        Font font = new Font("Bell MT", Font.BOLD, 14);
-        textField.setFont(font);
-        return textField;
-    }
 
     public RegisterView() {
 
-        CreateLabel titleLabel = new CreateLabel("COFFEE CLICKER", new Font("Bauhaus 93", Font.PLAIN, 24), Color.decode("#3B1211"));
-
-        CreateLabel usernameLabel = new CreateLabel("Username:", new Font("Segoe UI Black", Font.PLAIN, 16), Color.decode("#3B1211"));
-        JTextField usernameField = createTextField();
-
-        CreateLabel emailLabel = new CreateLabel("Email:", new Font("Segoe UI Black", Font.PLAIN, 16), Color.decode("#3B1211"));
-        JTextField emailField = createTextField();
-
-        CreateLabel passwordLabel = new CreateLabel("Password:", new Font("Segoe UI Black", Font.PLAIN, 16),Color.decode("#3B1211"));
-        JTextField passwordField = createTextField();
-
-        CreateLabel confirmationLabel = new CreateLabel("Password: Confirmation", new Font("Segoe UI Black", Font.PLAIN, 16),Color.decode("#3B1211"));
-        JTextField confirmationField = createTextField();
-
-        OvalButton nextButton = new OvalButton("NEXT", 120, 20, Color.decode("#3B1211"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 16));
-        nextButton.applyCustomStyles();
-        OvalButton loginButton = new OvalButton("LOGIN", 120, 20, Color.decode("#3B1211"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 16));
-        loginButton.applyCustomStyles();
-
-        //PANTALLA GENERAL
+        //Marcar-li al JFrame un titol i tamany 800x450
         setTitle("Register View");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 450); // Tamaño de la ventana
-        setLayout(new GridBagLayout()); // Layout de la ventana principal
 
-        //PANELL Titol
-        setLayout(new BorderLayout());
-        JPanel titlePanel = new JPanel();
-        titlePanel.setBackground(Color.decode("#DB5C39"));
+        //Inicialització dels Labels fent us de la classe CustomLabel
+        CustomLabel titleLabel = new CustomLabel("COFFEE CLICKER", new Font("Bauhaus 93", Font.PLAIN, 50), Color.decode("#DB5C39"));
+        CustomLabel usernameLabel = new CustomLabel("Username:", new Font("Segoe UI Black", Font.PLAIN, 16), Color.decode("#3B1211"));
+        CustomLabel emailLabel = new CustomLabel("Email:", new Font("Segoe UI Black", Font.PLAIN, 16), Color.decode("#3B1211"));
+        CustomLabel passwordLabel = new CustomLabel("Password:", new Font("Segoe UI Black", Font.PLAIN, 16),Color.decode("#3B1211"));
+        CustomLabel confirmationLabel = new CustomLabel("Password confirmation", new Font("Segoe UI Black", Font.PLAIN, 16),Color.decode("#3B1211"));
+
+        //Inicialització dels textFields fent us de la classe CustomTextField
+        CustomTextField usernameField = new CustomTextField(300, 20, Color.decode("#C3986A"), new Font("Berlin Sans FB", Font.PLAIN, 14));
+        usernameField.initializeTextField();
+        CustomTextField emailField = new CustomTextField(300, 20, Color.decode("#C3986A"), new Font("Berlin Sans FB", Font.PLAIN, 14));
+        emailField.initializeTextField();
+        CustomPasswordField passwordField = new CustomPasswordField(300, 20, Color.decode("#C3986A"), new Font("Berlin Sans FB", Font.PLAIN, 14));
+        passwordField.initializePasswordField();
+        CustomPasswordField confirmationField = new CustomPasswordField(300, 20, Color.decode("#C3986A"), new Font("Berlin Sans FB", Font.PLAIN, 14));
+        confirmationField.initializePasswordField();
+
+        //Inicialització dels botons fent us de la classe CustomButton
+        CustomButton nextButton = new CustomButton("NEXT", 140, 25, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
+        nextButton.applyCustomStyles();
+        CustomButton loginButton = new CustomButton("LOGIN", 140, 25, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
+        loginButton.applyCustomStyles();
+
+        //Inicialització la imatge del logo
         ImageIcon logoIcon = new ImageIcon("Imagenes/logoSmall.png"); // Ruta de la imagen del logo
         JLabel logoLabel = new JLabel(logoIcon);
 
-        //PANELL central
+
+        //Creació del panell principal
         JPanel panelInfo = new JPanel();
-        panelInfo.setLayout(new GridBagLayout());
+        panelInfo.setBackground(Color.decode("#F8F2F0"));
+        panelInfo.setLayout(new GridBagLayout());               //Crear GridBagLayout del panell central per poder posar els elements
         GridBagConstraints gbcCent = new GridBagConstraints();
 
+        //Afegir el Logo
         gbcCent.gridx = 0;
         gbcCent.gridy = 0;
-        gbcCent.insets = new Insets(10, 0, 20, 300);
+        gbcCent.insets = new Insets(0, 0, 0, 400);
         panelInfo.add(logoLabel, gbcCent);
 
+        //Afegir el Label del títol
         gbcCent.gridx = 0;
         gbcCent.gridy = 0;
-        gbcCent.insets = new Insets(10, 20, 20, 0);
+        gbcCent.insets = new Insets(15, 70, 0, 0);
         panelInfo.add(titleLabel, gbcCent);
 
+        //Afegir el Label de l'usuari
         gbcCent.gridx = 0;
         gbcCent.gridy = 1;
-        gbcCent.insets = new Insets(0, 0, 0, 225);
+        gbcCent.insets = new Insets(0, 0, 0, 205);
         panelInfo.add(usernameLabel, gbcCent);
 
+        //Afegir el TextField de l'usuari
         gbcCent.gridx = 0;
         gbcCent.gridy = 2;
         gbcCent.insets = new Insets(5, 0, 0, 0);
         panelInfo.add(usernameField, gbcCent);
 
+        //Afegir el Label de l'email
         gbcCent = new GridBagConstraints();
         gbcCent.gridx = 0;
         gbcCent.gridy = 3;
-        gbcCent.insets = new Insets(20, 0, 0, 255);
+        gbcCent.insets = new Insets(10, 0, 0, 240);
         panelInfo.add(emailLabel, gbcCent);
 
+        //Afegir el TextField de l'email
         gbcCent = new GridBagConstraints();
         gbcCent.gridx = 0;
         gbcCent.gridy = 4;
         gbcCent.insets = new Insets(5, 0, 0, 0);
         panelInfo.add(emailField, gbcCent);
 
+        //Afegir el Label de la contrasenya
         gbcCent = new GridBagConstraints();
         gbcCent.gridx = 0;
         gbcCent.gridy = 5;
-        gbcCent.insets = new Insets(20, 0, 0, 225);
+        gbcCent.insets = new Insets(10, 0, 0, 208);
         panelInfo.add(passwordLabel, gbcCent);
 
+        //Afegir el PasswordField de la contrasenya
         gbcCent = new GridBagConstraints();
         gbcCent.gridx = 0;
         gbcCent.gridy = 6;
         gbcCent.insets = new Insets(5, 0, 0, 0);
         panelInfo.add(passwordField, gbcCent);
 
+        //Afegir el Label de la confirmació de la contrasenya
         gbcCent = new GridBagConstraints();
         gbcCent.gridx = 0;
         gbcCent.gridy = 7;
-        gbcCent.insets = new Insets(20, 0, 0, 130);
+        gbcCent.insets = new Insets(10, 0, 0, 100);
         panelInfo.add(confirmationLabel, gbcCent);
 
+        //Afegir el PasswordField de la confirmació de la contrasenya
         gbcCent = new GridBagConstraints();
         gbcCent.gridx = 0;
         gbcCent.gridy = 8;
         gbcCent.insets = new Insets(5, 0, 0, 0);
         panelInfo.add(confirmationField, gbcCent);
 
+        //Afegir el botó de NEXT
         gbcCent = new GridBagConstraints();
         gbcCent.gridx = 0;
         gbcCent.gridy = 9;
-        gbcCent.insets = new Insets(30, 0, 0, 0);
+        gbcCent.insets = new Insets(30, 0, 5, 0);
         panelInfo.add(nextButton, gbcCent);
 
+        //Afegir el botó de LOGIN
         gbcCent = new GridBagConstraints();
         gbcCent.gridx = 0;
         gbcCent.gridy = 9;
-        gbcCent.insets = new Insets(30, 450, 0, 0);
+        gbcCent.insets = new Insets(30, 600, 5, 0);
         panelInfo.add(loginButton, gbcCent);
 
-
-        panelInfo.setBackground(Color.decode("#F8F2F0"));
+        //Afegir el panell central a la finestra principal
         add(panelInfo, BorderLayout.CENTER);
 
 
