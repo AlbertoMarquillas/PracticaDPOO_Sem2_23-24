@@ -13,7 +13,6 @@ public class InitialView extends JFrame {
         //Inicialitzem els botons fent us de la classe CustomButton
         CustomButton RegisterButtong = new CustomButton("REGISTER", 140, 25, Color.decode("#3B1211"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
         RegisterButtong.applyCustomStyles();
-
         CustomButton loginButton = new CustomButton("LOGIN", 140, 25, Color.decode("#3B1211"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
         loginButton.applyCustomStyles();
 
