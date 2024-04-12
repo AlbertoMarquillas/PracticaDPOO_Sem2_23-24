@@ -7,46 +7,35 @@ import java.awt.*;
 
 public class RegisterView extends JFrame {
 
-    public static JButton createButton(String string) {
-        JButton button = new JButton(string);
-        button.setPreferredSize(new Dimension(70, 15));
-        button.setBackground(Color.decode("#C3986A"));
-        button.setForeground(Color.decode("#F8F2F0"));
-        button.setFont(new Font("Bell MT", Font.PLAIN, 12));
-        return button;
-    }
-
-    public static JLabel createLabel(String text, Font font, Color color) {
-        JLabel label = new JLabel(text);
-        label.setFont(font);
-        label.setForeground(Color.decode("#3B1211"));
-        return label;
-    }
-
-    public static JTextField createTextField(String text) {
-        JTextField textField = new JTextField(text);
+    public static JTextField createTextField() {
+        JTextField textField = new JTextField();
         textField.setPreferredSize(new Dimension(300, 20));
-        textField.setFont(new Font("Bell MT", Font.PLAIN, 12));
+        textField.setBackground(Color.decode("#C3986A"));
+        Font font = new Font("Bell MT", Font.BOLD, 14);
+        textField.setFont(font);
         return textField;
     }
 
     public RegisterView() {
 
-        JLabel titleLabel = createLabel("COFFEE CLICKER", new Font("Arial", Font.PLAIN, 24), Color.decode("#DB5C39"));
-        JLabel usernameLabel = createLabel("Username:", new Font("Arial", Font.PLAIN, 16), Color.decode("#DB5C39"));
-        JTextField usernameField = createTextField("Username");
+        CreateLabel titleLabel = new CreateLabel("COFFEE CLICKER", new Font("Bauhaus 93", Font.PLAIN, 24), Color.decode("#3B1211"));
 
-        JLabel emailLabel = createLabel("Email:", new Font("Arial", Font.PLAIN, 16), Color.decode("#DB5C39"));
-        JTextField emailField = createTextField("Email");
+        CreateLabel usernameLabel = new CreateLabel("Username:", new Font("Segoe UI Black", Font.PLAIN, 16), Color.decode("#3B1211"));
+        JTextField usernameField = createTextField();
 
-        JLabel passwordLabel = createLabel("Password:", new Font("Arial", Font.PLAIN, 16),Color.decode("#DB5C39"));
-        JTextField passwordField = createTextField("Password");
+        CreateLabel emailLabel = new CreateLabel("Email:", new Font("Segoe UI Black", Font.PLAIN, 16), Color.decode("#3B1211"));
+        JTextField emailField = createTextField();
 
-        JLabel confirmationLabel = createLabel("Password: Confirmation", new Font("Arial", Font.PLAIN, 16),Color.decode("#DB5C39"));
-        JTextField confirmationField = createTextField("Password Confirmation");
+        CreateLabel passwordLabel = new CreateLabel("Password:", new Font("Segoe UI Black", Font.PLAIN, 16),Color.decode("#3B1211"));
+        JTextField passwordField = createTextField();
 
-        JButton nextButton = createButton("NEXT");
-        JButton loginButton = createButton("LOGIN");
+        CreateLabel confirmationLabel = new CreateLabel("Password: Confirmation", new Font("Segoe UI Black", Font.PLAIN, 16),Color.decode("#3B1211"));
+        JTextField confirmationField = createTextField();
+
+        OvalButton nextButton = new OvalButton("NEXT", 120, 20, Color.decode("#3B1211"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 16));
+        nextButton.applyCustomStyles();
+        OvalButton loginButton = new OvalButton("LOGIN", 120, 20, Color.decode("#3B1211"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 16));
+        loginButton.applyCustomStyles();
 
         //PANTALLA GENERAL
         setTitle("Register View");

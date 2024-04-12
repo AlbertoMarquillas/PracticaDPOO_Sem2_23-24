@@ -29,5 +29,9 @@ public class HomeView {
         frame.add(panel);
 
         frame.setVisible(true);
+
+        JTextField textField = new JTextField();
+        textField.setPreferredSize(new Dimension(300, 20));
+        textField.setFont(new Font("Agency FB", Font.PLAIN, 16));
     }
 }

@@ -4,14 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class startView extends JFrame {
-    public static JButton createButton(String string) {
-        JButton button = new JButton(string);
-        button.setPreferredSize(new Dimension(250, 40));
-        button.setBackground(Color.decode("#3B1211"));
-        button.setForeground(Color.decode("#F8F2F0"));
-        button.setFont(new Font("Bell MT", Font.PLAIN, 16));
-        return button;
-    }
 
     public static JLabel createLabel(String text, Font font, Color color) {
         JLabel label = new JLabel(text);
@@ -22,15 +14,15 @@ public class startView extends JFrame {
 
     public startView() {
 
+        //JLabel titleLabel = createLabel("COFFEE CLICKER", new Font("Arial", Font.BOLD, 30), Color.decode("#DB5C39"));
+        CreateLabel titleLabel = new CreateLabel("COFFEE CLICKER", new Font("Bell MT", Font.BOLD, 30), Color.decode("#DB5C39"));
+        OvalButton newGameButton = new OvalButton("NEW GAME", 250, 40, Color.decode("#3B1211"), Color.decode("#F8F2F0"), new Font("Bell MT", Font.PLAIN, 16));
+        newGameButton.applyCustomStyles();
+        OvalButton startGameButton = new OvalButton("START GAME", 250, 40, Color.decode("#3B1211"), Color.decode("#F8F2F0"), new Font("Bell MT", Font.PLAIN, 16));
+        startGameButton.applyCustomStyles();
+        OvalButton statisticsButton = new OvalButton("START GAME", 250, 40, Color.decode("#3B1211"), Color.decode("#F8F2F0"), new Font("Bell MT", Font.PLAIN, 16));
+        statisticsButton.applyCustomStyles();
 
-        JLabel titleLabel = createLabel("COFFEE CLICKER", new Font("Arial", Font.BOLD, 30), Color.decode("#DB5C39"));
-        JButton newGameButton = createButton("New Game");
-        JButton startGameButton = createButton("Start Game");
-        //JButton statisticsButton = createButton("Statistics");
-
-        // Canvio del boton statisticsButton a OvalButton
-        //OvalButton statisticsButton = new OvalButton("Statistics");
-        //statisticsButton.setPreferredSize(new Dimension(100, 50)); // Ajusta el tamaño del botón
 
         //PANTALLA GENERAL
         setTitle("Register View");
@@ -81,7 +73,7 @@ public class startView extends JFrame {
         gbcCent.gridx = 0;
         gbcCent.gridy = 3;
         gbcCent.insets = new Insets(20, 0, 0, 0);
-        //panelInfo.add(statisticsButton, gbcCent);
+        panelInfo.add(statisticsButton, gbcCent);
 
         panelInfo.setBackground(Color.decode("#F8F2F0"));
         add(panelInfo, BorderLayout.CENTER);
@@ -94,62 +86,3 @@ public class startView extends JFrame {
         });
     }
 }
-
-/*
-
-
-import java.awt.*;
-import java.awt.geom.*;
-import javax.swing.*;
-
-public class startView extends JButton {
-    public startView(String label) {
-        super(label);
-        Dimension size = getPreferredSize();
-        size.width = size.height = Math.max(size.width,size.height);
-        setPreferredSize(size);
-
-        setContentAreaFilled(false);
-    }
-
-    protected void paintComponent(Graphics g) {
-        if (getModel().isArmed()) {
-            g.setColor(Color.lightGray);
-        } else {
-            g.setColor(getBackground());
-        }
-        g.fillOval(0, 0, getSize().width-1,getSize().height-1);
-
-        super.paintComponent(g);
-    }
-
-    protected void paintBorder(Graphics g) {
-        g.setColor(getForeground());
-        g.drawOval(0, 0, getSize().width-1,     getSize().height-1);
-    }
-
-    Shape shape;
-    public boolean contains(int x, int y) {
-        if (shape == null ||
-                !shape.getBounds().equals(getBounds())) {
-            shape = new Ellipse2D.Float(0, 0, getWidth(), getHeight());
-        }
-        return shape.contains(x, y);
-    }
-
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            startView StartView = new startView("hola");
-            StartView.setVisible(true);
-            JButton button = new startView("Click");
-            button.setBackground(Color.gray);
-
-            JFrame frame = new JFrame();
-            frame.getContentPane().add(button);
-            frame.getContentPane().setLayout(new FlowLayout());
-            frame.setSize(150, 150);
-            frame.setVisible(true);
-        });
-    }
-}*/

@@ -6,24 +6,6 @@ import javax.swing.border.LineBorder;
 
 public class InitialView extends JFrame {
 
-    public static JButton createButton(String string) {
-        JButton button = new JButton(string);
-        button.setPreferredSize(new Dimension(100, 20));
-        button.setBackground(Color.decode("#3B1211"));
-        button.setForeground(Color.decode("#F8F2F0"));
-        button.setFont(new Font("Bell MT", Font.PLAIN, 16));
-        button.setBorder(new LineBorder(Color.BLACK, 10, true));
-
-        return button;
-    }
-
-    public static JLabel createLabel(String text, Font font, Color color) {
-        JLabel label = new JLabel(text);
-        label.setFont(font);
-        label.setForeground(Color.decode("#F8F2F0"));
-        return label;
-    }
-
     public static JTextField createTextField(String text) {
         JTextField textField = new JTextField(text);
         textField.setPreferredSize(new Dimension(300, 30));
@@ -32,16 +14,24 @@ public class InitialView extends JFrame {
     }
     public InitialView() {
         //init botons i textos
-       // RegisterButtong = new JButton("Register");
-        JButton RegisterButtong = createButton("Register");
-        JButton loginButton = createButton("LOGIN");
-        //createButton(loginButton);
-        JLabel usernameLabel = createLabel("User:", new Font("Arial", Font.PLAIN, 16), Color.decode("#3B1211"));
-        JLabel passwordLabel = createLabel("Password:", new Font("Arial", Font.PLAIN, 16),Color.decode("#3B1211"));
-        JLabel titleLabel = createLabel("COFFEE CLICKER", new Font("Arial", Font.BOLD, 30), Color.decode("#3B1211"));
-        JLabel infoLabel = createLabel("Dont have an account?", new Font("Arial", Font.PLAIN, 12), Color.decode("#3B1211"));
-        JTextField userName = createTextField("UserName");
-        JTextField password = createTextField("Password");
+
+        OvalButton RegisterButtong = new OvalButton("register", 120, 20, Color.decode("#3B1211"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
+        RegisterButtong.applyCustomStyles();
+
+        OvalButton loginButton = new OvalButton("login", 120, 20, Color.decode("#3B1211"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
+        loginButton.applyCustomStyles();
+
+        CreateLabel usernameLabel = new CreateLabel("User:", new Font("Segoe UI Black", Font.PLAIN, 16), Color.decode("#3B1211"));
+        CreateLabel passwordLabel = new CreateLabel("Password:", new Font("Segoe UI Black", Font.PLAIN, 16), Color.decode("#3B1211"));
+
+        CreateLabel titleLabel = new CreateLabel("COFFEE CLICKER", new Font("Bauhaus 93", Font.BOLD, 30), Color.decode("#3B1211"));
+        CreateLabel infoLabel =  new CreateLabel("Dont have an account?", new Font("Segoe UI Black", Font.PLAIN, 12), Color.decode("#3B1211"));
+
+        //JTextField userName = createTextField("UserName");
+        CustomTextField userName = new CustomTextField(300, 30, Color.white, new Font("Segoe UI Light", Font.BOLD, 10));
+        userName.initializeTextField();
+        CustomTextField password = new CustomTextField(300, 30, Color.white, new Font("Segue UI Light", Font.BOLD, 10));
+        password.initializeTextField();
 
         //PANTALLA GENERAL
         setTitle("Initial View");
@@ -92,7 +82,7 @@ public class InitialView extends JFrame {
         gbcSec = new GridBagConstraints();
         gbcSec.gridx = 0;
         gbcSec.gridy = 3;
-        gbcSec.insets = new Insets(20, 0, 5, 225);
+        gbcSec.insets = new Insets(20, 0, 5, 220);
         panelInfo.add(passwordLabel, gbcSec);
 
         gbcSec = new GridBagConstraints();
@@ -110,7 +100,7 @@ public class InitialView extends JFrame {
         gbcSec = new GridBagConstraints();
         gbcSec.gridx = 0;
         gbcSec.gridy = 10;
-        gbcSec.insets = new Insets(50, 100, 0, 0);
+        gbcSec.insets = new Insets(50, 90, 0, 0);
         panelInfo.add(infoLabel, gbcSec);
 
         gbcSec = new GridBagConstraints();

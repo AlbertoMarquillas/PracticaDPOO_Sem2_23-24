@@ -10,60 +10,18 @@ import java.awt.*;
 
 public class SettingsView extends JFrame {
 
-    private static class RoundedBorder implements Border {
 
-        private int radius;
-
-        RoundedBorder(int radius) {
-            this.radius = radius;
-        }
-
-        @Override
-        public Insets getBorderInsets(Component c) {
-            return new Insets(this.radius+1, this.radius+1, this.radius+2, this.radius);
-        }
-
-        @Override
-        public boolean isBorderOpaque() {
-            return true;
-        }
-
-        @Override
-        public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
-            g.drawRoundRect(x, y, width-1, height-1, radius, radius);
-        }
-
-    }
-
-    public static JButton createButton(String string) {
-        JButton button = new JButton(string);
-        button.setPreferredSize(new Dimension(300, 40));
-
-        button.setFont(new Font("Bell MT", Font.PLAIN, 20));
-
-
-        button.setBounds(700, 700, 50, 40);
-     //   button.setBorder(new RoundedBorder(50)); //10 is the radius
-        button.setBackground(Color.blue);
-        button.setForeground(Color.decode("#3B1211"));
-        button.setVisible(true);
-
-
-        return button;
-    }
-
-    public static JLabel createLabel(String text, Font font, Color color) {
-        JLabel label = new JLabel(text);
-        label.setFont(font);
-        label.setForeground(Color.decode("#3B1211"));
-        return label;
-    }
 
     public SettingsView() {
 
-        JLabel titleLabel = createLabel("COFFEE CLICKER", new Font("Arial", Font.PLAIN, 24), Color.decode("#DB5C39"));
-        JButton deleteButton = createButton("Delete Account");
-        JButton closeButton = createButton("Close Session");
+        //JLabel titleLabel = createLabel("COFFEE CLICKER", new Font("Arial", Font.PLAIN, 24), Color.decode("#DB5C39"));
+        CreateLabel titleLabel = new CreateLabel("COFFEE CLICKER", new Font("Bell MT", Font.BOLD, 30), Color.decode("#DB5C39"));
+
+        OvalButton deleteButton = new OvalButton("Delete Account", 300, 40, Color.decode("#3B1211"), Color.decode("#F8F2F0"), new Font("Bell MT", Font.PLAIN, 16));
+        deleteButton.applyCustomStyles();
+        OvalButton closeButton = new OvalButton("Close Session", 300, 40, Color.decode("#3B1211"), Color.decode("#F8F2F0"), new Font("Bell MT", Font.PLAIN, 16));
+        closeButton.applyCustomStyles();
+
 
         //PANTALLA GENERAL
         setTitle("Settings View");
