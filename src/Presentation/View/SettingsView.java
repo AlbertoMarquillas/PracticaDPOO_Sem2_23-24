@@ -1,112 +1,69 @@
 package Presentation.View;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
-import javax.swing.BorderFactory;
 import java.awt.*;
 
+/**
+ * Classe de les vista de la pantalla de settings.
+ */
 public class SettingsView extends JFrame {
-/*
-    private static class RoundedBorder implements Border {
-
-        private int radius;
-
-        RoundedBorder(int radius) {
-            this.radius = radius;
-        }
-
-        @Override
-        public Insets getBorderInsets(Component c) {
-            return new Insets(this.radius+1, this.radius+1, this.radius+2, this.radius);
-        }
-
-        @Override
-        public boolean isBorderOpaque() {
-            return true;
-        }
-
-        @Override
-        public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
-            g.drawRoundRect(x, y, width-1, height-1, radius, radius);
-        }
-
-    }
-*/
-    public static JButton createButton(String string) {
-        JButton button = new JButton(string);
-        button.setPreferredSize(new Dimension(300, 40));
-
-        button.setFont(new Font("Bell MT", Font.PLAIN, 20));
-
-
-        button.setBounds(700, 700, 50, 40);
-        button.setBackground(Color.decode("#C3986A"));
-        button.setForeground(Color.decode("#3B1211"));
-        button.setVisible(true);
-
-
-        return button;
-    }
-
-    public static JLabel createLabel(String text, Font font, Color color) {
-        JLabel label = new JLabel(text);
-        label.setFont(font);
-        label.setForeground(Color.decode("#3B1211"));
-        return label;
-    }
 
     public SettingsView() {
 
-        JLabel titleLabel = createLabel("COFFEE CLICKER", new Font("Arial", Font.PLAIN, 24), Color.decode("#DB5C39"));
-        JButton deleteButton = createButton("Delete Account");
-        JButton closeButton = createButton("Close Session");
-
-        //PANTALLA GENERAL
+        //Marcar-li al JFrame un titol i tamany 800x450
         setTitle("Settings View");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 450); // Tamaño de la ventana
-        setLayout(new GridBagLayout()); // Layout de la ventana principal
+        setLayout(new BorderLayout()); // Layout de la ventana principal
 
-        //PANELL Titol
-        setLayout(new BorderLayout());
-        JPanel titlePanel = new JPanel();
-        titlePanel.setBackground(Color.decode("#DB5C39"));
+        //Inicialització del Label del títol fent us de la classe CustomLabel
+        CustomLabel titleLabel = new CustomLabel("COFFEE CLICKER", new Font("Bauhaus 93", Font.PLAIN, 50), Color.decode("#DB5C39"));
+
+        //Inicialització dels botons fent us de la classe CustomButton
+        CustomButton deleteButton = new CustomButton("Delete Account", 350, 45, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 18));
+        deleteButton.applyCustomStyles();
+        CustomButton closeButton = new CustomButton("Close Session", 350, 45, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 18));
+        closeButton.applyCustomStyles();
+
+        //Inicialitzem la imatge del logo
         ImageIcon logoIcon = new ImageIcon("Imagenes/logoSmall.png"); // Ruta de la imagen del logo
         JLabel logoLabel = new JLabel(logoIcon);
 
-        //PANELL central
+
+        //Panell amb els element
         JPanel panelInfo = new JPanel();
-        panelInfo.setLayout(new GridBagLayout());
+        panelInfo.setBackground(Color.decode("#F8F2F0"));
+        panelInfo.setLayout(new GridBagLayout());               //Crear GridBagLayout del panell central per poder posar els elements
         GridBagConstraints gbcCent = new GridBagConstraints();
 
+        //Afegir el Logo
         gbcCent.gridx = 0;
         gbcCent.gridy = 0;
-        gbcCent.insets = new Insets(10, 0, 20, 300);
+        gbcCent.insets = new Insets(50, 0, 0, 400);
         panelInfo.add(logoLabel, gbcCent);
 
+        //Afegir el Titol
         gbcCent.gridx = 0;
         gbcCent.gridy = 0;
-        gbcCent.insets = new Insets(10, 20, 20, 0);
+        gbcCent.insets = new Insets(65, 70, 0, 0);
         panelInfo.add(titleLabel, gbcCent);
 
+        //Afegir els botó de delete
         gbcCent.gridx = 0;
         gbcCent.gridy = 1;
-        gbcCent.insets = new Insets(20, 0, 0, 0);
+        gbcCent.insets = new Insets(40, 0, 0, 0);
         panelInfo.add(deleteButton, gbcCent);
 
+        //Afegir els botó de close
         gbcCent.gridx = 0;
         gbcCent.gridy = 2;
-        gbcCent.insets = new Insets(10, 0, 0, 0);
+        gbcCent.insets = new Insets(30, 0, 100, 0);
         panelInfo.add(closeButton, gbcCent);
 
-        panelInfo.setBackground(Color.decode("#F8F2F0"));
+        //Afegir el panell a la finestra
         add(panelInfo, BorderLayout.CENTER);
-
-
     }
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             SettingsView settingsView = new SettingsView();

@@ -2,126 +2,111 @@ package Presentation.View;
 
 import javax.swing.*;
 import java.awt.*;
-import javax.swing.border.LineBorder;
 
+/**
+ * Classe de les vistes de la pantalla inicial.
+ */
 public class InitialView extends JFrame {
 
-    public static JButton createButton(String string) {
-        JButton button = new JButton(string);
-        button.setPreferredSize(new Dimension(100, 20));
-        button.setBackground(Color.decode("#3B1211"));
-        button.setForeground(Color.decode("#F8F2F0"));
-        button.setFont(new Font("Bell MT", Font.PLAIN, 16));
-        button.setBorder(new LineBorder(Color.BLACK, 10, true));
-
-        return button;
-    }
-
-    public static JLabel createLabel(String text, Font font, Color color) {
-        JLabel label = new JLabel(text);
-        label.setFont(font);
-        label.setForeground(Color.decode("#F8F2F0"));
-        return label;
-    }
-
-    public static JTextField createTextField(String text) {
-        JTextField textField = new JTextField(text);
-        textField.setPreferredSize(new Dimension(300, 30));
-        textField.setFont(new Font("Bell MT", Font.PLAIN, 12));
-        return textField;
-    }
     public InitialView() {
-        //init botons i textos
-       // RegisterButtong = new JButton("Register");
-        JButton RegisterButtong = createButton("Register");
-        JButton loginButton = createButton("LOGIN");
-        //createButton(loginButton);
-        JLabel usernameLabel = createLabel("User:", new Font("Arial", Font.PLAIN, 16), Color.decode("#3B1211"));
-        JLabel passwordLabel = createLabel("Password:", new Font("Arial", Font.PLAIN, 16),Color.decode("#3B1211"));
-        JLabel titleLabel = createLabel("COFFEE CLICKER", new Font("Arial", Font.BOLD, 30), Color.decode("#3B1211"));
-        JLabel infoLabel = createLabel("Dont have an account?", new Font("Arial", Font.PLAIN, 12), Color.decode("#3B1211"));
-        JTextField userName = createTextField("UserName");
-        JTextField password = createTextField("Password");
 
-        //PANTALLA GENERAL
-        setTitle("Initial View");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(800, 450); // Tamaño de la ventana
-        setLayout(new GridBagLayout()); // Layout de la ventana principal
+        //Inicialitzem els botons fent us de la classe CustomButton
+        CustomButton RegisterButtong = new CustomButton("REGISTER", 140, 25, Color.decode("#3B1211"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
+        RegisterButtong.applyCustomStyles();
+        CustomButton loginButton = new CustomButton("LOGIN", 140, 25, Color.decode("#3B1211"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
+        loginButton.applyCustomStyles();
 
-        //PANELL ESQUERRA
-        setLayout(new BorderLayout());
+        //Inicialitzem els labels fent us de la classe CustomLabel
+        CustomLabel usernameLabel = new CustomLabel("User:", new Font("Segoe UI Black", Font.PLAIN, 16), Color.decode("#F8F2F0"));
+        CustomLabel passwordLabel = new CustomLabel("Password:", new Font("Segoe UI Black", Font.PLAIN, 16), Color.decode("#F8F2F0"));
+        CustomLabel titleLabel = new CustomLabel("COFFEE CLICKER", new Font("Bauhaus 93", Font.BOLD, 50), Color.decode("#F8F2F0"));
+        CustomLabel infoLabel =  new CustomLabel("Don't have an account?", new Font("Segoe UI Black", Font.PLAIN, 12), Color.decode("#F8F2F0"));
 
-        JPanel panelIzquierdo = new JPanel();
-        panelIzquierdo.setBackground(Color.decode("#DB5C39"));
+        //Inicialitzem els textFields fent us de la classe CustomTextField
+        CustomTextField userName = new CustomTextField(300, 30, Color.decode("#3B1211"), new Font("Berlin Sans FB", Font.PLAIN, 14));
+        userName.initializeTextField();
+        CustomPasswordField password = new CustomPasswordField(300, 30, Color.decode("#3B1211"), new Font("Berlin Sans FB", Font.PLAIN, 14));
+        password.initializePasswordField();
+
+        //Inicialitzem la imatge del logo
         ImageIcon logoIcon = new ImageIcon("Imagenes/logo.png"); // Ruta de la imagen del logo
         JLabel logoLabel = new JLabel(logoIcon);
 
-        panelIzquierdo.setLayout(new GridBagLayout());
-        GridBagConstraints gbcPri = new GridBagConstraints();
-        gbcPri.gridx = 0;
-        gbcPri.gridy = 0;
-        gbcPri.insets = new Insets(20, 0, 20, 0);
-        panelIzquierdo.add(logoLabel, gbcPri);
+        //Creació del panell principal i finestra de tamany 800x450
+        setTitle("Initial View");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(800, 450);
+        setLayout(new BorderLayout());  // Layout de la finestra principal per posar els dos subpanells
 
-        //AÑADIR LA IMAGEN EN EL CENTO DEL PANEL
-        add(panelIzquierdo, BorderLayout.WEST);
+        //Creació del panell esquerra que conté el logo
+        JPanel panelIzquierdo = new JPanel();
+        panelIzquierdo.setBackground(Color.decode("#DB5C39"));
+        panelIzquierdo.setLayout(new BorderLayout());               //Crear Layout del panell esquerra per poder posar el logo
+        panelIzquierdo.add(logoLabel);                              //Afegir el logo al panell esquerra
+        add(panelIzquierdo, BorderLayout.WEST);                     //Afegir el panell esquerra a la finestra principal, a l'esquerra
 
-
-        //PANELL DRET
+        //Creació del panell central que conté la informació per l'usuari
         JPanel panelInfo = new JPanel();
-        panelInfo.setLayout(new GridBagLayout());
+        panelInfo.setBackground(Color.decode("#DB5C39"));
+        panelInfo.setLayout(new GridBagLayout());                   //Crear GridBagLayout del panell central per poder posar els elements
         GridBagConstraints gbcSec = new GridBagConstraints();
 
+        //Afegir el titol al panell central
         gbcSec.gridx = 0;
         gbcSec.gridy = 0;
-        gbcSec.insets = new Insets(50, 10, 0, 10);
+        gbcSec.insets = new Insets(40, 10, 0, 10);
         panelInfo.add(titleLabel, gbcSec);
 
+        //Afegir el JLabel d'usuari
         gbcSec.gridx = 0;
         gbcSec.gridy = 1;
-        gbcSec.insets = new Insets(30, 0, 5, 260);
+        gbcSec.insets = new Insets(20, 0, 5, 250);
         panelInfo.add(usernameLabel, gbcSec);
 
+        //Afegir el JTextField d'usuari
         gbcSec = new GridBagConstraints();
         gbcSec.gridx = 0;
         gbcSec.gridy = 2;
         gbcSec.insets = new Insets(0, 0, 20, 0);
         panelInfo.add(userName, gbcSec);
 
+        //Afegir el JLabel de la contrasenya
         gbcSec = new GridBagConstraints();
         gbcSec.gridx = 0;
         gbcSec.gridy = 3;
-        gbcSec.insets = new Insets(20, 0, 5, 225);
+        gbcSec.insets = new Insets(10, 0, 5, 210);
         panelInfo.add(passwordLabel, gbcSec);
 
+        //Afegir el JPasswordField de la contrasenya
         gbcSec = new GridBagConstraints();
         gbcSec.gridx = 0;
         gbcSec.gridy = 4;
         gbcSec.insets = new Insets(0, 0, 20, 0);
         panelInfo.add(password, gbcSec);
 
+        //Afegir el botó de login
         gbcSec = new GridBagConstraints();
         gbcSec.gridx = 0;
         gbcSec.gridy = 8;
-        gbcSec.insets = new Insets(20, 0, 0, 0);
+        gbcSec.insets = new Insets(10, 0, 0, 0);
         panelInfo.add(loginButton, gbcSec);
 
+        //Afegir el JLabel de "Don't have an account?"
         gbcSec = new GridBagConstraints();
         gbcSec.gridx = 0;
         gbcSec.gridy = 10;
-        gbcSec.insets = new Insets(50, 100, 0, 0);
+        gbcSec.insets = new Insets(40, 0, 0, 0);
         panelInfo.add(infoLabel, gbcSec);
 
+        //Afegir el botó de registre
         gbcSec = new GridBagConstraints();
         gbcSec.gridx = 0;
         gbcSec.gridy = 10;
-        gbcSec.insets = new Insets(50, 350, 0, 0);
+        gbcSec.insets = new Insets(40, 300, 0, 0);
         panelInfo.add(RegisterButtong, gbcSec);
 
-        panelInfo.setBackground(Color.decode("#DB5C39"));
+        //Afegir el panell central a la finestra principal
         add(panelInfo, BorderLayout.CENTER);
-
 
     }
 
