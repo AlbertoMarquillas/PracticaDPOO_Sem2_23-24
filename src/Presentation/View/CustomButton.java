@@ -36,6 +36,13 @@ public class CustomButton extends JButton {
         setTextFont(font);
     }
 
+    public CustomButton(int width, int height, Color bgColor) {
+        setOpaque(false);
+        setButtonSize(width, height);
+        setBackgroundColor(bgColor);
+
+    }
+
 
     /**
      * Sobreescriu el mètode paintComponent per personalitzar l'aparença del botó.
