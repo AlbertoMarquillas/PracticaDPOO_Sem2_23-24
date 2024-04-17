@@ -109,9 +109,8 @@ public class SQLGameDAO {
      * @return a boolean condition that represent if the game was done without problems
      */
     public boolean saveGame(int id, String gameName, boolean ended, String time, int totalAttacks, boolean win) {
-        String query = "INSERT INTO game(id, GameName, Ended, Time, TotalAtacks, Win) VALUES " +
-                "("+id+", '"+gameName+"', "+ended+", '"+time+"', "+totalAttacks+", "+win+");";
-        boolean check = Connector.getInstance().insertQuery(query);
+        String query = "UPDATE game SET GameName = '"+gameName+"', Ended = "+ended+", Time = '"+time+"', TotalAtacks = "+totalAttacks+", Win = "+win+" WHERE ID_P = "+id+" AND InProgress = true;";
+        boolean check = Connector.getInstance().updateQuery(query);
         System.out.println(check);
         return check;
     }
@@ -160,11 +159,10 @@ public class SQLGameDAO {
         numGame = getGameCount(userId);
 
         // Crear la consulta SQL para insertar la nueva partida
-        String query = "INSERT INTO game(ID_P, ID_G, N_Coffees, PowerUpClicker, Time, Ended) VALUES " +
-                "("+userId+", "+numGame+", "+N_Coffees+", "+PowerUpClicker+", '"+Time+"', "+Ended+");";
+        String query = "INSERT INTO game(ID_P, ID_G, N_Coffees, PowerUpClicker, Time, Ended, InProgress) VALUES " +
+                "('" + userId + "', '" + numGame + "', '" + N_Coffees + "', '" + PowerUpClicker + "', '" + Time + "', '" + Ended + "', 'true');";
 
         // Ejecutar la consulta y devolver si se realizó con éxito
         return Connector.getInstance().insertQuery(query);
     }
-
 }

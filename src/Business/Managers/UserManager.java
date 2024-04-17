@@ -38,7 +38,7 @@ public class UserManager {
         } else {
             if(existUser(username)) {
                 return "WrongUser";
-            }else if (password(password)) {
+            }else if (password(username, password)) {
                 return "WrongPass";
             }else {
                 return "ChangeLog";
@@ -47,10 +47,9 @@ public class UserManager {
 
     /**
      * Metode que crida al metode deleteUser de la classe SQLUserDAO per eliminar l'usuari
-     * @param password contrasenya de l'usuari
      */
-    public void deleteUser(String password){
-        userDAO.deleteUser(password);
+    public void deleteConnectedUser(){
+        userDAO.deleteUser();
     }
 
     /**
@@ -60,7 +59,7 @@ public class UserManager {
      */
     public boolean confirmPassword(String password){
         if(samePassword(password)){
-            deleteUser(password);
+            deleteConnectedUser();
             return true;
         }
         return false;
@@ -92,6 +91,7 @@ public class UserManager {
      * @return true si la contrasenya es correcte, false si no
      */
     public boolean password(String username, String password){
+        //Comprobes si existeix un usuari amb aquesta contrasenya, si no existeix retorna false
         return userDAO.checkPassword(username, password);
     } //necessito saber la contrasenya si correspon al nom d'usuari
 
@@ -114,7 +114,8 @@ public class UserManager {
      * Mètode que recupera la contrasenya dels usuaris conectats
      */
     public String getPasswordUserConnected() {
-        return userDAO.getPasswordUserConnected();
+        User userConnected = userDAO.getUserConnected();
+        return userConnected.getPassword();
     }
 
 
