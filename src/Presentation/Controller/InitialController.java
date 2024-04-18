@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 
 public class InitialController implements ActionListener{
 
-    private final InitialView initialView;
+    /**private final InitialView initialView;
     private final LogInManager logInManager;
     public final ChangeViewController changeViewController;
 
@@ -50,10 +50,10 @@ public class InitialController implements ActionListener{
         JOptionPane.showMessageDialog(initialView, "Tots els camps son obligatoris");
     }
 
-
+**/
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals("log")) {
+        /**if (e.getActionCommand().equals("log")) {
             switch (logInManager.comprobarLogIn(getUsernameFieldController(), getPasswordFieldController())) {
                 case "FillAll" -> showErrorFillAll();
                 case "WrongPass" -> showWrongPassword();
@@ -68,6 +68,6 @@ public class InitialController implements ActionListener{
             changeViewController.changePan("register");
             borrarInfoInit();
 
-        }
+        }**/
     }
 }

@@ -106,7 +106,7 @@ public class RegisterController implements ActionListener {
     }
 
     private void panelChangeLog() {
-        changeViewController.changePan("login");
+        //changeViewController.changePan("login");
     }
 
     @Override

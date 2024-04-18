@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
 
 
 /**
@@ -153,26 +154,34 @@ public class RegisterView extends JFrame {
         loginButton.removeActionListener(registerController);
     }*/
 
-    public CustomTextField getUsernameField() {
-        return usernameField;
+    public String getUsernameField() {
+        return usernameField.getText();
     }
 
-    public CustomTextField getEmailField() {
-        return emailField;
+    public String getEmailField() {
+        return emailField.getText();
     }
 
-    public CustomPasswordField getPasswordField() {
-        return passwordField;
+    public String getPasswordField() {
+        return String.valueOf(passwordField.getPassword());
     }
 
-    public CustomPasswordField getConfirmPasswordField() {
-        return confirmationField;
+    public String getConfirmPasswordField() {
+        return String.valueOf(confirmationField.getPassword());
     }
 
-    public void setUsernameField(CustomTextField usernameField) {
-        this.usernameField = usernameField;
+    public void setUsernameField(String usernameField) {
+        this.usernameField.setText(usernameField);
     }
-
+    public void setEmailField(String emailField) {
+        this.emailField.setText(emailField);
+    }
+    public void setPasswordField(String passwordField) {
+        this.passwordField.setText(passwordField);
+    }
+    public void setConfirmPasswordField(String confirmPasswordField) {
+        this.confirmationField.setText(confirmPasswordField);
+    }
 
 
 
