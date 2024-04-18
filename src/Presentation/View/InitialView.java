@@ -12,9 +12,7 @@ public class InitialView extends JFrame {
 
         //Inicialitzem els botons fent us de la classe CustomButton
         CustomButton RegisterButtong = new CustomButton("REGISTER", 140, 25, Color.decode("#3B1211"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
-        RegisterButtong.applyCustomStyles();
         CustomButton loginButton = new CustomButton("LOGIN", 140, 25, Color.decode("#3B1211"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
-        loginButton.applyCustomStyles();
 
         //Inicialitzem els labels fent us de la classe CustomLabel
         CustomLabel usernameLabel = new CustomLabel("User:", new Font("Segoe UI Black", Font.PLAIN, 16), Color.decode("#F8F2F0"));
@@ -24,9 +22,7 @@ public class InitialView extends JFrame {
 
         //Inicialitzem els textFields fent us de la classe CustomTextField
         CustomTextField userName = new CustomTextField(300, 30, Color.decode("#3B1211"), new Font("Berlin Sans FB", Font.PLAIN, 14));
-        userName.initializeTextField();
         CustomPasswordField password = new CustomPasswordField(300, 30, Color.decode("#3B1211"), new Font("Berlin Sans FB", Font.PLAIN, 14));
-        password.initializePasswordField();
 
         //Inicialitzem la imatge del logo
         ImageIcon logoIcon = new ImageIcon("Imagenes/logo.png"); // Ruta de la imagen del logo
@@ -117,11 +113,3 @@ public class InitialView extends JFrame {
         });
     }
 }
-
-
-/*
-#DB5C39 naranja
-#3B1211 marron oscuro
-#F8F2F0 blanco
-#C3986A marron claro
- */

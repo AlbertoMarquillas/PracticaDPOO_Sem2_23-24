@@ -25,9 +25,7 @@ public class RegisterView extends JFrame {
 
         //Inicialització dels textFields fent us de la classe CustomTextField
         CustomTextField usernameField = new CustomTextField(300, 20, Color.decode("#C3986A"), new Font("Berlin Sans FB", Font.PLAIN, 14));
-        usernameField.initializeTextField();
         CustomTextField emailField = new CustomTextField(300, 20, Color.decode("#C3986A"), new Font("Berlin Sans FB", Font.PLAIN, 14));
-        emailField.initializeTextField();
         CustomPasswordField passwordField = new CustomPasswordField(300, 20, Color.decode("#C3986A"), new Font("Berlin Sans FB", Font.PLAIN, 14));
         passwordField.initializePasswordField();
         CustomPasswordField confirmationField = new CustomPasswordField(300, 20, Color.decode("#C3986A"), new Font("Berlin Sans FB", Font.PLAIN, 14));
@@ -35,9 +33,7 @@ public class RegisterView extends JFrame {
 
         //Inicialització dels botons fent us de la classe CustomButton
         CustomButton nextButton = new CustomButton("NEXT", 140, 25, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
-        nextButton.applyCustomStyles();
         CustomButton loginButton = new CustomButton("LOGIN", 140, 25, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
-        loginButton.applyCustomStyles();
 
         //Inicialització la imatge del logo
         ImageIcon logoIcon = new ImageIcon("Imagenes/logoSmall.png"); // Ruta de la imagen del logo
@@ -132,7 +128,6 @@ public class RegisterView extends JFrame {
 
         //Afegir el panell central a la finestra principal
         add(panelInfo, BorderLayout.CENTER);
-
 
     }
 
