@@ -21,9 +21,7 @@ public class SettingsView extends JFrame {
 
         //Inicialització dels botons fent us de la classe CustomButton
         CustomButton deleteButton = new CustomButton("Delete Account", 350, 45, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 18));
-        deleteButton.applyCustomStyles();
         CustomButton closeButton = new CustomButton("Close Session", 350, 45, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 18));
-        closeButton.applyCustomStyles();
 
         //Inicialitzem la imatge del logo
         ImageIcon logoIcon = new ImageIcon("Imagenes/logoSmall.png"); // Ruta de la imagen del logo

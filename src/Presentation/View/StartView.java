@@ -21,11 +21,8 @@ public class StartView extends JFrame {
 
         //Crear els botons fent us de la classe CustomButton
         CustomButton newGameButton = new CustomButton("New Game", 350, 45, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 18));
-        newGameButton.applyCustomStyles();
         CustomButton startGameButton = new CustomButton("Start Game", 350, 45, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 18));
-        startGameButton.applyCustomStyles();
         CustomButton statisticsButton = new CustomButton("Statistics", 350, 45, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 18));
-        statisticsButton.applyCustomStyles();
 
         //Crear el logo amb la foto del logo
         ImageIcon logoIcon = new ImageIcon("Imagenes/logo.png"); // Ruta de la imagen del logo
