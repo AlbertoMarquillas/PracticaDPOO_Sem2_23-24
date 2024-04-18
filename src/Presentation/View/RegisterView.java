@@ -1,13 +1,25 @@
 package Presentation.View;
 
+import Presentation.Controller.RegisterController;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionListener;
 
 
 /**
  * Classe de les vistes de la pantalla de registre.
  */
 public class RegisterView extends JFrame {
+    private static final String NEXT = "Next";
+    private static final String LOGIN = "LogIn";
+    private CustomTextField usernameField;
+    private CustomTextField emailField;
+    private CustomPasswordField passwordField;
+    private CustomPasswordField confirmationField;
+    private CustomButton nextButton;
+    private CustomButton loginButton;
 
     public RegisterView() {
 
@@ -24,16 +36,14 @@ public class RegisterView extends JFrame {
         CustomLabel confirmationLabel = new CustomLabel("Password confirmation", new Font("Segoe UI Black", Font.PLAIN, 16),Color.decode("#3B1211"));
 
         //Inicialització dels textFields fent us de la classe CustomTextField
-        CustomTextField usernameField = new CustomTextField(300, 20, Color.decode("#C3986A"), new Font("Berlin Sans FB", Font.PLAIN, 14));
-        CustomTextField emailField = new CustomTextField(300, 20, Color.decode("#C3986A"), new Font("Berlin Sans FB", Font.PLAIN, 14));
-        CustomPasswordField passwordField = new CustomPasswordField(300, 20, Color.decode("#C3986A"), new Font("Berlin Sans FB", Font.PLAIN, 14));
-        passwordField.initializePasswordField();
-        CustomPasswordField confirmationField = new CustomPasswordField(300, 20, Color.decode("#C3986A"), new Font("Berlin Sans FB", Font.PLAIN, 14));
-        confirmationField.initializePasswordField();
+        usernameField = new CustomTextField(300, 20, Color.decode("#C3986A"), new Font("Berlin Sans FB", Font.PLAIN, 14));
+        emailField = new CustomTextField(300, 20, Color.decode("#C3986A"), new Font("Berlin Sans FB", Font.PLAIN, 14));
+        passwordField = new CustomPasswordField(300, 20, Color.decode("#C3986A"), new Font("Berlin Sans FB", Font.PLAIN, 14));
+        confirmationField = new CustomPasswordField(300, 20, Color.decode("#C3986A"), new Font("Berlin Sans FB", Font.PLAIN, 14));
 
         //Inicialització dels botons fent us de la classe CustomButton
-        CustomButton nextButton = new CustomButton("NEXT", 140, 25, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
-        CustomButton loginButton = new CustomButton("LOGIN", 140, 25, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
+        nextButton = new CustomButton("NEXT", 140, 25, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
+        loginButton = new CustomButton("LOGIN", 140, 25, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
 
         //Inicialització la imatge del logo
         ImageIcon logoIcon = new ImageIcon("Imagenes/logoSmall.png"); // Ruta de la imagen del logo
@@ -130,6 +140,41 @@ public class RegisterView extends JFrame {
         add(panelInfo, BorderLayout.CENTER);
 
     }
+
+    public void nextButtonController(ActionListener rvc){
+        nextButton.addActionListener(rvc);
+        nextButton.setActionCommand(NEXT);
+        loginButton.addActionListener(rvc);
+        loginButton.setActionCommand(LOGIN);
+    }
+
+    /*public void stopAListener(RegisterController registerController){
+        nextButton.removeActionListener(registerController);
+        loginButton.removeActionListener(registerController);
+    }*/
+
+    public CustomTextField getUsernameField() {
+        return usernameField;
+    }
+
+    public CustomTextField getEmailField() {
+        return emailField;
+    }
+
+    public CustomPasswordField getPasswordField() {
+        return passwordField;
+    }
+
+    public CustomPasswordField getConfirmPasswordField() {
+        return confirmationField;
+    }
+
+    public void setUsernameField(CustomTextField usernameField) {
+        this.usernameField = usernameField;
+    }
+
+
+
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
