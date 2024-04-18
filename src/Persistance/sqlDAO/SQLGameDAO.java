@@ -4,6 +4,7 @@ import Persistance.Connector;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -108,9 +109,8 @@ public class SQLGameDAO {
      * @return a boolean condition that represent if the game was done without problems
      */
     public boolean saveGame(int id, String gameName, boolean ended, String time, int totalAttacks, boolean win) {
-        String query = "INSERT INTO game(id, GameName, Ended, Time, TotalAtacks, Win) VALUES " +
-                "("+id+", '"+gameName+"', "+ended+", '"+time+"', "+totalAttacks+", "+win+");";
-        boolean check = Connector.getInstance().insertQuery(query);
+        String query = "UPDATE game SET GameName = '"+gameName+"', Ended = "+ended+", Time = '"+time+"', TotalAtacks = "+totalAttacks+", Win = "+win+" WHERE ID_P = "+id+" AND InProgress = true;";
+        boolean check = Connector.getInstance().updateQuery(query);
         System.out.println(check);
         return check;
     }
@@ -133,4 +133,36 @@ public class SQLGameDAO {
         Connector.getInstance().updateQuery(query);
     }
 
+    public int getGameCount(int userId) {
+        int gameCount = 0;
+        String query = "SELECT * FROM game WHERE ID_P = " + userId + ";";
+        ResultSet result = Connector.getInstance().selectQuery(query);
+        try {
+            while(result.next()) {
+                gameCount++;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return gameCount;
+    }
+
+    public boolean startNewGame(int userId) {
+        // Establecer los valores iniciales para la nueva partida
+        int numGame = 0;
+        int N_Coffees = 0;
+        int PowerUpClicker = 0;
+        boolean Ended = false;
+        String Time = "00:00:00"; // Asume que el tiempo se almacena como una cadena en formato HH:MM:SS
+
+        //Encontrar el numero de partidas que lleva ejecutadas el usuario
+        numGame = getGameCount(userId);
+
+        // Crear la consulta SQL para insertar la nueva partida
+        String query = "INSERT INTO game(ID_P, ID_G, N_Coffees, PowerUpClicker, Time, Ended, InProgress) VALUES " +
+                "('" + userId + "', '" + numGame + "', '" + N_Coffees + "', '" + PowerUpClicker + "', '" + Time + "', '" + Ended + "', 'true');";
+
+        // Ejecutar la consulta y devolver si se realizó con éxito
+        return Connector.getInstance().insertQuery(query);
+    }
 }

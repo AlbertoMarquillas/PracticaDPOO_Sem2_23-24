@@ -46,7 +46,8 @@ public class SQLUserDAO{
                 String username = result.getString("UserName");
                 String email = result.getString("Email");
                 String password = result.getString("Password");
-                users.add(new User(id, username, email, password));
+                boolean connected = result.getBoolean("Connected");
+                users.add(new User(id, username, email, password, connected));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -87,10 +88,10 @@ public class SQLUserDAO{
      * function that deletes a user from the database
      * @return boolean that indicates if it has been deleted correctly
      */
-    public boolean deleteUser (int id) {
+    public boolean deleteUser () {
 
         boolean check;
-        String query = "DELETE FROM users WHERE id = '" + id + "';";
+        String query = "DELETE FROM users WHERE Connected = '" + true + "';";
         Connector.getInstance().deleteQuery(query);
         return true;
     }
@@ -100,9 +101,9 @@ public class SQLUserDAO{
      * @param password is a string with the entered password by the user
      * @return boolean that indicates if the password introduced by the user is valid (follows the format in the statement)
      */
-    public boolean checkPassword (String password) {
+    public boolean checkPassword(String userName, String password) {
         try {
-            String query = "SELECT id FROM users WHERE Password = '" + password + "';";     //Revisar
+            String query = "SELECT * FROM users WHERE UserName = '" + userName + "' AND Password = '" + password + "';";
             ResultSet result = Connector.getInstance().selectQuery(query);
             return result.next();
         } catch (SQLException e) {
@@ -110,4 +111,38 @@ public class SQLUserDAO{
         }
     }
 
+    public boolean createUser(String name, String email, String password) {
+        // Obtener el siguiente ID disponible para el nuevo usuario
+        int id = getAllUsers().size() + 1;
+        // El usuario no está conectado cuando se crea
+        boolean connected = true;
+
+        String query = "INSERT INTO users(id, UserName, Email, Password, Connected) VALUES " +
+                "('" + id + "', '" + name + "', '" + email + "', '" + password + "', '" + connected + "');";
+
+    return Connector.getInstance().insertQuery(query);
+}
+
+    public User getUserConnected() {
+        try {
+            String query = "SELECT * FROM users WHERE Connected = 'true';";
+            ResultSet result = Connector.getInstance().selectQuery(query);
+            if (result.next()) {
+                int id = result.getInt("id");
+                String userName = result.getString("UserName");
+                String email = result.getString("Email");
+                String password = result.getString("Password");
+                boolean connected = result.getBoolean("Connected");
+                return new User(id, userName, email, password, connected);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public void connectedUser(String name) {
+        String query = "UPDATE users SET Connected = 'true' WHERE UserName = '" + name + "';";
+        Connector.getInstance().updateQuery(query);
+    }
 }
