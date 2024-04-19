@@ -2,11 +2,17 @@ package Presentation.View;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 /**
  * Classe de les vista de la pantalla de settings.
  */
 public class SettingsView extends JFrame {
+
+    private static final String DELETE = "Delete";
+    private static final String CLOSE = "Close";
+    private CustomButton deleteButton;
+    private CustomButton closeButton;
 
     public SettingsView() {
 
@@ -20,8 +26,8 @@ public class SettingsView extends JFrame {
         CustomLabel titleLabel = new CustomLabel("COFFEE CLICKER", new Font("Bauhaus 93", Font.PLAIN, 50), Color.decode("#DB5C39"));
 
         //Inicialització dels botons fent us de la classe CustomButton
-        CustomButton deleteButton = new CustomButton("Delete Account", 350, 45, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 18));
-        CustomButton closeButton = new CustomButton("Close Session", 350, 45, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 18));
+        deleteButton = new CustomButton("Delete Account", 350, 45, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 18));
+        closeButton = new CustomButton("Close Session", 350, 45, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 18));
 
         //Inicialitzem la imatge del logo
         ImageIcon logoIcon = new ImageIcon("Imagenes/logoSmall.png"); // Ruta de la imagen del logo
@@ -62,6 +68,14 @@ public class SettingsView extends JFrame {
         add(panelInfo, BorderLayout.CENTER);
     }
 
+    public void buttonController(ActionListener rvc){
+        deleteButton.addActionListener(rvc);
+        deleteButton.setActionCommand(DELETE);
+        closeButton.addActionListener(rvc);
+        closeButton.setActionCommand(CLOSE);
+    }
+
+   
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             SettingsView settingsView = new SettingsView();
