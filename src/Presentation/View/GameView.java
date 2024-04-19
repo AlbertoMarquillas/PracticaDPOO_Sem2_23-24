@@ -69,10 +69,10 @@ public class GameView extends JFrame implements KeyListener, ActionListener {
         settingsButton.setContentAreaFilled(false);     //Fer que l'àrea de contingut del botó sigui transparent
 
         //Crear els botons de cada millora fent us de la classe CustomButton
-        CustomButton millora1 = new CustomButton("Millora 1", 170, 75, Color.decode("#F8F2F0"), Color.decode("#3B1211"), new Font("Segoe UI Black", Font.PLAIN, 18));
-        CustomButton millora2 = new CustomButton("Millora 2", 170, 75, Color.decode("#F8F2F0"), Color.decode("#3B1211"), new Font("Segoe UI Black", Font.PLAIN, 18));
-        CustomButton millora3 = new CustomButton("Millora 3", 170, 75, Color.decode("#F8F2F0"), Color.decode("#3B1211"), new Font("Segoe UI Black", Font.PLAIN, 18));
-        CustomButton millora4 = new CustomButton("Millora 4", 170, 75, Color.decode("#F8F2F0"), Color.decode("#3B1211"), new Font("Segoe UI Black", Font.PLAIN, 18));
+        CustomButton millora1 = new CustomButton("<html><div style='text-align: center;'>Double the efficiency in BARISTA BOOST</div></html>", 170, 75, Color.decode("#F8F2F0"), Color.decode("#3B1211"), new Font("Segoe UI Black", Font.PLAIN, 14));
+        CustomButton millora2 = new CustomButton("<html><div style='text-align: center;'>Double the efficiency in WAFFLE WIZARD</div></html>", 170, 75, Color.decode("#F8F2F0"), Color.decode("#3B1211"), new Font("Segoe UI Black", Font.PLAIN, 14));
+        CustomButton millora3 = new CustomButton("<html><div style='text-align: center;'>Double the efficiency in STEAMY BREW</div></html>", 170, 75, Color.decode("#F8F2F0"), Color.decode("#3B1211"), new Font("Segoe UI Black", Font.PLAIN, 14));
+        CustomButton millora4 = new CustomButton("<html><div style='text-align: center;'>Coffee bean multiplier 50%</div></html>", 170, 75, Color.decode("#F8F2F0"), Color.decode("#3B1211"), new Font("Segoe UI Black", Font.PLAIN, 14));
 
         //Comptador de cafès generats
         //Fara falta canviar el valor del contador per la variable
@@ -82,10 +82,10 @@ public class GameView extends JFrame implements KeyListener, ActionListener {
         CustomLabel lowTitleLabel = new CustomLabel("CLICKER", new Font("Bauhaus 93", Font.BOLD, 80), Color.decode("#DB5C39"));
 
         //Crear els panells dels potenciadors
-        //El cost i la producció faran falta canviar-los per les variables
-        JButton potenciador1 = createPotenciadorButton("Imagenes/potenciador1.png", "Potenciador 1", "Cost 1", "Producció 1");
-        JButton potenciador2 = createPotenciadorButton("Imagenes/potenciador2.png", "Potenciador 2", "Cost 2", "Producció 2");
-        JButton potenciador3 = createPotenciadorButton("Imagenes/potenciador3.png", "Potenciador 3", "Cost 3", "Producció 3");
+        //El string producció fara falta canviar-los per les variables
+        JButton potenciador1 = createPotenciadorButton("Imagenes/potenciador1.png", "BARISTA BOOST", "Cost: 20 CoffeeBeans", "<html><div style='text-align: center;'>Elevate your brew game<br>with lightning speed</div></html>");
+        JButton potenciador2 = createPotenciadorButton("Imagenes/potenciador2.png", "WAFFLE WIZARD", "Cost: 100 CoffeeBeans", "<html><div style='text-align: center;'>Master the art of waffle<br>making with prowess.</div></html>");
+        JButton potenciador3 = createPotenciadorButton("Imagenes/potenciador3.png", "STEAMY BREW", "Cost: 300 CoffeeBeans", "<html><div style='text-align: center;'>Experience the power<br>of a perfect, steamy cup.</div></html>");
 
         //poner el panel del potenciador dentro de un boton
 
@@ -235,9 +235,9 @@ public class GameView extends JFrame implements KeyListener, ActionListener {
     public static CustomButton createPotenciadorButton(String pathFoto, String nom, String cost, String produccio) {
 
         //inicialitzar els labels amb les dades dels potenciadors
-        CustomLabel nomLabel = new CustomLabel(nom, new Font("Segoe UI Black", Font.PLAIN, 18), Color.decode("#3B1211"));
-        CustomLabel costLabel = new CustomLabel(cost, new Font("Segoe UI Black", Font.PLAIN, 18), Color.decode("#3B1211"));
-        CustomLabel produccioLabel = new CustomLabel(produccio, new Font("Segoe UI Black", Font.PLAIN, 18), Color.decode("#3B1211"));
+        CustomLabel nomLabel = new CustomLabel(nom, new Font("Segoe UI Black", Font.PLAIN, 19), Color.decode("#3B1211"));
+        CustomLabel costLabel = new CustomLabel(cost, new Font("Segoe UI Black", Font.PLAIN, 14), Color.decode("#3B1211"));
+        CustomLabel produccioLabel = new CustomLabel(produccio, new Font("Segoe UI Black", Font.PLAIN, 12), Color.decode("#3B1211"));
 
         //inicialitzar la imatge del potenciador
         ImageIcon foto = new ImageIcon(pathFoto);
@@ -260,19 +260,19 @@ public class GameView extends JFrame implements KeyListener, ActionListener {
         //afegir el nom
         gbcInfo.gridx = 1;
         gbcInfo.gridy = 0;
-        gbcInfo.insets = new Insets(10, 10, 0, 0);
+        gbcInfo.insets = new Insets(10, 0, 0, 0);
         panelInfo.add(nomLabel, gbcInfo);
 
         //afegir el cost
         gbcInfo.gridx = 1;
         gbcInfo.gridy = 1;
-        gbcInfo.insets = new Insets(10, 10, 0, 0); // Ajusta los márgenes
+        gbcInfo.insets = new Insets(10, 0, 0, 5); // Ajusta los márgenes
         panelInfo.add(costLabel, gbcInfo);
 
         //afegir la producció
         gbcInfo.gridx = 1;
         gbcInfo.gridy = 2;
-        gbcInfo.insets = new Insets(10, 10, 0, 0); // Ajusta los márgenes
+        gbcInfo.insets = new Insets(10, 0, 0, 20); // Ajusta los márgenes
         panelInfo.add(produccioLabel, gbcInfo);
 
         //afegir la imatge i el subpanell amb la informació al panell principal

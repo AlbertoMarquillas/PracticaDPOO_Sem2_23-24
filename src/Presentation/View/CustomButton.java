@@ -45,6 +45,7 @@ public class CustomButton extends JButton {
     }
 
 
+
     /**
      * Sobreescriu el mètode paintComponent per personalitzar l'aparença del botó.
      *
