@@ -75,7 +75,7 @@ public class SettingsView extends JFrame {
         closeButton.setActionCommand(CLOSE);
     }
 
-   
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             SettingsView settingsView = new SettingsView();

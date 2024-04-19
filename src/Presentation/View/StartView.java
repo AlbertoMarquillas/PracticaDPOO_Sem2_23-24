@@ -2,11 +2,20 @@ package Presentation.View;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 /**
  * Classe de les vista de la pantalla de start.
  */
 public class StartView extends JFrame {
+    private static final String NEWGAME = "NewGame";
+    private static final String RESUMEGAME = "ResumeGame";
+    private static final String STATISTICS = "Statistics";
+
+    private CustomButton newGameButton;
+    private CustomButton startGameButton;
+    private CustomButton statisticsButton;
+
 
     public StartView() {
 
@@ -20,9 +29,9 @@ public class StartView extends JFrame {
         CustomLabel titleLabel = new CustomLabel("COFFEE CLICKER", new Font("Bauhaus 93", Font.PLAIN, 50), Color.decode("#DB5C39"));
 
         //Crear els botons fent us de la classe CustomButton
-        CustomButton newGameButton = new CustomButton("New Game", 350, 45, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 18));
-        CustomButton startGameButton = new CustomButton("Start Game", 350, 45, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 18));
-        CustomButton statisticsButton = new CustomButton("Statistics", 350, 45, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 18));
+        newGameButton = new CustomButton("New Game", 350, 45, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 18));
+        startGameButton = new CustomButton("Resume Game", 350, 45, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 18));
+        statisticsButton = new CustomButton("Statistics", 350, 45, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 18));
 
         //Crear el logo amb la foto del logo
         ImageIcon logoIcon = new ImageIcon("Imagenes/logo.png"); // Ruta de la imagen del logo
@@ -69,6 +78,41 @@ public class StartView extends JFrame {
 
         //Afegir el panell a la finestra
         add(panelInfo, BorderLayout.CENTER);
+    }
+
+    public void buttonController(ActionListener rvc){
+        startGameButton.addActionListener(rvc);
+        startGameButton.setActionCommand(RESUMEGAME);
+        newGameButton.addActionListener(rvc);
+        newGameButton.setActionCommand(NEWGAME);
+        statisticsButton.addActionListener(rvc);
+        statisticsButton.setActionCommand(STATISTICS);
+    }
+
+    //getters i setters
+    public CustomButton getNewGameButton() {
+        return newGameButton;
+    }
+
+    public CustomButton getStartGameButton() {
+        return startGameButton;
+    }
+
+    public CustomButton getStatisticsButton() {
+        return statisticsButton;
+    }
+
+    //setters
+    public void setNewGameButton(CustomButton newGameButton) {
+        this.newGameButton = newGameButton;
+    }
+
+    public void setStartGameButton(CustomButton startGameButton) {
+        this.startGameButton = startGameButton;
+    }
+
+    public void setStatisticsButton(CustomButton statisticsButton) {
+        this.statisticsButton = statisticsButton;
     }
 
     public static void main(String[] args) {
