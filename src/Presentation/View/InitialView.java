@@ -2,12 +2,16 @@ package Presentation.View;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 
 /**
  * Classe de les vistes de la pantalla inicial.
  */
-public class InitialView extends JFrame {
+public class InitialView extends JFrame implements KeyListener{
 
     public static final String REGISTER = "Register";
     public static final String LOGIN = "Login";
@@ -204,5 +208,21 @@ public class InitialView extends JFrame {
             InitialView initialView = new InitialView();
             initialView.setVisible(true);
         });
+    }
+
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
     }
 }

@@ -11,12 +11,15 @@ package Presentation.View;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 /**
  * Classe que crea la finestra principal de l'aplicació.
  */
-public class GameView extends JFrame{
+public class GameView extends JFrame implements KeyListener, ActionListener {
 
     private static final String MILLORA1 = "Millora 1";
     private static final String MILLORA2 = "Millora 2";
@@ -523,5 +526,25 @@ public class GameView extends JFrame{
             GameView initialView = new GameView();
             initialView.setVisible(true);
         });
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
     }
 }

@@ -2,12 +2,14 @@ package Presentation.View;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 /**
  * Classe de les vista de la pantalla de settings.
  */
-public class SettingsView extends JFrame {
+public class SettingsView extends JFrame implements KeyListener, ActionListener {
 
     private static final String DELETE = "Delete";
     private static final String CLOSE = "Close";
@@ -121,4 +123,23 @@ public class SettingsView extends JFrame {
         });
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }
 }

@@ -4,15 +4,16 @@ import Presentation.Controller.RegisterController;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 
 /**
  * Classe de les vistes de la pantalla de registre.
  */
-public class RegisterView extends JFrame {
+public class RegisterView extends JFrame implements KeyListener, ActionListener {
     private static final String NEXT = "Next";
     private static final String LOGIN = "LogIn";
     private CustomTextField usernameField;
@@ -258,12 +259,31 @@ public class RegisterView extends JFrame {
 
 
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }
+
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             RegisterView registerView = new RegisterView();
             registerView.setVisible(true);
         });
     }
-
-
 }

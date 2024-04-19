@@ -2,12 +2,16 @@ package Presentation.View;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 
 /**
  * Classe de les vista de la pantalla de start.
  */
-public class StartView extends JFrame {
+public class StartView extends JFrame implements KeyListener, ActionListener {
     private static final String NEWGAME = "NewGame";
     private static final String RESUMEGAME = "ResumeGame";
     private static final String STATISTICS = "Statistics";
@@ -152,5 +156,25 @@ public class StartView extends JFrame {
             StartView StartView = new StartView();
             StartView.setVisible(true);
         });
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
     }
 }
