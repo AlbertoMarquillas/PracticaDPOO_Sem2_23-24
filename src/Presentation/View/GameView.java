@@ -11,12 +11,33 @@ package Presentation.View;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 /**
  * Classe que crea la finestra principal de l'aplicació.
  */
 public class GameView extends JFrame{
 
+    private static final String MILLORA1 = "Millora 1";
+    private static final String MILLORA2 = "Millora 2";
+    private static final String MILLORA3 = "Millora 3";
+    private static final String MILLORA4 = "Millora 4";
+    private static final String POTENCIADOR1 = "Potenciador 1";
+    private static final String POTENCIADOR2 = "Potenciador 2";
+    private static final String POTENCIADOR3 = "Potenciador 3";
+    private static final String SETTINGS = "Settings";
+
+    private static final String CREATECOFFE = "Create Cofee";
+    private CustomButton millora1;
+    private CustomButton millora2;
+    private CustomButton millora3;
+    private CustomButton millora4;
+    private CustomButton potenciador1;
+    private CustomButton potenciador2;
+    private CustomButton potenciador3;
+
+    private JButton imageButton;
+    private JButton settingsButton;
     /**
      * Funció que crea un JPanel pels potenciadors amb un layout i un color determinat.
      * @param pathFoto  Ruta de la imatge del potenciador
@@ -25,7 +46,7 @@ public class GameView extends JFrame{
      * @param produccio Producció del potenciador
      * @return JPanel amb les dades del potenciador
      */
-    public static JPanel createPotenciadorPanel(String pathFoto, String nom, String cost, String produccio) {
+    public static CustomButton createPotenciadorButton(String pathFoto, String nom, String cost, String produccio) {
 
         //inicialitzar els labels amb les dades dels potenciadors
         CustomLabel nomLabel = new CustomLabel(nom, new Font("Segoe UI Black", Font.PLAIN, 18), Color.decode("#3B1211"));
@@ -72,7 +93,12 @@ public class GameView extends JFrame{
         panel.add(fotoLabel, BorderLayout.WEST);
         panel.add(panelInfo, BorderLayout.CENTER);
 
-        return panel;
+        CustomButton potenciadorButton = new CustomButton(350, 170, Color.decode("#F8F2F0"));
+        potenciadorButton.add(panel);
+        potenciadorButton.setBorderPainted(false);            // Eliminar borde
+        potenciadorButton.setContentAreaFilled(false);        //Fer que l'àrea de contingut del botó sigui transparent
+
+        return potenciadorButton;
     }
 
 
@@ -160,9 +186,12 @@ public class GameView extends JFrame{
 
         //Crear els panells dels potenciadors
         //El cost i la producció faran falta canviar-los per les variables
-        JPanel potenciador1 = createPotenciadorPanel("Imagenes/potenciador1.png", "Potenciador 1", "Cost 1", "Producció 1");
-        JPanel potenciador2 = createPotenciadorPanel("Imagenes/potenciador2.png", "Potenciador 2", "Cost 2", "Producció 2");
-        JPanel potenciador3 = createPotenciadorPanel("Imagenes/potenciador3.png", "Potenciador 3", "Cost 3", "Producció 3");
+        JButton potenciador1 = createPotenciadorButton("Imagenes/potenciador1.png", "Potenciador 1", "Cost 1", "Producció 1");
+        JButton potenciador2 = createPotenciadorButton("Imagenes/potenciador2.png", "Potenciador 2", "Cost 2", "Producció 2");
+        JButton potenciador3 = createPotenciadorButton("Imagenes/potenciador3.png", "Potenciador 3", "Cost 3", "Producció 3");
+
+        //poner el panel del potenciador dentro de un boton
+
 
         //Crear la taula amb les dades dels potenciadors
         JTable table = createTable();
@@ -296,6 +325,102 @@ public class GameView extends JFrame{
         add(rightPanel, BorderLayout.EAST);
 
     }
+
+    public void buttonController(ActionListener rvc){
+        potenciador1.addActionListener(rvc);
+        potenciador1.setActionCommand(POTENCIADOR1);
+        potenciador2.addActionListener(rvc);
+        potenciador2.setActionCommand(POTENCIADOR2);
+        potenciador3.addActionListener(rvc);
+        potenciador3.setActionCommand(POTENCIADOR3);
+        millora1.addActionListener(rvc);
+        millora1.setActionCommand(MILLORA1);
+        millora2.addActionListener(rvc);
+        millora2.setActionCommand(MILLORA2);
+        millora3.addActionListener(rvc);
+        millora3.setActionCommand(MILLORA3);
+        millora4.addActionListener(rvc);
+        millora4.setActionCommand(MILLORA4);
+        settingsButton.addActionListener(rvc);
+        settingsButton.setActionCommand(SETTINGS);
+        imageButton.addActionListener(rvc);
+        imageButton.setActionCommand(CREATECOFFE);
+    }
+
+    //getters i setters
+    public CustomButton getMillora1() {
+        return millora1;
+    }
+
+    public CustomButton getMillora2() {
+        return millora2;
+    }
+
+    public CustomButton getMillora3() {
+        return millora3;
+    }
+
+    public CustomButton getMillora4() {
+        return millora4;
+    }
+
+    public CustomButton getPotenciador1() {
+        return potenciador1;
+    }
+
+    public CustomButton getPotenciador2() {
+        return potenciador2;
+    }
+
+    public CustomButton getPotenciador3() {
+        return potenciador3;
+    }
+
+    public JButton getImageButton() {
+        return imageButton;
+    }
+
+    public JButton getSettingsButton() {
+        return settingsButton;
+    }
+
+    //setters
+    public void setMillora1(CustomButton millora1) {
+        this.millora1 = millora1;
+    }
+
+    public void setMillora2(CustomButton millora2) {
+        this.millora2 = millora2;
+    }
+
+    public void setMillora3(CustomButton millora3) {
+        this.millora3 = millora3;
+    }
+
+    public void setMillora4(CustomButton millora4) {
+        this.millora4 = millora4;
+    }
+
+    public void setPotenciador1(CustomButton potenciador1) {
+        this.potenciador1 = potenciador1;
+    }
+
+    public void setPotenciador2(CustomButton potenciador2) {
+        this.potenciador2 = potenciador2;
+    }
+
+    public void setPotenciador3(CustomButton potenciador3) {
+        this.potenciador3 = potenciador3;
+    }
+
+    public void setImageButton(JButton imageButton) {
+        this.imageButton = imageButton;
+    }
+
+    public void setSettingsButton(JButton settingsButton) {
+        this.settingsButton = settingsButton;
+    }
+
 
 
     public static void main(String[] args) {
