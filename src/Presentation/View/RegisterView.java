@@ -142,6 +142,10 @@ public class RegisterView extends JFrame {
 
     }
 
+    /**
+     * Funció per afegir un controlador als botons de la vista.
+     * @param rvc ActionListener
+     */
     public void buttonController(ActionListener rvc){
         nextButton.addActionListener(rvc);
         nextButton.setActionCommand(NEXT);
@@ -149,39 +153,108 @@ public class RegisterView extends JFrame {
         loginButton.setActionCommand(LOGIN);
     }
 
-    /*public void stopAListener(RegisterController registerController){
-        nextButton.removeActionListener(registerController);
-        loginButton.removeActionListener(registerController);
-    }*/
 
+    /**
+     * Funció per afegir un controlador als textFields de la vista.
+     * @return KeyListener per als textFields
+     */
     public String getUsernameField() {
         return usernameField.getText();
     }
 
+    /**
+     * Funció per obtenir el text del textField de l'email
+     * @return String amb el text del textField de l'email
+     */
     public String getEmailField() {
         return emailField.getText();
     }
 
+    /**
+     * Funció per obtenir el text del textField de la contrasenya
+     * @return String amb el text del textField de la contrasenya
+     */
     public String getPasswordField() {
         return String.valueOf(passwordField.getPassword());
     }
 
+    /**
+     * Funció per obtenir el text del textField de la confirmació de la contrasenya
+     * @return String amb el text del textField de la confirmació de la contrasenya
+     */
     public String getConfirmPasswordField() {
         return String.valueOf(confirmationField.getPassword());
     }
 
+
+    /**
+     * Funció per obtenir el botó de NEXT
+     * @return CustomButton del botó de NEXT
+     */
+    public CustomButton getNextButton() {
+        return nextButton;
+    }
+
+
+    /**
+     * Funció per obtenir el botó de LOGIN
+     * @return CustomButton del botó de LOGIN
+     */
+    public CustomButton getLoginButton() {
+        return loginButton;
+    }
+
+    /**
+     * Funció per establir el text del textField de l'usuari
+     * @param usernameField String amb el text del textField de l'usuari
+     */
     public void setUsernameField(String usernameField) {
         this.usernameField.setText(usernameField);
     }
+
+
+    /**
+     * Funció per establir el text del textField de l'email
+     * @param emailField String amb el text del textField de l'email
+     */
     public void setEmailField(String emailField) {
         this.emailField.setText(emailField);
     }
+
+    /**
+     * Funció per establir el text del textField de la contrasenya
+     * @param passwordField String amb el text del textField de la contrasenya
+     */
     public void setPasswordField(String passwordField) {
         this.passwordField.setText(passwordField);
     }
+
+    /**
+     * Funció per establir el text del textField de la confirmació de la contrasenya
+     * @param confirmPasswordField String amb el text del textField de la confirmació de la contrasenya
+     */
     public void setConfirmPasswordField(String confirmPasswordField) {
         this.confirmationField.setText(confirmPasswordField);
     }
+
+
+    /**
+     * Funció per establir el botó de NEXT
+     * @param nextButton CustomButton del botó de NEXT
+     */
+    public void setNextButton(CustomButton nextButton) {
+        this.nextButton = nextButton;
+    }
+
+
+    /**
+     * Funció per establir el botó de LOGIN
+     * @param loginButton CustomButton del botó de LOGIN
+     */
+    public void setLoginButton(CustomButton loginButton) {
+        this.loginButton = loginButton;
+    }
+
 
 
 

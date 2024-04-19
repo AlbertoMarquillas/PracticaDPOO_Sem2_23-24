@@ -68,11 +68,49 @@ public class SettingsView extends JFrame {
         add(panelInfo, BorderLayout.CENTER);
     }
 
+    /**
+     * Mètode per controlar els botons de la vista.
+     * @param rvc ActionListener
+     */
     public void buttonController(ActionListener rvc){
         deleteButton.addActionListener(rvc);
         deleteButton.setActionCommand(DELETE);
         closeButton.addActionListener(rvc);
         closeButton.setActionCommand(CLOSE);
+    }
+
+    /**
+     * Mètode per obtenir el botó de delete.
+     * @return CustomButton
+     */
+    public CustomButton getDeleteButton() {
+        return deleteButton;
+    }
+
+
+    /**
+     * Mètode per obtenir el botó de close.
+     * @return CustomButton
+     */
+    public CustomButton getCloseButton() {
+        return closeButton;
+    }
+
+    /**
+     * Mètode per assignar el botó de delete.
+     * @param deleteButton CustomButton
+     */
+    public void setDeleteButton(CustomButton deleteButton) {
+        this.deleteButton = deleteButton;
+    }
+
+
+    /**
+     * Mètode per assignar el botó de close.
+     * @param closeButton CustomButton
+     */
+    public void setCloseButton(CustomButton closeButton) {
+        this.closeButton = closeButton;
     }
 
 

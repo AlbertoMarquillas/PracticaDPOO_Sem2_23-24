@@ -115,6 +115,10 @@ public class InitialView extends JFrame {
 
     }
 
+    /**
+     * Metode per controlar els botons de la vista
+     * @param rvc ActionListener
+     */
     public void buttonController(ActionListener rvc){
         registerButton.addActionListener(rvc);
         registerButton.setActionCommand(REGISTER);
@@ -122,20 +126,75 @@ public class InitialView extends JFrame {
         loginButton.setActionCommand(LOGIN);
     }
 
+    /**
+     * Metode per obtenir el nom d'usuari
+     * @return String amb el nom d'usuari
+     */
     public String getUsernameField() {
         return userNameField.getText();
     }
 
+
+    /**
+     * Metode per obtenir la contrasenya
+     * @return String amb la contrasenya
+     */
     public String getPasswordField() {
         return String.valueOf(passwordField.getPassword());
     }
 
+
+    /**
+     * Metode per obtenir el botó de registre
+     * @return CustomButton del botó de registre
+     */
+    public CustomButton getRegisterButton() {
+        return registerButton;
+    }
+
+
+    /**
+     * Metode per obtenir el botó de login
+     * @return CustomButton del botó de login
+     */
+    public CustomButton getLoginButton() {
+        return loginButton;
+    }
+
+
+    /**
+     * Metode per establir el nom d'usuari
+     * @param passwordField String amb el nom d'usuari
+     */
     public void setPasswordField(String passwordField) {
         this.passwordField.setText(passwordField);
     }
 
+
+    /**
+     * Metode per establir la contrasenya
+     * @param username String amb la contrasenya
+     */
     public void setUsernameField(String username) {
         this.userNameField.setText(username);
+    }
+
+
+    /**
+     * Metode per establir el botó de registre
+     * @param registerButton CustomButton del botó de registre
+     */
+    public void setRegisterButton(CustomButton registerButton) {
+        this.registerButton = registerButton;
+    }
+
+
+    /**
+     * Metode per establir el botó de login
+     * @param loginButton CustomButton del botó de login
+     */
+    public void setLoginButton(CustomButton loginButton) {
+        this.loginButton = loginButton;
     }
 
 

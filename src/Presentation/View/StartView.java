@@ -80,6 +80,11 @@ public class StartView extends JFrame {
         add(panelInfo, BorderLayout.CENTER);
     }
 
+
+    /**
+     * Mètode per controlar els botons de la vista.
+     * @param rvc ActionListener
+     */
     public void buttonController(ActionListener rvc){
         startGameButton.addActionListener(rvc);
         startGameButton.setActionCommand(RESUMEGAME);
@@ -89,28 +94,55 @@ public class StartView extends JFrame {
         statisticsButton.setActionCommand(STATISTICS);
     }
 
-    //getters i setters
+
+    /**
+     * Mètode per obtenir el botó de new game.
+     * @return CustomButton botó de new game
+     */
     public CustomButton getNewGameButton() {
         return newGameButton;
     }
 
+
+    /**
+     * Mètode per obtenir el botó de start game.
+     * @return CustomButton botó de start game
+     */
     public CustomButton getStartGameButton() {
         return startGameButton;
     }
 
+
+    /**
+     * Mètode per obtenir el botó de statistics.
+     * @return CustomButton botó de statistics
+     */
     public CustomButton getStatisticsButton() {
         return statisticsButton;
     }
 
-    //setters
+    /**
+     * Mètode per assignar el botó de new game.
+     * @param newGameButton CustomButton
+     */
     public void setNewGameButton(CustomButton newGameButton) {
         this.newGameButton = newGameButton;
     }
 
+
+    /**
+     * Mètode per assignar el botó de start game.
+     * @param startGameButton CustomButton
+     */
     public void setStartGameButton(CustomButton startGameButton) {
         this.startGameButton = startGameButton;
     }
 
+
+    /**
+     * Mètode per assignar el botó de statistics.
+     * @param statisticsButton CustomButton
+     */
     public void setStatisticsButton(CustomButton statisticsButton) {
         this.statisticsButton = statisticsButton;
     }
