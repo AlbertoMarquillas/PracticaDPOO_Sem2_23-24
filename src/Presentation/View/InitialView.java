@@ -2,17 +2,26 @@ package Presentation.View;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 /**
  * Classe de les vistes de la pantalla inicial.
  */
 public class InitialView extends JFrame {
 
+    public static final String REGISTER = "Register";
+    public static final String LOGIN = "Login";
+
+    private CustomButton registerButton;
+    private CustomButton loginButton;
+    private CustomTextField userNameField;
+    private CustomPasswordField passwordField;
+
     public InitialView() {
 
         //Inicialitzem els botons fent us de la classe CustomButton
-        CustomButton RegisterButtong = new CustomButton("REGISTER", 140, 25, Color.decode("#3B1211"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
-        CustomButton loginButton = new CustomButton("LOGIN", 140, 25, Color.decode("#3B1211"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
+        registerButton = new CustomButton("REGISTER", 140, 25, Color.decode("#3B1211"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
+        loginButton = new CustomButton("LOGIN", 140, 25, Color.decode("#3B1211"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
 
         //Inicialitzem els labels fent us de la classe CustomLabel
         CustomLabel usernameLabel = new CustomLabel("User:", new Font("Segoe UI Black", Font.PLAIN, 16), Color.decode("#F8F2F0"));
@@ -21,8 +30,8 @@ public class InitialView extends JFrame {
         CustomLabel infoLabel =  new CustomLabel("Don't have an account?", new Font("Segoe UI Black", Font.PLAIN, 12), Color.decode("#F8F2F0"));
 
         //Inicialitzem els textFields fent us de la classe CustomTextField
-        CustomTextField userName = new CustomTextField(300, 30, Color.decode("#3B1211"), new Font("Berlin Sans FB", Font.PLAIN, 14));
-        CustomPasswordField password = new CustomPasswordField(300, 30, Color.decode("#3B1211"), new Font("Berlin Sans FB", Font.PLAIN, 14));
+        userNameField = new CustomTextField(300, 30, Color.decode("#3B1211"), new Font("Berlin Sans FB", Font.PLAIN, 14));
+        passwordField = new CustomPasswordField(300, 30, Color.decode("#3B1211"), new Font("Berlin Sans FB", Font.PLAIN, 14));
 
         //Inicialitzem la imatge del logo
         ImageIcon logoIcon = new ImageIcon("Imagenes/logo.png"); // Ruta de la imagen del logo
@@ -64,7 +73,7 @@ public class InitialView extends JFrame {
         gbcSec.gridx = 0;
         gbcSec.gridy = 2;
         gbcSec.insets = new Insets(0, 0, 20, 0);
-        panelInfo.add(userName, gbcSec);
+        panelInfo.add(userNameField, gbcSec);
 
         //Afegir el JLabel de la contrasenya
         gbcSec = new GridBagConstraints();
@@ -78,7 +87,7 @@ public class InitialView extends JFrame {
         gbcSec.gridx = 0;
         gbcSec.gridy = 4;
         gbcSec.insets = new Insets(0, 0, 20, 0);
-        panelInfo.add(password, gbcSec);
+        panelInfo.add(passwordField, gbcSec);
 
         //Afegir el botó de login
         gbcSec = new GridBagConstraints();
@@ -99,12 +108,37 @@ public class InitialView extends JFrame {
         gbcSec.gridx = 0;
         gbcSec.gridy = 10;
         gbcSec.insets = new Insets(40, 300, 0, 0);
-        panelInfo.add(RegisterButtong, gbcSec);
+        panelInfo.add(registerButton, gbcSec);
 
         //Afegir el panell central a la finestra principal
         add(panelInfo, BorderLayout.CENTER);
 
     }
+
+    public void buttonController(ActionListener rvc){
+        registerButton.addActionListener(rvc);
+        registerButton.setActionCommand(REGISTER);
+        loginButton.addActionListener(rvc);
+        loginButton.setActionCommand(LOGIN);
+    }
+
+    public String getUsernameField() {
+        return userNameField.getText();
+    }
+
+    public String getPasswordField() {
+        return String.valueOf(passwordField.getPassword());
+    }
+
+    public void setPasswordField(String passwordField) {
+        this.passwordField.setText(passwordField);
+    }
+
+    public void setUsernameField(String username) {
+        this.userNameField.setText(username);
+    }
+
+
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {

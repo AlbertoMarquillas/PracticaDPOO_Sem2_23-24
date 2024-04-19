@@ -142,7 +142,7 @@ public class RegisterView extends JFrame {
 
     }
 
-    public void nextButtonController(ActionListener rvc){
+    public void buttonController(ActionListener rvc){
         nextButton.addActionListener(rvc);
         nextButton.setActionCommand(NEXT);
         loginButton.addActionListener(rvc);
