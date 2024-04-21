@@ -55,6 +55,7 @@ public class InitialController implements ActionListener{
                 case "WrongUser" -> showWrongUser();
                 case "ChangeLog" -> {
                     borrarInfoInit();
+                    changeViewController.changePan("game");
                 }
             }
 

@@ -15,7 +15,7 @@ public class Main {
 
         DataBaseDAO dataBaseDAO = new DataBaseDAO();
         dataBaseDAO.createDataBase();
-        dataBaseDAO.createTables();
+        //dataBaseDAO.createTables();
 
         SQLGameDAO sqlGameDAO = new SQLGameDAO();
         SQLGeneratorsDAO sqlGeneratorsDAO = new SQLGeneratorsDAO();

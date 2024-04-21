@@ -32,7 +32,7 @@ public class LogInManager {
                 return "WrongPass";
             }else {
                 connectedUser(username); //Funcio per dir-li a la base de dades que l'usuari d'ha connectat
-                return "ChangeLog";
+                return "totBe";
             }
         }
 
