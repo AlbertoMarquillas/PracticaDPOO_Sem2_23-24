@@ -31,6 +31,7 @@ public class InitialView extends JPanel implements KeyListener{
         //Inicialitzem els botons fent us de la classe CustomButton
         registerButton = new CustomButton("REGISTER", 140, 25, Color.decode("#3B1211"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
         loginButton = new CustomButton("LOGIN", 140, 25, Color.decode("#3B1211"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
+        loginButton.addKeyListener(this);
 
         //Inicialitzem els labels fent us de la classe CustomLabel
         CustomLabel usernameLabel = new CustomLabel("User:", new Font("Segoe UI Black", Font.PLAIN, 16), Color.decode("#F8F2F0"));

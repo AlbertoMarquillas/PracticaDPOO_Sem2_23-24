@@ -1,7 +1,5 @@
 package Presentation.View;
 
-import Presentation.View.*;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -12,8 +10,6 @@ public class MainView extends JFrame{
     public void mainView(InitialView initialView, RegisterView registerView, GameView gameView, SettingsView settingsView, StartView startView, StatsView statsView){
 
         cardLayout = new CardLayout();
-        JPanel pantalla = new JPanel(cardLayout);
-
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setBounds(750,500,750,500);
         getContentPane().setLayout(cardLayout);

@@ -11,7 +11,7 @@ public class InitialController implements ActionListener{
 
     private final InitialView initialView;
     private final LogInManager logInManager;
-    public final ChangeViewController changeViewController;
+    private final ChangeViewController changeViewController;
 
     public InitialController(InitialView initialView, LogInManager logInManager, ChangeViewController changeViewController) {
         this.initialView = initialView;
@@ -49,13 +49,14 @@ public class InitialController implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("login")) {
-            switch (logInManager.comprobarLogIn(getUsernameFieldController(), getPasswordFieldController())) {
+            String cas = logInManager.comprobarLogIn(getUsernameFieldController(), getPasswordFieldController());
+            switch (cas) {
                 case "FillAll" -> showErrorFillAll();
                 case "WrongPass" -> showWrongPassword();
                 case "WrongUser" -> showWrongUser();
-                case "ChangeLog" -> {
+                case "potsPassar" -> {
                     borrarInfoInit();
-                    changeViewController.changePan("game");
+                    changeViewController.changePan("start");
                 }
             }
 

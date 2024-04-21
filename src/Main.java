@@ -1,4 +1,3 @@
-import Business.Managers.HomeManager;
 import Business.Managers.LogInManager;
 import Business.Managers.SignUpManager;
 import Business.Managers.UserManager;
@@ -22,7 +21,6 @@ public class Main {
         SQLUserDAO sqlUserDAO = new SQLUserDAO();
 
         UserManager userManager = new UserManager(sqlUserDAO);
-        HomeManager homeManager = new HomeManager(userManager);
         LogInManager logInManager = new LogInManager(userManager);
         SignUpManager signUpManager = new SignUpManager(userManager);
 
@@ -39,15 +37,17 @@ public class Main {
         ChangeViewController changeViewController = new ChangeViewController(mainView);
         InitialController initialController = new InitialController(initialView, logInManager, changeViewController);
         RegisterController registerController = new RegisterController(registerView, signUpManager, changeViewController);
-        SettingsController settingsController = new SettingsController();
+        SettingsController settingsController = new SettingsController(changeViewController, userManager);
         StartController startController = new StartController(changeViewController);
         StatsController statsController = new StatsController(changeViewController);
+        GameController gameController = new GameController(changeViewController, gameView);
 
         startView.buttonController(startController);
         statsView.buttonController(statsController);
         settingsView.buttonController(settingsController);
         registerView.buttonController(registerController);
         initialView.buttonController(initialController);
+        gameView.buttonController(gameController);
 
         mainView.panelChange("login");
     }

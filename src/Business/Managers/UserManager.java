@@ -48,8 +48,8 @@ public class UserManager {
     /**
      * Metode que crida al metode deleteUser de la classe SQLUserDAO per eliminar l'usuari
      */
-    public void deleteConnectedUser(){
-        userDAO.deleteUser();
+    public void deleteConnectedUser(String name){
+        userDAO.deleteUser(name);
     }
 
     /**
@@ -59,7 +59,7 @@ public class UserManager {
      */
     public boolean confirmPassword(String password){
         if(samePassword(password)){
-            deleteConnectedUser();
+            //deleteConnectedUser();
             return true;
         }
         return false;
@@ -103,6 +103,10 @@ public class UserManager {
         userDAO.connectedUser(name);
     }
 
+    public void disconnectedUser(String name) {
+        userDAO.disconnectUser(name);
+    }
+
     /**
      * Mètode per saber si es la mateixa contrasenya
      */
@@ -117,6 +121,12 @@ public class UserManager {
         User userConnected = userDAO.getUserConnected();
         return userConnected.getPassword();
     }
+    public String getNameUserConnected() {
+        User userConnected = userDAO.getUserConnected();
+        return userConnected.getUsername();
+    }
 
-
+    public boolean mailPass(String username, String password) {
+        return userDAO.checkPasswordMail(username, password);
+    }
 }

@@ -26,17 +26,20 @@ public class LogInManager {
         if (username.isEmpty() || password.isEmpty() ) {
             return "FillAll";
         } else {
-            if(userManager.existUser(username)) {
+            boolean existsUser = userManager.existUser(username);
+            boolean existsMail = userManager.emailExist(username);
+            boolean coincideixenUser = userManager.password(username, password);
+            boolean coincideixenMail = userManager.mailPass(username, password);
+
+            if(!existsUser && !existsMail) {
                 return "WrongUser";
-            }else if (userManager.password(username, password)) {
+            }else if (!coincideixenUser && !coincideixenMail) {
                 return "WrongPass";
             }else {
                 connectedUser(username); //Funcio per dir-li a la base de dades que l'usuari d'ha connectat
-                return "totBe";
+                return "potsPassar";
             }
         }
-
-
     }
 
     /**

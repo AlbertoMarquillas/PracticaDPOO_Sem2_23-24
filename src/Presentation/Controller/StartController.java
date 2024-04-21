@@ -15,9 +15,9 @@ public class StartController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals("NewGame")) {
+        if (e.getActionCommand().equals("newgame")) {
             changeViewController.changePan("game");
-        } else if (e.getActionCommand().equals("ResumeGame")) {
+        } else if (e.getActionCommand().equals("resumegame")) {
             changeViewController.changePan("game");
         } else if (e.getActionCommand().equals("stats")) {
             changeViewController.changePan("stats");

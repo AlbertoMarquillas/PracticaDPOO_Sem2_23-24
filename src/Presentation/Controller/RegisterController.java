@@ -123,7 +123,7 @@ public class RegisterController implements ActionListener {
                 case "FaltenCaractersEspecials" -> showErrorSpecialCounterPass();
                 case "UserNoCreat" -> showErrorCreateUser();
                 case "totBe" -> {
-                    changeViewController.changePan("game");
+                    changeViewController.changePan("login");
                     borrarInfoRegister();
                 }
                 case "JaExisteixEmail" -> showEmailExist();

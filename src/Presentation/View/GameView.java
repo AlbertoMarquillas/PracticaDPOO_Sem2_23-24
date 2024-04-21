@@ -13,12 +13,10 @@ import Presentation.View.Custom.CustomLabel;
 import Presentation.View.Custom.CustomRenderer;
 
 import javax.swing.*;
+import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 
 /**
  * Classe que crea la finestra principal de l'aplicació.
@@ -46,6 +44,8 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
     private JButton imageButton;
     private JButton settingsButton;
 
+    private String text = "0000";
+    private CustomLabel contador;
 
     public GameView() {
 
@@ -57,8 +57,8 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
 
 
         //Crear els botons que contindran imatges a l'inerior
-        JButton imageButton = new JButton();
-        JButton settingsButton = new JButton();
+        imageButton = new JButton();
+        settingsButton = new JButton();
 
         //Inicialitzem la imatge del logo i posar-la dintre del botó imageButton
         ImageIcon logoIcon = new ImageIcon("Imagenes/logo.png");
@@ -80,7 +80,9 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
 
         //Comptador de cafès generats
         //Fara falta canviar el valor del contador per la variable
-        CustomLabel contador = new CustomLabel("0000", new Font("Segoe UI Black", Font.PLAIN, 50), Color.decode("#F8F2F0"));
+
+
+        contador = new CustomLabel(text, new Font("Segoe UI Black", Font.PLAIN, 50), Color.decode("#F8F2F0"));
         //Crear els títols de la finestra
         CustomLabel supTitleLabel = new CustomLabel("COFFEE", new Font("Bauhaus 93", Font.BOLD, 80), Color.decode("#DB5C39"));
         CustomLabel lowTitleLabel = new CustomLabel("CLICKER", new Font("Bauhaus 93", Font.BOLD, 80), Color.decode("#DB5C39"));
@@ -342,7 +344,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
      * @param rvc ActionListener
      */
     public void buttonController(ActionListener rvc){
-        potenciador1.addActionListener(rvc);
+        /**potenciador1.addActionListener(rvc);
         potenciador1.setActionCommand(POTENCIADOR1);
         potenciador2.addActionListener(rvc);
         potenciador2.setActionCommand(POTENCIADOR2);
@@ -355,7 +357,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         millora3.addActionListener(rvc);
         millora3.setActionCommand(MILLORA3);
         millora4.addActionListener(rvc);
-        millora4.setActionCommand(MILLORA4);
+        millora4.setActionCommand(MILLORA4);**/
         settingsButton.addActionListener(rvc);
         settingsButton.setActionCommand(SETTINGS);
         imageButton.addActionListener(rvc);
@@ -523,7 +525,10 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         this.settingsButton = settingsButton;
     }
 
-
+    public void setComptador(String text) {
+        this.text = text;
+        this.contador.setText(this.text);
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -543,5 +548,9 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
     @Override
     public void keyReleased(KeyEvent e) {
 
+    }
+
+    public String getComptador() {
+        return contador.getText();
     }
 }

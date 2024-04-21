@@ -62,7 +62,7 @@ public class SQLUserDAO{
      */
     public boolean userExist(String user) {
         try {
-            String query = "SELECT id FROM user WHERE UserName = '" + user + "';";
+            String query = "SELECT * FROM user WHERE User.UserName = '" + user + "';";
             ResultSet result = Connector.getInstance().selectQuery(query);
             return result.next();
         } catch (SQLException e) {
@@ -76,7 +76,7 @@ public class SQLUserDAO{
      */
     public boolean emailExist(String email) {
         try {
-            String query = "SELECT User.id FROM user WHERE User.Email = '" + email + "';";
+            String query = "SELECT * FROM user WHERE User.Email = '" + email + "';";
             ResultSet result = Connector.getInstance().selectQuery(query);
             return result.next();
         } catch (SQLException e) {
@@ -85,13 +85,12 @@ public class SQLUserDAO{
     }
 
     /**
-     * function that deletes a user from the database
+     * function that deletes a user from the database, deletes all game information
      * @return boolean that indicates if it has been deleted correctly
      */
-    public boolean deleteUser () {
-
+    public boolean deleteUser (String name) {
         boolean check;
-        String query = "DELETE FROM user WHERE User.Connected = 1;";
+        String query = "DELETE * FROM user WHERE Connected = 'true';";
         Connector.getInstance().deleteQuery(query);
         return true;
     }
@@ -144,5 +143,20 @@ public class SQLUserDAO{
     public void connectedUser(String name) {
         String query = "UPDATE user SET Connected = 1 WHERE User.UserName = '" + name + "';";
         Connector.getInstance().updateQuery(query);
+    }
+
+    public void disconnectUser(String name) {
+        String query = "UPDATE user SET Connected = 0 WHERE User.UserName = '" + name + "';";
+        Connector.getInstance().updateQuery(query);
+    }
+
+    public boolean checkPasswordMail(String username, String password) {
+        try {
+            String query = "SELECT * FROM user WHERE User.Email = '" + username + "' AND User.Password = '" + password + "';";
+            ResultSet result = Connector.getInstance().selectQuery(query);
+            return result.next();
+        } catch (SQLException e) {
+            return false;
+        }
     }
 }
