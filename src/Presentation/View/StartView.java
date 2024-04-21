@@ -14,7 +14,7 @@ import java.awt.event.KeyListener;
 public class StartView extends JFrame implements KeyListener, ActionListener {
     private static final String NEWGAME = "NewGame";
     private static final String RESUMEGAME = "ResumeGame";
-    private static final String STATISTICS = "Statistics";
+    private static final String STATISTICS = "stats";
 
     private CustomButton newGameButton;
     private CustomButton startGameButton;
@@ -24,7 +24,7 @@ public class StartView extends JFrame implements KeyListener, ActionListener {
     public StartView() {
 
         //Marcar-li al JFrame un titol i tamany 800x450
-        setTitle("Register View");
+        setTitle("Start View");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 450); // Tamaño de la ventana
         setLayout(new BorderLayout()); // Layout de la ventana principal
