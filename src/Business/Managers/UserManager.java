@@ -22,6 +22,7 @@ public class UserManager {
      * @param password contrasenya de l'usuari
      * @return true si s'ha creat correctament l'usuari
      */
+
     public boolean createUser(String name, String email, String password) {
         return userDAO.createUser(name, email, password);
     }

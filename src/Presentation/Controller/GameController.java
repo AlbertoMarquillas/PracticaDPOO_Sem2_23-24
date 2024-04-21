@@ -19,9 +19,6 @@ public class GameController implements ActionListener {
         if (e.getActionCommand().equals("settings")) {
             changeViewController.changePan("settings");
         } else if (e.getActionCommand().equals("createcofee")) {
-            int compt = Integer.parseInt(gameView.getComptador());
-            compt += 1;
-            gameView.setComptador(String.valueOf(compt));
 
         }
     }

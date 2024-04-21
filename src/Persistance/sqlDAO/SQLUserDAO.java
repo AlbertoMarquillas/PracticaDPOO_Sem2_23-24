@@ -90,7 +90,7 @@ public class SQLUserDAO{
      */
     public boolean deleteUser (String name) {
         boolean check;
-        String query = "DELETE * FROM user WHERE Connected = 'true';";
+        String query = "DELETE FROM user WHERE User.username LIKE '" + name + "'";
         Connector.getInstance().deleteQuery(query);
         return true;
     }
