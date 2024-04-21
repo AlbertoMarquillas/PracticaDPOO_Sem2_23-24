@@ -8,6 +8,10 @@
 
 package Presentation.View;
 
+import Presentation.View.Custom.CustomButton;
+import Presentation.View.Custom.CustomLabel;
+import Presentation.View.Custom.CustomRenderer;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
@@ -19,18 +23,18 @@ import java.awt.event.KeyListener;
 /**
  * Classe que crea la finestra principal de l'aplicació.
  */
-public class GameView extends JFrame implements KeyListener, ActionListener {
+public class GameView extends JPanel implements KeyListener, ActionListener {
 
-    private static final String MILLORA1 = "Millora 1";
-    private static final String MILLORA2 = "Millora 2";
-    private static final String MILLORA3 = "Millora 3";
-    private static final String MILLORA4 = "Millora 4";
-    private static final String POTENCIADOR1 = "Potenciador 1";
-    private static final String POTENCIADOR2 = "Potenciador 2";
-    private static final String POTENCIADOR3 = "Potenciador 3";
-    private static final String SETTINGS = "Settings";
+    private static final String MILLORA1 = "millora1";
+    private static final String MILLORA2 = "millora2";
+    private static final String MILLORA3 = "millora3";
+    private static final String MILLORA4 = "millora4";
+    private static final String POTENCIADOR1 = "potenciador1";
+    private static final String POTENCIADOR2 = "potenciador2";
+    private static final String POTENCIADOR3 = "potenciador3";
+    private static final String SETTINGS = "settings";
 
-    private static final String CREATECOFFE = "Create Cofee";
+    private static final String CREATECOFFE = "createcofee";
     private CustomButton millora1;
     private CustomButton millora2;
     private CustomButton millora3;
@@ -46,8 +50,8 @@ public class GameView extends JFrame implements KeyListener, ActionListener {
     public GameView() {
 
         //Crear la finestra i posar-li tamany i títol
-        setTitle("Game View");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //setTitle("Game View");
+        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1500, 800);
         setLayout(new BorderLayout());  // Layout de la finestra principal per posar els dos subpanells
 
@@ -520,13 +524,6 @@ public class GameView extends JFrame implements KeyListener, ActionListener {
     }
 
 
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            GameView initialView = new GameView();
-            initialView.setVisible(true);
-        });
-    }
 
     @Override
     public void actionPerformed(ActionEvent e) {

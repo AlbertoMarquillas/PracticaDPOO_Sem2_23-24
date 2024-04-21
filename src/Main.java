@@ -7,7 +7,7 @@ import Persistance.sqlDAO.SQLGameDAO;
 import Persistance.sqlDAO.SQLGeneratorsDAO;
 import Persistance.sqlDAO.SQLUserDAO;
 import Presentation.Controller.*;
-import Presentation.MainView;
+import Presentation.View.MainView;
 import Presentation.View.*;
 
 public class Main {
@@ -34,10 +34,9 @@ public class Main {
         InitialView initialView = new InitialView();
         GameView gameView = new GameView();
 
-        mainView.main(initialView, registerView, gameView, settingsView, startView, statsView);
+        mainView.mainView(initialView, registerView, gameView, settingsView, startView, statsView);
 
         ChangeViewController changeViewController = new ChangeViewController(mainView);
-        HomeController homeController = new HomeController();
         InitialController initialController = new InitialController(initialView, logInManager, changeViewController);
         RegisterController registerController = new RegisterController(registerView, signUpManager, changeViewController);
         SettingsController settingsController = new SettingsController();
@@ -49,8 +48,7 @@ public class Main {
         settingsView.buttonController(settingsController);
         registerView.buttonController(registerController);
         initialView.buttonController(initialController);
-        gameView.buttonController(homeController);
 
-        mainView.panelChange("start");
+        mainView.panelChange("login");
     }
 }

@@ -5,7 +5,7 @@ package Persistance;
  */
 public class DBConfig {
 
-    private String user;
+    private String username;
     private String password;
     private String ip;
     private String port;
@@ -18,7 +18,7 @@ public class DBConfig {
      * @param port Puerto del servidor de la base de datos.
      */
     public DBConfig(String user, String password, String ip, String port) {
-        this.user = user;
+        this.username = user;
         this.password = password;
         this.ip = ip;
         this.port = port;
@@ -29,7 +29,7 @@ public class DBConfig {
      * @return El nombre de usuario.
      */
     public String getUser() {
-        return user;
+        return username;
     }
 
     /**
@@ -37,7 +37,7 @@ public class DBConfig {
      * @param user El nombre de usuario.
      */
     public void setUser(String user) {
-        this.user = user;
+        this.username = user;
     }
 
     /**

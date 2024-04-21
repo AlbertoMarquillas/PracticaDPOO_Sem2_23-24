@@ -10,7 +10,7 @@ public class DataBaseDAO {
      * @return true si la base de datos se creó correctamente, false en caso contrario.
      */
     public boolean createDataBase() {
-        String query = "CREATE DATABASE IF NOT EXISTS CoffeeClicker";
+        String query = "CREATE DATABASE IF NOT EXISTS coffeeclickerdb";
         return Connector.getInstance().insertQuery(query);
     }
 
@@ -20,10 +20,12 @@ public class DataBaseDAO {
      */
     public boolean createTables() {
         boolean ok;
-        String query = "CREATE TABLE IF NOT EXISTS User" +
-                " (username VARCHAR(255) NOT NULL, " +
-                "email VARCHAR(255) NOT NULL, " +
-                "password VARCHAR(255) NOT NULL, ";
+            String query = "CREATE TABLE IF NOT EXISTS User " +
+                            "(Id INT(11) NOT NULL, " +
+                            "UserName VARCHAR(255) NOT NULL, " +
+                            "email VARCHAR(255) NOT NULL, " +
+                            "password VARCHAR(255) NOT NULL, " +
+                            "connected tinyint(1) NOT NULL DEFAULT '0');";
         ok = Connector.getInstance().insertQuery(query);
         return ok;
     }

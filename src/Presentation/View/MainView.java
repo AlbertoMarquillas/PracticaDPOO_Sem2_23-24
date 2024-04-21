@@ -1,4 +1,4 @@
-package Presentation;
+package Presentation.View;
 
 import Presentation.View.*;
 
@@ -9,14 +9,16 @@ public class MainView extends JFrame{
 
     CardLayout cardLayout;
 
-    public void  main(InitialView initialView, RegisterView registerView, GameView gameView, SettingsView settingsView, StartView startView, StatsView statsView){
+    public void mainView(InitialView initialView, RegisterView registerView, GameView gameView, SettingsView settingsView, StartView startView, StatsView statsView){
 
         cardLayout = new CardLayout();
+        JPanel pantalla = new JPanel(cardLayout);
+
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setBounds(750,500,750,500);
         getContentPane().setLayout(cardLayout);
 
-        this.getContentPane().add(initialView,"login");
+        this.getContentPane().add(initialView, "login");
         this.getContentPane().add(registerView,"register");
         this.getContentPane().add(settingsView,"settings");
         this.getContentPane().add(startView,"start");

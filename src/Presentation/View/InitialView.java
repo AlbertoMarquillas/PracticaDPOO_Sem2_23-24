@@ -1,8 +1,12 @@
 package Presentation.View;
 
+import Presentation.View.Custom.CustomButton;
+import Presentation.View.Custom.CustomLabel;
+import Presentation.View.Custom.CustomPasswordField;
+import Presentation.View.Custom.CustomTextField;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -11,15 +15,16 @@ import java.awt.event.KeyListener;
 /**
  * Classe de les vistes de la pantalla inicial.
  */
-public class InitialView extends JFrame implements KeyListener{
+public class InitialView extends JPanel implements KeyListener{
 
-    public static final String REGISTER = "Register";
-    public static final String LOGIN = "Login";
+    public static final String REGISTER = "register";
+    public static final String LOGIN = "login";
 
     private CustomButton registerButton;
     private CustomButton loginButton;
     private CustomTextField userNameField;
     private CustomPasswordField passwordField;
+
 
     public InitialView() {
 
@@ -42,8 +47,8 @@ public class InitialView extends JFrame implements KeyListener{
         JLabel logoLabel = new JLabel(logoIcon);
 
         //Creació del panell principal i finestra de tamany 800x450
-        setTitle("Initial View");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //setTitle("Initial View");
+        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 450);
         setLayout(new BorderLayout());  // Layout de la finestra principal per posar els dos subpanells
 
@@ -200,16 +205,6 @@ public class InitialView extends JFrame implements KeyListener{
     public void setLoginButton(CustomButton loginButton) {
         this.loginButton = loginButton;
     }
-
-
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            InitialView initialView = new InitialView();
-            initialView.setVisible(true);
-        });
-    }
-
 
     @Override
     public void keyTyped(KeyEvent e) {

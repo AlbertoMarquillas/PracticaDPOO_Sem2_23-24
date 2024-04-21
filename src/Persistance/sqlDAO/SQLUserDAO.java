@@ -37,7 +37,7 @@ public class SQLUserDAO{
      */
     public List<User> getAllUsers() {
         List<User> users = new LinkedList<>();
-        String query = "SELECT id, UserName, Email, Password FROM users;";
+        String query = "SELECT id, UserName, Email, Password FROM user;";
         ResultSet result = Connector.getInstance().selectQuery(query);
 
         try {
@@ -62,7 +62,7 @@ public class SQLUserDAO{
      */
     public boolean userExist(String user) {
         try {
-            String query = "SELECT id FROM users WHERE UserName = '" + user + "';";
+            String query = "SELECT id FROM user WHERE UserName = '" + user + "';";
             ResultSet result = Connector.getInstance().selectQuery(query);
             return result.next();
         } catch (SQLException e) {
@@ -76,7 +76,7 @@ public class SQLUserDAO{
      */
     public boolean emailExist(String email) {
         try {
-            String query = "SELECT id FROM users WHERE Email = '" + email + "';";
+            String query = "SELECT id FROM user WHERE Email = '" + email + "';";
             ResultSet result = Connector.getInstance().selectQuery(query);
             return result.next();
         } catch (SQLException e) {
@@ -91,7 +91,7 @@ public class SQLUserDAO{
     public boolean deleteUser () {
 
         boolean check;
-        String query = "DELETE FROM users WHERE Connected = '" + true + "';";
+        String query = "DELETE FROM user WHERE Connected = '" + true + "';";
         Connector.getInstance().deleteQuery(query);
         return true;
     }
@@ -103,7 +103,7 @@ public class SQLUserDAO{
      */
     public boolean checkPassword(String userName, String password) {
         try {
-            String query = "SELECT * FROM users WHERE UserName = '" + userName + "' AND Password = '" + password + "';";
+            String query = "SELECT * FROM user WHERE UserName = '" + userName + "' AND Password = '" + password + "';";
             ResultSet result = Connector.getInstance().selectQuery(query);
             return result.next();
         } catch (SQLException e) {
@@ -117,7 +117,7 @@ public class SQLUserDAO{
         // El usuario no está conectado cuando se crea
         boolean connected = true;
 
-        String query = "INSERT INTO users(id, UserName, Email, Password, Connected) VALUES " +
+        String query = "INSERT INTO user(id, UserName, Email, Password, Connected) VALUES " +
                 "('" + id + "', '" + name + "', '" + email + "', '" + password + "', '" + connected + "');";
 
     return Connector.getInstance().insertQuery(query);
@@ -125,7 +125,7 @@ public class SQLUserDAO{
 
     public User getUserConnected() {
         try {
-            String query = "SELECT * FROM users WHERE Connected = 'true';";
+            String query = "SELECT * FROM user WHERE Connected = 'true';";
             ResultSet result = Connector.getInstance().selectQuery(query);
             if (result.next()) {
                 int id = result.getInt("id");
@@ -142,7 +142,7 @@ public class SQLUserDAO{
     }
 
     public void connectedUser(String name) {
-        String query = "UPDATE users SET Connected = 'true' WHERE UserName = '" + name + "';";
+        String query = "UPDATE user SET Connected = 'true' WHERE UserName = '" + name + "';";
         Connector.getInstance().updateQuery(query);
     }
 }

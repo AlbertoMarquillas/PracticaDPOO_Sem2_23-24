@@ -41,7 +41,7 @@ public class SignUpManager {
                     lowercaseCounter++;
                 else if (Character.isDigit(password.charAt(i))) //compto digits
                     digitCounter++;
-                if (password.charAt(i) <= 33 && password.charAt(i) <= 47 || password.charAt(i) == 64) { //comprovo mitjant ASCII caractersespecials
+                if (!Character.isLetterOrDigit(password.charAt(i)) && !Character.isWhitespace(password.charAt(i))) {
                     specialCounter++;
                 }
             }
@@ -55,7 +55,7 @@ public class SignUpManager {
             } else if (digitCounter < 1) {
                 return "FaltenDigits";
             } else if (specialCounter < 1) {
-                return "FaltenCaractersEspecialsr";
+                return "FaltenCaractersEspecials";
             } else if (userManager.emailExist(email)) {
                 return "JaExisteixEmail";
             } else if (userManager.existUser(username)) {
@@ -64,7 +64,7 @@ public class SignUpManager {
                 return "UserNoCreat";
             } else {
                 connectedUser(username);
-                return "ChangeLog";
+                return "totBe";
             }
         }
     }

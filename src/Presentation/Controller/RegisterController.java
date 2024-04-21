@@ -29,43 +29,43 @@ public class RegisterController implements ActionListener {
      * Funcio per recuperar el username del field
      * @return el username que s'ha introduit al field
      */
-    /**private String getUsernameFieldController() {
+    private String getUsernameFieldController() {
         return registerView.getUsernameField();
-    }**/
+    }
 
     /**
      * Funcio per recuperar el mail del field
      * @return el mail que s'ha introduit al field
      */
-    /**private String getEmailFieldController() {
+    private String getEmailFieldController() {
         return registerView.getEmailField();
-    }**/
+    }
 
     /**
      * Funcio per recuperar la contrasenya del field
      * @return la contrasenya que s'ha introduit al field
      */
-    /**private String getPasswordFieldController() {
+    private String getPasswordFieldController() {
         return registerView.getPasswordField();
-    }**/
+    }
 
     /**
      * Funcio per recuperar la contrasenya de confirmació del field
      * @return la contrasenya de confirmació que s'ha introduit al field
      */
-    /**private String getConfirmPasswordFieldController() {
+    private String getConfirmPasswordFieldController() {
         return registerView.getConfirmPasswordField();
-    }**/
+    }
 
     /**
      * Funció que es truca quan vols esborrar tota la info introduida als texts
      */
-    /**public void borrarInfoRegister(){
+    public void borrarInfoRegister(){
         registerView.setUsernameField("");
         registerView.setEmailField("");
         registerView.setPasswordField("");
         registerView.setConfirmPasswordField("");
-    }**/
+    }
 
     private void nameAlreadyExist() {
         JOptionPane.showMessageDialog(registerView, "El nom introduït ja el teu un altre usuari");
@@ -111,28 +111,28 @@ public class RegisterController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        /**if (e.getActionCommand().equals("register")) {
+        if (e.getActionCommand().equals("next")) {
 
             switch (signUpManager.comprovarSignUp(getUsernameFieldController(), getEmailFieldController(), getPasswordFieldController(), getConfirmPasswordFieldController())) {
                 case "FillAll" -> showErrorFillAll();
                 case "DifferentPass" -> showDifferentPass();
-                case "LengthPass" -> showErrorLengthPass();
-                case "LowerCaseCounterPass" -> showErrorLowerCaseCounterPass();
-                case "UpperCaseCounterPass" -> showErrorUpperCaseCounterPass();
-                case "DigitCounterPass" -> showErrorDigitCounterPass();
-                case "SpecialCounterPass" -> showErrorSpecialCounterPass();
-                case "ErrorCreateUser" -> showErrorCreateUser();
-                case "ChangeLog" -> {
-                    //panelChangeLog();
+                case "ContrasenyaLalarga" -> showErrorLengthPass();
+                case "FaltenCaractersLower" -> showErrorLowerCaseCounterPass();
+                case "FaltenCaractersUpper" -> showErrorUpperCaseCounterPass();
+                case "FaltenDigits" -> showErrorDigitCounterPass();
+                case "FaltenCaractersEspecials" -> showErrorSpecialCounterPass();
+                case "UserNoCreat" -> showErrorCreateUser();
+                case "totBe" -> {
+                    changeViewController.changePan("game");
                     borrarInfoRegister();
                 }
-                case "EmailAlreadyExist" -> showEmailExist();
-                case "NameAlreadyExist" -> nameAlreadyExist();
+                case "JaExisteixEmail" -> showEmailExist();
+                case "JaExisteixUserName" -> nameAlreadyExist();
             }
 
 
         }else if (e.getActionCommand().equals("login")) {
             changeViewController.changePan("login");
-        }**/
+        }
     }
 }

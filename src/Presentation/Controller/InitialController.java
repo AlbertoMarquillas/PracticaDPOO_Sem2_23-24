@@ -35,10 +35,6 @@ public class InitialController implements ActionListener{
     public boolean enable(){
         return logInManager.keyTyped(getUsernameFieldController().length(), getPasswordFieldController().length());
     }
-
-    private void panelChangeLog() {
-        changeViewController.changePan("start");
-    }
     private void showWrongUser() {
         JOptionPane.showMessageDialog(initialView, "L'usuari o correu introduït no existeix");
     }
@@ -58,7 +54,6 @@ public class InitialController implements ActionListener{
                 case "WrongPass" -> showWrongPassword();
                 case "WrongUser" -> showWrongUser();
                 case "ChangeLog" -> {
-                    panelChangeLog();
                     borrarInfoInit();
                 }
             }

@@ -1,6 +1,9 @@
 package Presentation.View;
 
-import Presentation.Controller.RegisterController;
+import Presentation.View.Custom.CustomButton;
+import Presentation.View.Custom.CustomLabel;
+import Presentation.View.Custom.CustomPasswordField;
+import Presentation.View.Custom.CustomTextField;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,9 +16,9 @@ import java.awt.event.KeyListener;
 /**
  * Classe de les vistes de la pantalla de registre.
  */
-public class RegisterView extends JFrame implements KeyListener, ActionListener {
-    private static final String NEXT = "Next";
-    private static final String LOGIN = "LogIn";
+public class RegisterView extends JPanel implements KeyListener, ActionListener {
+    private static final String NEXT = "next";
+    private static final String LOGIN = "login";
     private CustomTextField usernameField;
     private CustomTextField emailField;
     private CustomPasswordField passwordField;
@@ -26,8 +29,8 @@ public class RegisterView extends JFrame implements KeyListener, ActionListener 
     public RegisterView() {
 
         //Marcar-li al JFrame un titol i tamany 800x450
-        setTitle("Register View");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //setTitle("Register View");
+        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 450); // Tamaño de la ventana
 
         //Inicialització dels Labels fent us de la classe CustomLabel
@@ -280,10 +283,4 @@ public class RegisterView extends JFrame implements KeyListener, ActionListener 
     }
 
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            RegisterView registerView = new RegisterView();
-            registerView.setVisible(true);
-        });
-    }
 }

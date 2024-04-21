@@ -1,4 +1,4 @@
-package Presentation.View;
+package Presentation.View.Custom;
 
 import javax.swing.*;
 import java.awt.*;

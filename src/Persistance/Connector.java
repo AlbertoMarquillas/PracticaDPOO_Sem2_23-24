@@ -60,7 +60,7 @@ public class Connector {
     public static Connector getInstance() {
         if (instance == null) {
             DBConfig config = readConfig();
-            instance = new Connector(config.getUser(), config.getPassword(), config.getIp(), config.getPort(), "CoffeeClicker");
+            instance = new Connector(config.getUser(), config.getPassword(), config.getIp(), config.getPort(), "coffeeclickerdb");
             instance.connect();
         }
         System.out.println("url: " + url);

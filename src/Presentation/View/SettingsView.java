@@ -1,5 +1,8 @@
 package Presentation.View;
 
+import Presentation.View.Custom.CustomButton;
+import Presentation.View.Custom.CustomLabel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,18 +12,18 @@ import java.awt.event.KeyListener;
 /**
  * Classe de les vista de la pantalla de settings.
  */
-public class SettingsView extends JFrame implements KeyListener, ActionListener {
+public class SettingsView extends JPanel implements KeyListener, ActionListener {
 
-    private static final String DELETE = "Delete";
-    private static final String CLOSE = "Close";
+    private static final String DELETE = "delete";
+    private static final String CLOSE = "close";
     private CustomButton deleteButton;
     private CustomButton closeButton;
 
     public SettingsView() {
 
         //Marcar-li al JFrame un titol i tamany 800x450
-        setTitle("Settings View");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //setTitle("Settings View");
+        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 450); // Tamaño de la ventana
         setLayout(new BorderLayout()); // Layout de la ventana principal
 
@@ -113,14 +116,6 @@ public class SettingsView extends JFrame implements KeyListener, ActionListener 
      */
     public void setCloseButton(CustomButton closeButton) {
         this.closeButton = closeButton;
-    }
-
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            SettingsView settingsView = new SettingsView();
-            settingsView.setVisible(true);
-        });
     }
 
     @Override
