@@ -26,4 +26,12 @@ public class StatsView  extends JFrame implements KeyListener, ActionListener {
     public void keyReleased(KeyEvent e) {
 
     }
+
+    /**
+     * Mètode per controlar els botons de la vista.
+     * @param rvc ActionListener
+     */
+    public void buttonController(ActionListener rvc) {
+
+    }
 }

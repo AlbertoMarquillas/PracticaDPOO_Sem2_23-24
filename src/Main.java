@@ -11,7 +11,8 @@ import Presentation.MainView;
 import Presentation.View.*;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args){
+
         DataBaseDAO dataBaseDAO = new DataBaseDAO();
         dataBaseDAO.createDataBase();
         dataBaseDAO.createTables();
@@ -41,9 +42,10 @@ public class Main {
         RegisterController registerController = new RegisterController(registerView, signUpManager, changeViewController);
         SettingsController settingsController = new SettingsController();
         StartController startController = new StartController(changeViewController);
+        StatsController statsController = new StatsController(changeViewController);
 
         startView.buttonController(startController);
-        //statsView;
+        statsView.buttonController(statsController);
         settingsView.buttonController(settingsController);
         registerView.buttonController(registerController);
         initialView.buttonController(initialController);
