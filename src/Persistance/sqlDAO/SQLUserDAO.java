@@ -37,7 +37,7 @@ public class SQLUserDAO{
      */
     public List<User> getAllUsers() {
         List<User> users = new LinkedList<>();
-        String query = "SELECT id, UserName, Email, Password FROM user;";
+        String query = "SELECT id, UserName, Email, Password, Connected FROM user;";
         ResultSet result = Connector.getInstance().selectQuery(query);
 
         try {
@@ -125,7 +125,7 @@ public class SQLUserDAO{
 
     public User getUserConnected() {
         try {
-            String query = "SELECT * FROM user WHERE Connected = 'true';";
+            String query = "SELECT * FROM user WHERE Connected = '1';";
             ResultSet result = Connector.getInstance().selectQuery(query);
             if (result.next()) {
                 int id = result.getInt("id");
