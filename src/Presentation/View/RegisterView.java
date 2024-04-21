@@ -1,13 +1,27 @@
 package Presentation.View;
 
+import Presentation.Controller.RegisterController;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 
 /**
  * Classe de les vistes de la pantalla de registre.
  */
-public class RegisterView extends JFrame {
+public class RegisterView extends JFrame implements KeyListener, ActionListener {
+    private static final String NEXT = "Next";
+    private static final String LOGIN = "LogIn";
+    private CustomTextField usernameField;
+    private CustomTextField emailField;
+    private CustomPasswordField passwordField;
+    private CustomPasswordField confirmationField;
+    private CustomButton nextButton;
+    private CustomButton loginButton;
 
     public RegisterView() {
 
@@ -24,20 +38,14 @@ public class RegisterView extends JFrame {
         CustomLabel confirmationLabel = new CustomLabel("Password confirmation", new Font("Segoe UI Black", Font.PLAIN, 16),Color.decode("#3B1211"));
 
         //Inicialització dels textFields fent us de la classe CustomTextField
-        CustomTextField usernameField = new CustomTextField(300, 20, Color.decode("#C3986A"), new Font("Berlin Sans FB", Font.PLAIN, 14));
-        usernameField.initializeTextField();
-        CustomTextField emailField = new CustomTextField(300, 20, Color.decode("#C3986A"), new Font("Berlin Sans FB", Font.PLAIN, 14));
-        emailField.initializeTextField();
-        CustomPasswordField passwordField = new CustomPasswordField(300, 20, Color.decode("#C3986A"), new Font("Berlin Sans FB", Font.PLAIN, 14));
-        passwordField.initializePasswordField();
-        CustomPasswordField confirmationField = new CustomPasswordField(300, 20, Color.decode("#C3986A"), new Font("Berlin Sans FB", Font.PLAIN, 14));
-        confirmationField.initializePasswordField();
+        usernameField = new CustomTextField(300, 20, Color.decode("#C3986A"), new Font("Berlin Sans FB", Font.PLAIN, 14));
+        emailField = new CustomTextField(300, 20, Color.decode("#C3986A"), new Font("Berlin Sans FB", Font.PLAIN, 14));
+        passwordField = new CustomPasswordField(300, 20, Color.decode("#C3986A"), new Font("Berlin Sans FB", Font.PLAIN, 14));
+        confirmationField = new CustomPasswordField(300, 20, Color.decode("#C3986A"), new Font("Berlin Sans FB", Font.PLAIN, 14));
 
         //Inicialització dels botons fent us de la classe CustomButton
-        CustomButton nextButton = new CustomButton("NEXT", 140, 25, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
-        nextButton.applyCustomStyles();
-        CustomButton loginButton = new CustomButton("LOGIN", 140, 25, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
-        loginButton.applyCustomStyles();
+        nextButton = new CustomButton("NEXT", 140, 25, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
+        loginButton = new CustomButton("LOGIN", 140, 25, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
 
         //Inicialització la imatge del logo
         ImageIcon logoIcon = new ImageIcon("Imagenes/logoSmall.png"); // Ruta de la imagen del logo
@@ -133,8 +141,144 @@ public class RegisterView extends JFrame {
         //Afegir el panell central a la finestra principal
         add(panelInfo, BorderLayout.CENTER);
 
+    }
+
+    /**
+     * Funció per afegir un controlador als botons de la vista.
+     * @param rvc ActionListener
+     */
+    public void buttonController(ActionListener rvc){
+        nextButton.addActionListener(rvc);
+        nextButton.setActionCommand(NEXT);
+        loginButton.addActionListener(rvc);
+        loginButton.setActionCommand(LOGIN);
+    }
+
+
+    /**
+     * Funció per afegir un controlador als textFields de la vista.
+     * @return KeyListener per als textFields
+     */
+    public String getUsernameField() {
+        return usernameField.getText();
+    }
+
+    /**
+     * Funció per obtenir el text del textField de l'email
+     * @return String amb el text del textField de l'email
+     */
+    public String getEmailField() {
+        return emailField.getText();
+    }
+
+    /**
+     * Funció per obtenir el text del textField de la contrasenya
+     * @return String amb el text del textField de la contrasenya
+     */
+    public String getPasswordField() {
+        return String.valueOf(passwordField.getPassword());
+    }
+
+    /**
+     * Funció per obtenir el text del textField de la confirmació de la contrasenya
+     * @return String amb el text del textField de la confirmació de la contrasenya
+     */
+    public String getConfirmPasswordField() {
+        return String.valueOf(confirmationField.getPassword());
+    }
+
+
+    /**
+     * Funció per obtenir el botó de NEXT
+     * @return CustomButton del botó de NEXT
+     */
+    public CustomButton getNextButton() {
+        return nextButton;
+    }
+
+
+    /**
+     * Funció per obtenir el botó de LOGIN
+     * @return CustomButton del botó de LOGIN
+     */
+    public CustomButton getLoginButton() {
+        return loginButton;
+    }
+
+    /**
+     * Funció per establir el text del textField de l'usuari
+     * @param usernameField String amb el text del textField de l'usuari
+     */
+    public void setUsernameField(String usernameField) {
+        this.usernameField.setText(usernameField);
+    }
+
+
+    /**
+     * Funció per establir el text del textField de l'email
+     * @param emailField String amb el text del textField de l'email
+     */
+    public void setEmailField(String emailField) {
+        this.emailField.setText(emailField);
+    }
+
+    /**
+     * Funció per establir el text del textField de la contrasenya
+     * @param passwordField String amb el text del textField de la contrasenya
+     */
+    public void setPasswordField(String passwordField) {
+        this.passwordField.setText(passwordField);
+    }
+
+    /**
+     * Funció per establir el text del textField de la confirmació de la contrasenya
+     * @param confirmPasswordField String amb el text del textField de la confirmació de la contrasenya
+     */
+    public void setConfirmPasswordField(String confirmPasswordField) {
+        this.confirmationField.setText(confirmPasswordField);
+    }
+
+
+    /**
+     * Funció per establir el botó de NEXT
+     * @param nextButton CustomButton del botó de NEXT
+     */
+    public void setNextButton(CustomButton nextButton) {
+        this.nextButton = nextButton;
+    }
+
+
+    /**
+     * Funció per establir el botó de LOGIN
+     * @param loginButton CustomButton del botó de LOGIN
+     */
+    public void setLoginButton(CustomButton loginButton) {
+        this.loginButton = loginButton;
+    }
+
+
+
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
 
     }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }
+
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
@@ -142,6 +286,4 @@ public class RegisterView extends JFrame {
             registerView.setVisible(true);
         });
     }
-
-
 }

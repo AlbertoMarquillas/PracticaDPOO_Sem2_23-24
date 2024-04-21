@@ -34,6 +34,7 @@ public class CustomButton extends JButton {
         setBackgroundColor(bgColor);
         setTextColor(txtColor);
         setTextFont(font);
+        applyCustomStyles();
     }
 
     public CustomButton(int width, int height, Color bgColor) {
@@ -42,6 +43,7 @@ public class CustomButton extends JButton {
         setBackgroundColor(bgColor);
 
     }
+
 
 
     /**

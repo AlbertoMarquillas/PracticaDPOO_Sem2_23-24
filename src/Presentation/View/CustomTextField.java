@@ -25,13 +25,14 @@ public class CustomTextField extends JTextField {
         this.height = height;
         this.backgroundColor = backgroundColor;
         this.userFont = userFont;
+        initializeTextField();
     }
 
 
     /**
      * Inicialitza el camp de text.
      */
-    void initializeTextField() {
+    private void initializeTextField() {
         setPreferredSize(new Dimension(width, height));
         setBackground(backgroundColor);
         setFont(userFont);

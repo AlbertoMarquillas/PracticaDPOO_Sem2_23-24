@@ -2,19 +2,30 @@ package Presentation.View;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 
 /**
  * Classe de les vistes de la pantalla inicial.
  */
-public class InitialView extends JFrame {
+public class InitialView extends JFrame implements KeyListener{
+
+    public static final String REGISTER = "Register";
+    public static final String LOGIN = "Login";
+
+    private CustomButton registerButton;
+    private CustomButton loginButton;
+    private CustomTextField userNameField;
+    private CustomPasswordField passwordField;
 
     public InitialView() {
 
         //Inicialitzem els botons fent us de la classe CustomButton
-        CustomButton RegisterButtong = new CustomButton("REGISTER", 140, 25, Color.decode("#3B1211"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
-        RegisterButtong.applyCustomStyles();
-        CustomButton loginButton = new CustomButton("LOGIN", 140, 25, Color.decode("#3B1211"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
-        loginButton.applyCustomStyles();
+        registerButton = new CustomButton("REGISTER", 140, 25, Color.decode("#3B1211"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
+        loginButton = new CustomButton("LOGIN", 140, 25, Color.decode("#3B1211"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
 
         //Inicialitzem els labels fent us de la classe CustomLabel
         CustomLabel usernameLabel = new CustomLabel("User:", new Font("Segoe UI Black", Font.PLAIN, 16), Color.decode("#F8F2F0"));
@@ -23,10 +34,8 @@ public class InitialView extends JFrame {
         CustomLabel infoLabel =  new CustomLabel("Don't have an account?", new Font("Segoe UI Black", Font.PLAIN, 12), Color.decode("#F8F2F0"));
 
         //Inicialitzem els textFields fent us de la classe CustomTextField
-        CustomTextField userName = new CustomTextField(300, 30, Color.decode("#3B1211"), new Font("Berlin Sans FB", Font.PLAIN, 14));
-        userName.initializeTextField();
-        CustomPasswordField password = new CustomPasswordField(300, 30, Color.decode("#3B1211"), new Font("Berlin Sans FB", Font.PLAIN, 14));
-        password.initializePasswordField();
+        userNameField = new CustomTextField(300, 30, Color.decode("#3B1211"), new Font("Berlin Sans FB", Font.PLAIN, 14));
+        passwordField = new CustomPasswordField(300, 30, Color.decode("#3B1211"), new Font("Berlin Sans FB", Font.PLAIN, 14));
 
         //Inicialitzem la imatge del logo
         ImageIcon logoIcon = new ImageIcon("Imagenes/logo.png"); // Ruta de la imagen del logo
@@ -68,7 +77,7 @@ public class InitialView extends JFrame {
         gbcSec.gridx = 0;
         gbcSec.gridy = 2;
         gbcSec.insets = new Insets(0, 0, 20, 0);
-        panelInfo.add(userName, gbcSec);
+        panelInfo.add(userNameField, gbcSec);
 
         //Afegir el JLabel de la contrasenya
         gbcSec = new GridBagConstraints();
@@ -82,7 +91,7 @@ public class InitialView extends JFrame {
         gbcSec.gridx = 0;
         gbcSec.gridy = 4;
         gbcSec.insets = new Insets(0, 0, 20, 0);
-        panelInfo.add(password, gbcSec);
+        panelInfo.add(passwordField, gbcSec);
 
         //Afegir el botó de login
         gbcSec = new GridBagConstraints();
@@ -103,12 +112,96 @@ public class InitialView extends JFrame {
         gbcSec.gridx = 0;
         gbcSec.gridy = 10;
         gbcSec.insets = new Insets(40, 300, 0, 0);
-        panelInfo.add(RegisterButtong, gbcSec);
+        panelInfo.add(registerButton, gbcSec);
 
         //Afegir el panell central a la finestra principal
         add(panelInfo, BorderLayout.CENTER);
 
     }
+
+    /**
+     * Metode per controlar els botons de la vista
+     * @param rvc ActionListener
+     */
+    public void buttonController(ActionListener rvc){
+        registerButton.addActionListener(rvc);
+        registerButton.setActionCommand(REGISTER);
+        loginButton.addActionListener(rvc);
+        loginButton.setActionCommand(LOGIN);
+    }
+
+    /**
+     * Metode per obtenir el nom d'usuari
+     * @return String amb el nom d'usuari
+     */
+    public String getUsernameField() {
+        return userNameField.getText();
+    }
+
+
+    /**
+     * Metode per obtenir la contrasenya
+     * @return String amb la contrasenya
+     */
+    public String getPasswordField() {
+        return String.valueOf(passwordField.getPassword());
+    }
+
+
+    /**
+     * Metode per obtenir el botó de registre
+     * @return CustomButton del botó de registre
+     */
+    public CustomButton getRegisterButton() {
+        return registerButton;
+    }
+
+
+    /**
+     * Metode per obtenir el botó de login
+     * @return CustomButton del botó de login
+     */
+    public CustomButton getLoginButton() {
+        return loginButton;
+    }
+
+
+    /**
+     * Metode per establir el nom d'usuari
+     * @param passwordField String amb el nom d'usuari
+     */
+    public void setPasswordField(String passwordField) {
+        this.passwordField.setText(passwordField);
+    }
+
+
+    /**
+     * Metode per establir la contrasenya
+     * @param username String amb la contrasenya
+     */
+    public void setUsernameField(String username) {
+        this.userNameField.setText(username);
+    }
+
+
+    /**
+     * Metode per establir el botó de registre
+     * @param registerButton CustomButton del botó de registre
+     */
+    public void setRegisterButton(CustomButton registerButton) {
+        this.registerButton = registerButton;
+    }
+
+
+    /**
+     * Metode per establir el botó de login
+     * @param loginButton CustomButton del botó de login
+     */
+    public void setLoginButton(CustomButton loginButton) {
+        this.loginButton = loginButton;
+    }
+
+
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
@@ -116,12 +209,20 @@ public class InitialView extends JFrame {
             initialView.setVisible(true);
         });
     }
+
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }
 }
-
-
-/*
-#DB5C39 naranja
-#3B1211 marron oscuro
-#F8F2F0 blanco
-#C3986A marron claro
- */

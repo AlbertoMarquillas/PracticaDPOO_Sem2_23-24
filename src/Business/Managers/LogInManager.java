@@ -40,12 +40,19 @@ public class LogInManager {
     }
 
     /**
-     * Metodo que activa un usuari, reflecta l'usuari conectat a la base de dades
+     * Mètode que activa un usuari, reflecta l'usuari conectat a la base de dades
      * @param name nom d'usuari
      */
     private void connectedUser(String name){
         userManager.connectedUser(name); //hem de poder dir que s'ha connectat l'usuari
     }
-
+    /**
+     * Mètode que mira si l'usuari ha introduit algunes dades, encara que no siguin correctes
+     * @param paswordLength: longitud de la contrassenya
+     * @param usernameLength: longitud del username
+     */
+    public boolean keyTyped(int usernameLength, int paswordLength){
+        return usernameLength > 0 && paswordLength > 0;
+    }
 
 }

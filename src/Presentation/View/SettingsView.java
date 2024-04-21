@@ -2,11 +2,19 @@ package Presentation.View;
 
 import javax.swing.*;
 import java.awt.*;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 /**
  * Classe de les vista de la pantalla de settings.
  */
-public class SettingsView extends JFrame {
+public class SettingsView extends JFrame implements KeyListener, ActionListener {
+
+    private static final String DELETE = "Delete";
+    private static final String CLOSE = "Close";
+    private CustomButton deleteButton;
+    private CustomButton closeButton;
 
     public SettingsView() {
 
@@ -20,10 +28,8 @@ public class SettingsView extends JFrame {
         CustomLabel titleLabel = new CustomLabel("COFFEE CLICKER", new Font("Bauhaus 93", Font.PLAIN, 50), Color.decode("#DB5C39"));
 
         //Inicialització dels botons fent us de la classe CustomButton
-        CustomButton deleteButton = new CustomButton("Delete Account", 350, 45, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 18));
-        deleteButton.applyCustomStyles();
-        CustomButton closeButton = new CustomButton("Close Session", 350, 45, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 18));
-        closeButton.applyCustomStyles();
+        deleteButton = new CustomButton("Delete Account", 350, 45, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 18));
+        closeButton = new CustomButton("Close Session", 350, 45, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 18));
 
         //Inicialitzem la imatge del logo
         ImageIcon logoIcon = new ImageIcon("Imagenes/logoSmall.png"); // Ruta de la imagen del logo
@@ -64,6 +70,52 @@ public class SettingsView extends JFrame {
         add(panelInfo, BorderLayout.CENTER);
     }
 
+    /**
+     * Mètode per controlar els botons de la vista.
+     * @param rvc ActionListener
+     */
+    public void buttonController(ActionListener rvc){
+        deleteButton.addActionListener(rvc);
+        deleteButton.setActionCommand(DELETE);
+        closeButton.addActionListener(rvc);
+        closeButton.setActionCommand(CLOSE);
+    }
+
+    /**
+     * Mètode per obtenir el botó de delete.
+     * @return CustomButton
+     */
+    public CustomButton getDeleteButton() {
+        return deleteButton;
+    }
+
+
+    /**
+     * Mètode per obtenir el botó de close.
+     * @return CustomButton
+     */
+    public CustomButton getCloseButton() {
+        return closeButton;
+    }
+
+    /**
+     * Mètode per assignar el botó de delete.
+     * @param deleteButton CustomButton
+     */
+    public void setDeleteButton(CustomButton deleteButton) {
+        this.deleteButton = deleteButton;
+    }
+
+
+    /**
+     * Mètode per assignar el botó de close.
+     * @param closeButton CustomButton
+     */
+    public void setCloseButton(CustomButton closeButton) {
+        this.closeButton = closeButton;
+    }
+
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             SettingsView settingsView = new SettingsView();
@@ -71,4 +123,23 @@ public class SettingsView extends JFrame {
         });
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }
 }

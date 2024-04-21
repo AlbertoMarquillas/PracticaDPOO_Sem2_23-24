@@ -11,270 +11,514 @@ package Presentation.View;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 /**
  * Classe que crea la finestra principal de l'aplicació.
  */
-public class GameView extends JFrame{
+public class GameView extends JFrame implements KeyListener, ActionListener {
 
-    //crear una funcio que crei unJPanel amb un layout i un color
+    private static final String MILLORA1 = "Millora 1";
+    private static final String MILLORA2 = "Millora 2";
+    private static final String MILLORA3 = "Millora 3";
+    private static final String MILLORA4 = "Millora 4";
+    private static final String POTENCIADOR1 = "Potenciador 1";
+    private static final String POTENCIADOR2 = "Potenciador 2";
+    private static final String POTENCIADOR3 = "Potenciador 3";
+    private static final String SETTINGS = "Settings";
 
-    public static JPanel createPotenciadorPanel(String pathFoto, String nom, String cost, String produccio) {
-        // Crear los labels con la información del potenciador
-        CustomLabel nomLabel = new CustomLabel(nom, new Font("Segoe UI Black", Font.PLAIN, 10), Color.decode("#DB5C39"));
-        CustomLabel costLabel = new CustomLabel(cost, new Font("Segoe UI Black", Font.PLAIN, 10), Color.decode("#DB5C39"));
-        CustomLabel produccioLabel = new CustomLabel(produccio, new Font("Segoe UI Black", Font.PLAIN, 10), Color.decode("#DB5C39"));
+    private static final String CREATECOFFE = "Create Cofee";
+    private CustomButton millora1;
+    private CustomButton millora2;
+    private CustomButton millora3;
+    private CustomButton millora4;
+    private CustomButton potenciador1;
+    private CustomButton potenciador2;
+    private CustomButton potenciador3;
 
-        ImageIcon foto = new ImageIcon(pathFoto); // Ruta de la imagen del logo
-        JLabel fotoLabel = new JLabel(foto);
+    private JButton imageButton;
+    private JButton settingsButton;
 
-// Panell principal amb tota la informació del potenciador
-        JPanel panel = new JPanel();
-        panel.setBackground(Color.decode("#F8F2F0"));
-        panel.setLayout(null); // Establece el diseño a null para controlar el tamaño manualmente
-        panel.setSize(365, 100);
-
-// Agregar la foto del potenciador
-        fotoLabel.setBounds(10, 10, 80, 80); // Ajusta la posición y el tamaño de la imagen
-        panel.add(fotoLabel);
-
-        JPanel panelInfo = new JPanel();
-        panelInfo.setLayout(new GridBagLayout());
-        GridBagConstraints gbcInfo = new GridBagConstraints();
-        gbcInfo.gridx = 1; // Cambia la posición X para el panel de información
-        gbcInfo.gridy = 0;
-        gbcInfo.insets = new Insets(10, 10, 0, 0); // Ajusta los márgenes
-        panelInfo.add(nomLabel, gbcInfo);
-
-        gbcInfo.gridx = 1;
-        gbcInfo.gridy = 1;
-        panelInfo.add(costLabel, gbcInfo);
-
-        gbcInfo.gridx = 1;
-        gbcInfo.gridy = 2;
-        panelInfo.add(produccioLabel, gbcInfo);
-
-        panel.add(panelInfo);
-
-        return panel;
-
-
-
-    }
-    /*
-    public static JPanel createPotenciadorPanel(String pathFoto, String nom, String cost, String produccio){
-        //Crear els labels amb la informació del potenciador
-        CustomLabel nomLabel = new CustomLabel(nom, new Font("Segoe UI Black", Font.PLAIN, 10), Color.decode("#DB5C39"));
-        CustomLabel costLabel = new CustomLabel(cost, new Font("Segoe UI Black", Font.PLAIN, 10), Color.decode("#DB5C39"));
-        CustomLabel produccioLabel = new CustomLabel(produccio, new Font("Segoe UI Black", Font.PLAIN, 10), Color.decode("#DB5C39"));
-
-        ImageIcon foto = new ImageIcon(pathFoto); // Ruta de la imagen del logo
-        JLabel fotoLabel = new JLabel(foto);
-
-        //Panell principal amb tota la informació del potenciador
-        JPanel panel = new JPanel();
-        panel.setBackground(Color.decode("#F8F2F0"));
-        panel.setLayout(null); // Establece el diseño a null para controlar el tamaño manualmente
-        panel.setSize(365, 100);
-        panel.setLayout(new BorderLayout());
-
-
-
-        //Afegir la foto del potenciador
-        panel.add(fotoLabel, BorderLayout.WEST);
-
-        JPanel panelInfo = new JPanel();
-        panelInfo.setLayout(new GridBagLayout());
-        GridBagConstraints gbcInfo = new GridBagConstraints();
-        gbcInfo.gridx = 0;
-        gbcInfo.gridy = 0;
-        gbcInfo.insets = new Insets(10, 0, 0, 0);
-        panelInfo.add(nomLabel, gbcInfo);
-
-        gbcInfo.gridx = 0;
-        gbcInfo.gridy = 1;
-        gbcInfo.insets = new Insets(10, 0, 0, 0);
-        panelInfo.add(costLabel, gbcInfo);
-
-        gbcInfo.gridx = 0;
-        gbcInfo.gridy = 2;
-        gbcInfo.insets = new Insets(10, 0, 0, 0);
-        panelInfo.add(produccioLabel, gbcInfo);
-        panel.setSize(200, 200);
-        panel.add(panelInfo, BorderLayout.EAST);
-
-
-
-
-        return panel;
-    }*/
-
-    public static JTable createTable(){
-        String[] columnNames = {"Quantity cafes generats", "Quantitat generadors"};
-        Object[][] data = {
-                {"Generador 1\nVar amb numero de cafes generats", "Var quantitat de generadors"},
-                {"Generador 2\nVar amb numero de cafes generats", "Var quantitat de generadors"},
-                {"Generado 3\nVar amb numero de cafes generats", "Var quantitat de generadors"},
-        };
-
-        JTable table = new JTable(data, columnNames);
-
-        for (int i = 0; i < table.getColumnCount(); i++) {
-            table.setRowHeight(i, 70);
-            table.getColumnModel().getColumn(i).setPreferredWidth(250);
-        }
-
-
-        // Cambiar la tipografía, tamaño y color del texto
-        table.setFont(new Font("Segoe UI Black", Font.PLAIN, 14));
-        table.setForeground(Color.decode("#3B1211"));
-
-        // Cambiar el color y grosor de los bordes
-        table.setGridColor(Color.decode("#DB5C39"));
-
-
-        // Personalizar el renderizador de celdas para centrar el texto
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-        table.setDefaultRenderer(Object.class, centerRenderer);
-
-
-        return table;
-    }
 
     public GameView() {
 
+        //Crear la finestra i posar-li tamany i títol
         setTitle("Game View");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1500, 800);
         setLayout(new BorderLayout());  // Layout de la finestra principal per posar els dos subpanells
 
+
+        //Crear els botons que contindran imatges a l'inerior
         JButton imageButton = new JButton();
+        JButton settingsButton = new JButton();
 
-        //Inicialitzem la imatge del logo
-        ImageIcon logoIcon = new ImageIcon("Imagenes/logo.png"); // Ruta de la imagen del logo
+        //Inicialitzem la imatge del logo i posar-la dintre del botó imageButton
+        ImageIcon logoIcon = new ImageIcon("Imagenes/logo.png");
         imageButton.setIcon(logoIcon);
-        imageButton.setBorderPainted(false); // Elimina el borde del botón
-        imageButton.setContentAreaFilled(false); // Hace que el área de contenido del botón sea transparente
-        //imageButton.setFocusPainted(false); // Elimina el borde que aparece al hacer click
-        JLabel logoLabel = new JLabel(logoIcon);
+        imageButton.setBorderPainted(false);            // Eliminar borde
+        imageButton.setContentAreaFilled(false);        //Fer que l'àrea de contingut del botó sigui transparent
 
-        //comptador
+        // Inicialitzem la imatge del botó de configuració i posar-la dintre del botó settingsButton
+        ImageIcon ajustesIcon = new ImageIcon("Imagenes/ajustes.png"); // Ruta de la imagen del logo
+        settingsButton.setIcon(ajustesIcon);
+        settingsButton.setBorderPainted(false);         // Eliminar borde
+        settingsButton.setContentAreaFilled(false);     //Fer que l'àrea de contingut del botó sigui transparent
+
+        //Crear els botons de cada millora fent us de la classe CustomButton
+        CustomButton millora1 = new CustomButton("<html><div style='text-align: center;'>Double the efficiency in BARISTA BOOST</div></html>", 170, 75, Color.decode("#F8F2F0"), Color.decode("#3B1211"), new Font("Segoe UI Black", Font.PLAIN, 14));
+        CustomButton millora2 = new CustomButton("<html><div style='text-align: center;'>Double the efficiency in WAFFLE WIZARD</div></html>", 170, 75, Color.decode("#F8F2F0"), Color.decode("#3B1211"), new Font("Segoe UI Black", Font.PLAIN, 14));
+        CustomButton millora3 = new CustomButton("<html><div style='text-align: center;'>Double the efficiency in STEAMY BREW</div></html>", 170, 75, Color.decode("#F8F2F0"), Color.decode("#3B1211"), new Font("Segoe UI Black", Font.PLAIN, 14));
+        CustomButton millora4 = new CustomButton("<html><div style='text-align: center;'>Coffee bean multiplier 50%</div></html>", 170, 75, Color.decode("#F8F2F0"), Color.decode("#3B1211"), new Font("Segoe UI Black", Font.PLAIN, 14));
+
+        //Comptador de cafès generats
+        //Fara falta canviar el valor del contador per la variable
         CustomLabel contador = new CustomLabel("0000", new Font("Segoe UI Black", Font.PLAIN, 50), Color.decode("#F8F2F0"));
+        //Crear els títols de la finestra
+        CustomLabel supTitleLabel = new CustomLabel("COFFEE", new Font("Bauhaus 93", Font.BOLD, 80), Color.decode("#DB5C39"));
+        CustomLabel lowTitleLabel = new CustomLabel("CLICKER", new Font("Bauhaus 93", Font.BOLD, 80), Color.decode("#DB5C39"));
+
+        //Crear els panells dels potenciadors
+        //El string producció fara falta canviar-los per les variables
+        JButton potenciador1 = createPotenciadorButton("Imagenes/potenciador1.png", "BARISTA BOOST", "Cost: 20 CoffeeBeans", "<html><div style='text-align: center;'>Elevate your brew game<br>with lightning speed</div></html>");
+        JButton potenciador2 = createPotenciadorButton("Imagenes/potenciador2.png", "WAFFLE WIZARD", "Cost: 100 CoffeeBeans", "<html><div style='text-align: center;'>Master the art of waffle<br>making with prowess.</div></html>");
+        JButton potenciador3 = createPotenciadorButton("Imagenes/potenciador3.png", "STEAMY BREW", "Cost: 300 CoffeeBeans", "<html><div style='text-align: center;'>Experience the power<br>of a perfect, steamy cup.</div></html>");
+
+        //poner el panel del potenciador dentro de un boton
 
 
-        //Crear els botons fent us de la classe CustomButton
-        CustomButton millora1 = new CustomButton("millora1", 140, 25, Color.decode("#3B1211"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
-        millora1.applyCustomStyles();
-        CustomButton millora2 = new CustomButton("millora2", 140, 25, Color.decode("#3B1211"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
-        millora2.applyCustomStyles();
-        CustomButton millora3 = new CustomButton("millora3", 140, 25, Color.decode("#3B1211"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
-        millora3.applyCustomStyles();
-        CustomButton millora4 = new CustomButton("millora4", 140, 25, Color.decode("#3B1211"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
-        millora4.applyCustomStyles();
-
-        JPanel potenciador1 = createPotenciadorPanel("Imagenes/potenciador1.png", "potenciador1", "cost1", "produccio1");
-        JPanel potenciador2 = createPotenciadorPanel("Imagenes/potenciador2.png", "potenciador1", "cost1", "produccio1");
-        JPanel potenciador3 = createPotenciadorPanel("Imagenes/potenciador3.png", "potenciador1", "cost1", "produccio1");
-
+        //Crear la taula amb les dades dels potenciadors
         JTable table = createTable();
 
+
+        //Crear el panell central, que es el que contindrà el títol, la taula i el botó de configuració
         JPanel centerPanel = new JPanel();
         centerPanel.setBackground(Color.decode("#F8F2F0"));
-        centerPanel.setLayout(new GridBagLayout());
-        centerPanel.setSize(750, 800);
+        centerPanel.setSize(750, 800);              // Tamany del panell central
 
-        CustomLabel supTitleLabel = new CustomLabel("COFFEE", new Font("Bauhaus 93", Font.BOLD, 50), Color.decode("#DB5C39"));
-        CustomLabel lowTitleLabel = new CustomLabel("CLICKER", new Font("Bauhaus 93", Font.BOLD, 50), Color.decode("#DB5C39"));
+        centerPanel.setLayout(new GridBagLayout());             // GridBagLayout al panell per afagir les coses en posicions concretes
+        GridBagConstraints gbcCent = new GridBagConstraints();
 
-       GridBagConstraints gbcCent = new GridBagConstraints();
+        // Posar el botó de configuració a la part superior dreta
         gbcCent.gridx = 0;
         gbcCent.gridy = 0;
-        gbcCent.insets = new Insets(0, 0, 0, 0);
-        centerPanel.add(supTitleLabel, gbcCent);
+        gbcCent.insets = new Insets(0, 650, 0, 0);
+        centerPanel.add(settingsButton, gbcCent);
 
+        // Posar la primera paraula del títol a la part superior central
         gbcCent.gridx = 0;
         gbcCent.gridy = 1;
-        gbcCent.insets = new Insets(10, 0, 0, 0);
-        centerPanel.add(lowTitleLabel, gbcCent);
-        add(centerPanel, BorderLayout.CENTER);
+        gbcCent.insets = new Insets(1, 0, 0, 0);
+        centerPanel.add(supTitleLabel, gbcCent);
 
+        // Posar la segona paraula del títol a la part superior central
         gbcCent.gridx = 0;
         gbcCent.gridy = 2;
-        gbcCent.insets = new Insets(0, 0, 0, 0);
+        gbcCent.insets = new Insets(0, 0, 30, 0);
+        centerPanel.add(lowTitleLabel, gbcCent);
+
+        // Posar la taula a la part central
+        gbcCent.gridx = 0;
+        gbcCent.gridy = 3;
+        gbcCent.insets = new Insets(0, 0, 30, 0);
         centerPanel.add(table, gbcCent);
 
 
+        //Crear el panell esquerre que contindrà el comptador i el botó de la imatge
         JPanel leftPanel = new JPanel();
         leftPanel.setBackground(Color.decode("#DB5C39"));
         leftPanel.setSize(375, 800);
 
-        leftPanel.setLayout(new GridBagLayout());
-
-
-
+        leftPanel.setLayout(new GridBagLayout());       // GridBagLayout al panell per afagir les coses en posicions concretes
         GridBagConstraints gbcLeft = new GridBagConstraints();
 
+        //Afeigir el comptador a la part superior del panell
         gbcLeft.gridx = 0;
         gbcLeft.gridy = 0;
         gbcLeft.insets = new Insets(0, 0, 0, 0);
         leftPanel.add(contador, gbcLeft);
 
+        //Afegir el botó de la imatge a la part inferior del panell
         gbcLeft.gridx = 0;
         gbcLeft.gridy = 1;
         gbcLeft.insets = new Insets(10, 0, 0, 0);
         leftPanel.add(imageButton, gbcLeft);
-        add(leftPanel, BorderLayout.WEST);
 
 
-
+        //Crear el panell dret que contindrà les millores i els potenciadors
         JPanel rightPanel = new JPanel();
         rightPanel.setBackground(Color.decode("#DB5C39"));
-       rightPanel.setSize(375, 800);
+        rightPanel.setSize(375, 800);
 
-        rightPanel.setLayout(new GridBagLayout());
+        rightPanel.setLayout(new BorderLayout());       // BorderLayout al panell per afagir les coses en posicions concretes
+
+        //Crear un subpanell que contindrà els quatre botons de les millores
+        JPanel millores = new JPanel();
+        millores.setBackground(Color.decode("#DB5C39"));
+
+        millores.setLayout(new GridBagLayout());        // GridBagLayout al panell per afagir els botons en posicions concretes
+        GridBagConstraints gbcMillores = new GridBagConstraints();
+
+        //Afegir el botó de la millora 1 a la part superior
+        gbcMillores.gridx = 0;
+        gbcMillores.gridy = 0;
+        gbcMillores.insets = new Insets(20, 15, 0, 0);
+        millores.add(millora1, gbcMillores);
+
+        //Afegir el botó de la millora 2 a la part superior al costat del de la millora 1
+        gbcMillores.gridx = 1;
+        gbcMillores.gridy = 0;
+        gbcMillores.insets = new Insets(20, 10, 0, 15);
+        millores.add(millora2, gbcMillores);
+
+        //Afegir el botó de la millora 3 sota el botó de la millora 1
+        gbcMillores.gridx = 0;
+        gbcMillores.gridy = 1;
+        gbcMillores.insets = new Insets(10, 15, 0, 0);
+        millores.add(millora3, gbcMillores);
+
+        //Afegir el botó de la millora 4 sota el botó de la millora 2
+        gbcMillores.gridx = 1;
+        gbcMillores.gridy = 1;
+        gbcMillores.insets = new Insets(10, 10, 0, 15);
+        millores.add(millora4, gbcMillores);
+
+
+        //Crear un subpanell que contindrà els subpanells dels potenciadors
+        JPanel potenciadors = new JPanel();
+        potenciadors.setBackground(Color.decode("#DB5C39"));
+        potenciadors.setLayout(new GridBagLayout());    //GridBagLayout al panell per afagir els potenciadors en posicions concretes
+
+        //Afegir potenciador 1 a la part superior
+        GridBagConstraints gbcPotenciadors = new GridBagConstraints();
+        gbcPotenciadors.gridx = 0;
+        gbcPotenciadors.gridy = 3;
+        gbcPotenciadors.insets = new Insets(20, 15, 0, 15);
+        potenciadors.add(potenciador1, gbcPotenciadors);
+
+        //Afegir potenciador 2 sota el potenciador 1
+        gbcPotenciadors.gridx = 0;
+        gbcPotenciadors.gridy = 4;
+        gbcPotenciadors.insets = new Insets(15, 15, 0, 15);
+        potenciadors.add(potenciador2, gbcPotenciadors);
+
+        //Afegir potenciador 3 sota el potenciador 2
+        gbcPotenciadors.gridx = 0;
+        gbcPotenciadors.gridy = 5;
+        gbcPotenciadors.insets = new Insets(15, 15, 15, 15);
+        potenciadors.add(potenciador3, gbcPotenciadors);
+
+        //Afegir els subpanells de les millores i els potenciadors al panell dret
+        rightPanel.add(potenciadors, BorderLayout.CENTER);
+        rightPanel.add(millores, BorderLayout.NORTH);
+
+
+        //Afegir els tres panells principals (esquerra, dreta, centre) a la finestra principal
+        add(centerPanel, BorderLayout.CENTER);
+        add(leftPanel, BorderLayout.WEST);
         add(rightPanel, BorderLayout.EAST);
 
-        GridBagConstraints gbcRight = new GridBagConstraints();
-        gbcRight.gridx = 0;
-        gbcRight.gridy = 0;
-        gbcRight.insets = new Insets(0, 0, 0, 0);
-        rightPanel.add(millora1, gbcRight);
-
-        gbcRight.gridx = 1;
-        gbcRight.gridy = 0;
-        gbcRight.insets = new Insets(0, 0, 0, 0);
-        rightPanel.add(millora2, gbcRight);
-
-        gbcRight.gridx = 0;
-        gbcRight.gridy = 1;
-        gbcRight.insets = new Insets(3, 0, 0, 0);
-        rightPanel.add(millora3, gbcRight);
-
-        gbcRight.gridx = 1;
-        gbcRight.gridy = 1;
-        gbcRight.insets = new Insets(3, 0, 0, 0);
-        rightPanel.add(millora4, gbcRight);
-
-        gbcRight.gridx = 0;
-        gbcRight.gridy = 3;
-        gbcRight.insets = new Insets(20, 5, 0, 0);
-        rightPanel.add(potenciador1, gbcRight);
-
-        gbcRight.gridx = 0;
-        gbcRight.gridy = 4;
-        gbcRight.insets = new Insets(10, 5, 0, 0);
-        rightPanel.add(potenciador2, gbcRight);
-
-        gbcRight.gridx = 0;
-        gbcRight.gridy = 5;
-        gbcRight.insets = new Insets(10, 5, 0, 0);
-        rightPanel.add(potenciador3, gbcRight);
-
-
-
-
     }
+
+
+    /**
+     * Funció que crea un JPanel pels potenciadors amb un layout i un color determinat.
+     * @param pathFoto  Ruta de la imatge del potenciador
+     * @param nom Nom del potenciador
+     * @param cost Cost del potenciador
+     * @param produccio Producció del potenciador
+     * @return JPanel amb les dades del potenciador
+     */
+    public static CustomButton createPotenciadorButton(String pathFoto, String nom, String cost, String produccio) {
+
+        //inicialitzar els labels amb les dades dels potenciadors
+        CustomLabel nomLabel = new CustomLabel(nom, new Font("Segoe UI Black", Font.PLAIN, 19), Color.decode("#3B1211"));
+        CustomLabel costLabel = new CustomLabel(cost, new Font("Segoe UI Black", Font.PLAIN, 14), Color.decode("#3B1211"));
+        CustomLabel produccioLabel = new CustomLabel(produccio, new Font("Segoe UI Black", Font.PLAIN, 12), Color.decode("#3B1211"));
+
+        //inicialitzar la imatge del potenciador
+        ImageIcon foto = new ImageIcon(pathFoto);
+        JLabel fotoLabel = new JLabel(foto);
+
+        //crear el panel principal que cotindrá totes les dades del potenciador
+        JPanel panel = new JPanel();
+        panel.setPreferredSize(new Dimension(350, 170));
+        panel.setBackground(Color.decode("#F8F2F0"));
+        panel.setLayout(new BorderLayout());
+
+        //crear el subpanell de la informació del potenciador (nom, cost i producció)
+        JPanel panelInfo = new JPanel();
+        panelInfo.setBackground(Color.decode("#F8F2F0"));
+        panelInfo.setLayout(new GridBagLayout());
+
+        //crear el layout dels labels de la informació del subpanell
+        GridBagConstraints gbcInfo = new GridBagConstraints();
+
+        //afegir el nom
+        gbcInfo.gridx = 1;
+        gbcInfo.gridy = 0;
+        gbcInfo.insets = new Insets(10, 0, 0, 0);
+        panelInfo.add(nomLabel, gbcInfo);
+
+        //afegir el cost
+        gbcInfo.gridx = 1;
+        gbcInfo.gridy = 1;
+        gbcInfo.insets = new Insets(10, 0, 0, 5); // Ajusta los márgenes
+        panelInfo.add(costLabel, gbcInfo);
+
+        //afegir la producció
+        gbcInfo.gridx = 1;
+        gbcInfo.gridy = 2;
+        gbcInfo.insets = new Insets(10, 0, 0, 20); // Ajusta los márgenes
+        panelInfo.add(produccioLabel, gbcInfo);
+
+        //afegir la imatge i el subpanell amb la informació al panell principal
+        panel.add(fotoLabel, BorderLayout.WEST);
+        panel.add(panelInfo, BorderLayout.CENTER);
+
+        CustomButton potenciadorButton = new CustomButton(350, 170, Color.decode("#F8F2F0"));
+        potenciadorButton.add(panel);
+        potenciadorButton.setBorderPainted(false);            // Eliminar borde
+        potenciadorButton.setContentAreaFilled(false);        //Fer que l'àrea de contingut del botó sigui transparent
+
+        return potenciadorButton;
+    }
+
+
+    /**
+     * Funció que crea una JTable amb les dades dels potenciadors.
+     * @return JTable amb les dades dels generadors
+     */
+    public static JTable createTable(){
+        String[] columnNames = {"Quantity cafes generats", "Quantitat generadors"};
+        // Dades de la taula
+        // Les dades de la taula farà falta canviarles per les variables
+        Object[][] data = {
+                {"<html>Generador 1<br>Var amb numero de cafes generats", "Var quantitat de generadors"},
+                {"<html>Generador 2<br>Var amb numero de cafes generats", "Var quantitat de generadors"},
+                {"<html>Generado 3<br>Var amb numero de cafes generats", "Var quantitat de generadors"},
+        };
+
+        // Crear la taula amb les dades
+        JTable table = new JTable(data, columnNames);
+        table.setBackground(Color.decode("#F8F2F0"));
+        table.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+        table.setForeground(Color.decode("#3B1211"));
+
+        // Crear un renderitzador de celdas amb la classe CustomRenderer per afegir un borde interior
+        CustomRenderer cellRenderer = new CustomRenderer(5);
+
+        // Ajustar l'altura de les files i el borde exterior
+        table.setRowHeight(100);
+        table.setBorder(BorderFactory.createLineBorder(Color.decode("#DB5C39"), 5));
+
+        // Ajustar l'amplada de les columnes i afegir el renderitzador de celdas
+        for (int i = 0; i < table.getColumnCount(); i++) {
+            table.getColumnModel().getColumn(i).setPreferredWidth(300);
+            table.getColumnModel().getColumn(i).setCellRenderer(cellRenderer);
+
+        }
+
+        // Centrar les dades de la taula amb un renderitzador de celdas
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        table.setDefaultRenderer(Object.class, centerRenderer);
+
+        return table;
+    }
+
+
+
+
+    /**
+     * Mètode per controlar els botons de la vista.
+     * @param rvc ActionListener
+     */
+    public void buttonController(ActionListener rvc){
+        potenciador1.addActionListener(rvc);
+        potenciador1.setActionCommand(POTENCIADOR1);
+        potenciador2.addActionListener(rvc);
+        potenciador2.setActionCommand(POTENCIADOR2);
+        potenciador3.addActionListener(rvc);
+        potenciador3.setActionCommand(POTENCIADOR3);
+        millora1.addActionListener(rvc);
+        millora1.setActionCommand(MILLORA1);
+        millora2.addActionListener(rvc);
+        millora2.setActionCommand(MILLORA2);
+        millora3.addActionListener(rvc);
+        millora3.setActionCommand(MILLORA3);
+        millora4.addActionListener(rvc);
+        millora4.setActionCommand(MILLORA4);
+        settingsButton.addActionListener(rvc);
+        settingsButton.setActionCommand(SETTINGS);
+        imageButton.addActionListener(rvc);
+        imageButton.setActionCommand(CREATECOFFE);
+    }
+
+    /**
+     * Mètode per obtenir el botó de la imatge.
+     * @return JButton de la millora 1
+     */
+    public CustomButton getMillora1() {
+        return millora1;
+    }
+
+
+    /**
+     * Mètode per obtenir el botó de la imatge.
+     * @return JButton de la millora 2
+     */
+    public CustomButton getMillora2() {
+        return millora2;
+    }
+
+
+    /**
+     * Mètode per obtenir el botó de la imatge.
+     * @return JButton de la millora 3
+     */
+    public CustomButton getMillora3() {
+        return millora3;
+    }
+
+
+    /**
+     * Mètode per obtenir el botó de la imatge.
+     * @return JButton de la millora 4
+     */
+    public CustomButton getMillora4() {
+        return millora4;
+    }
+
+
+    /**
+     * Mètode per obtenir el botó de la imatge.
+     * @return JButton potenciador 1
+     */
+    public CustomButton getPotenciador1() {
+        return potenciador1;
+    }
+
+
+
+    /**
+     * Mètode per obtenir el botó de la imatge.
+     * @return JButton potenciador 2
+     */
+    public CustomButton getPotenciador2() {
+        return potenciador2;
+    }
+
+
+    /**
+     * Mètode per obtenir el botó de la imatge.
+     * @return JButton del potenciador 3
+     */
+    public CustomButton getPotenciador3() {
+        return potenciador3;
+    }
+
+
+    /**
+     * Mètode per obtenir el botó de la imatge.
+     * @return JButton de la imatge que genera cafes
+     */
+    public JButton getImageButton() {
+        return imageButton;
+    }
+
+
+    /**
+     * Mètode per obtenir el botó de la imatge.
+     * @return JButton de settings
+     */
+    public JButton getSettingsButton() {
+        return settingsButton;
+    }
+
+
+    /**
+     * Mètode per rebre la millora 1
+     * @param millora1 CustomButton de la millora 1
+     */
+    public void setMillora1(CustomButton millora1) {
+        this.millora1 = millora1;
+    }
+
+    /**
+     * Mètode per rebre la millora 2
+     * @param millora2 CustomButton de la millora 2
+     */
+    public void setMillora2(CustomButton millora2) {
+        this.millora2 = millora2;
+    }
+
+
+    /**
+     * Mètode per rebre la millora 3
+     * @param millora3 CustomButton de la millora 3
+     */
+    public void setMillora3(CustomButton millora3) {
+        this.millora3 = millora3;
+    }
+
+
+    /**
+     * Mètode per rebre la millora 4
+     * @param millora4 CustomButton de la millora 4
+     */
+    public void setMillora4(CustomButton millora4) {
+        this.millora4 = millora4;
+    }
+
+
+    /**
+     * Mètode per rebre el potenciador 1
+     * @param potenciador1 CustomButton del potenciador 1
+     */
+    public void setPotenciador1(CustomButton potenciador1) {
+        this.potenciador1 = potenciador1;
+    }
+
+
+    /**
+     * Mètode per rebre el potenciador 2
+     * @param potenciador2 CustomButton del potenciador 2
+     */
+    public void setPotenciador2(CustomButton potenciador2) {
+        this.potenciador2 = potenciador2;
+    }
+
+
+    /**
+     * Mètode per rebre el potenciador 3
+     * @param potenciador3 CustomButton del potenciador 3
+     */
+    public void setPotenciador3(CustomButton potenciador3) {
+        this.potenciador3 = potenciador3;
+    }
+
+
+    /**
+     * Mètode per rebre la imatge que genera cafes
+     * @param imageButton JButton de la imatge que genera cafes
+     */
+    public void setImageButton(JButton imageButton) {
+        this.imageButton = imageButton;
+    }
+
+
+    /**
+     * Mètode per rebre el botó de settings
+     * @param settingsButton JButton de settings
+     */
+    public void setSettingsButton(JButton settingsButton) {
+        this.settingsButton = settingsButton;
+    }
+
 
 
     public static void main(String[] args) {
@@ -282,5 +526,25 @@ public class GameView extends JFrame{
             GameView initialView = new GameView();
             initialView.setVisible(true);
         });
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
     }
 }
