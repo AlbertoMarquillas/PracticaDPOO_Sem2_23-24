@@ -9,7 +9,8 @@ public class UserManager {
 
     /**
      * Constructor de la classe UserManager
-     * @param userDAO classe SQLUserDAO
+     *
+     * @param userDAO     classe SQLUserDAO
      */
     public UserManager(SQLUserDAO userDAO) {
         this.userDAO = userDAO;
@@ -130,4 +131,19 @@ public class UserManager {
     public boolean mailPass(String username, String password) {
         return userDAO.checkPasswordMail(username, password);
     }
+
+    public void setPartidaActiva() {
+        User user = userDAO.getUserConnected();
+        user.setPartidaActiva(true);
+    }
+
+    /*public boolean comprobarPartidesActives() {
+        User user = userDAO.partidaActiva();
+        if (user.isPartidaActiva()) {
+            return true;
+        }else {
+            return false;
+        }
+    }*/
+
 }

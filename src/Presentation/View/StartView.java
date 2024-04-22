@@ -26,6 +26,7 @@ public class StartView extends JPanel implements KeyListener, ActionListener {
 
     public StartView() {
 
+
         //Marcar-li al JFrame un titol i tamany 800x450
         //setTitle("Start View");
         //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -37,8 +38,11 @@ public class StartView extends JPanel implements KeyListener, ActionListener {
 
         //Crear els botons fent us de la classe CustomButton
         newGameButton = new CustomButton("New Game", 350, 45, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 18));
+
         startGameButton = new CustomButton("Resume Game", 350, 45, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 18));
+        startGameButton.setEnabled(false);
         statisticsButton = new CustomButton("Statistics", 350, 45, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 18));
+        statisticsButton.setEnabled(false);
 
         //Crear el logo amb la foto del logo
         ImageIcon logoIcon = new ImageIcon("Imagenes/logo.png"); // Ruta de la imagen del logo
@@ -152,6 +156,11 @@ public class StartView extends JPanel implements KeyListener, ActionListener {
      */
     public void setStatisticsButton(CustomButton statisticsButton) {
         this.statisticsButton = statisticsButton;
+    }
+
+    public void setButtonsEnabled(boolean enabled) {
+        statisticsButton.setEnabled(enabled);
+        startGameButton.setEnabled(enabled);
     }
 
     @Override

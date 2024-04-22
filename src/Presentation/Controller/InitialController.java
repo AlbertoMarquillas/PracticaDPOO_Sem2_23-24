@@ -1,6 +1,7 @@
 package Presentation.Controller;
 
 import Business.Managers.LogInManager;
+import Business.Managers.UserManager;
 import Presentation.View.InitialView;
 
 import javax.swing.*;
@@ -13,10 +14,13 @@ public class InitialController implements ActionListener{
     private final LogInManager logInManager;
     private final ChangeViewController changeViewController;
 
-    public InitialController(InitialView initialView, LogInManager logInManager, ChangeViewController changeViewController) {
+    private final UserManager userManager;
+
+    public InitialController(InitialView initialView, LogInManager logInManager, ChangeViewController changeViewController, UserManager userManager) {
         this.initialView = initialView;
         this.logInManager = logInManager;
         this.changeViewController = changeViewController;
+        this.userManager = userManager;
     }
     private void borrarInfoInit() {
         initialView.setUsernameField("");

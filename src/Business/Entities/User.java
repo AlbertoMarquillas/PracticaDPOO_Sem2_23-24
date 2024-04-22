@@ -6,7 +6,9 @@ public class User {
     private final String email;
     private final String username;
     private final String password;
-    private final boolean connected;
+    private boolean connected;
+
+    private boolean partidaActiva;
 
     /**
      * constructor of the class User, it contains the credentials of the people who uses the program
@@ -22,22 +24,7 @@ public class User {
         this.username = username;
         this.password = password;
         this.connected = connected;
-    }
-
-    /**
-     * constructor of the class User, it contains the credentials of the people who uses the program
-     *
-     * @param username  is a string that allows us to identify a user
-     * @param email     string that contains the mail address of the user
-     * @param password  used to prove who you are when connecting to database
-     * @param connected
-     */
-    public User(String username, String email, String password, boolean connected) {
-        this.id = 0;
-        this.email = email;
-        this.username = username;
-        this.password = password;
-        this.connected = connected;
+        this.partidaActiva = false;
     }
 
     public String getPassword() {
@@ -58,5 +45,17 @@ public class User {
 
     public boolean isConnected() {
         return connected;
+    }
+
+    public void setConnected(boolean connected) {
+        this.connected = connected;
+    }
+
+    public boolean isPartidaActiva() {
+        return partidaActiva;
+    }
+
+    public void setPartidaActiva(boolean partidaActiva) {
+        this.partidaActiva = partidaActiva;
     }
 }
