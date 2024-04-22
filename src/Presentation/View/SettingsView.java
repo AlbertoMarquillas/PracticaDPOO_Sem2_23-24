@@ -16,9 +16,10 @@ public class SettingsView extends JPanel implements KeyListener, ActionListener 
 
     private static final String DELETE = "delete";
     private static final String CLOSE = "close";
+    private static final String BACK = "back";
     private CustomButton deleteButton;
     private CustomButton closeButton;
-
+    private CustomButton backButton;
     public SettingsView() {
 
         //Marcar-li al JFrame un titol i tamany 800x450
@@ -33,6 +34,7 @@ public class SettingsView extends JPanel implements KeyListener, ActionListener 
         //Inicialització dels botons fent us de la classe CustomButton
         deleteButton = new CustomButton("Delete Account", 350, 45, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 18));
         closeButton = new CustomButton("Close Session", 350, 45, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 18));
+        backButton = new CustomButton("BACK", 140, 25, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
 
         //Inicialitzem la imatge del logo
         ImageIcon logoIcon = new ImageIcon("Imagenes/logoSmall.png"); // Ruta de la imagen del logo
@@ -82,6 +84,8 @@ public class SettingsView extends JPanel implements KeyListener, ActionListener 
         deleteButton.setActionCommand(DELETE);
         closeButton.addActionListener(rvc);
         closeButton.setActionCommand(CLOSE);
+        backButton.addActionListener(rvc);
+        backButton.setActionCommand(BACK);
     }
 
     /**
