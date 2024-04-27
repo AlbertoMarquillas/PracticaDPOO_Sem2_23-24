@@ -60,5 +60,4 @@ public class Generator {
         setQuantitat(this.quantitat+1);
         return Math.round(getCost() * Math.pow(getIncrement(), getQuantitat()));
     }
-
 }

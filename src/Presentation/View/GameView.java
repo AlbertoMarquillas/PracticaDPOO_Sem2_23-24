@@ -73,10 +73,10 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         settingsButton.setContentAreaFilled(false);     //Fer que l'àrea de contingut del botó sigui transparent
 
         //Crear els botons de cada millora fent us de la classe CustomButton
-        CustomButton millora1 = new CustomButton("<html><div style='text-align: center;'>Double the efficiency in BARISTA BOOST</div></html>", 170, 75, Color.decode("#F8F2F0"), Color.decode("#3B1211"), new Font("Segoe UI Black", Font.PLAIN, 14));
-        CustomButton millora2 = new CustomButton("<html><div style='text-align: center;'>Double the efficiency in WAFFLE WIZARD</div></html>", 170, 75, Color.decode("#F8F2F0"), Color.decode("#3B1211"), new Font("Segoe UI Black", Font.PLAIN, 14));
-        CustomButton millora3 = new CustomButton("<html><div style='text-align: center;'>Double the efficiency in STEAMY BREW</div></html>", 170, 75, Color.decode("#F8F2F0"), Color.decode("#3B1211"), new Font("Segoe UI Black", Font.PLAIN, 14));
-        CustomButton millora4 = new CustomButton("<html><div style='text-align: center;'>Coffee bean multiplier 50%</div></html>", 170, 75, Color.decode("#F8F2F0"), Color.decode("#3B1211"), new Font("Segoe UI Black", Font.PLAIN, 14));
+        millora1 = new CustomButton("<html><div style='text-align: center;'>Double the efficiency in BARISTA BOOST</div></html>", 170, 75, Color.decode("#F8F2F0"), Color.decode("#3B1211"), new Font("Segoe UI Black", Font.PLAIN, 14));
+        millora2 = new CustomButton("<html><div style='text-align: center;'>Double the efficiency in WAFFLE WIZARD</div></html>", 170, 75, Color.decode("#F8F2F0"), Color.decode("#3B1211"), new Font("Segoe UI Black", Font.PLAIN, 14));
+        millora3 = new CustomButton("<html><div style='text-align: center;'>Double the efficiency in STEAMY BREW</div></html>", 170, 75, Color.decode("#F8F2F0"), Color.decode("#3B1211"), new Font("Segoe UI Black", Font.PLAIN, 14));
+        millora4 = new CustomButton("<html><div style='text-align: center;'>Coffee bean multiplier 50%</div></html>", 170, 75, Color.decode("#F8F2F0"), Color.decode("#3B1211"), new Font("Segoe UI Black", Font.PLAIN, 14));
 
         //Comptador de cafès generats
         //Fara falta canviar el valor del contador per la variable
@@ -89,9 +89,9 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
 
         //Crear els panells dels potenciadors
         //El string producció fara falta canviar-los per les variables
-        JButton potenciador1 = createPotenciadorButton("Imagenes/potenciador1.png", "BARISTA BOOST", "Cost: 20 CoffeeBeans", "<html><div style='text-align: center;'>Elevate your brew game<br>with lightning speed</div></html>");
-        JButton potenciador2 = createPotenciadorButton("Imagenes/potenciador2.png", "WAFFLE WIZARD", "Cost: 100 CoffeeBeans", "<html><div style='text-align: center;'>Master the art of waffle<br>making with prowess.</div></html>");
-        JButton potenciador3 = createPotenciadorButton("Imagenes/potenciador3.png", "STEAMY BREW", "Cost: 300 CoffeeBeans", "<html><div style='text-align: center;'>Experience the power<br>of a perfect, steamy cup.</div></html>");
+        potenciador1 = createPotenciadorButton("Imagenes/potenciador1.png", "BARISTA BOOST", "Cost: 20 CoffeeBeans", "<html><div style='text-align: center;'>Elevate your brew game<br>with lightning speed</div></html>");
+        potenciador2 = createPotenciadorButton("Imagenes/potenciador2.png", "WAFFLE WIZARD", "Cost: 100 CoffeeBeans", "<html><div style='text-align: center;'>Master the art of waffle<br>making with prowess.</div></html>");
+        potenciador3 = createPotenciadorButton("Imagenes/potenciador3.png", "STEAMY BREW", "Cost: 300 CoffeeBeans", "<html><div style='text-align: center;'>Experience the power<br>of a perfect, steamy cup.</div></html>");
 
         //poner el panel del potenciador dentro de un boton
 
@@ -344,7 +344,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
      * @param rvc ActionListener
      */
     public void buttonController(ActionListener rvc){
-        /**potenciador1.addActionListener(rvc);
+        potenciador1.addActionListener(rvc);
         potenciador1.setActionCommand(POTENCIADOR1);
         potenciador2.addActionListener(rvc);
         potenciador2.setActionCommand(POTENCIADOR2);
@@ -357,7 +357,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         millora3.addActionListener(rvc);
         millora3.setActionCommand(MILLORA3);
         millora4.addActionListener(rvc);
-        millora4.setActionCommand(MILLORA4);**/
+        millora4.setActionCommand(MILLORA4);
         settingsButton.addActionListener(rvc);
         settingsButton.setActionCommand(SETTINGS);
         imageButton.addActionListener(rvc);

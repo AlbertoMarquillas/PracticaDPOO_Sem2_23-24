@@ -20,6 +20,20 @@ public class GameController implements ActionListener {
             changeViewController.changePan("settings");
         } else if (e.getActionCommand().equals("createcofee")) {
 
+        }else if (e.getActionCommand().equals("potenciador1")){
+
+        }else if (e.getActionCommand().equals("potenciador2")){
+
+        }else if (e.getActionCommand().equals("potenciador3")){
+
+        }else if (e.getActionCommand().equals("millora1")){
+
+        }else if (e.getActionCommand().equals("millora2")){
+
+        }else if (e.getActionCommand().equals("millora3")){
+
+        }else if (e.getActionCommand().equals("millora4")){
+
         }
     }
 }
