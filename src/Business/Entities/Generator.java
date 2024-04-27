@@ -1,34 +1,30 @@
 package Business.Entities;
 
-public class Generator {
+public abstract class Generator {
 
     private String type;
-    private int cost;
-    private float produccio; //cafes / segon
-    private float increment; //increment del cost
+    private double cost;
+    private double produccio; //cafes / segon
+    private double increment; //increment del cost
     private int quantitat;
 
-    public Generator(String type, int cost, float produccio, float increment) {
-        this.type = type;
-        this.cost = cost;
-        this.produccio = produccio;
-        this.increment = increment;
-        this.quantitat = 0;
+    public Generator() {
+
     }
 
     public String getType() {
         return type;
     }
 
-    public int getCost() {
+    public double getCost() {
         return cost;
     }
 
-    public float getProduccio() {
+    public double getProduccio() {
         return produccio;
     }
 
-    public float getIncrement() {
+    public double getIncrement() {
         return increment;
     }
 
@@ -36,15 +32,15 @@ public class Generator {
         this.type = type;
     }
 
-    public void setCost(int cost) {
+    public void setCost(double cost) {
         this.cost = cost;
     }
 
-    public void setProduccio(float produccio) {
+    public void setProduccio(double produccio) {
         this.produccio = produccio;
     }
 
-    public void setIncrement(float increment) {
+    public void setIncrement(double increment) {
         this.increment = increment;
     }
 

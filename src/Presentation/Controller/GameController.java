@@ -1,4 +1,5 @@
 package Presentation.Controller;
+import Business.Managers.GeneratorManager;
 import Presentation.View.GameView;
 
 import java.awt.event.ActionEvent;
@@ -8,10 +9,12 @@ public class GameController implements ActionListener {
 
     public final ChangeViewController changeViewController;
     private final GameView gameView;
+    private final GeneratorManager generatorManager;
 
-    public GameController(ChangeViewController changeViewController, GameView gameView) {
+    public GameController(ChangeViewController changeViewController, GameView gameView, GeneratorManager generatorManager) {
         this.changeViewController = changeViewController;
         this.gameView = gameView;
+        this.generatorManager = generatorManager;
     }
 
     @Override
@@ -19,12 +22,37 @@ public class GameController implements ActionListener {
         if (e.getActionCommand().equals("settings")) {
             changeViewController.changePan("settings");
         } else if (e.getActionCommand().equals("createcofee")) {
-
+                gameView.setComptador(String.valueOf(Integer.parseInt(gameView.getComptador()) + 1));
+                System.out.println(gameView.getComptador());
         }else if (e.getActionCommand().equals("potenciador1")){
+            generatorManager.updateCost(1, generatorManager.incrementarPotenciador(1));
+            gameView.setQuantitatPotenciador1(generatorManager.getQuantitatGenerados(1));
+            gameView.setCostPotenciador1(generatorManager.getCost(1));
+
+            System.out.println("Quantitat Potenciadors 1: " + gameView.getQuantitatPotenciadors1());
+            System.out.println("Cost potenciador 1: " + gameView.getCost1());
+            System.out.println("CostActual potenciador 1: " + generatorManager.getCostActual(1));
+
+            //produccio total de cafes generats
 
         }else if (e.getActionCommand().equals("potenciador2")){
+            generatorManager.updateCost(2,generatorManager.incrementarPotenciador(2));
+            gameView.setQuantitatPotenciador2(generatorManager.getQuantitatGenerados(2));
+            gameView.setCostPotenciador2(generatorManager.getCost(2));
+
+            System.out.println("Quantitat Potenciadors 2: "  + gameView.getQuantitatPotenciadors2());
+            System.out.println("Cost potenciador 2: " + gameView.getCost2());
+            System.out.println("CostActual potenciador 2: " + generatorManager.getCostActual(2));
+
 
         }else if (e.getActionCommand().equals("potenciador3")){
+            generatorManager.updateCost(3, generatorManager.incrementarPotenciador(3));
+            gameView.setQuantitatPotenciador3(generatorManager.getQuantitatGenerados(3));
+            gameView.setCostPotenciador3(generatorManager.getCost(3));
+
+            System.out.println("Quantitat Potenciadors 3: " + gameView.getQuantitatPotenciadors3());
+            System.out.println("Cost potenciador 3: " + gameView.getCost3());
+            System.out.println("CostActual potenciador 3: " + generatorManager.getCostActual(3));
 
         }else if (e.getActionCommand().equals("millora1")){
 

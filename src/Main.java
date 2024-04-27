@@ -1,3 +1,4 @@
+import Business.Managers.GeneratorManager;
 import Business.Managers.LogInManager;
 import Business.Managers.SignUpManager;
 import Business.Managers.UserManager;
@@ -23,6 +24,7 @@ public class Main {
         UserManager userManager = new UserManager(sqlUserDAO);
         LogInManager logInManager = new LogInManager(userManager);
         SignUpManager signUpManager = new SignUpManager(userManager);
+        GeneratorManager generatorManager = new GeneratorManager(sqlGeneratorsDAO);
 
         StartView startView = new StartView();
         StatsView statsView = new StatsView();
@@ -40,7 +42,7 @@ public class Main {
         SettingsController settingsController = new SettingsController(changeViewController, userManager);
         StartController startController = new StartController(changeViewController, userManager, startView);
         StatsController statsController = new StatsController(changeViewController);
-        GameController gameController = new GameController(changeViewController, gameView);
+        GameController gameController = new GameController(changeViewController, gameView, generatorManager);
 
         startView.buttonController(startController);
         //startView.setButtonsEnabled(userManager.comprobarPartidesActives());
@@ -50,6 +52,7 @@ public class Main {
         initialView.buttonController(initialController);
         gameView.buttonController(gameController);
 
-        mainView.panelChange("login");
+        mainView.panelChange("game");
     }
+
 }

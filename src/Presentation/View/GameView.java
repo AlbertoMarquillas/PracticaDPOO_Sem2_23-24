@@ -13,6 +13,8 @@ import Presentation.View.Custom.CustomLabel;
 import Presentation.View.Custom.CustomRenderer;
 
 import javax.swing.*;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
@@ -46,6 +48,14 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
 
     private String text = "0000";
     private CustomLabel contador;
+
+    private int cost1 = 10;
+    private int cost2 = 150;
+    private int cost3 = 2000;
+
+    private int quantitatPotenciadors1;
+    private int quantitatPotenciadors2;
+    private int quantitatPotenciadors3;
 
     public GameView() {
 
@@ -82,22 +92,23 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         //Fara falta canviar el valor del contador per la variable
 
 
-        contador = new CustomLabel(text, new Font("Segoe UI Black", Font.PLAIN, 50), Color.decode("#F8F2F0"));
+        this.contador = new CustomLabel(this.text, new Font("Segoe UI Black", Font.PLAIN, 50), Color.decode("#F8F2F0"));
+
         //Crear els títols de la finestra
         CustomLabel supTitleLabel = new CustomLabel("COFFEE", new Font("Bauhaus 93", Font.BOLD, 80), Color.decode("#DB5C39"));
         CustomLabel lowTitleLabel = new CustomLabel("CLICKER", new Font("Bauhaus 93", Font.BOLD, 80), Color.decode("#DB5C39"));
 
         //Crear els panells dels potenciadors
         //El string producció fara falta canviar-los per les variables
-        potenciador1 = createPotenciadorButton("Imagenes/potenciador1.png", "BARISTA BOOST", "Cost: 20 CoffeeBeans", "<html><div style='text-align: center;'>Elevate your brew game<br>with lightning speed</div></html>");
-        potenciador2 = createPotenciadorButton("Imagenes/potenciador2.png", "WAFFLE WIZARD", "Cost: 100 CoffeeBeans", "<html><div style='text-align: center;'>Master the art of waffle<br>making with prowess.</div></html>");
-        potenciador3 = createPotenciadorButton("Imagenes/potenciador3.png", "STEAMY BREW", "Cost: 300 CoffeeBeans", "<html><div style='text-align: center;'>Experience the power<br>of a perfect, steamy cup.</div></html>");
+        potenciador1 = createPotenciadorButton("Imagenes/potenciador1.png", "BARISTA BOOST", "Cost:" + cost1 +" CoffeeBeans", "<html><div style='text-align: center;'>Elevate your brew game<br>with lightning speed</div></html>");
+        potenciador2 = createPotenciadorButton("Imagenes/potenciador2.png", "WAFFLE WIZARD", "Cost: " + cost2 +" CoffeeBeans", "<html><div style='text-align: center;'>Master the art of waffle<br>making with prowess.</div></html>");
+        potenciador3 = createPotenciadorButton("Imagenes/potenciador3.png", "STEAMY BREW", "Cost: " + cost3 +" CoffeeBeans", "<html><div style='text-align: center;'>Experience the power<br>of a perfect, steamy cup.</div></html>");
 
         //poner el panel del potenciador dentro de un boton
 
 
         //Crear la taula amb les dades dels potenciadors
-        JTable table = createTable();
+        JTable table = createTable(quantitatPotenciadors1, quantitatPotenciadors2, quantitatPotenciadors3);
 
 
         //Crear el panell central, que es el que contindrà el títol, la taula i el botó de configuració
@@ -298,14 +309,14 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
      * Funció que crea una JTable amb les dades dels potenciadors.
      * @return JTable amb les dades dels generadors
      */
-    public static JTable createTable(){
+    public static JTable createTable(int quantitatPotenciadors1, int quantitatPotenciadors2, int quantitatPotenciadors3){
         String[] columnNames = {"Quantity cafes generats", "Quantitat generadors"};
         // Dades de la taula
         // Les dades de la taula farà falta canviarles per les variables
         Object[][] data = {
-                {"<html>Generador 1<br>Var amb numero de cafes generats", "Var quantitat de generadors"},
-                {"<html>Generador 2<br>Var amb numero de cafes generats", "Var quantitat de generadors"},
-                {"<html>Generado 3<br>Var amb numero de cafes generats", "Var quantitat de generadors"},
+                {"<html>Generador 1<br> Var quantitat de galetes generades pel potenciador", quantitatPotenciadors1},
+                {"<html>Generador 2<br> Var quantitat de galetes generades pel potenciador" , quantitatPotenciadors2},
+                {"<html>Generado 3<br> Var quantitat de galetes generades pel potenciador" , quantitatPotenciadors3},
         };
 
         // Crear la taula amb les dades
@@ -552,5 +563,53 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
 
     public String getComptador() {
         return contador.getText();
+    }
+
+    public int getCost1() {
+        return cost1;
+    }
+
+    public int getCost2() {
+        return cost2;
+    }
+
+    public int getCost3() {
+        return cost3;
+    }
+
+    public void setCostPotenciador1(int cost1) {
+        this.cost1 = cost1;
+    }
+
+    public void setCostPotenciador2(int cost2) {
+        this.cost2 = cost2;
+    }
+
+    public void setCostPotenciador3(int cost3) {
+        this.cost3 = cost3;
+    }
+
+    public int getQuantitatPotenciadors1() {
+        return quantitatPotenciadors1;
+    }
+
+    public void setQuantitatPotenciador1(int quantitatPotenciadors1) {
+        this.quantitatPotenciadors1 = quantitatPotenciadors1;
+    }
+
+    public int getQuantitatPotenciadors2() {
+        return quantitatPotenciadors2;
+    }
+
+    public void setQuantitatPotenciador2(int quantitatPotenciadors2) {
+        this.quantitatPotenciadors2 = quantitatPotenciadors2;
+    }
+
+    public int getQuantitatPotenciadors3() {
+        return quantitatPotenciadors3;
+    }
+
+    public void setQuantitatPotenciador3(int quantitatPotenciadors3) {
+        this.quantitatPotenciadors3 = quantitatPotenciadors3;
     }
 }
