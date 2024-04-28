@@ -27,11 +27,7 @@ public class RegisterView extends JPanel implements KeyListener, ActionListener 
     private CustomButton loginButton;
 
     public RegisterView() {
-
-        //Marcar-li al JFrame un titol i tamany 800x450
-        //setTitle("Register View");
-        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(800, 450); // Tamaño de la ventana
+        setBackground(Color.decode("#F8F2F0"));
 
         //Inicialització dels Labels fent us de la classe CustomLabel
         CustomLabel titleLabel = new CustomLabel("COFFEE CLICKER", new Font("Bauhaus 93", Font.PLAIN, 50), Color.decode("#DB5C39"));

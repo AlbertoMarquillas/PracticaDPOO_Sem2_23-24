@@ -14,8 +14,8 @@ public class Main {
     public static void main(String[] args){
 
         DataBaseDAO dataBaseDAO = new DataBaseDAO();
-        dataBaseDAO.createDataBase();
-        dataBaseDAO.createTables();
+        //dataBaseDAO.createDataBase();
+        //dataBaseDAO.createTables();
 
         SQLGameDAO sqlGameDAO = new SQLGameDAO();
         SQLGeneratorsDAO sqlGeneratorsDAO = new SQLGeneratorsDAO();
@@ -52,7 +52,7 @@ public class Main {
         initialView.buttonController(initialController);
         gameView.buttonController(gameController);
 
-        mainView.panelChange("game");
+        mainView.panelChange("login");
     }
 
 }

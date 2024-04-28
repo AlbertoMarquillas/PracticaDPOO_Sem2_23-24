@@ -100,9 +100,9 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
 
         //Crear els panells dels potenciadors
         //El string producció fara falta canviar-los per les variables
-        potenciador1 = createPotenciadorButton("Imagenes/potenciador1.png", "BARISTA BOOST", "Cost:" + cost1 +" CoffeeBeans", "<html><div style='text-align: center;'>Elevate your brew game<br>with lightning speed</div></html>");
-        potenciador2 = createPotenciadorButton("Imagenes/potenciador2.png", "WAFFLE WIZARD", "Cost: " + cost2 +" CoffeeBeans", "<html><div style='text-align: center;'>Master the art of waffle<br>making with prowess.</div></html>");
-        potenciador3 = createPotenciadorButton("Imagenes/potenciador3.png", "STEAMY BREW", "Cost: " + cost3 +" CoffeeBeans", "<html><div style='text-align: center;'>Experience the power<br>of a perfect, steamy cup.</div></html>");
+        potenciador1 = createPotenciadorButton("Imagenes/potenciador1.png", "BARISTA BOOST", "Cost:" + cost1 +" Coffes", "<html><div style='text-align: center;'>Elevate your brew game<br>with lightning speed</div></html>");
+        potenciador2 = createPotenciadorButton("Imagenes/potenciador2.png", "WAFFLE WIZARD", "Cost: " + cost2 +" Coffes", "<html><div style='text-align: center;'>Master the art of waffle<br>making with prowess.</div></html>");
+        potenciador3 = createPotenciadorButton("Imagenes/potenciador3.png", "STEAMY BREW", "Cost: " + cost3 +" Coffes", "<html><div style='text-align: center;'>Experience the power<br>of a perfect brew cup.</div></html>");
 
         //poner el panel del potenciador dentro de un boton
 
@@ -310,13 +310,14 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
      * @return JTable amb les dades dels generadors
      */
     public static JTable createTable(int quantitatPotenciadors1, int quantitatPotenciadors2, int quantitatPotenciadors3){
-        String[] columnNames = {"Quantity cafes generats", "Quantitat generadors"};
+        String[] columnNames = {"Name", "Quantity", "Production unit", "Total production", "% overall production"};
         // Dades de la taula
         // Les dades de la taula farà falta canviarles per les variables
         Object[][] data = {
-                {"<html>Generador 1<br> Var quantitat de galetes generades pel potenciador", quantitatPotenciadors1},
-                {"<html>Generador 2<br> Var quantitat de galetes generades pel potenciador" , quantitatPotenciadors2},
-                {"<html>Generado 3<br> Var quantitat de galetes generades pel potenciador" , quantitatPotenciadors3},
+                {"Name", "Quantity", "Production unit", "Total production", "% overall"},
+                {"Barista Boost", quantitatPotenciadors1, "0.2 c/s", "X c/s (var)", "X% (var)"},
+                {"Waffle Wizard", quantitatPotenciadors2,  "1 c/s", "X c/s (var)" , "X%(var)"},
+                {"Steamy Brew", quantitatPotenciadors3,  "5 c/s", "X c/s (var)" , "X%(var)"},
         };
 
         // Crear la taula amb les dades
@@ -329,12 +330,12 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         CustomRenderer cellRenderer = new CustomRenderer(5);
 
         // Ajustar l'altura de les files i el borde exterior
-        table.setRowHeight(100);
+        table.setRowHeight(80);
         table.setBorder(BorderFactory.createLineBorder(Color.decode("#DB5C39"), 5));
 
         // Ajustar l'amplada de les columnes i afegir el renderitzador de celdas
         for (int i = 0; i < table.getColumnCount(); i++) {
-            table.getColumnModel().getColumn(i).setPreferredWidth(300);
+            table.getColumnModel().getColumn(i).setPreferredWidth(150);
             table.getColumnModel().getColumn(i).setCellRenderer(cellRenderer);
 
         }
