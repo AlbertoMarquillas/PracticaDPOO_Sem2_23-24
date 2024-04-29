@@ -336,7 +336,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
             }
         };
 
-        // Agregar filas de datos al modelo de tabla
+        // Afegir les files de capçalera al model de la taula
         Vector<Object> row0 = new Vector<>();
         row0.add("Name");
         row0.add("Quantity");
@@ -345,7 +345,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         row0.add("% overall");
         tableModel.addRow(row0);
 
-        // Agregar filas de datos al modelo de tabla
+        // Afegir les dades de cada potenciador al model de la taula
         Vector<Object> row1 = new Vector<>();
         row1.add("Barista Boost");
         row1.add(quantitatPotenciadors1);
