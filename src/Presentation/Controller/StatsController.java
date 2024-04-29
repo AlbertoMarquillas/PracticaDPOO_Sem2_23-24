@@ -17,8 +17,8 @@ public class StatsController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getActionCommand().equals("game")) {
-            changeViewController.changePan("game");
+        if(e.getActionCommand().equals("back")) {
+            changeViewController.changePan("start");
         }
     }
 }
