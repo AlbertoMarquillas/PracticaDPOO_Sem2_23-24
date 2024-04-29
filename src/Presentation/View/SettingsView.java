@@ -17,8 +17,10 @@ public class SettingsView extends JPanel implements KeyListener, ActionListener 
     private static final String DELETE = "delete";
     private static final String CLOSE = "close";
     private static final String BACK = "back";
+
     private CustomButton deleteButton;
     private CustomButton closeButton;
+
     private CustomButton backButton;
     public SettingsView() {
 
@@ -34,7 +36,7 @@ public class SettingsView extends JPanel implements KeyListener, ActionListener 
         //Inicialització dels botons fent us de la classe CustomButton
         deleteButton = new CustomButton("Delete Account", 350, 45, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 18));
         closeButton = new CustomButton("Close Session", 350, 45, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 18));
-        backButton = new CustomButton("BACK", 140, 25, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
+        backButton = new CustomButton("Back to Game", 150, 30, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
 
         //Inicialitzem la imatge del logo
         ImageIcon logoIcon = new ImageIcon("Imagenes/logoSmall.png"); // Ruta de la imagen del logo
@@ -50,26 +52,31 @@ public class SettingsView extends JPanel implements KeyListener, ActionListener 
         //Afegir el Logo
         gbcCent.gridx = 0;
         gbcCent.gridy = 0;
-        gbcCent.insets = new Insets(50, 0, 0, 400);
+        gbcCent.insets = new Insets(30, 0, 0, 400);
         panelInfo.add(logoLabel, gbcCent);
 
         //Afegir el Titol
         gbcCent.gridx = 0;
         gbcCent.gridy = 0;
-        gbcCent.insets = new Insets(65, 70, 0, 0);
+        gbcCent.insets = new Insets(45, 70, 0, 0);
         panelInfo.add(titleLabel, gbcCent);
 
         //Afegir els botó de delete
         gbcCent.gridx = 0;
         gbcCent.gridy = 1;
-        gbcCent.insets = new Insets(40, 0, 0, 0);
+        gbcCent.insets = new Insets(20, 0, 0, 0);
         panelInfo.add(deleteButton, gbcCent);
 
         //Afegir els botó de close
         gbcCent.gridx = 0;
         gbcCent.gridy = 2;
-        gbcCent.insets = new Insets(30, 0, 100, 0);
+        gbcCent.insets = new Insets(20, 0, 0, 0);
         panelInfo.add(closeButton, gbcCent);
+
+        gbcCent.gridx = 0;
+        gbcCent.gridy = 3;
+        gbcCent.insets = new Insets(50, 0, 50, 0);
+        panelInfo.add(backButton, gbcCent);
 
         //Afegir el panell a la finestra
         add(panelInfo, BorderLayout.CENTER);

@@ -52,7 +52,7 @@ public class Main {
         initialView.buttonController(initialController);
         gameView.buttonController(gameController);
 
-        mainView.panelChange("login");
+        mainView.panelChange("game");
     }
 
 }

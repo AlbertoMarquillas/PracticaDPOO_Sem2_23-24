@@ -2,6 +2,7 @@ package Presentation.Controller;
 import Business.Managers.GeneratorManager;
 import Presentation.View.GameView;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,6 +16,15 @@ public class GameController implements ActionListener {
         this.changeViewController = changeViewController;
         this.gameView = gameView;
         this.generatorManager = generatorManager;
+    }
+
+    private boolean showConfirmationDialog(String message) {
+        int respuesta = JOptionPane.showConfirmDialog(null, message, "Confirmation", JOptionPane.YES_NO_OPTION);
+        if (respuesta == JOptionPane.YES_OPTION) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
@@ -62,6 +72,21 @@ public class GameController implements ActionListener {
 
         }else if (e.getActionCommand().equals("millora4")){
 
+        } else if (e.getActionCommand().equals("finish")){
+            boolean exit = showConfirmationDialog("Do you want to finish the game?");
+            if(exit){
+                changeViewController.changePan("login");
+            } else {
+                changeViewController.changePan("game");
+            }
+
+        } else if (e.getActionCommand().equals("save")){
+            boolean exit = showConfirmationDialog("Do you want to save the game?");
+            if(exit){
+                changeViewController.changePan("login");
+            } else {
+                changeViewController.changePan("game");
+            }
         }
     }
 }

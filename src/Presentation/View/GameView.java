@@ -33,6 +33,8 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
     private static final String POTENCIADOR2 = "potenciador2";
     private static final String POTENCIADOR3 = "potenciador3";
     private static final String SETTINGS = "settings";
+    private static final String FINISH = "finish";
+    private static final String SAVE = "save";
 
     private static final String CREATECOFFE = "createcofee";
     private CustomButton millora1;
@@ -42,6 +44,8 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
     private CustomButton potenciador1;
     private CustomButton potenciador2;
     private CustomButton potenciador3;
+    private CustomButton finishGame;
+    private CustomButton saveGame;
 
     private JButton imageButton;
     private JButton settingsButton;
@@ -104,8 +108,8 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         potenciador2 = createPotenciadorButton("Imagenes/potenciador2.png", "WAFFLE WIZARD", "Cost: " + cost2 +" Coffes", "<html><div style='text-align: center;'>Master the art of waffle<br>making with prowess.</div></html>");
         potenciador3 = createPotenciadorButton("Imagenes/potenciador3.png", "STEAMY BREW", "Cost: " + cost3 +" Coffes", "<html><div style='text-align: center;'>Experience the power<br>of a perfect brew cup.</div></html>");
 
-        //poner el panel del potenciador dentro de un boton
-
+        finishGame = new CustomButton("Finish Game", 230, 50, Color.decode("#F8F2F0"), Color.decode("#3B1211"), new Font("Segoe UI Black", Font.PLAIN, 14));
+        saveGame = new CustomButton("Save Game", 230, 50, Color.decode("#F8F2F0"), Color.decode("#3B1211"), new Font("Segoe UI Black", Font.PLAIN, 14));
 
         //Crear la taula amb les dades dels potenciadors
         JTable table = createTable(quantitatPotenciadors1, quantitatPotenciadors2, quantitatPotenciadors3);
@@ -144,6 +148,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         centerPanel.add(table, gbcCent);
 
 
+
         //Crear el panell esquerre que contindrà el comptador i el botó de la imatge
         JPanel leftPanel = new JPanel();
         leftPanel.setBackground(Color.decode("#DB5C39"));
@@ -163,6 +168,16 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         gbcLeft.gridy = 1;
         gbcLeft.insets = new Insets(10, 0, 0, 0);
         leftPanel.add(imageButton, gbcLeft);
+
+        gbcLeft.gridx = 0;
+        gbcLeft.gridy = 2;
+        gbcLeft.insets = new Insets(60, 0, 0, 0);
+        leftPanel.add(finishGame, gbcLeft);
+
+        gbcLeft.gridx = 0;
+        gbcLeft.gridy = 3;
+        gbcLeft.insets = new Insets(10, 0, 0, 0);
+        leftPanel.add(saveGame, gbcLeft);
 
 
         //Crear el panell dret que contindrà les millores i els potenciadors
@@ -374,6 +389,10 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         settingsButton.setActionCommand(SETTINGS);
         imageButton.addActionListener(rvc);
         imageButton.setActionCommand(CREATECOFFE);
+        finishGame.addActionListener(rvc);
+        finishGame.setActionCommand(FINISH);
+        saveGame.addActionListener(rvc);
+        saveGame.setActionCommand(SAVE);
     }
 
     /**
@@ -382,6 +401,24 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
      */
     public CustomButton getMillora1() {
         return millora1;
+    }
+
+
+    /**
+     * Mètode per obtenir el botó de la imatge.
+     * @return JButton del botó de guardar el joc
+     */
+    public CustomButton getSaveGame() {
+        return saveGame;
+    }
+
+
+    /**
+     * Mètode per obtenir el botó de la imatge.
+     * @return JButton del botó de finalitzar la partida
+     */
+    public CustomButton getFinishGame(){
+        return finishGame;
     }
 
 
