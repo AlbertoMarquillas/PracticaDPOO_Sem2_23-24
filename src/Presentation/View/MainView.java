@@ -7,7 +7,7 @@ public class MainView extends JFrame{
 
     CardLayout cardLayout;
 
-    public void mainView(InitialView initialView, RegisterView registerView, GameView gameView, SettingsView settingsView, StartView startView, StatsView statsView){
+    public void mainView(InitialView initialView, RegisterView registerView, GameView gameView, SettingsView settingsView, StartView startView/*, StatsView statsView*/){
 
         cardLayout = new CardLayout();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -19,7 +19,7 @@ public class MainView extends JFrame{
         this.getContentPane().add(settingsView,"settings");
         this.getContentPane().add(startView,"start");
         this.getContentPane().add(gameView,"game");
-        this.getContentPane().add(statsView,"stats");
+        //this.getContentPane().add(statsView,"stats");
 
     }
     public void panelChange(String index){
@@ -54,12 +54,12 @@ public class MainView extends JFrame{
                 setLocationRelativeTo(null);
                 setVisible(true);
             }
-            case "stats" -> {
+            /*case "stats" -> {
                 setBounds(750,500,800,450);
                 this.cardLayout.show(getContentPane(), "stats");
                 setLocationRelativeTo(null);
                 setVisible(true);
-            }
+            }*/
         }
 
     }

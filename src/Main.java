@@ -14,6 +14,7 @@ public class Main {
     public static void main(String[] args){
 
         DataBaseDAO dataBaseDAO = new DataBaseDAO();
+
         //dataBaseDAO.createDataBase();
         //dataBaseDAO.createTables();
 
@@ -34,7 +35,7 @@ public class Main {
         InitialView initialView = new InitialView();
         GameView gameView = new GameView();
 
-        mainView.mainView(initialView, registerView, gameView, settingsView, startView, statsView);
+        mainView.mainView(initialView, registerView, gameView, settingsView, startView/*,statsView*/);
 
         ChangeViewController changeViewController = new ChangeViewController(mainView);
         InitialController initialController = new InitialController(initialView, logInManager, changeViewController, userManager);

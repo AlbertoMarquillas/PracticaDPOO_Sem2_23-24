@@ -55,11 +55,12 @@ CREATE TABLE `generators` (
 -- Estructura de tabla para la tabla `users`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `UserName` text DEFAULT NULL,
   `Email` text NOT NULL,
-  `Password` text NOT NULL
+  `Password` text NOT NULL,
+  `Connected` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 --
@@ -69,7 +70,7 @@ CREATE TABLE `users` (
 --
 -- Indices de la tabla `users`
 --
-ALTER TABLE `users`
+ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -79,7 +80,7 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
-ALTER TABLE `users`
+ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 

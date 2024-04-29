@@ -11,6 +11,7 @@ public class DataBaseDAO {
      */
     public boolean createDataBase() {
         String query = "CREATE DATABASE IF NOT EXISTS coffeeclickerdb";
+
         return Connector.getInstance().insertQuery(query);
     }
 
@@ -29,4 +30,5 @@ public class DataBaseDAO {
         ok = Connector.getInstance().insertQuery(query);
         return ok;
     }
+
 }
