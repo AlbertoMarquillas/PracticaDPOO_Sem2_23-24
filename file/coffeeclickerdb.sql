@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `game` (
   `ID_P` int(11) NOT NULL,
   `ID_G` int(11) NOT NULL,
-  `N_Coffees` int(11) NOT NULL,
+  `N_Coffees` float(11) NOT NULL,
   `PowerUpClicker` int(11) NOT NULL,
   `Time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `Ended` tinyint(1) NOT NULL
@@ -45,9 +45,26 @@ CREATE TABLE `game` (
 CREATE TABLE `generators` (
   `ID_P` int(11) NOT NULL,
   `ID_G` int(11) NOT NULL,
-  `Type` int(11) NOT NULL,
-  `PowerUp` int(11) NOT NULL
+  `Type` varchar(255) NOT NULL,
+  `ProduccioBase` int(11) NOT NULL,
+  `Quantitat` int(11) NOT NULL,
+  `CostBase` int(11) NOT NULL,
+  `CostActual` int(11) NOT NULL,
+   `ProduccioActual` float(11) NOT NULL,
+  `ProduccioGlobal` float(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Estructura de tabla para la tabla `millores`
+--
+CREATE TABLE `millores`
+(
+    `ID_P` int(11) NOT NULL,
+    `ID_G` int(11) NOT NULL,
+    `Type` varchar(255) NOT NULL,
+    `Quantitat` int(11) NOT NULL,
+    `CostBase`  int(11) NOT NULL
+)ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 -- --------------------------------------------------------
 

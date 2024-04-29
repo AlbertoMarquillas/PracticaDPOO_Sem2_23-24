@@ -17,19 +17,6 @@ public class SQLUserDAO{
     public SQLUserDAO() {
     }
 
-    /**
-     * function that adds a user into the database
-     * @return boolean that indicates if the user has been added correctly
-     */
-
-    /*
-    public boolean addUser(User user) {
-        String name = user.getFullName();
-        String query = "INSERT INTO users(UserName, Email, Password) VALUES ('" + name + "', '" + user.getEmail() + "', '" + user.getPassword() + "');";
-        return Connector.getInstance().insertQuery(query);
-    }
-    */
-
 
     /**
      * function that returns all the users in the database
