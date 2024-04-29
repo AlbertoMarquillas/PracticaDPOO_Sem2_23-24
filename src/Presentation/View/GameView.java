@@ -17,8 +17,10 @@ import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Vector;
 
 /**
  * Classe que crea la finestra principal de l'aplicació.
@@ -326,17 +328,50 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
      */
     public static JTable createTable(int quantitatPotenciadors1, int quantitatPotenciadors2, int quantitatPotenciadors3){
         String[] columnNames = {"Name", "Quantity", "Production unit", "Total production", "% overall production"};
-        // Dades de la taula
-        // Les dades de la taula farà falta canviarles per les variables
-        Object[][] data = {
-                {"Name", "Quantity", "Production unit", "Total production", "% overall"},
-                {"Barista Boost", quantitatPotenciadors1, "0.2 c/s", "X c/s (var)", "X% (var)"},
-                {"Waffle Wizard", quantitatPotenciadors2,  "1 c/s", "X c/s (var)" , "X%(var)"},
-                {"Steamy Brew", quantitatPotenciadors3,  "5 c/s", "X c/s (var)" , "X%(var)"},
+        // Crear el modelo de tabla no editable
+        DefaultTableModel tableModel = new DefaultTableModel(null, columnNames) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // Todas las celdas no son editables
+            }
         };
 
+        // Agregar filas de datos al modelo de tabla
+        Vector<Object> row0 = new Vector<>();
+        row0.add("Name");
+        row0.add("Quantity");
+        row0.add("Production unit");
+        row0.add("Total production");
+        row0.add("% overall");
+        tableModel.addRow(row0);
+
+        // Agregar filas de datos al modelo de tabla
+        Vector<Object> row1 = new Vector<>();
+        row1.add("Barista Boost");
+        row1.add(quantitatPotenciadors1);
+        row1.add("0.2 c/s");
+        row1.add("X c/s (var)");
+        row1.add("X% (var)");
+        tableModel.addRow(row1);
+
+        Vector<Object> row2 = new Vector<>();
+        row2.add("Waffle Wizard");
+        row2.add(quantitatPotenciadors2);
+        row2.add("1 c/s");
+        row2.add("X c/s (var)");
+        row2.add("X% (var)");
+        tableModel.addRow(row2);
+
+        Vector<Object> row3 = new Vector<>();
+        row3.add("Steamy Brew");
+        row3.add(quantitatPotenciadors3);
+        row3.add("5 c/s");
+        row3.add("X c/s (var)");
+        row3.add("X% (var)");
+        tableModel.addRow(row3);
+
         // Crear la taula amb les dades
-        JTable table = new JTable(data, columnNames);
+        JTable table = new JTable(tableModel);
         table.setBackground(Color.decode("#F8F2F0"));
         table.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
         table.setForeground(Color.decode("#3B1211"));
