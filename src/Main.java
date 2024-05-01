@@ -1,7 +1,5 @@
-import Business.Managers.GeneratorManager;
-import Business.Managers.LogInManager;
-import Business.Managers.SignUpManager;
-import Business.Managers.UserManager;
+import Business.Entities.Comptador;
+import Business.Managers.*;
 import Persistance.DataBaseDAO;
 import Persistance.sqlDAO.SQLGameDAO;
 import Persistance.sqlDAO.SQLGeneratorsDAO;
@@ -22,10 +20,12 @@ public class Main {
         SQLGeneratorsDAO sqlGeneratorsDAO = new SQLGeneratorsDAO();
         SQLUserDAO sqlUserDAO = new SQLUserDAO();
 
+        Comptador comptador = new Comptador();
         UserManager userManager = new UserManager(sqlUserDAO);
         LogInManager logInManager = new LogInManager(userManager);
         SignUpManager signUpManager = new SignUpManager(userManager);
         GeneratorManager generatorManager = new GeneratorManager(sqlGeneratorsDAO);
+        GameManager gameManager = new GameManager(sqlGameDAO);
 
         StartView startView = new StartView();
         StatsView statsView = new StatsView();
@@ -43,7 +43,7 @@ public class Main {
         SettingsController settingsController = new SettingsController(changeViewController, userManager);
         StartController startController = new StartController(changeViewController, userManager, startView);
         StatsController statsController = new StatsController(changeViewController);
-        GameController gameController = new GameController(changeViewController, gameView, generatorManager);
+        GameController gameController = new GameController(changeViewController, gameView, generatorManager, gameManager);
 
         startView.buttonController(startController);
         //startView.setButtonsEnabled(userManager.comprobarPartidesActives());
@@ -53,7 +53,10 @@ public class Main {
         initialView.buttonController(initialController);
         gameView.buttonController(gameController);
 
-        mainView.panelChange("login");
+        gameController.setComptadorInterficie(gameController);
+        comptador.setComptadorInterficie(gameController);
+
+        mainView.panelChange("game");
     }
 
 }

@@ -10,6 +10,10 @@ public class GeneratorManager {
 
     private final SQLGeneratorsDAO sqlGeneratorsDAO;
 
+    String[] types = {"A", "B", "C"};
+    int[] costBase = {10, 150, 2000};
+    double[] baseProduction = {0.2, 1.0, 15.0};
+    double[] incrementDeCost = {1.07, 1.15, 1.12};
 
     public GeneratorManager(SQLGeneratorsDAO sqlGeneratorsDAO) {
         this.sqlGeneratorsDAO = sqlGeneratorsDAO;
@@ -33,7 +37,7 @@ public class GeneratorManager {
         }
         generator.setQuantitat(quantitat);
         double cost = generator.seguentGenerador();
-        generator.setCost(cost);
+        generator.setCostBase(cost);
         return cost;
     }
 
@@ -57,13 +61,13 @@ public class GeneratorManager {
     public int getCost(int i) {
         switch (i) {
             case 1 -> {
-                return sqlGeneratorsDAO.getCost("A");
+                return costBase[0];
             }
             case 2 -> {
-                return sqlGeneratorsDAO.getCost("B");
+                return costBase[1];
             }
             case 3 -> {
-                return sqlGeneratorsDAO.getCost("C");
+                return costBase[2];
             }
             default -> {
                 return 0;
