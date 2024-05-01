@@ -21,7 +21,6 @@ public class GameController implements ActionListener, ComptadorInterficie {
         this.gameView = gameView;
         this.generatorManager = generatorManager;
         this.gameManager = gameManager;
-        gameManager.comptar();
     }
 
     private boolean showConfirmationDialog(String message) {
@@ -121,6 +120,7 @@ public class GameController implements ActionListener, ComptadorInterficie {
         quantitatCafes = quantitatCafes + produccio;
         setQuantitatCoffe(quantitatCafes);
         gameView.setComptador(String.valueOf(quantitatCafes));
+        gameManager.setQuantitatCafe(quantitatCafes);
         System.out.println(quantitatCafes);
     }
 

@@ -1,13 +1,13 @@
 package Business.Entities;
 
 import Business.Entities.HerenciasGeneradors.Generador1;
-
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
+import Persistance.sqlDAO.SQLGameDAO;
+import Persistance.sqlDAO.SQLUserDAO;
 
 public class Comptador {
 
+    private final SQLGameDAO sqlGameDAO;
+    private final SQLUserDAO sqlUserDAO;
     private ComptadorInterficie comptadorInterficie;
     private Thread thread;
     private boolean running;
@@ -20,6 +20,12 @@ public class Comptador {
     private Game game;
     private Generator generador;
     private User user;
+
+    public Comptador(SQLGameDAO sqlGameDAO, SQLUserDAO sqlUserDAO) {
+        this.sqlGameDAO = sqlGameDAO;
+        this.sqlUserDAO = sqlUserDAO;
+    }
+
 
     public ComptadorInterficie getComptadorInterficie() {
         return comptadorInterficie;
@@ -93,13 +99,15 @@ public class Comptador {
     public void comptar() {
         setRunning(true); // Asegúrate de establecer running en true antes de iniciar el hilo
         startTime = System.currentTimeMillis();
-        this.game = new Game();
         this.generador = new Generador1();
         this.thread = new Thread() {
             public void run() {
+                double nCoffee = 0;
                 while (running) {
-                    comptadorInterficie.setQuantitatCoffe(quantitatCoffee);
-                    comptadorInterficie.updateQuantitatCoffe(game.getQuantitatCafes(), generador.getProduccio());
+                    nCoffee = nCoffee + generador.getProduccio();
+                    comptadorInterficie.updateQuantitatCoffe(nCoffee, generador.getProduccio());
+                    double n_cafes =  nCoffee;//sqlGameDAO.getNCoffees(sqlUserDAO.getUserID("a")) + generador.getProduccio();
+                    sqlGameDAO.setNCoffees(sqlUserDAO.getUserID("a"), n_cafes);
                     try {
                         Thread.sleep(1000); // Esperar un segundo
                     } catch (InterruptedException e) {

@@ -87,7 +87,7 @@ public class SQLGameDAO {
         return nCoffees;
     }
 
-    public void setNCoffees(int id, int newNCoffees) {
+    public void setNCoffees(int id, double newNCoffees) {
         String query = "UPDATE game SET N_Coffees = " + newNCoffees + " WHERE ID_P = " + id;
         Connector.getInstance().updateQuery(query);
     }

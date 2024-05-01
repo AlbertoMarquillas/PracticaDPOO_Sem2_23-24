@@ -14,18 +14,18 @@ public class Main {
         DataBaseDAO dataBaseDAO = new DataBaseDAO();
 
         //dataBaseDAO.createDataBase();
-        dataBaseDAO.createTables();
+        //dataBaseDAO.createTables();
 
         SQLGameDAO sqlGameDAO = new SQLGameDAO();
         SQLGeneratorsDAO sqlGeneratorsDAO = new SQLGeneratorsDAO();
         SQLUserDAO sqlUserDAO = new SQLUserDAO();
 
-        Comptador comptador = new Comptador();
+        Comptador comptador = new Comptador(sqlGameDAO, sqlUserDAO);
         UserManager userManager = new UserManager(sqlUserDAO);
         LogInManager logInManager = new LogInManager(userManager);
         SignUpManager signUpManager = new SignUpManager(userManager);
         GeneratorManager generatorManager = new GeneratorManager(sqlGeneratorsDAO);
-        GameManager gameManager = new GameManager(sqlGameDAO);
+        GameManager gameManager = new GameManager(sqlGameDAO, sqlUserDAO);
 
         StartView startView = new StartView();
         StatsView statsView = new StatsView();
@@ -41,7 +41,7 @@ public class Main {
         InitialController initialController = new InitialController(initialView, logInManager, changeViewController, userManager);
         RegisterController registerController = new RegisterController(registerView, signUpManager, changeViewController);
         SettingsController settingsController = new SettingsController(changeViewController, userManager);
-        StartController startController = new StartController(changeViewController, userManager, startView);
+        StartController startController = new StartController(changeViewController, userManager, gameManager, startView);
         StatsController statsController = new StatsController(changeViewController);
         GameController gameController = new GameController(changeViewController, gameView, generatorManager, gameManager);
 
@@ -56,7 +56,7 @@ public class Main {
         gameController.setComptadorInterficie(gameController);
         comptador.setComptadorInterficie(gameController);
 
-        mainView.panelChange("game");
+        mainView.panelChange("login");
     }
 
 }
