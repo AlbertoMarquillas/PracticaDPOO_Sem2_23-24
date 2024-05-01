@@ -8,26 +8,12 @@ import java.sql.SQLException;
 
 public class SQLGeneratorsDAO{
 
+
     public SQLGeneratorsDAO() {
         //setGeneradorsPrincipals();
     }
-    private void setGeneradorsPrincipals() {
-        String query = "INSERT INTO generators(id_p, id_g, Type, Quantitat, CostBase) VALUES " +
-                "('" + 1 + "', '" + 1 + "', '" + "A" + "', '" + 0 + "', " + 10 + ");";
 
-        Connector.getInstance().insertQuery(query);
-
-        query = "INSERT INTO generators(id_p, id_g, Type, Quantitat, CostBase) VALUES " +
-                "('" + 2 + "', '" + 2 + "', '" + "B" + "', '" + 0 + "', " + 150 + ");";
-
-        Connector.getInstance().insertQuery(query);
-
-        query = "INSERT INTO generators(id_p, id_g, Type, Quantitat, CostBase) VALUES " +
-                "('" + 3 + "', '" + 3 + "', '" + "C" + "', '" + 0 + "', " + 2000 + ");";
-
-        Connector.getInstance().insertQuery(query);
-    }
-
+    // Getter and Setter for Quantitat
     public int getQuantitatGeneradors(String type) {
         try {
             String query = "SELECT Quantitat FROM generators WHERE Type = '"+type+"'";
@@ -46,31 +32,21 @@ public class SQLGeneratorsDAO{
         }
     }
 
+    /**
+     * Actualiza la cantidad de generadores de un tipo específico en la base de datos.
+     *
+     * @param i La nueva cantidad de generadores.
+     * @param type El tipo de generador a actualizar.
+     */
     public void actualitzarQuantitat(int i, String type) {
+        // Crear la consulta SQL para actualizar la cantidad de generadores de un tipo específico
         String query = "UPDATE generators SET Quantitat = " + i + " WHERE Type = '" + type + "'";
+
+        // Ejecutar la consulta SQL
         Connector.getInstance().updateQuery(query);
     }
 
-    public int getCost(String type) {
-        try {
-            String query = "SELECT CostBase AS Cost FROM generators WHERE Type = '"+ type +"'";
-            ResultSet result = Connector.getInstance().selectQuery(query);
-            int cost = 0;
-            if (result.next()) { // Move the cursor to the first row
-                cost = result.getInt("Cost");
-            } else {
-                // Handle the case where no data is found
-            }
-            return cost;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void updateCost(double incrementarPotenciador, String type) {
-        String query = "UPDATE generators SET CostActual = "+ incrementarPotenciador + "WHERE Type = '" + type + "';";
-        Connector.getInstance().updateQuery(query);
-    }
+    // Getter and Setter for CostActual
 
     public int getCostActual(String type) {
         try {
@@ -85,6 +61,111 @@ public class SQLGeneratorsDAO{
             return cost;
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+
+    public void updateCost(double incrementarPotenciador, String type) {
+        String query = "UPDATE generators SET CostActual = "+ incrementarPotenciador + "WHERE Type = '" + type + "';";
+        Connector.getInstance().updateQuery(query);
+    }
+
+    // Getter and Setter for ProduccioActual
+    public int getProduccioActual(String type) {
+        String query = "SELECT ProduccioActual FROM generators WHERE Type = '" + type + "'";
+        ResultSet result = Connector.getInstance().selectQuery(query);
+        int produccioActual = 0;
+        try {
+            if (result.next()) {
+                produccioActual = result.getInt("ProduccioActual");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return produccioActual;
+    }
+
+    public void setProduccioActual(int produccioActual, String type) {
+        String query = "UPDATE generators SET ProduccioActual = " + produccioActual + " WHERE Type = '" + type + "'";
+        Connector.getInstance().updateQuery(query);
+    }
+
+    // Getter and Setter for ProduccioGlobal
+    public int getProduccioGlobal(String type) {
+        String query = "SELECT ProduccioGlobal FROM generators WHERE Type = '" + type + "'";
+        ResultSet result = Connector.getInstance().selectQuery(query);
+        int produccioGlobal = 0;
+        try {
+            if (result.next()) {
+                produccioGlobal = result.getInt("ProduccioGlobal");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return produccioGlobal;
+    }
+
+    public void setProduccioGlobal(int produccioGlobal, String type) {
+        String query = "UPDATE generators SET ProduccioGlobal = " + produccioGlobal + " WHERE Type = '" + type + "'";
+        Connector.getInstance().updateQuery(query);
+    }
+
+    // Getter and Setter for Num_Millores
+    public int getNumMillores(String type) {
+        String query = "SELECT Num_Millores FROM generators WHERE Type = '" + type + "'";
+        ResultSet result = Connector.getInstance().selectQuery(query);
+        int numMillores = 0;
+        try {
+            if (result.next()) {
+                numMillores = result.getInt("Num_Millores");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return numMillores;
+    }
+
+    public void setNumMillores(int numMillores, String type) {
+        String query = "UPDATE generators SET Num_Millores = " + numMillores + " WHERE Type = '" + type + "'";
+        Connector.getInstance().updateQuery(query);
+    }
+
+
+
+
+
+    /**
+     * FUNCIO QUE SERA SUBSTITUIDA PER LÒGICA EN EL BUSINESS
+     */
+    /*public int getCost(String type) {
+        try {
+            String query = "SELECT CostBase AS Cost FROM generators WHERE Type = '"+ type +"'";
+            ResultSet result = Connector.getInstance().selectQuery(query);
+            int cost = 0;
+            if (result.next()) { // Move the cursor to the first row
+                cost = result.getInt("Cost");
+            } else {
+                // Handle the case where no data is found
+            }
+            return cost;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }*/
+
+
+
+
+
+
+    public void initGenerators(int ID_P, int ID_G) {
+        String types[] = {"A", "B", "C"};
+
+        for (int i = 0; i < types.length; i++) {
+            String query = "INSERT INTO generators(ID_P, ID_G, Type, Quantitat, CostActual, ProduccioActual, ProduccioGlobal, Num_Millores) VALUES " +
+                    "('" + ID_P + "', '" + ID_G + "', '" + types[i] + "', '" + 0 + "', '" + 0 + "', '" + 0 + "', '" + 0 + "', '" + 0 + "');";
+
+            Connector.getInstance().insertQuery(query);
         }
     }
 }

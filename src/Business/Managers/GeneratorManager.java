@@ -54,6 +54,8 @@ public class GeneratorManager {
         }
     }
 
+
+
     public int getCost(int i) {
         switch (i) {
             case 1 -> {
@@ -101,5 +103,9 @@ public class GeneratorManager {
                 return 0;
             }
         }
+    }
+
+    public void initGeneratorPesistance(int ID_P, int ID_U){
+        sqlGeneratorsDAO.initGenerators(ID_P, ID_U);
     }
 }

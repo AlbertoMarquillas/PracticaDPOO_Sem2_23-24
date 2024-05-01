@@ -9,5 +9,4 @@ public class Generador1 extends Generator {
         setProduccio(0.2);
         setIncrement(1.07);
     }
-
 }
