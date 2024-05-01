@@ -137,6 +137,8 @@ public class UserManager {
         user.setPartidaActiva(true);
     }
 
+
+
     /*public boolean comprobarPartidesActives() {
         User user = userDAO.partidaActiva();
         if (user.isPartidaActiva()) {

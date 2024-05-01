@@ -116,4 +116,7 @@ public class SQLGameDAO {
         Connector.getInstance().updateQuery(query);
     }
 
+    public int getCurrentGameId(int connectedUserId) {
+        return getGameCount(connectedUserId);
+    }
 }

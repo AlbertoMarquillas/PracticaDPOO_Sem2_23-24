@@ -28,4 +28,15 @@ public class GameManager {
     public double getQuantitatCafe() {
         return sqlGameDAO.getNCoffees(sqlUserDAO.getUserID("a"));
     }
+
+    public void initGame() {
+        sqlGameDAO.startNewGame(sqlUserDAO.getConnectedUserId());
+    }
+    public int getConnectedUserId(){
+        return sqlUserDAO.getConnectedUserId();
+    }
+
+    public int getCurrentGameId(int connectedUserId) {
+        return sqlGameDAO.getCurrentGameId(connectedUserId);
+    }
 }
