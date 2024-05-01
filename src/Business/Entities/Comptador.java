@@ -1,5 +1,7 @@
 package Business.Entities;
 
+import Business.Entities.HerenciasGeneradors.Generador1;
+
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -88,9 +90,11 @@ public class Comptador {
         comptadorInterficie.setQuantitatCoffe(quantitatCoffee);
     }
 
-    void comptar() {
+    public void comptar() {
         setRunning(true); // Asegúrate de establecer running en true antes de iniciar el hilo
         startTime = System.currentTimeMillis();
+        this.game = new Game();
+        this.generador = new Generador1();
         this.thread = new Thread() {
             public void run() {
                 while (running) {
