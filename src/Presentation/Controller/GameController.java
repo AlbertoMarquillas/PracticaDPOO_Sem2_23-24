@@ -1,4 +1,5 @@
 package Presentation.Controller;
+import Business.Entities.ComptadorInterficie;
 import Business.Managers.GeneratorManager;
 import Presentation.View.GameView;
 
@@ -6,7 +7,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GameController implements ActionListener {
+public class GameController implements ActionListener, ComptadorInterficie {
 
     public final ChangeViewController changeViewController;
     private final GameView gameView;
@@ -88,5 +89,31 @@ public class GameController implements ActionListener {
                 changeViewController.changePan("game");
             }
         }
+    }
+
+    @Override
+    public void setQuantitatCoffe(double quantitatCoffee) {
+
+    }
+
+    @Override
+    public double getQuantitatCoffe() {
+        return 0;
+    }
+
+    @Override
+    public void setGameTime(long time) {
+
+    }
+
+    @Override
+    public long getGameTime() {
+        return 0;
+    }
+
+    @Override
+    public void updateQuantitatCoffe(double quantitatCafes, double produccio) {
+        double quantAct = quantitatCafes + produccio;
+        gameView.setComptador(String.valueOf(quantAct));
     }
 }

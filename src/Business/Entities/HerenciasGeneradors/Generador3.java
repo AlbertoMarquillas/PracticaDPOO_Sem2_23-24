@@ -5,7 +5,7 @@ import Business.Entities.Generator;
 public class Generador3 extends Generator {
     public Generador3() {
         setType("C");
-        setCost(2000);
+        setCostBase(2000);
         setProduccio(15);
         setIncrement(1.12);
     }
