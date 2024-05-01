@@ -1,7 +1,6 @@
 package Persistance.sqlDAO;
 
 import Persistance.Connector;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -17,103 +16,6 @@ public class SQLGameDAO {
 
     }
 
-    /**
-     * method that gets a matrix of strings with the gameName and data from a specific user
-     * is surrounded in try-catch if something goes wrong when reading our sql
-     * @param id contains the user id used to return just its games
-     * @return string matrix with the positions of the ships
-     */
-    public String[][] getAllGames(int id) {
-        List<String> game = new ArrayList<>();
-        List<String> data = new ArrayList<>();
-
-        String query = "SELECT GameName, Data FROM game WHERE id = '"+ id+"' AND Ended = false;";
-        ResultSet result = Connector.getInstance().selectQuery(query);
-
-        try {
-            while(result.next()) {
-                String gameName = result.getString("GameName");
-                String time = String.valueOf(result.getDate("Data"));
-                game.add(gameName);
-                data.add(time);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        String[][] games=new String[2][game.size()];
-        for (int i = 0; i < game.size(); i++) {
-            games[0][i]=game.get(i);
-            games[1][i]=data.get(i);
-        }
-        return games;
-    }
-
-    /**
-     * method that gets a list of the attacks per each game of the user
-     * is surrounded in try-catch if something goes wrong when reading our sql
-     * @param id contains the arraylist of players and data of the last game
-     * @return list of integers with all the attacks
-     */
-    public List<Integer> getAllAttacks(int id) {
-        List<Integer> totalAtacks = new ArrayList<>();
-        String query = "SELECT TotalAtacks, Ended FROM game WHERE id = '"+ id+"';";
-        ResultSet result = Connector.getInstance().selectQuery(query);
-        try {
-            while(result.next()) {
-                boolean ended = result.getBoolean("Ended");
-                int atacks = result.getInt("TotalAtacks");
-
-                if (ended) {
-                    totalAtacks.add(atacks);
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return totalAtacks;
-    }
-
-    /**
-     * method that gets a list of wins per rate for each game of the user
-     * is surrounded in try-catch if something goes wrong when reading the sql
-     * @param id contains the user id to get its wins
-     * @return a list of integers that represent the number of wins
-     */
-    public int getWinRate(int id) {
-        int winPlays = 0;
-        String query = "SELECT Ended, Win FROM game WHERE id = '"+ id+"';";
-        ResultSet result = Connector.getInstance().selectQuery(query);
-        try {
-            while(result.next()) {
-                boolean ended = result.getBoolean("Ended");
-                boolean win = result.getBoolean("Win");
-                if(ended && win){
-                    winPlays++;
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return winPlays;
-    }
-
-    /**
-     * method that gets a list of the attacks per each game of the user
-     * is surrounded in try-catch if something goes wrong when reading our sql
-     * @param id contains the identification of the user that played that game
-     * @param gameName String that indicates the name of the game
-     * @param ended boolean that indicates if the game has ended
-     * @param time  the duration of the actual game
-     * @param totalAttacks the total alacks that is made in the game
-     * @param win if the match has been won.
-     * @return a boolean condition that represent if the game was done without problems
-     */
-    public boolean saveGame(int id, String gameName, boolean ended, String time, int totalAttacks, boolean win) {
-        String query = "UPDATE game SET GameName = '"+gameName+"', Ended = "+ended+", Time = '"+time+"', TotalAtacks = "+totalAttacks+", Win = "+win+" WHERE ID_P = "+id+" AND InProgress = true;";
-        boolean check = Connector.getInstance().updateQuery(query);
-        System.out.println(check);
-        return check;
-    }
 
     /**
      * method that deletes all data related to the games of the user.
@@ -133,9 +35,14 @@ public class SQLGameDAO {
         Connector.getInstance().updateQuery(query);
     }
 
-    public int getGameCount(int userId) {
+
+    /**
+     * Busca el numero de partides que portes per generar el ID_G
+     * @param userID the id of the user that will delete the data.
+     */
+    public int getGameCount(int userID) {
         int gameCount = 0;
-        String query = "SELECT * FROM game WHERE ID_P = " + userId + ";";
+        String query = "SELECT * FROM game WHERE ID_P = " + userID + ";";
         ResultSet result = Connector.getInstance().selectQuery(query);
         try {
             while(result.next()) {
@@ -165,4 +72,48 @@ public class SQLGameDAO {
         // Ejecutar la consulta y devolver si se realizó con éxito
         return Connector.getInstance().insertQuery(query);
     }
+
+    public int getNCoffees(int id) {
+        int nCoffees = 0;
+        String query = "SELECT N_Coffees FROM game WHERE ID_P = " + id;
+        ResultSet result = Connector.getInstance().selectQuery(query);
+        try {
+            if (result.next()) {
+                nCoffees = result.getInt("N_Coffees");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return nCoffees;
+    }
+
+    public void setNCoffees(int id, int newNCoffees) {
+        String query = "UPDATE game SET N_Coffees = " + newNCoffees + " WHERE ID_P = " + id;
+        Connector.getInstance().updateQuery(query);
+    }
+
+    public int getPowerUpClicker(int id) {
+        int powerUpClicker = 0;
+        String query = "SELECT PowerUpClicker FROM game WHERE ID_P = " + id;
+        ResultSet result = Connector.getInstance().selectQuery(query);
+        try {
+            if (result.next()) {
+                powerUpClicker = result.getInt("PowerUpClicker");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return powerUpClicker;
+    }
+
+    public void setPowerUpClicker(int id, int newPowerUpClicker) {
+        String query = "UPDATE game SET PowerUpClicker = " + newPowerUpClicker + " WHERE ID_P = " + id;
+        Connector.getInstance().updateQuery(query);
+    }
+
+    public void setEnded(int id, boolean newEnded) {
+        String query = "UPDATE game SET Ended = " + newEnded + " WHERE ID_P = " + id;
+        Connector.getInstance().updateQuery(query);
+    }
+
 }

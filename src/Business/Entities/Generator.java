@@ -1,6 +1,6 @@
 package Business.Entities;
 
-public abstract class Generator {
+public class Generator {
 
     private String type;
     private double costBase;
@@ -12,9 +12,8 @@ public abstract class Generator {
     private int numeroMillores;
 
 
-    public Generator() {
+    public Generator(){}
 
-    }
 
     public String getType() {
         return type;
