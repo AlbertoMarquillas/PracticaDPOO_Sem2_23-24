@@ -56,18 +56,15 @@ public class SQLGameDAO {
 
     public boolean startNewGame(int userId) {
         // Establecer los valores iniciales para la nueva partida
-        int numGame = 0;
+        int numGame = getGameCount(userId);
         int N_Coffees = 0;
         int PowerUpClicker = 0;
-        boolean Ended = false;
         String Time = "00:00:00"; // Asume que el tiempo se almacena como una cadena en formato HH:MM:SS
-
-        //Encontrar el numero de partidas que lleva ejecutadas el usuario
-        numGame = getGameCount(userId);
+        boolean Ended = false;
 
         // Crear la consulta SQL para insertar la nueva partida
-        String query = "INSERT INTO game(ID_P, ID_G, N_Coffees, PowerUpClicker, Time, Ended, InProgress) VALUES " +
-                "('" + userId + "', '" + numGame + "', '" + N_Coffees + "', '" + PowerUpClicker + "', '" + Time + "', '" + Ended + "', 'true');";
+        String query = "INSERT INTO game(ID_P, ID_G, N_Coffees, PowerUpClicker, Time, Ended) VALUES " +
+                "(" + userId + ", " + numGame + ", " + N_Coffees + ", " + PowerUpClicker + ", '" + Time + "', " + Ended + ");";
 
         // Ejecutar la consulta y devolver si se realizó con éxito
         return Connector.getInstance().insertQuery(query);
