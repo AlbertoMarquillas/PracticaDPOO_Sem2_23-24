@@ -43,6 +43,24 @@ public class SQLUserDAO{
         return users;
     }
 
+    public int getConnectedUserId() {
+        try {
+            String query = "SELECT id FROM user WHERE Connected = 1;";
+            ResultSet result = Connector.getInstance().selectQuery(query);
+            if (result.next()) {
+                return result.getInt("id");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1; // Retorna -1 si no hay ningún usuario conectado
+    }
+
+    public void setConnected(int id, boolean newConnected) {
+        String query = "UPDATE user SET Connected = " + (newConnected ? 1 : 0) + " WHERE id = " + id;
+        Connector.getInstance().updateQuery(query);
+    }
+
     /**
      * function that checks if the user entered while signing in already is registered
      * @return boolean that indicates if it exists or not
