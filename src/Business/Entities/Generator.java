@@ -1,6 +1,6 @@
 package Business.Entities;
 
-public abstract class Generator {
+public class Generator {
 
     private String type;
     private double cost;
@@ -8,9 +8,8 @@ public abstract class Generator {
     private double increment; //increment del cost
     private int quantitat;
 
-    public Generator() {
+    public Generator(){}
 
-    }
 
     public String getType() {
         return type;

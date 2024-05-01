@@ -146,4 +146,82 @@ public class SQLUserDAO{
             return false;
         }
     }
+
+    public int getUserID(String userName) {
+        try {
+            String query = "SELECT id FROM user WHERE UserName = '" + userName + "'";
+            ResultSet result = Connector.getInstance().selectQuery(query);
+            if (result.next()) {
+                return result.getInt("id");
+            } else {
+                // Handle the case where no user with the given username is found
+                return -1;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void setUserID(String userName, int newID) {
+        try {
+            String query = "UPDATE user SET id = " + newID + " WHERE UserName = '" + userName + "'";
+            Connector.getInstance().updateQuery(query);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // Getter for Email
+    public String getEmail(int id) {
+        try {
+            String query = "SELECT Email FROM user WHERE id = " + id;
+            ResultSet result = Connector.getInstance().selectQuery(query);
+            if (result.next()) {
+                return result.getString("Email");
+            } else {
+                // Handle the case where no user with the given id is found
+                return null;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // Setter for Email
+    public void setEmail(int id, String newEmail) {
+        try {
+            String query = "UPDATE user SET Email = '" + newEmail + "' WHERE id = " + id;
+            Connector.getInstance().updateQuery(query);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String getPassword(int id) {
+        try {
+            String query = "SELECT Password FROM user WHERE id = " + id;
+            ResultSet result = Connector.getInstance().selectQuery(query);
+            if (result.next()) {
+                return result.getString("Password");
+            } else {
+                // Handle the case where no user with the given id is found
+                return null;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // Setter for Password
+    public void setPassword(int id, String newPassword) {
+        try {
+            String query = "UPDATE user SET Password = '" + newPassword + "' WHERE id = " + id;
+            Connector.getInstance().updateQuery(query);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
 }

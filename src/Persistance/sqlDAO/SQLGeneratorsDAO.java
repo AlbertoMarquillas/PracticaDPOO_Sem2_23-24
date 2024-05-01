@@ -1,7 +1,7 @@
 package Persistance.sqlDAO;
 
 import Persistance.Connector;
-
+import Business.Entities.Generator;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -133,27 +133,20 @@ public class SQLGeneratorsDAO{
 
 
 
-
     /**
      * FUNCIO QUE SERA SUBSTITUIDA PER LÒGICA EN EL BUSINESS
      */
-    /*public int getCost(String type) {
-        try {
-            String query = "SELECT CostBase AS Cost FROM generators WHERE Type = '"+ type +"'";
-            ResultSet result = Connector.getInstance().selectQuery(query);
-            int cost = 0;
-            if (result.next()) { // Move the cursor to the first row
-                cost = result.getInt("Cost");
-            } else {
-                // Handle the case where no data is found
-            }
-            return cost;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+    public int getCost(String type){
+        if (type.equals("A")) {
+            return 10;
+        } else if (type.equals("B")) {
+            return 150;
+        } else if (type.equals("C")) {
+            return 2000;
+        } else {
+            return 0;
         }
-    }*/
-
-
+    }
 
 
 
