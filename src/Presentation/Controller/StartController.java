@@ -27,7 +27,9 @@ public class StartController implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals("newgame")) {
+
+        //No es pot iniciar una partida si ja n'hi ha una activa
+        if (e.getActionCommand().equals("newgame") && !gameManager.comprobarPartidesActives(gameManager.getConnectedUserId())) {
             userManager.setPartidaActiva();
             gameManager.comptar();
             gameManager.initGame();
@@ -36,6 +38,7 @@ public class StartController implements ActionListener {
 
 
         } else if (e.getActionCommand().equals("resumegame")) {
+            //Carregar la partida
             changeViewController.changePan("game");
         } else if (e.getActionCommand().equals("stats")) {
             changeViewController.changePan("stats");

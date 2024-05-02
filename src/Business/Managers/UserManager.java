@@ -7,6 +7,7 @@ public class UserManager {
 
     private final SQLUserDAO userDAO;
 
+
     /**
      * Constructor de la classe UserManager
      *
@@ -136,6 +137,12 @@ public class UserManager {
         User user = userDAO.getUserConnected();
         user.setPartidaActiva(true);
     }
+
+    public void setAllConnectedsOff() {
+        userDAO.setAllUsersOff();
+    }
+
+
 
 
 

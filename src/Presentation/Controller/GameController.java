@@ -80,6 +80,7 @@ public class GameController implements ActionListener, ComptadorInterficie {
         } else if (e.getActionCommand().equals("finish")){
             boolean exit = showConfirmationDialog("Do you want to finish the game?");
             if(exit){
+                gameManager.setEndeGame();
                 changeViewController.changePan("login");
             } else {
                 changeViewController.changePan("game");

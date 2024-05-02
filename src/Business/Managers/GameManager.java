@@ -37,6 +37,14 @@ public class GameManager {
     }
 
     public int getCurrentGameId(int connectedUserId) {
-        return sqlGameDAO.getCurrentGameId(connectedUserId);
+        return (sqlGameDAO.getCurrentGameId(connectedUserId));
+    }
+
+    public boolean comprobarPartidesActives(int connectedUserId) {
+        return sqlGameDAO.comprobarPartidesActives(connectedUserId);
+    }
+
+    public void setEndeGame() {
+        sqlGameDAO.setEnded(sqlUserDAO.getConnectedUserId(),true);
     }
 }

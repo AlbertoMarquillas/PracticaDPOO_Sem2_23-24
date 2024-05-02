@@ -13,4 +13,5 @@ public class ChangeViewController {
     public void changePan(String pantalla) {
         mainView.panelChange(pantalla);
     }
+
 }

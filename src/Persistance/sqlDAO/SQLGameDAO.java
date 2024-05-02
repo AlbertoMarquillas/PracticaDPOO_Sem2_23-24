@@ -54,7 +54,7 @@ public class SQLGameDAO {
         return gameCount;
     }
 
-    public boolean startNewGame(int userId) {
+    public void startNewGame(int userId) {
         // Establecer los valores iniciales para la nueva partida
         int numGame = getGameCount(userId);
         int N_Coffees = 0;
@@ -63,11 +63,11 @@ public class SQLGameDAO {
         boolean Ended = false;
 
         // Crear la consulta SQL para insertar la nueva partida
-        String query = "INSERT INTO game(ID_P, ID_G, N_Coffees, PowerUpClicker, Time, Ended) VALUES " +
+        String query = "INSERT INTO `game`(`ID_P`, `ID_G`, `N_Coffees`, `PowerUpClicker`, `Time`, `Ended`) VALUES " +
                 "(" + userId + ", " + numGame + ", " + N_Coffees + ", " + PowerUpClicker + ", '" + Time + "', " + Ended + ");";
 
         // Ejecutar la consulta y devolver si se realizó con éxito
-        return Connector.getInstance().insertQuery(query);
+        Connector.getInstance().insertQuery(query);
     }
 
     public int getNCoffees(int id) {
@@ -116,4 +116,18 @@ public class SQLGameDAO {
     public int getCurrentGameId(int connectedUserId) {
         return getGameCount(connectedUserId);
     }
+
+    public boolean comprobarPartidesActives(int userId) {
+        String query = "SELECT * FROM game WHERE ID_P = " + userId + " AND Ended = 0";
+        ResultSet result = Connector.getInstance().selectQuery(query);
+        try {
+            if (result.next()) {
+                return true; // Hay al menos una partida con Ended = 0 para este usuario
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false; // No hay partidas con Ended = 0 para este usuario
+    }
+
 }

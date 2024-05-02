@@ -158,10 +158,40 @@ public class StartView extends JPanel implements KeyListener, ActionListener {
         this.statisticsButton = statisticsButton;
     }
 
-    public void setButtonsEnabled(boolean enabled) {
-        statisticsButton.setEnabled(enabled);
-        startGameButton.setEnabled(enabled);
+
+    public void setButtonsEnabled(boolean enabledNewGame, boolean enabledResumeGame, boolean enabledStatistics) {
+        setNewGameEnable(enabledNewGame);
+        setResumeGameEnable(enabledResumeGame);
+        setStatisticsEnable(enabledStatistics);
+
     }
+
+    public void setNewGameEnable (boolean enableNew) {
+        newGameButton.setEnabled(enableNew);
+        if (enableNew)
+            newGameButton.setBackgroundColor(Color.decode("#C3986A"));
+        else
+            newGameButton.setBackgroundColor(Color.LIGHT_GRAY);
+    }
+
+    public void setResumeGameEnable (boolean enableResume){
+        startGameButton.setEnabled(enableResume);
+        if (enableResume)
+            startGameButton.setBackgroundColor(Color.decode("#C3986A"));
+        else
+            startGameButton.setBackgroundColor(Color.LIGHT_GRAY);
+    }
+
+    public void setStatisticsEnable (boolean enableStatistics){
+        statisticsButton.setEnabled(enableStatistics);
+        if (enableStatistics)
+            statisticsButton.setBackgroundColor(Color.decode("#C3986A"));
+        else
+            statisticsButton.setBackgroundColor(Color.LIGHT_GRAY);
+    }
+
+
+
 
     @Override
     public void actionPerformed(ActionEvent e) {

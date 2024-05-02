@@ -38,8 +38,7 @@ public class Main {
         mainView.mainView(initialView, registerView, gameView, settingsView, startView,statsView);
 
         ChangeViewController changeViewController = new ChangeViewController(mainView);
-        InitialController initialController = new InitialController(initialView, logInManager, changeViewController, userManager);
-        RegisterController registerController = new RegisterController(registerView, signUpManager, changeViewController);
+        InitialController initialController = new InitialController(initialView, logInManager, changeViewController, userManager, startView, gameManager);        RegisterController registerController = new RegisterController(registerView, signUpManager, changeViewController);
         SettingsController settingsController = new SettingsController(changeViewController, userManager);
         StartController startController = new StartController(changeViewController, userManager, gameManager, generatorManager ,startView);
         StatsController statsController = new StatsController(changeViewController);
@@ -55,6 +54,8 @@ public class Main {
 
         gameController.setComptadorInterficie(gameController);
         comptador.setComptadorInterficie(gameController);
+
+        sqlUserDAO.setAllUsersOff();
 
         mainView.panelChange("login");
     }
