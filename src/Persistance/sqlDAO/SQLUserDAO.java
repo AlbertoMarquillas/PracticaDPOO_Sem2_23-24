@@ -241,5 +241,8 @@ public class SQLUserDAO{
     }
 
 
-
+    public void setAllUsersOff() {
+        String query = "UPDATE user SET Connected = 0";
+        Connector.getInstance().updateQuery(query);
+    }
 }

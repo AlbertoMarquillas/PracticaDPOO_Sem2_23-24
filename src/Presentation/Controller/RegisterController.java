@@ -1,6 +1,7 @@
 package Presentation.Controller;
 
 import Business.Managers.SignUpManager;
+
 import Presentation.View.RegisterView;
 
 import javax.swing.*;
@@ -123,6 +124,7 @@ public class RegisterController implements ActionListener {
                 case "FaltenCaractersEspecials" -> showErrorSpecialCounterPass();
                 case "UserNoCreat" -> showErrorCreateUser();
                 case "totBe" -> {
+                    //AQUI
                     changeViewController.changePan("start");
                     borrarInfoRegister();
                 }

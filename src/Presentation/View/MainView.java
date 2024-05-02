@@ -44,6 +44,8 @@ public class MainView extends JFrame{
             }
             case "start" -> {
                 setBounds(750,500,800,450);
+                //AQUI
+
                 this.cardLayout.show(getContentPane(), "start");
                 setLocationRelativeTo(null);
                 setVisible(true);
