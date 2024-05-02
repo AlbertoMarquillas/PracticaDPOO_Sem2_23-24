@@ -109,7 +109,7 @@ public class GeneratorManager {
         }
     }
 
-    public void initGeneratorPesistance(int ID_P, int ID_U){
-        sqlGeneratorsDAO.initGenerators(ID_P, ID_U);
+    public void initGeneratorPesistance(int ID_P, int ID_G){
+        sqlGeneratorsDAO.initGenerators(ID_P, ID_G);
     }
 }

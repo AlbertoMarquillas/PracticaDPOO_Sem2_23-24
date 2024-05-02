@@ -1,6 +1,7 @@
 package Presentation.Controller;
 
 import Business.Managers.GameManager;
+import Business.Managers.GeneratorManager;
 import Business.Managers.UserManager;
 import Presentation.View.StartView;
 
@@ -13,13 +14,15 @@ public class StartController implements ActionListener {
     private final UserManager userManager;
     private final GameManager gameManager;
     private final StartView startView;
+    private final GeneratorManager generatorManager;
 
 
-    public StartController(ChangeViewController changeViewController, UserManager userManager, GameManager gameManager, StartView startView) {
+    public StartController(ChangeViewController changeViewController, UserManager userManager, GameManager gameManager, GeneratorManager generatorManager , StartView startView) {
         this.changeViewController = changeViewController;
         this.userManager = userManager;
         this.gameManager = gameManager;
         this.startView = startView;
+        this.generatorManager = generatorManager;
 
     }
     @Override
@@ -27,7 +30,11 @@ public class StartController implements ActionListener {
         if (e.getActionCommand().equals("newgame")) {
             userManager.setPartidaActiva();
             gameManager.comptar();
+            gameManager.initGame();
+            generatorManager.initGeneratorPesistance(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()));
             changeViewController.changePan("game");
+
+
         } else if (e.getActionCommand().equals("resumegame")) {
             changeViewController.changePan("game");
         } else if (e.getActionCommand().equals("stats")) {
