@@ -18,16 +18,16 @@ public class Game {
     public Game(SQLGameDAO sqlGameDAO, SQLUserDAO sqlUserDAO) {
         this.sqlGameDAO = sqlGameDAO;
         this.sqlUserDAO = sqlUserDAO;
-        sqlGameDAO.startNewGame(sqlUserDAO.getUserID("a"));
+        sqlGameDAO.startNewGame(sqlUserDAO.getConnectedUserId());
     }
 
 
     public double getQuantitatCafes() {
-        return sqlGameDAO.getGameCount(sqlUserDAO.getUserID("a"));
+        return sqlGameDAO.getGameCount(sqlUserDAO.getConnectedUserId());
     }
 
     public void setQuantitatCafes(double quantitatCafes) {
-        sqlGameDAO.setNCoffees(sqlUserDAO.getUserID("a"), quantitatCafes);
+        sqlGameDAO.setNCoffees(sqlUserDAO.getConnectedUserId(), quantitatCafes);
     }
 
     public int getId_jugador() {

@@ -154,9 +154,9 @@ public class SQLGeneratorsDAO{
     public void initGenerators(int ID_P, int ID_G) {
         String types[] = {"A", "B", "C"};
 
-        for (int i = 0; i < types.length; i++) {
+        for (String type : types) {
             String query = "INSERT INTO generators(ID_P, ID_G, Type, Quantitat, CostActual, ProduccioActual, ProduccioGlobal, Num_Millores) VALUES " +
-                    "('" + ID_P + "', '" + ID_G + "', '" + types[i] + "', '" + 0 + "', '" + 0 + "', '" + 0 + "', '" + 0 + "', '" + 0 + "');";
+                    "('" + ID_P + "', '" + ID_G + "', '" + type + "', '" + 0 + "', '" + 0 + "', '" + 0 + "', '" + 0 + "', '" + 0 + "')";
 
             Connector.getInstance().insertQuery(query);
         }

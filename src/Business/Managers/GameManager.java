@@ -23,10 +23,10 @@ public class GameManager {
     }
 
     public void setQuantitatCafe(double quantitatCoffee) {
-        sqlGameDAO.setNCoffees(sqlUserDAO.getUserID("a"), quantitatCoffee);
+        sqlGameDAO.setNCoffees(sqlUserDAO.getConnectedUserId(), quantitatCoffee);
     }
     public double getQuantitatCafe() {
-        return sqlGameDAO.getNCoffees(sqlUserDAO.getUserID("a"));
+        return sqlGameDAO.getNCoffees(sqlUserDAO.getConnectedUserId());
     }
 
     public void initGame() {
@@ -46,5 +46,13 @@ public class GameManager {
 
     public void setEndeGame() {
         sqlGameDAO.setEnded(sqlUserDAO.getConnectedUserId(),true);
+    }
+
+    public double quantitatCoffeClick() {
+        if (sqlGameDAO.getPowerUpClicker(sqlUserDAO.getConnectedUserId())) {
+            return 2;
+        } else {
+            return 1;
+        }
     }
 }

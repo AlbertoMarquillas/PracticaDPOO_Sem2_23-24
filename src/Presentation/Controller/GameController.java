@@ -37,8 +37,16 @@ public class GameController implements ActionListener, ComptadorInterficie {
         if (e.getActionCommand().equals("settings")) {
             changeViewController.changePan("settings");
         } else if (e.getActionCommand().equals("createcofee")) {
-                gameView.setComptador(String.valueOf(Integer.parseInt(gameView.getComptador()) + 1));
-                System.out.println(gameView.getComptador());
+
+            double cafesBBDD = gameManager.getQuantitatCafe();
+            double caffesClcik = gameManager.quantitatCoffeClick();
+            double cafesTotal = cafesBBDD + caffesClcik;
+            setQuantitatCoffe(cafesTotal);
+            gameView.setComptador(String.valueOf(cafesTotal));
+            gameView.setVisible(false);
+            gameView.setVisible(true);
+            gameView.setSize(gameView.getWidth(), gameView.getHeight());
+
         }else if (e.getActionCommand().equals("potenciador1")){
             generatorManager.updateCost(1, generatorManager.incrementarPotenciador(1));
             gameView.setQuantitatPotenciador1(generatorManager.getQuantitatGenerados(1));
@@ -118,11 +126,15 @@ public class GameController implements ActionListener, ComptadorInterficie {
 
     @Override
     public void updateQuantitatCoffe(double quantitatCafes, double produccio) {
-        quantitatCafes = quantitatCafes + produccio;
-        setQuantitatCoffe(quantitatCafes);
-        gameView.setComptador(String.valueOf(quantitatCafes));
-        gameManager.setQuantitatCafe(quantitatCafes);
-        System.out.println(quantitatCafes);
+        double nCafes = quantitatCafes + produccio;
+        setQuantitatCoffe(nCafes);
+        gameView.setComptador(String.valueOf(nCafes));
+        gameManager.setQuantitatCafe(nCafes);
+        System.out.println(nCafes);
+        gameView.setVisible(false);
+        gameView.setVisible(true);
+        gameView.setSize(gameView.getWidth(), gameView.getHeight());
+
     }
 
     public void setComptadorInterficie(ComptadorInterficie comptadorInterficie) {

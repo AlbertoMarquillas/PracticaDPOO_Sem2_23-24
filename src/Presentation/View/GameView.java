@@ -612,6 +612,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
     public void setComptador(String text) {
         this.text = text;
         this.contador.setText(this.text);
+
     }
 
     @Override
