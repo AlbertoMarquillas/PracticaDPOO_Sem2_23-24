@@ -40,6 +40,7 @@ public class StartController implements ActionListener {
         } else if (e.getActionCommand().equals("resumegame")) {
             //Carregar la partida
             changeViewController.changePan("game");
+            gameManager.comptar();
         } else if (e.getActionCommand().equals("stats")) {
             changeViewController.changePan("stats");
         }

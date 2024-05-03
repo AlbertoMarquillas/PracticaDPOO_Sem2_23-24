@@ -63,20 +63,20 @@ public class SQLGameDAO {
         boolean Ended = false;
 
         // Crear la consulta SQL para insertar la nueva partida
-        String query = "INSERT INTO `game`(`ID_P`, `ID_G`, `N_Coffees`, `PowerUpClicker`, `Time`, `Ended`) VALUES " +
+        String query = "INSERT INTO game(ID_P, ID_G, N_Coffees, PowerUpClicker, Time, Ended) VALUES " +
                 "(" + userId + ", " + numGame + ", " + N_Coffees + ", " + PowerUpClicker + ", '" + Time + "', " + Ended + ");";
 
         // Ejecutar la consulta y devolver si se realizó con éxito
         Connector.getInstance().insertQuery(query);
     }
 
-    public int getNCoffees(int id) {
-        int nCoffees = 0;
+    public double getNCoffees(int id) {
+        double nCoffees = 0;
         String query = "SELECT N_Coffees FROM game WHERE ID_P = " + id;
         ResultSet result = Connector.getInstance().selectQuery(query);
         try {
             if (result.next()) {
-                nCoffees = result.getInt("N_Coffees");
+                nCoffees = result.getDouble("N_Coffees");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -89,13 +89,13 @@ public class SQLGameDAO {
         Connector.getInstance().updateQuery(query);
     }
 
-    public int getPowerUpClicker(int id) {
-        int powerUpClicker = 0;
+    public boolean getPowerUpClicker(int id) {
+        boolean powerUpClicker = false;
         String query = "SELECT PowerUpClicker FROM game WHERE ID_P = " + id;
         ResultSet result = Connector.getInstance().selectQuery(query);
         try {
             if (result.next()) {
-                powerUpClicker = result.getInt("PowerUpClicker");
+                powerUpClicker = result.getBoolean("PowerUpClicker");
             }
         } catch (SQLException e) {
             e.printStackTrace();

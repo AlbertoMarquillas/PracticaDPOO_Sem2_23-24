@@ -104,10 +104,8 @@ public class Comptador {
             public void run() {
                 double nCoffee = 0;
                 while (running) {
-                    nCoffee = nCoffee + generador.getProduccio();
+                    nCoffee = sqlGameDAO.getNCoffees(sqlUserDAO.getConnectedUserId()) + generador.getProduccio();
                     comptadorInterficie.updateQuantitatCoffe(nCoffee, generador.getProduccio());
-                    double n_cafes =  nCoffee;//sqlGameDAO.getNCoffees(sqlUserDAO.getUserID("a")) + generador.getProduccio();
-                    sqlGameDAO.setNCoffees(sqlUserDAO.getUserID("a"), n_cafes);
                     try {
                         Thread.sleep(1000); // Esperar un segundo
                     } catch (InterruptedException e) {
