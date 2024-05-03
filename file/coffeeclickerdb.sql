@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-04-2024 a las 11:53:38
+-- Tiempo de generación: 03-05-2024 a las 09:38:56
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -30,9 +30,9 @@ SET time_zone = "+00:00";
 CREATE TABLE `game` (
   `ID_P` int(11) NOT NULL,
   `ID_G` int(11) NOT NULL,
-  `N_Coffees` float(11) NOT NULL,
+  `N_Coffees` float NOT NULL,
   `PowerUpClicker` int(11) NOT NULL,
-  `Time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `Time` text NOT NULL,
   `Ended` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
@@ -46,30 +46,30 @@ CREATE TABLE `generators` (
   `ID_P` int(11) NOT NULL,
   `ID_G` int(11) NOT NULL,
   `Type` varchar(255) NOT NULL,
-  `ProduccioBase` int(11) NOT NULL,
   `Quantitat` int(11) NOT NULL,
-  `CostBase` int(11) NOT NULL,
   `CostActual` int(11) NOT NULL,
-   `ProduccioActual` float(11) NOT NULL,
-  `ProduccioGlobal` float(11) NOT NULL
+  `ProduccioActual` float NOT NULL,
+  `ProduccioGlobal` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
-
---
--- Estructura de tabla para la tabla `millores`
---
-CREATE TABLE `millores`
-(
-    `ID_P` int(11) NOT NULL,
-    `ID_G` int(11) NOT NULL,
-    `Type` varchar(255) NOT NULL,
-    `Quantitat` int(11) NOT NULL,
-    `CostBase`  int(11) NOT NULL
-)ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `users`
+-- Estructura de tabla para la tabla `millores`
+--
+
+CREATE TABLE `millores` (
+  `ID_P` int(11) NOT NULL,
+  `ID_G` int(11) NOT NULL,
+  `Type` varchar(255) NOT NULL,
+  `Quantitat` int(11) NOT NULL,
+  `CostBase` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `user`
 --
 
 CREATE TABLE `user` (
@@ -85,7 +85,7 @@ CREATE TABLE `user` (
 --
 
 --
--- Indices de la tabla `users`
+-- Indices de la tabla `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
@@ -95,7 +95,7 @@ ALTER TABLE `user`
 --
 
 --
--- AUTO_INCREMENT de la tabla `users`
+-- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;

@@ -31,11 +31,11 @@ public class StartController implements ActionListener {
         //No es pot iniciar una partida si ja n'hi ha una activa
         if (e.getActionCommand().equals("newgame") && !gameManager.comprobarPartidesActives(gameManager.getConnectedUserId())) {
             userManager.setPartidaActiva();
-            gameManager.comptar();
             gameManager.initGame();
             generatorManager.initGeneratorPesistance(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()));
             changeViewController.changePan("game");
-
+            gameManager.comptar();
+            
 
         } else if (e.getActionCommand().equals("resumegame")) {
             //Carregar la partida
