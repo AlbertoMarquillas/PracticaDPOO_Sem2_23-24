@@ -26,9 +26,7 @@ public class Game {
         return sqlGameDAO.getGameCount(sqlUserDAO.getUserID("a"));
     }
 
-    public void setQuantitatCafes(double quantitatCafes) {
-        sqlGameDAO.setNCoffees(sqlUserDAO.getUserID("a"), quantitatCafes);
-    }
+
 
     public int getId_jugador() {
         return id_jugador;

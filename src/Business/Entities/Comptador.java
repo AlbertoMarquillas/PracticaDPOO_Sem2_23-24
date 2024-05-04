@@ -1,13 +1,20 @@
 package Business.Entities;
 
 import Business.Entities.HerenciasGeneradors.Generador1;
+import Business.Entities.HerenciasGeneradors.Generador2;
+import Business.Entities.HerenciasGeneradors.Generador3;
+import Business.Managers.GameManager;
 import Persistance.sqlDAO.SQLGameDAO;
 import Persistance.sqlDAO.SQLUserDAO;
+import Persistance.sqlDAO.SQLGeneratorsDAO;
+import Presentation.Controller.GameController;
+import Presentation.View.GameView;
 
 public class Comptador {
 
     private final SQLGameDAO sqlGameDAO;
     private final SQLUserDAO sqlUserDAO;
+    private final SQLGeneratorsDAO sqlGeneratorsDAO;
     private ComptadorInterficie comptadorInterficie;
     private Thread thread;
     private boolean running;
@@ -21,19 +28,20 @@ public class Comptador {
     private Generator generador;
     private User user;
 
-    public Comptador(SQLGameDAO sqlGameDAO, SQLUserDAO sqlUserDAO) {
+    public Comptador(SQLGameDAO sqlGameDAO, SQLUserDAO sqlUserDAO, SQLGeneratorsDAO sqlGeneratorsDAO) {
         this.sqlGameDAO = sqlGameDAO;
         this.sqlUserDAO = sqlUserDAO;
+        this.sqlGeneratorsDAO = sqlGeneratorsDAO;
     }
 
 
-    public ComptadorInterficie getComptadorInterficie() {
+    /*public ComptadorInterficie getComptadorInterficie() {
         return comptadorInterficie;
-    }
-
+    }*/
+    /*
     public void setComptadorInterficie(ComptadorInterficie comptadorInterficie) {
         this.comptadorInterficie = comptadorInterficie;
-    }
+    }*/
 
     public Thread getThread() {
         return thread;
@@ -85,7 +93,7 @@ public class Comptador {
 
     /**
      * Funció que seteja el comptador segons el player
-     */
+     *//*
     public void setPlayer() {
         startTime = System.currentTimeMillis();
         this.currentTime = 0;
@@ -94,29 +102,99 @@ public class Comptador {
 
         this.quantitatCoffee = game.getQuantitatCafes();
         comptadorInterficie.setQuantitatCoffe(quantitatCoffee);
-    }
+    }*/
 
+
+    /*
+    //Revisar comptatge ID_Coffe.
     public void comptar() {
-        setRunning(true); // Asegúrate de establecer running en true antes de iniciar el hilo
+    // Establecer la variable running en true para indicar que el hilo debe estar en ejecución
+        setRunning(true);
+
+        // Guardar el tiempo actual en milisegundos como el tiempo de inicio
         startTime = System.currentTimeMillis();
+
+        // Crear una nueva instancia de Generador1, que es una clase que determina la cantidad de café producido
         this.generador = new Generador1();
+
+        // Crear un nuevo hilo
         this.thread = new Thread() {
             public void run() {
+                // Inicializar la variable nCoffee en 0
                 double nCoffee = 0;
+
+                // Mientras la variable running sea true, el hilo seguirá en ejecución
                 while (running) {
+                    // Incrementar nCoffee por la cantidad de café producido por el generador
                     nCoffee = nCoffee + generador.getProduccio();
+
+                    // Actualizar la interfaz del contador con la cantidad actual de café y la producción del generador
                     comptadorInterficie.updateQuantitatCoffe(nCoffee, generador.getProduccio());
-                    double n_cafes =  nCoffee;//sqlGameDAO.getNCoffees(sqlUserDAO.getUserID("a")) + generador.getProduccio();
+
+                    // Obtener la cantidad actual de café del usuario "a" en la base de datos y sumarle la producción del generador
+                    double n_cafes =  nCoffee;
+
+                    // Actualizar la cantidad de café del usuario "a" en la base de datos
                     sqlGameDAO.setNCoffees(sqlUserDAO.getUserID("a"), n_cafes);
+
                     try {
-                        Thread.sleep(1000); // Esperar un segundo
+                        // Hacer que el hilo duerma durante un segundo antes de continuar con la próxima iteración
+                        Thread.sleep(1000);
                     } catch (InterruptedException e) {
+                        // Imprimir la traza de la pila si se produce una excepción
                         e.printStackTrace();
                     }
                 }
             }
         };
+
+        // Iniciar el hilo
+        thread.start();
+    }*/
+
+    public void comptar() {
+        // Establecer la variable running en true para indicar que el hilo debe estar en ejecución
+        setRunning(true);
+
+        // Crear nuevas instancias de tus tres generadores
+        GameManager gameManager = new GameManager(sqlGameDAO, sqlUserDAO, sqlGeneratorsDAO);
+        Generador1 generador1 = (Generador1) sqlGeneratorsDAO.getGenerator(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()), "A");
+        Generador2 generador2 = (Generador2) sqlGeneratorsDAO.getGenerator(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()), "B");
+        Generador3 generador3 = (Generador3) sqlGeneratorsDAO.getGenerator(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()), "C");
+
+
+        // Crear un nuevo hilo
+        this.thread = new Thread() {
+            public void run() {
+                // Inicializar la variable nCoffee en 0
+
+                // Mientras la variable running sea true, el hilo seguirá en ejecución
+                while (running) {
+
+                    double nCoffee = sqlGameDAO.getNCoffees(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()));
+
+                    // Incrementar nCoffee por la cantidad de café producido por cada generador
+                    nCoffee = nCoffee + (generador1.getProduccioActual() * generador1.getQuantitat()) + (generador2.getProduccioActual() * generador2.getQuantitat()) + (generador3.getProduccioActual() * generador3.getQuantitat());
+
+                    // Actualizar la interfaz del contador con la cantidad actual de café y la producción total de los generadores
+                    comptadorInterficie.updateQuantitatCoffe(nCoffee);
+
+                    try {
+                        // Hacer que el hilo duerma durante un segundo antes de continuar con la próxima iteración
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        // Imprimir la traza de la pila si se produce una excepción
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+
+        // Iniciar el hilo
         thread.start();
     }
 
+    public void setComptadorInterficie(ComptadorInterficie comptadorInterficie) {
+        this.comptadorInterficie = comptadorInterficie;
+    }
 }

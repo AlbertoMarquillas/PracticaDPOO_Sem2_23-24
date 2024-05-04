@@ -48,7 +48,8 @@ public class SQLUserDAO{
             String query = "SELECT id FROM user WHERE Connected = 1;";
             ResultSet result = Connector.getInstance().selectQuery(query);
             if (result.next()) {
-                return result.getInt("id");
+                int id = result.getInt("id");
+                return id;
             }
         } catch (SQLException e) {
             e.printStackTrace();

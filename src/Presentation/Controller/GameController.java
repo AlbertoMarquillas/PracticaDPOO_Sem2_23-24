@@ -34,14 +34,19 @@ public class GameController implements ActionListener, ComptadorInterficie {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        String type = null;
         if (e.getActionCommand().equals("settings")) {
             changeViewController.changePan("settings");
         } else if (e.getActionCommand().equals("createcofee")) {
-                gameView.setComptador(String.valueOf(Integer.parseInt(gameView.getComptador()) + 1));
-                System.out.println(gameView.getComptador());
+            double n_Caffee = gameManager.getCaffeeNumber() + 1;
+            //Guardem en la BBDD la quantitat de cafes actualitzada.
+            updateQuantitatCoffe(n_Caffee);
+
+            System.out.println("Cafes Actuals: " + gameView.getComptador());
         }else if (e.getActionCommand().equals("potenciador1")){
-            generatorManager.updateCost(1, generatorManager.incrementarPotenciador(1));
-            gameView.setQuantitatPotenciador1(generatorManager.getQuantitatGenerados(1));
+            type = "A";
+            //generatorManager.updateCost(generatorManager.incrementarPotenciador(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type);
+            gameView.setQuantitatPotenciador1(generatorManager.getQuantitatGenerados(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type));
             gameView.setCostPotenciador1(generatorManager.getCost(1));
 
             System.out.println("Quantitat Potenciadors 1: " + gameView.getQuantitatPotenciadors1());
@@ -51,8 +56,8 @@ public class GameController implements ActionListener, ComptadorInterficie {
             //produccio total de cafes generats
 
         }else if (e.getActionCommand().equals("potenciador2")){
-            generatorManager.updateCost(2,generatorManager.incrementarPotenciador(2));
-            gameView.setQuantitatPotenciador2(generatorManager.getQuantitatGenerados(2));
+            //generatorManager.updateCost(2,generatorManager.incrementarPotenciador(2));
+            gameView.setQuantitatPotenciador2(generatorManager.getQuantitatGenerados(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type));
             gameView.setCostPotenciador2(generatorManager.getCost(2));
 
             System.out.println("Quantitat Potenciadors 2: "  + gameView.getQuantitatPotenciadors2());
@@ -61,8 +66,8 @@ public class GameController implements ActionListener, ComptadorInterficie {
 
 
         }else if (e.getActionCommand().equals("potenciador3")){
-            generatorManager.updateCost(3, generatorManager.incrementarPotenciador(3));
-            gameView.setQuantitatPotenciador3(generatorManager.getQuantitatGenerados(3));
+            //generatorManager.updateCost(3, generatorManager.incrementarPotenciador(3));
+            gameView.setQuantitatPotenciador3(generatorManager.getQuantitatGenerados(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type));
             gameView.setCostPotenciador3(generatorManager.getCost(3));
 
             System.out.println("Quantitat Potenciadors 3: " + gameView.getQuantitatPotenciadors3());
@@ -97,11 +102,6 @@ public class GameController implements ActionListener, ComptadorInterficie {
     }
 
     @Override
-    public void setQuantitatCoffe(double quantitatCoffee) {
-        gameManager.setQuantitatCafe(quantitatCoffee);
-    }
-
-    @Override
     public double getQuantitatCoffe() {
         return 0;
     }
@@ -117,10 +117,8 @@ public class GameController implements ActionListener, ComptadorInterficie {
     }
 
     @Override
-    public void updateQuantitatCoffe(double quantitatCafes, double produccio) {
-        quantitatCafes = quantitatCafes + produccio;
-        setQuantitatCoffe(quantitatCafes);
-        gameView.setComptador(String.valueOf(quantitatCafes));
+    public void updateQuantitatCoffe(double quantitatCafes) {
+        gameView.setComptador(String.valueOf(Math.round(quantitatCafes)));
         gameManager.setQuantitatCafe(quantitatCafes);
         System.out.println(quantitatCafes);
     }

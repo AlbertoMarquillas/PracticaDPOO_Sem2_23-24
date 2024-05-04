@@ -100,6 +100,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
 
         this.contador = new CustomLabel(this.text, new Font("Segoe UI Black", Font.PLAIN, 50), Color.decode("#F8F2F0"));
 
+
         //Crear els títols de la finestra
         CustomLabel supTitleLabel = new CustomLabel("COFFEE", new Font("Bauhaus 93", Font.BOLD, 80), Color.decode("#DB5C39"));
         CustomLabel lowTitleLabel = new CustomLabel("CLICKER", new Font("Bauhaus 93", Font.BOLD, 80), Color.decode("#DB5C39"));
@@ -612,6 +613,11 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
     public void setComptador(String text) {
         this.text = text;
         this.contador.setText(this.text);
+        Dimension size = this.contador.getPreferredSize();
+        this.contador.setMinimumSize(size);
+        this.contador.setMaximumSize(size);
+        this.contador.setPreferredSize(size);
+        this.contador.repaint();
     }
 
     @Override
@@ -685,4 +691,5 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
     public void setQuantitatPotenciador3(int quantitatPotenciadors3) {
         this.quantitatPotenciadors3 = quantitatPotenciadors3;
     }
+
 }

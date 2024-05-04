@@ -1,6 +1,7 @@
 package Business.Managers;
 
 import Business.Entities.Generator;
+import Business.Entities.GeneratorFactory;
 import Business.Entities.HerenciasGeneradors.Generador1;
 import Business.Entities.HerenciasGeneradors.Generador2;
 import Business.Entities.HerenciasGeneradors.Generador3;
@@ -19,38 +20,32 @@ public class GeneratorManager {
         this.sqlGeneratorsDAO = sqlGeneratorsDAO;
     }
 
-    public double incrementarPotenciador(int i) {
+    /*
+    public double incrementarPotenciador(int ID_P, int ID_G, String type) {
         int quantitat = 0;
         Generator generator = null;
-        if (i == 1) {
-            quantitat = sqlGeneratorsDAO.getQuantitatGeneradors("A");
-            sqlGeneratorsDAO.actualitzarQuantitat(quantitat + 1, "A");
-            generator = new Generador1();
-        }else if (i == 2) {
-            quantitat = sqlGeneratorsDAO.getQuantitatGeneradors("B");
-            sqlGeneratorsDAO.actualitzarQuantitat(quantitat + 1, "B");
-            generator = new Generador2();
-        }else if (i == 3) {
-            quantitat = sqlGeneratorsDAO.getQuantitatGeneradors("C");
-            sqlGeneratorsDAO.actualitzarQuantitat(quantitat + 1, "C");
-            generator  = new Generador3();
-        }
+        sqlGeneratorsDAO.getQuantitatGeneradors(ID_P, ID_G, type);
+        sqlGeneratorsDAO.actualitzarQuantitat(quantitat + 1, ID_P, ID_G, type);
+        generator = GeneratorFactory.createGenerator(type);
+
         generator.setQuantitat(quantitat);
+
         double cost = generator.seguentGenerador();
         generator.setCostBase(cost);
         return cost;
     }
+    */
 
-    public int getQuantitatGenerados(int i) {
-        switch (i) {
-            case 1 -> {
-                return sqlGeneratorsDAO.getQuantitatGeneradors("A");
+    public int getQuantitatGenerados(int ID_P, int ID_G, String type) {
+        switch (type) {
+            case "A" -> {
+                return sqlGeneratorsDAO.getQuantitatGeneradors(ID_P, ID_P, type);
             }
-            case 2 -> {
-                return sqlGeneratorsDAO.getQuantitatGeneradors("B");
+            case "B" -> {
+                return sqlGeneratorsDAO.getQuantitatGeneradors(ID_P, ID_P, type);
             }
-            case 3 -> {
-                return sqlGeneratorsDAO.getQuantitatGeneradors("C");
+            case "C" -> {
+                return sqlGeneratorsDAO.getQuantitatGeneradors(ID_P, ID_P, type);
             }
             default -> {
                 return 0;

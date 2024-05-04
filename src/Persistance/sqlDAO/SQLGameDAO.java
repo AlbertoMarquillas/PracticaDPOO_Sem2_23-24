@@ -70,13 +70,13 @@ public class SQLGameDAO {
         Connector.getInstance().insertQuery(query);
     }
 
-    public int getNCoffees(int id) {
-        int nCoffees = 0;
-        String query = "SELECT N_Coffees FROM game WHERE ID_P = " + id;
+    public double getNCoffees(int ID_P, int ID_G) {
+        double nCoffees = 0;
+        String query = "SELECT N_Coffees FROM game WHERE ID_P = " + ID_P + " AND ID_G = " + ID_G;
         ResultSet result = Connector.getInstance().selectQuery(query);
         try {
             if (result.next()) {
-                nCoffees = result.getInt("N_Coffees");
+                nCoffees = result.getDouble("N_Coffees");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -84,8 +84,8 @@ public class SQLGameDAO {
         return nCoffees;
     }
 
-    public void setNCoffees(int id, double newNCoffees) {
-        String query = "UPDATE game SET N_Coffees = " + newNCoffees + " WHERE ID_P = " + id;
+    public void setNCoffees(int ID_P, int ID_G, double newNCoffees) {
+        String query = "UPDATE game SET N_Coffees = " + newNCoffees + " WHERE ID_P = " + ID_P + " AND ID_G = " + ID_G;
         Connector.getInstance().updateQuery(query);
     }
 
@@ -114,7 +114,7 @@ public class SQLGameDAO {
     }
 
     public int getCurrentGameId(int connectedUserId) {
-        return getGameCount(connectedUserId);
+        return getGameCount(connectedUserId) - 1;
     }
 
     public boolean comprobarPartidesActives(int userId) {
@@ -129,5 +129,6 @@ public class SQLGameDAO {
         }
         return false; // No hay partidas con Ended = 0 para este usuario
     }
+
 
 }

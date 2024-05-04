@@ -20,12 +20,12 @@ public class Main {
         SQLGeneratorsDAO sqlGeneratorsDAO = new SQLGeneratorsDAO();
         SQLUserDAO sqlUserDAO = new SQLUserDAO();
 
-        Comptador comptador = new Comptador(sqlGameDAO, sqlUserDAO);
+        Comptador comptador = new Comptador(sqlGameDAO, sqlUserDAO, sqlGeneratorsDAO);
         UserManager userManager = new UserManager(sqlUserDAO);
         LogInManager logInManager = new LogInManager(userManager);
         SignUpManager signUpManager = new SignUpManager(userManager);
         GeneratorManager generatorManager = new GeneratorManager(sqlGeneratorsDAO);
-        GameManager gameManager = new GameManager(sqlGameDAO, sqlUserDAO);
+        GameManager gameManager = new GameManager(sqlGameDAO, sqlUserDAO, sqlGeneratorsDAO);
 
         StartView startView = new StartView();
         StatsView statsView = new StatsView();
@@ -38,7 +38,8 @@ public class Main {
         mainView.mainView(initialView, registerView, gameView, settingsView, startView,statsView);
 
         ChangeViewController changeViewController = new ChangeViewController(mainView);
-        InitialController initialController = new InitialController(initialView, logInManager, changeViewController, userManager, startView, gameManager);        RegisterController registerController = new RegisterController(registerView, signUpManager, changeViewController);
+        InitialController initialController = new InitialController(initialView, logInManager, changeViewController, userManager, startView, gameManager);
+        RegisterController registerController = new RegisterController(registerView, signUpManager, changeViewController);
         SettingsController settingsController = new SettingsController(changeViewController, userManager);
         StartController startController = new StartController(changeViewController, userManager, gameManager, generatorManager ,startView);
         StatsController statsController = new StatsController(changeViewController);

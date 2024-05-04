@@ -3,28 +3,26 @@ package Business.Entities;
 public class Generator {
 
     private String type;
-    private double costBase;
-    private double costActual;
-    private double produccio; //cafes / segon
-    private double produccioGlobal; //cafes / segon
-    private double increment; //increment del cost
     private int quantitat;
+    private double increment; //Variable prescindible (incrementBase * quantitat) "Pendent de valorar"
+    private double produccioActual; //cafes que genera cada generador!!!! (NO EL QUE GENEREN ENTRE TOTS els d'un mateix tipus)
+    private double produccioGlobal; //produccioGlobal = produccio x quantitat de generadors
     private int numeroMillores;
 
 
     public Generator(){}
 
+    public double getCostBase() {
+        // Implementación por defecto (puede lanzar una excepción o devolver un valor por defecto)
+        throw new UnsupportedOperationException();
+    }
 
     public String getType() {
         return type;
     }
 
-    public double getCostBase() {
-        return costBase;
-    }
-
-    public double getProduccio() {
-        return produccio;
+    public double getProduccioActual() {
+        return produccioActual;
     }
 
     public double getIncrement() {
@@ -35,12 +33,8 @@ public class Generator {
         this.type = type;
     }
 
-    public void setCostBase(double cost) {
-        this.costBase = cost;
-    }
-
-    public void setProduccio(double produccio) {
-        this.produccio = produccio;
+    public void setProduccioActual(double produccioActual) {
+        this.produccioActual = produccioActual;
     }
 
     public void setIncrement(double increment) {
@@ -60,13 +54,6 @@ public class Generator {
         return Math.round(getCostBase() * Math.pow(getIncrement(), getQuantitat()));
     }
 
-    public double getCostActual() {
-        return costActual;
-    }
-
-    public void setCostActual(double costActual) {
-        this.costActual = costActual;
-    }
 
     public double getProduccioGlobal() {
         return produccioGlobal;
@@ -83,4 +70,11 @@ public class Generator {
     public void setNumeroMillores(int numeroMillores) {
         this.numeroMillores = numeroMillores;
     }
+
+
+    public void getCurrentCost() {
+        //return costBase * Math.pow(increment, quantitat);
+    }
+
+
 }
