@@ -167,7 +167,7 @@ public class SQLGeneratorsDAO{
 
     public void initGenerators(int ID_P, int ID_G) {
         String types[] = {"A", "B", "C"};
-        int quantitats[] = {1, 30, 100};
+        int quantitats[] = {0, 0, 0};       //AIXO HO FEM MANUALMENT
         int costBase[] = {10, 150, 2000};
         double produccioInicial[] = {0.2,1,15};
 
