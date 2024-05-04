@@ -13,6 +13,8 @@ import Presentation.View.Custom.CustomLabel;
 import Presentation.View.Custom.CustomRenderer;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.event.ChangeListener;
@@ -613,10 +615,16 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
     public void setComptador(String text) {
         this.text = text;
         this.contador.setText(this.text);
-        Dimension size = this.contador.getPreferredSize();
+        this.contador.setHorizontalAlignment(JLabel.CENTER);
+        Dimension size = new Dimension(300, 100);
         this.contador.setMinimumSize(size);
         this.contador.setMaximumSize(size);
         this.contador.setPreferredSize(size);
+
+        // Cambiar el color del borde
+        //Color borderColor = Color.RED; // Cambia esto al color que desees
+        //this.contador.setBorder(new LineBorder(borderColor));
+
         this.contador.repaint();
     }
 
