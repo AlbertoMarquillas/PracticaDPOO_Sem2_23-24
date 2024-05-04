@@ -36,6 +36,7 @@ public class GameController implements ActionListener, ComptadorInterficie {
     public void actionPerformed(ActionEvent e) {
         String type = null;
         if (e.getActionCommand().equals("settings")) {
+            changeViewController.setComptador(false);
             changeViewController.changePan("settings");
         } else if (e.getActionCommand().equals("createcofee")) {
             double n_Caffee = gameManager.getCaffeeNumber() + 1;
@@ -83,21 +84,25 @@ public class GameController implements ActionListener, ComptadorInterficie {
         }else if (e.getActionCommand().equals("millora4")){
 
         } else if (e.getActionCommand().equals("finish")){
+            changeViewController.setComptador(false);
             boolean exit = showConfirmationDialog("Do you want to finish the game?");
             if(exit){
                 gameManager.disconnectUser();
                 gameManager.setEndeGame();
                 changeViewController.changePan("login");
             } else {
+                changeViewController.setComptador(true);
                 changeViewController.changePan("game");
             }
 
         } else if (e.getActionCommand().equals("save")){
+            changeViewController.setComptador(false);
             boolean exit = showConfirmationDialog("Do you want to save the game?");
             if(exit){
                 gameManager.disconnectUser();
                 changeViewController.changePan("login");
             } else {
+                changeViewController.setComptador(true);
                 changeViewController.changePan("game");
             }
         }

@@ -149,9 +149,9 @@ public class Comptador {
         thread.start();
     }*/
 
-    public void comptar() {
+    public void comptar(boolean run) {
         // Establecer la variable running en true para indicar que el hilo debe estar en ejecución
-        setRunning(true);
+        setRunning(run);
 
         // Crear nuevas instancias de tus tres generadores
         GameManager gameManager = new GameManager(sqlGameDAO, sqlUserDAO, sqlGeneratorsDAO);
@@ -192,6 +192,7 @@ public class Comptador {
                     }
                 }
             }
+
         };
 
         // Iniciar el hilo

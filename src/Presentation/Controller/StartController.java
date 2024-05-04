@@ -32,12 +32,12 @@ public class StartController implements ActionListener {
             userManager.setPartidaActiva();
             gameManager.initGame();
             generatorManager.initGeneratorPesistance(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()) + 1);
-            gameManager.comptar();
+            changeViewController.setComptador(true);
             changeViewController.changePan("game");
 
         } else if (e.getActionCommand().equals("resumegame")) {
             //Carregar la partida
-            gameManager.comptar();
+            changeViewController.setComptador(true);
             changeViewController.changePan("game");
         } else if (e.getActionCommand().equals("stats")) {
             changeViewController.changePan("stats");

@@ -25,8 +25,8 @@ import Presentation.View.GameView;
     public void setComptadorInterficie(ComptadorInterficie comptadorInterficie) {
         comptador.setComptadorInterficie(comptadorInterficie);
     }
-    public void comptar() {
-        comptador.comptar();
+    public void comptar(boolean run) {
+        comptador.comptar(run);
     }
 
     public void setQuantitatCafe(double quantitatCoffee) {
