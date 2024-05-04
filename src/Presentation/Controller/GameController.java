@@ -85,6 +85,7 @@ public class GameController implements ActionListener, ComptadorInterficie {
         } else if (e.getActionCommand().equals("finish")){
             boolean exit = showConfirmationDialog("Do you want to finish the game?");
             if(exit){
+                gameManager.disconnectUser();
                 gameManager.setEndeGame();
                 changeViewController.changePan("login");
             } else {
@@ -94,6 +95,7 @@ public class GameController implements ActionListener, ComptadorInterficie {
         } else if (e.getActionCommand().equals("save")){
             boolean exit = showConfirmationDialog("Do you want to save the game?");
             if(exit){
+                gameManager.disconnectUser();
                 changeViewController.changePan("login");
             } else {
                 changeViewController.changePan("game");

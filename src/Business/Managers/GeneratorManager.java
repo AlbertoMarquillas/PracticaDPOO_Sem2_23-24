@@ -1,10 +1,6 @@
 package Business.Managers;
 
 import Business.Entities.Generator;
-import Business.Entities.GeneratorFactory;
-import Business.Entities.HerenciasGeneradors.Generador1;
-import Business.Entities.HerenciasGeneradors.Generador2;
-import Business.Entities.HerenciasGeneradors.Generador3;
 import Persistance.sqlDAO.SQLGeneratorsDAO;
 
 public class GeneratorManager {

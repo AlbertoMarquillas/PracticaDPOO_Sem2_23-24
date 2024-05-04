@@ -1,9 +1,6 @@
 package Persistance.sqlDAO;
 
-import Business.Entities.GeneratorFactory;
-import Business.Entities.HerenciasGeneradors.Generador1;
-import Business.Entities.HerenciasGeneradors.Generador2;
-import Business.Entities.HerenciasGeneradors.Generador3;
+
 import Persistance.Connector;
 import Business.Entities.Generator;
 import java.sql.ResultSet;
@@ -146,35 +143,24 @@ public class SQLGeneratorsDAO{
     }
 
     public Generator getGenerator(int ID_P, int ID_G, String type) {
-        String query = "SELECT * FROM generators WHERE ID_P = " + ID_P + " AND ID_G = " + ID_G + " AND Type = '" + type + "'";
-        ResultSet result = Connector.getInstance().selectQuery(query);
-        try {
-            if (result.next()) {
-                Generator generator;
-                switch (type) {
-                    case "A":
-                        generator = new Generador1();
-                        break;
-                    case "B":
-                        generator = new Generador2();
-                        break;
-                    case "C":
-                        generator = new Generador3();
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Invalid type: " + type);
-                }
-                generator.setType(result.getString("Type"));
-                generator.setProduccioActual(result.getDouble("ProduccioActual"));
-                generator.setIncrement(result.getDouble("ProduccioGlobal"));
-                // ... establecer el resto de los campos del generador ...
-                return generator;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+    String query = "SELECT * FROM generators WHERE ID_P = " + ID_P + " AND ID_G = " + ID_G + " AND Type = '" + type + "'";
+    ResultSet result = Connector.getInstance().selectQuery(query);
+    try {
+        if (result.next()) {
+            Generator generator = new Generator(
+                result.getString("Type"),
+                result.getInt("Quantitat"),
+                result.getDouble("ProduccioActual"),
+                result.getDouble("ProduccioGlobal"),
+                result.getInt("Num_Millores")
+            );
+            return generator;
         }
-        return null; // Devolver null si no se encuentra el generador
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
+    return null; // Devolver null si no se encuentra el generador
+}
 
 
 
@@ -182,11 +168,13 @@ public class SQLGeneratorsDAO{
     public void initGenerators(int ID_P, int ID_G) {
         String types[] = {"A", "B", "C"};
         int quantitats[] = {1, 1, 0};
+        int costBase[] = {10, 150, 2000};
         double produccioInicial[] = {0.2,1,15};
+
 
         for (int i = 0; i < types.length; i++) {
             String query = "INSERT INTO generators(ID_P, ID_G, Type, Quantitat, CostActual, ProduccioActual, ProduccioGlobal, Num_Millores) VALUES " +
-                    "('" + ID_P + "', '" + ID_G + "', '" + types[i] + "', '" + quantitats[i] + "', '" + produccioInicial[i] + "', '" + 0 + "', '" + 0 + "', '" + 0 + "');";
+                    "('" + ID_P + "', '" + ID_G + "', '" + types[i] + "', '" + quantitats[i] + "', '" + costBase[i] + "', '" + produccioInicial[i] + "', '" + 0 + "', '" + 0 + "');";
 
             Connector.getInstance().insertQuery(query);
         }

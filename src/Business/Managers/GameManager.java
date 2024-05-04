@@ -63,4 +63,8 @@ import Presentation.View.GameView;
         long roundedCoffeeCount = Math.round(coffeeCount);
         return String.valueOf(roundedCoffeeCount);
     }
+
+    public void disconnectUser() {
+        sqlUserDAO.setAllUsersOff();
     }
+}

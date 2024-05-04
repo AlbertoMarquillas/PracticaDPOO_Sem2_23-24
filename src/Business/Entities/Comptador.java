@@ -1,8 +1,5 @@
 package Business.Entities;
 
-import Business.Entities.HerenciasGeneradors.Generador1;
-import Business.Entities.HerenciasGeneradors.Generador2;
-import Business.Entities.HerenciasGeneradors.Generador3;
 import Business.Managers.GameManager;
 import Persistance.sqlDAO.SQLGameDAO;
 import Persistance.sqlDAO.SQLUserDAO;
@@ -158,9 +155,7 @@ public class Comptador {
 
         // Crear nuevas instancias de tus tres generadores
         GameManager gameManager = new GameManager(sqlGameDAO, sqlUserDAO, sqlGeneratorsDAO);
-        Generador1 generador1 = (Generador1) sqlGeneratorsDAO.getGenerator(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()), "A");
-        Generador2 generador2 = (Generador2) sqlGeneratorsDAO.getGenerator(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()), "B");
-        Generador3 generador3 = (Generador3) sqlGeneratorsDAO.getGenerator(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()), "C");
+
 
 
         // Crear un nuevo hilo
@@ -171,10 +166,19 @@ public class Comptador {
                 // Mientras la variable running sea true, el hilo seguirá en ejecución
                 while (running) {
 
+                    Generator generador1 = sqlGeneratorsDAO.getGenerator(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()), "A");
+                    Generator generador2 = sqlGeneratorsDAO.getGenerator(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()), "B");
+                    Generator generador3 = sqlGeneratorsDAO.getGenerator(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()), "C");
+
+
                     double nCoffee = sqlGameDAO.getNCoffees(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()));
 
+                    double Gen1 = generador1.getProduccioActual() * generador1.getQuantitat();
+                    double Gen2 = generador2.getProduccioActual() * generador2.getQuantitat();
+                    double Gen3 = generador3.getProduccioActual() * generador3.getQuantitat();
+
                     // Incrementar nCoffee por la cantidad de café producido por cada generador
-                    nCoffee = nCoffee + (generador1.getProduccioActual() * generador1.getQuantitat()) + (generador2.getProduccioActual() * generador2.getQuantitat()) + (generador3.getProduccioActual() * generador3.getQuantitat());
+                    nCoffee = nCoffee + (Gen1) + (Gen2) + (Gen3);
 
                     // Actualizar la interfaz del contador con la cantidad actual de café y la producción total de los generadores
                     comptadorInterficie.updateQuantitatCoffe(nCoffee);
