@@ -24,7 +24,7 @@ public class Main {
         UserManager userManager = new UserManager(sqlUserDAO);
         LogInManager logInManager = new LogInManager(userManager);
         SignUpManager signUpManager = new SignUpManager(userManager);
-        GeneratorManager generatorManager = new GeneratorManager(sqlGeneratorsDAO);
+        GeneratorManager generatorManager = new GeneratorManager(sqlGeneratorsDAO, sqlGameDAO);
         GameManager gameManager = new GameManager(sqlGameDAO, sqlUserDAO, sqlGeneratorsDAO);
 
         StartView startView = new StartView();

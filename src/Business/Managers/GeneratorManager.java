@@ -2,18 +2,23 @@ package Business.Managers;
 
 import Business.Entities.Generator;
 import Persistance.sqlDAO.SQLGeneratorsDAO;
+import Persistance.sqlDAO.SQLGameDAO; //NO SE SI AIXO ES POT FEEER !!!!!!!!!!!!!
+
+import java.util.Objects;
 
 public class GeneratorManager {
 
     private final SQLGeneratorsDAO sqlGeneratorsDAO;
+    private final SQLGameDAO sqlGameDAO; //NO SE SI AIXO ES POR FER !!!!!!!!!!!!!!!
 
     String[] types = {"A", "B", "C"};
     int[] costBase = {10, 150, 2000};
     double[] baseProduction = {0.2, 1.0, 15.0};
     double[] incrementDeCost = {1.07, 1.15, 1.12};
 
-    public GeneratorManager(SQLGeneratorsDAO sqlGeneratorsDAO) {
+    public GeneratorManager(SQLGeneratorsDAO sqlGeneratorsDAO, SQLGameDAO sqlGameDAO) {
         this.sqlGeneratorsDAO = sqlGeneratorsDAO;
+        this.sqlGameDAO = sqlGameDAO; //!!!!!!!!!!!!!!!!!!!!!
     }
 
     /*
@@ -33,20 +38,24 @@ public class GeneratorManager {
     */
 
     public int getQuantitatGenerados(int ID_P, int ID_G, String type) {
-        switch (type) {
-            case "A" -> {
-                return sqlGeneratorsDAO.getQuantitatGeneradors(ID_P, ID_P, type);
-            }
-            case "B" -> {
-                return sqlGeneratorsDAO.getQuantitatGeneradors(ID_P, ID_P, type);
-            }
-            case "C" -> {
-                return sqlGeneratorsDAO.getQuantitatGeneradors(ID_P, ID_P, type);
-            }
-            default -> {
-                return 0;
-            }
+        if(Objects.equals(type, "A") || Objects.equals(type, "B") || Objects.equals(type, "C")) {
+            return sqlGeneratorsDAO.getQuantitatGeneradors(ID_P, ID_G, type);
+        } else {
+            return 0;
         }
+    }
+
+    public int updateQuantitatGeneradors(int ID_P, int ID_G, String type){
+        int quantitat = getQuantitatGenerados(ID_P, ID_G, type) +1;
+        sqlGeneratorsDAO.actualitzarQuantitat(quantitat, ID_P, ID_G, type);
+        return quantitat;
+    }
+
+
+    public float updateOverallProduction(int ID_P, int ID_G, String type){
+        //Editar a la base de dades el valor overall -> Falten totes les funcions
+        return (float) (100 * (sqlGeneratorsDAO.getProduccioActual(type) / sqlGameDAO.getNCoffees(ID_P, ID_G)));
+
     }
 
 
@@ -68,18 +77,27 @@ public class GeneratorManager {
         }
     }
 
-    public void updateCost(int i, double incrementarPotenciador) {
-        switch (i) {
-            case 1 -> {
-                sqlGeneratorsDAO.updateCost(incrementarPotenciador, "A");
-            }
-            case 2 -> {
-                sqlGeneratorsDAO.updateCost(incrementarPotenciador, "B");
-            }
-            case 3 -> {
-                sqlGeneratorsDAO.updateCost(incrementarPotenciador, "C");
-            }
+    public int updateCost(int ID_P, int ID_G, String type) {
+        int i;
+        double increment;
+        if(Objects.equals(type, "A")){
+            i = 0;
+        } else if (Objects.equals(type, "B")){
+            i = 1;
+        } else if (Objects.equals(type, "C")){
+            i = 2;
+        } else {
+            i = 3;
         }
+
+        if(i < 3) {
+            increment = costBase[i] * Math.pow(incrementDeCost[i], getQuantitatGenerados(ID_P, ID_G, type));
+            sqlGeneratorsDAO.updateCost(increment, type);
+            return (int) Math.round(increment);
+        } else {
+            return 0;
+        }
+
 
     }
 

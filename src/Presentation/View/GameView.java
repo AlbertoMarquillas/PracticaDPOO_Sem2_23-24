@@ -53,6 +53,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
 
     private JButton imageButton;
     private JButton settingsButton;
+    private JTable table;
 
     private String text = "0000";
     private final CustomLabel contador;
@@ -100,7 +101,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         millora1 = new CustomButton("<html><div style='text-align: center;'>Double the efficiency in BARISTA BOOST</div></html>", 170, 75, Color.decode("#F8F2F0"), Color.decode("#3B1211"), new Font("Segoe UI Black", Font.PLAIN, 14));
         millora2 = new CustomButton("<html><div style='text-align: center;'>Double the efficiency in WAFFLE WIZARD</div></html>", 170, 75, Color.decode("#F8F2F0"), Color.decode("#3B1211"), new Font("Segoe UI Black", Font.PLAIN, 14));
         millora3 = new CustomButton("<html><div style='text-align: center;'>Double the efficiency in STEAMY BREW</div></html>", 170, 75, Color.decode("#F8F2F0"), Color.decode("#3B1211"), new Font("Segoe UI Black", Font.PLAIN, 14));
-        millora4 = new CustomButton("<html><div style='text-align: center;'>Coffee bean multiplier 50%</div></html>", 170, 75, Color.decode("#F8F2F0"), Color.decode("#3B1211"), new Font("Segoe UI Black", Font.PLAIN, 14));
+        millora4 = new CustomButton("<html><div style='text-align: center;'>Double the efficiency in clicks</div></html>", 170, 75, Color.decode("#F8F2F0"), Color.decode("#3B1211"), new Font("Segoe UI Black", Font.PLAIN, 14));
 
         //hacer que si se pulsa el boton millora 1, quantitatPotenciadors1 sume +1
 
@@ -120,13 +121,13 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         potenciador1 = createPotenciadorButton("Imagenes/potenciador1.png", "BARISTA BOOST", "Cost:" + cost1 +" Coffes", "<html><div style='text-align: center;'>Elevate your brew game<br>with lightning speed</div></html>");
         potenciador2 = createPotenciadorButton("Imagenes/potenciador2.png", "WAFFLE WIZARD", "Cost: " + cost2 +" Coffes", "<html><div style='text-align: center;'>Master the art of waffle<br>making with prowess.</div></html>");
         potenciador3 = createPotenciadorButton("Imagenes/potenciador3.png", "STEAMY BREW", "Cost: " + cost3 +" Coffes", "<html><div style='text-align: center;'>Experience the power<br>of a perfect brew cup.</div></html>");
-        
+
 
         finishGame = new CustomButton("Finish Game", 230, 50, Color.decode("#F8F2F0"), Color.decode("#3B1211"), new Font("Segoe UI Black", Font.PLAIN, 14));
         saveGame = new CustomButton("Save Game", 230, 50, Color.decode("#F8F2F0"), Color.decode("#3B1211"), new Font("Segoe UI Black", Font.PLAIN, 14));
 
         //Crear la taula amb les dades dels potenciadors
-        JTable table = createTable(quantitatPotenciadors1, quantitatPotenciadors2, quantitatPotenciadors3, produccioTotal1, produccioTotal2, produccioTotal3, overallPot1, overallPot2, overallPot3);
+       table = createTable(quantitatPotenciadors1, quantitatPotenciadors2, quantitatPotenciadors3, produccioTotal1, produccioTotal2, produccioTotal3, overallPot1, overallPot2, overallPot3);
 
 
         //Crear el panell central, que es el que contindrà el títol, la taula i el botó de configuració
@@ -270,6 +271,8 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
     }
 
 
+
+
     /**
      * Funció que crea un JPanel pels potenciadors amb un layout i un color determinat.
      * @param pathFoto  Ruta de la imatge del potenciador
@@ -362,17 +365,17 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         Vector<Object> row1 = new Vector<>();
         row1.add("Barista Boost");
         row1.add(quantitatPotenciadors1);
-        row1.add("0.2 c/s");
-        row1.add(String.format("%.2f", produccioTotal1) + " c/s (var)");
-        row1.add(String.format("%.2f", overallPot1) + "% (var)");
+        row1.add("0,2 c/s");
+        row1.add(String.format("%.2f", produccioTotal1) + " c/s");
+        row1.add(String.format("%.2f", overallPot1) + " %");
         tableModel.addRow(row1);
 
         Vector<Object> row2 = new Vector<>();
         row2.add("Waffle Wizard");
         row2.add(quantitatPotenciadors2);
         row2.add("1 c/s");
-        row2.add(String.format("%.2f", produccioTotal2) + "X c/s (var)");
-        row2.add(String.format("%.2f", overallPot2) + "% (var)");
+        row2.add(String.format("%.2f", produccioTotal2) + " c/s");
+        row2.add(String.format("%.2f", overallPot2) + " %");
         tableModel.addRow(row2);
 
         Vector<Object> row3 = new Vector<>();
@@ -380,8 +383,8 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         row3.add(quantitatPotenciadors3);
         row3.add("5 c/s");
         //mostrar produccioTotal3 con dos decimales
-        row3.add(String.format("%.2f", produccioTotal3) + "X c/s (var)");
-        row3.add(String.format("%.2f", overallPot3) + "% (var)");
+        row3.add(String.format("%.2f", produccioTotal3) + " c/s");
+        row3.add(String.format("%.2f", overallPot3) + " %");
         tableModel.addRow(row3);
 
         // Crear la taula amb les dades
@@ -693,6 +696,10 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
 
     public void setQuantitatPotenciador1(int quantitatPotenciadors1) {
         this.quantitatPotenciadors1 = quantitatPotenciadors1;
+        //voler a printar la celda 2,2 de table
+        //this.table.remove(quantitatPotenciadors1);
+        this.table.repaint();
+
     }
 
     public int getQuantitatPotenciadors2() {
@@ -701,6 +708,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
 
     public void setQuantitatPotenciador2(int quantitatPotenciadors2) {
         this.quantitatPotenciadors2 = quantitatPotenciadors2;
+        this.table.repaint();
     }
 
     public int getQuantitatPotenciadors3() {
@@ -709,6 +717,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
 
     public void setQuantitatPotenciador3(int quantitatPotenciadors3) {
         this.quantitatPotenciadors3 = quantitatPotenciadors3;
+        this.table.repaint();
     }
 
     public float getProduccioTotal1() {
@@ -717,6 +726,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
 
     public void setProduccioTotal1(float produccioTotal1) {
         this.produccioTotal1 = produccioTotal1;
+        this.table.repaint();
     }
 
     public float getProduccioTotal2() {
@@ -725,6 +735,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
 
     public void setProduccioTotal2(float produccioTotal2) {
         this.produccioTotal2 = produccioTotal2;
+        this.table.repaint();
     }
 
     public float getProduccioTotal3() {
@@ -732,6 +743,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
     }
 
     public void setProduccioTotal3(float produccioTotal3) {
+        this.table.repaint();
         this.produccioTotal3 = produccioTotal3;
     }
 
@@ -741,6 +753,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
 
     public void setOverallPot1(float overallPot1) {
         this.overallPot1 = overallPot1;
+        this.table.repaint();
     }
 
     public float getOverallPot2() {
@@ -749,6 +762,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
 
     public void setOverallPot2(float overallPot2) {
         this.overallPot2 = overallPot2;
+        this.table.repaint();
     }
 
     public float getOverallPot3() {
@@ -757,6 +771,8 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
 
     public void setOverallPot3(float overallPot3) {
         this.overallPot3 = overallPot3;
+        this.table.repaint();
     }
+
 
 }

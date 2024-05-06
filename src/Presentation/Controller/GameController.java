@@ -47,9 +47,9 @@ public class GameController implements ActionListener, ComptadorInterficie {
         }else if (e.getActionCommand().equals("potenciador1")){
             type = "A";
             //generatorManager.updateCost(generatorManager.incrementarPotenciador(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type);
-            gameView.setQuantitatPotenciador1(generatorManager.getQuantitatGenerados(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type));
-            gameView.setCostPotenciador1(generatorManager.getCost(1));
-
+            gameView.setQuantitatPotenciador1(generatorManager.updateQuantitatGeneradors(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type));
+            //gameView.setCostPotenciador1(generatorManager.getCost(1));
+            gameView.setCostPotenciador1(generatorManager.updateCost(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), "A"));
             System.out.println("Quantitat Potenciadors 1: " + gameView.getQuantitatPotenciadors1());
             System.out.println("Cost potenciador 1: " + gameView.getCost1());
             System.out.println("CostActual potenciador 1: " + generatorManager.getCostActual(1));
