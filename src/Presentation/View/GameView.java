@@ -629,9 +629,6 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
     public void setComptador(String text) {
         this.text = text;
         this.contador.setText(this.text);
-<<<<<<< HEAD
-
-=======
         this.contador.setHorizontalAlignment(JLabel.CENTER);
         Dimension size = new Dimension(300, 100);
         this.contador.setMinimumSize(size);
@@ -643,7 +640,6 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         //this.contador.setBorder(new LineBorder(borderColor));
 
         this.contador.repaint();
->>>>>>> PersistenciaBBDDUnificada
     }
 
     @Override

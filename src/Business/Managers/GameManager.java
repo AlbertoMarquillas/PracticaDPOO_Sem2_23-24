@@ -30,14 +30,7 @@ import Presentation.View.GameView;
     }
 
     public void setQuantitatCafe(double quantitatCoffee) {
-<<<<<<< HEAD
-        sqlGameDAO.setNCoffees(sqlUserDAO.getConnectedUserId(), quantitatCoffee);
-    }
-    public double getQuantitatCafe() {
-        return sqlGameDAO.getNCoffees(sqlUserDAO.getConnectedUserId());
-=======
         sqlGameDAO.setNCoffees(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()), quantitatCoffee);
->>>>>>> PersistenciaBBDDUnificada
     }
 
     public void initGame() {
@@ -63,14 +56,6 @@ import Presentation.View.GameView;
         sqlGameDAO.setEnded(sqlUserDAO.getConnectedUserId(),true);
     }
 
-<<<<<<< HEAD
-    public double quantitatCoffeClick() {
-        if (sqlGameDAO.getPowerUpClicker(sqlUserDAO.getConnectedUserId())) {
-            return 2;
-        } else {
-            return 1;
-        }
-=======
 
 
     public String getComptadorCafe() {
@@ -81,6 +66,5 @@ import Presentation.View.GameView;
 
     public void disconnectUser() {
         sqlUserDAO.setAllUsersOff();
->>>>>>> PersistenciaBBDDUnificada
     }
 }

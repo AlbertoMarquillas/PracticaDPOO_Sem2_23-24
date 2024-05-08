@@ -3,15 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
-<<<<<<< HEAD
--- Tiempo de generación: 03-05-2024 a las 09:38:56
--- Versión del servidor: 10.4.27-MariaDB
--- Versión de PHP: 8.2.0
-=======
 -- Tiempo de generación: 04-05-2024 a las 05:22:11
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
->>>>>>> PersistenciaBBDDUnificada
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -38,11 +32,7 @@ CREATE TABLE `game` (
   `ID_G` int(11) NOT NULL,
   `N_Coffees` float NOT NULL,
   `PowerUpClicker` int(11) NOT NULL,
-<<<<<<< HEAD
-  `Time` text NOT NULL,
-=======
   `Time` time NOT NULL,
->>>>>>> PersistenciaBBDDUnificada
   `Ended` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
@@ -67,21 +57,8 @@ CREATE TABLE `generators` (
   `Quantitat` int(11) NOT NULL,
   `CostActual` int(11) NOT NULL,
   `ProduccioActual` float NOT NULL,
-  `ProduccioGlobal` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `millores`
---
-
-CREATE TABLE `millores` (
-  `ID_P` int(11) NOT NULL,
-  `ID_G` int(11) NOT NULL,
-  `Type` varchar(255) NOT NULL,
-  `Quantitat` int(11) NOT NULL,
-  `CostBase` int(11) NOT NULL
+  `ProduccioGlobal` float NOT NULL,
+  `Num_Millores` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 --
@@ -111,8 +88,6 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 --
-<<<<<<< HEAD
-=======
 -- Volcado de datos para la tabla `user`
 --
 
@@ -121,7 +96,6 @@ INSERT INTO `user` (`id`, `UserName`, `Email`, `Password`, `Connected`) VALUES
 (2, 'g', 'g@gmail.com', 'Gerard1234_', 0);
 
 --
->>>>>>> PersistenciaBBDDUnificada
 -- Índices para tablas volcadas
 --
 
@@ -139,11 +113,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-<<<<<<< HEAD
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-=======
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
->>>>>>> PersistenciaBBDDUnificada
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

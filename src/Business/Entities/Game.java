@@ -18,21 +18,15 @@ public class Game {
     public Game(SQLGameDAO sqlGameDAO, SQLUserDAO sqlUserDAO) {
         this.sqlGameDAO = sqlGameDAO;
         this.sqlUserDAO = sqlUserDAO;
-        sqlGameDAO.startNewGame(sqlUserDAO.getConnectedUserId());
+        sqlGameDAO.startNewGame(sqlUserDAO.getUserID("a"));
     }
 
 
     public double getQuantitatCafes() {
-        return sqlGameDAO.getGameCount(sqlUserDAO.getConnectedUserId());
+        return sqlGameDAO.getGameCount(sqlUserDAO.getUserID("a"));
     }
 
-<<<<<<< HEAD
-    public void setQuantitatCafes(double quantitatCafes) {
-        sqlGameDAO.setNCoffees(sqlUserDAO.getConnectedUserId(), quantitatCafes);
-    }
-=======
 
->>>>>>> PersistenciaBBDDUnificada
 
     public int getId_jugador() {
         return id_jugador;

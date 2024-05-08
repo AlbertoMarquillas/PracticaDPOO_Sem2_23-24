@@ -39,26 +39,9 @@ public class GameController implements ActionListener, ComptadorInterficie {
             changeViewController.setComptador(false);
             changeViewController.changePan("settings");
         } else if (e.getActionCommand().equals("createcofee")) {
-<<<<<<< HEAD
-
-            double cafesBBDD = gameManager.getQuantitatCafe();
-            double caffesClcik = gameManager.quantitatCoffeClick();
-            double cafesTotal = cafesBBDD + caffesClcik;
-            setQuantitatCoffe(cafesTotal);
-            gameView.setComptador(String.valueOf(cafesTotal));
-            gameView.setVisible(false);
-            gameView.setVisible(true);
-            gameView.setSize(gameView.getWidth(), gameView.getHeight());
-
-        }else if (e.getActionCommand().equals("potenciador1")){
-            generatorManager.updateCost(1, generatorManager.incrementarPotenciador(1));
-            gameView.setQuantitatPotenciador1(generatorManager.getQuantitatGenerados(1));
-            gameView.setCostPotenciador1(generatorManager.getCost(1));
-=======
             double n_Caffee = gameManager.getCaffeeNumber() + 1;
             //Guardem en la BBDD la quantitat de cafes actualitzada.
             updateQuantitatCoffe(n_Caffee);
->>>>>>> PersistenciaBBDDUnificada
 
             System.out.println("Cafes Actuals: " + gameView.getComptador());
         }else if (e.getActionCommand().equals("potenciador1")){
@@ -141,23 +124,10 @@ public class GameController implements ActionListener, ComptadorInterficie {
     }
 
     @Override
-<<<<<<< HEAD
-    public void updateQuantitatCoffe(double quantitatCafes, double produccio) {
-        double nCafes = quantitatCafes + produccio;
-        setQuantitatCoffe(nCafes);
-        gameView.setComptador(String.valueOf(nCafes));
-        gameManager.setQuantitatCafe(nCafes);
-        System.out.println(nCafes);
-        gameView.setVisible(false);
-        gameView.setVisible(true);
-        gameView.setSize(gameView.getWidth(), gameView.getHeight());
-
-=======
     public void updateQuantitatCoffe(double quantitatCafes) {
         gameView.setComptador(String.valueOf(Math.round(quantitatCafes)));
         gameManager.setQuantitatCafe(quantitatCafes);
         System.out.println(quantitatCafes);
->>>>>>> PersistenciaBBDDUnificada
     }
 
     public void setComptadorInterficie(ComptadorInterficie comptadorInterficie) {

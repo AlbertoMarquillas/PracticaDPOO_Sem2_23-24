@@ -172,13 +172,9 @@ public class SQLGeneratorsDAO{
         double produccioInicial[] = {0.2,1,15};
 
 
-        for (String type : types) {
+        for (int i = 0; i < types.length; i++) {
             String query = "INSERT INTO generators(ID_P, ID_G, Type, Quantitat, CostActual, ProduccioActual, ProduccioGlobal, Num_Millores) VALUES " +
-<<<<<<< HEAD
-                    "('" + ID_P + "', '" + ID_G + "', '" + type + "', '" + 0 + "', '" + 0 + "', '" + 0 + "', '" + 0 + "', '" + 0 + "')";
-=======
                     "('" + ID_P + "', '" + ID_G + "', '" + types[i] + "', '" + quantitats[i] + "', '" + costBase[i] + "', '" + produccioInicial[i] + "', '" + 0 + "', '" + 0 + "');";
->>>>>>> PersistenciaBBDDUnificada
 
             Connector.getInstance().insertQuery(query);
         }

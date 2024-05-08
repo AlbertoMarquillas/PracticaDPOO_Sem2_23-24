@@ -122,10 +122,6 @@ public class Comptador {
 
                 // Mientras la variable running sea true, el hilo seguirá en ejecución
                 while (running) {
-<<<<<<< HEAD
-                    nCoffee = sqlGameDAO.getNCoffees(sqlUserDAO.getConnectedUserId()) + generador.getProduccio();
-                    comptadorInterficie.updateQuantitatCoffe(nCoffee, generador.getProduccio());
-=======
                     // Incrementar nCoffee por la cantidad de café producido por el generador
                     nCoffee = nCoffee + generador.getProduccio();
 
@@ -138,7 +134,6 @@ public class Comptador {
                     // Actualizar la cantidad de café del usuario "a" en la base de datos
                     sqlGameDAO.setNCoffees(sqlUserDAO.getUserID("a"), n_cafes);
 
->>>>>>> PersistenciaBBDDUnificada
                     try {
                         // Hacer que el hilo duerma durante un segundo antes de continuar con la próxima iteración
                         Thread.sleep(1000);
