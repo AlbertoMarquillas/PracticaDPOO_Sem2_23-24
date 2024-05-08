@@ -34,10 +34,8 @@ public class StartController implements ActionListener {
             generatorManager.initGeneratorPesistance(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()) + 1);
             changeViewController.setComptador(true);
             changeViewController.changePan("game");
-<<<<<<< HEAD
             gameManager.comptar();
-=======
->>>>>>> PersistenciaBBDDUnificada
+            
 
         } else if (e.getActionCommand().equals("resumegame")) {
             //Carregar la partida
