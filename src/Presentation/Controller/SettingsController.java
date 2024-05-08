@@ -46,6 +46,7 @@ public class SettingsController implements ActionListener {
                 changeViewController.changePan("settings");
             }
         } else if (e.getActionCommand().equals("back")) {
+            changeViewController.setComptador(true);
             changeViewController.changePan("game");
         }
     }

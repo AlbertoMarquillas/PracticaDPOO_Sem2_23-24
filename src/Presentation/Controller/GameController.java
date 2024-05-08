@@ -34,9 +34,12 @@ public class GameController implements ActionListener, ComptadorInterficie {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        String type = null;
         if (e.getActionCommand().equals("settings")) {
+            changeViewController.setComptador(false);
             changeViewController.changePan("settings");
         } else if (e.getActionCommand().equals("createcofee")) {
+<<<<<<< HEAD
 
             double cafesBBDD = gameManager.getQuantitatCafe();
             double caffesClcik = gameManager.quantitatCoffeClick();
@@ -51,7 +54,19 @@ public class GameController implements ActionListener, ComptadorInterficie {
             generatorManager.updateCost(1, generatorManager.incrementarPotenciador(1));
             gameView.setQuantitatPotenciador1(generatorManager.getQuantitatGenerados(1));
             gameView.setCostPotenciador1(generatorManager.getCost(1));
+=======
+            double n_Caffee = gameManager.getCaffeeNumber() + 1;
+            //Guardem en la BBDD la quantitat de cafes actualitzada.
+            updateQuantitatCoffe(n_Caffee);
+>>>>>>> PersistenciaBBDDUnificada
 
+            System.out.println("Cafes Actuals: " + gameView.getComptador());
+        }else if (e.getActionCommand().equals("potenciador1")){
+            type = "A";
+            //generatorManager.updateCost(generatorManager.incrementarPotenciador(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type);
+            gameView.setQuantitatPotenciador1(generatorManager.updateQuantitatGeneradors(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type));
+            //gameView.setCostPotenciador1(generatorManager.getCost(1));
+            gameView.setCostPotenciador1(generatorManager.updateCost(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), "A"));
             System.out.println("Quantitat Potenciadors 1: " + gameView.getQuantitatPotenciadors1());
             System.out.println("Cost potenciador 1: " + gameView.getCost1());
             System.out.println("CostActual potenciador 1: " + generatorManager.getCostActual(1));
@@ -59,8 +74,8 @@ public class GameController implements ActionListener, ComptadorInterficie {
             //produccio total de cafes generats
 
         }else if (e.getActionCommand().equals("potenciador2")){
-            generatorManager.updateCost(2,generatorManager.incrementarPotenciador(2));
-            gameView.setQuantitatPotenciador2(generatorManager.getQuantitatGenerados(2));
+            //generatorManager.updateCost(2,generatorManager.incrementarPotenciador(2));
+            gameView.setQuantitatPotenciador2(generatorManager.getQuantitatGenerados(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type));
             gameView.setCostPotenciador2(generatorManager.getCost(2));
 
             System.out.println("Quantitat Potenciadors 2: "  + gameView.getQuantitatPotenciadors2());
@@ -69,8 +84,8 @@ public class GameController implements ActionListener, ComptadorInterficie {
 
 
         }else if (e.getActionCommand().equals("potenciador3")){
-            generatorManager.updateCost(3, generatorManager.incrementarPotenciador(3));
-            gameView.setQuantitatPotenciador3(generatorManager.getQuantitatGenerados(3));
+            //generatorManager.updateCost(3, generatorManager.incrementarPotenciador(3));
+            gameView.setQuantitatPotenciador3(generatorManager.getQuantitatGenerados(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type));
             gameView.setCostPotenciador3(generatorManager.getCost(3));
 
             System.out.println("Quantitat Potenciadors 3: " + gameView.getQuantitatPotenciadors3());
@@ -86,27 +101,28 @@ public class GameController implements ActionListener, ComptadorInterficie {
         }else if (e.getActionCommand().equals("millora4")){
 
         } else if (e.getActionCommand().equals("finish")){
+            changeViewController.setComptador(false);
             boolean exit = showConfirmationDialog("Do you want to finish the game?");
             if(exit){
                 gameManager.setEndeGame();
+                gameManager.disconnectUser();
                 changeViewController.changePan("login");
             } else {
+                changeViewController.setComptador(true);
                 changeViewController.changePan("game");
             }
 
         } else if (e.getActionCommand().equals("save")){
+            changeViewController.setComptador(false);
             boolean exit = showConfirmationDialog("Do you want to save the game?");
             if(exit){
+                gameManager.disconnectUser();
                 changeViewController.changePan("login");
             } else {
+                changeViewController.setComptador(true);
                 changeViewController.changePan("game");
             }
         }
-    }
-
-    @Override
-    public void setQuantitatCoffe(double quantitatCoffee) {
-        gameManager.setQuantitatCafe(quantitatCoffee);
     }
 
     @Override
@@ -125,6 +141,7 @@ public class GameController implements ActionListener, ComptadorInterficie {
     }
 
     @Override
+<<<<<<< HEAD
     public void updateQuantitatCoffe(double quantitatCafes, double produccio) {
         double nCafes = quantitatCafes + produccio;
         setQuantitatCoffe(nCafes);
@@ -135,6 +152,12 @@ public class GameController implements ActionListener, ComptadorInterficie {
         gameView.setVisible(true);
         gameView.setSize(gameView.getWidth(), gameView.getHeight());
 
+=======
+    public void updateQuantitatCoffe(double quantitatCafes) {
+        gameView.setComptador(String.valueOf(Math.round(quantitatCafes)));
+        gameManager.setQuantitatCafe(quantitatCafes);
+        System.out.println(quantitatCafes);
+>>>>>>> PersistenciaBBDDUnificada
     }
 
     public void setComptadorInterficie(ComptadorInterficie comptadorInterficie) {

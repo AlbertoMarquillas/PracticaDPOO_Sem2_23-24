@@ -1,11 +1,17 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
+<<<<<<< HEAD
 -- Tiempo de generación: 03-05-2024 a las 09:38:56
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
+=======
+-- Tiempo de generación: 04-05-2024 a las 05:22:11
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.0.30
+>>>>>>> PersistenciaBBDDUnificada
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,9 +38,21 @@ CREATE TABLE `game` (
   `ID_G` int(11) NOT NULL,
   `N_Coffees` float NOT NULL,
   `PowerUpClicker` int(11) NOT NULL,
+<<<<<<< HEAD
   `Time` text NOT NULL,
+=======
+  `Time` time NOT NULL,
+>>>>>>> PersistenciaBBDDUnificada
   `Ended` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `game`
+--
+
+INSERT INTO `game` (`ID_P`, `ID_G`, `N_Coffees`, `PowerUpClicker`, `Time`, `Ended`) VALUES
+(2, 0, 3, 0, '00:00:00', 1),
+(2, 1, 519.8, 0, '00:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -66,6 +84,18 @@ CREATE TABLE `millores` (
   `CostBase` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `generators`
+--
+
+INSERT INTO `generators` (`ID_P`, `ID_G`, `Type`, `Quantitat`, `CostActual`, `ProduccioActual`, `ProduccioGlobal`, `Num_Millores`) VALUES
+(2, 0, 'A', 1, 0, 0, 0, 0),
+(2, 0, 'B', 1, 1, 0, 0, 0),
+(2, 0, 'C', 0, 15, 0, 0, 0),
+(2, 1, 'A', 1, 10, 0.2, 0, 0),
+(2, 1, 'B', 1, 150, 1, 0, 0),
+(2, 1, 'C', 0, 2000, 15, 0, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -81,6 +111,17 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 --
+<<<<<<< HEAD
+=======
+-- Volcado de datos para la tabla `user`
+--
+
+INSERT INTO `user` (`id`, `UserName`, `Email`, `Password`, `Connected`) VALUES
+(1, 'a', 'a', 'a12345678?A', 0),
+(2, 'g', 'g@gmail.com', 'Gerard1234_', 0);
+
+--
+>>>>>>> PersistenciaBBDDUnificada
 -- Índices para tablas volcadas
 --
 
@@ -98,7 +139,11 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
+<<<<<<< HEAD
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+=======
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+>>>>>>> PersistenciaBBDDUnificada
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

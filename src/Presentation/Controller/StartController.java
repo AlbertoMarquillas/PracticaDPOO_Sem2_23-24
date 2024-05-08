@@ -27,17 +27,21 @@ public class StartController implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-
         //No es pot iniciar una partida si ja n'hi ha una activa
         if (e.getActionCommand().equals("newgame") && !gameManager.comprobarPartidesActives(gameManager.getConnectedUserId())) {
             userManager.setPartidaActiva();
             gameManager.initGame();
-            generatorManager.initGeneratorPesistance(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()));
+            generatorManager.initGeneratorPesistance(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()) + 1);
+            changeViewController.setComptador(true);
             changeViewController.changePan("game");
+<<<<<<< HEAD
             gameManager.comptar();
+=======
+>>>>>>> PersistenciaBBDDUnificada
 
         } else if (e.getActionCommand().equals("resumegame")) {
             //Carregar la partida
+            changeViewController.setComptador(true);
             changeViewController.changePan("game");
             gameManager.comptar();
         } else if (e.getActionCommand().equals("stats")) {

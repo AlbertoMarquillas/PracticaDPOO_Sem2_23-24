@@ -1,5 +1,6 @@
 package Persistance.sqlDAO;
 
+
 import Persistance.Connector;
 import Business.Entities.Generator;
 import java.sql.ResultSet;
@@ -14,35 +15,28 @@ public class SQLGeneratorsDAO{
     }
 
     // Getter and Setter for Quantitat
-    public int getQuantitatGeneradors(String type) {
+    public int getQuantitatGeneradors(int ID_P, int ID_G, String type) {
+        String query = "SELECT Quantitat FROM generators WHERE ID_P = " + ID_P + " AND ID_G = " + ID_G + " AND Type = '" + type + "'";
+        ResultSet result = Connector.getInstance().selectQuery(query);
+        int quantitat = 0;
         try {
-            String query = "SELECT Quantitat FROM generators WHERE Type = '"+type+"'";
-
-            ResultSet result = Connector.getInstance().selectQuery(query);
-            int quantitat = 0;
-            if (result.next()) { // Move the cursor to the first row
+            if (result.next()) {
                 quantitat = result.getInt("Quantitat");
-            } else {
-                // Handle the case where no data is found
             }
-            return quantitat;
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return quantitat;
     }
 
     /**
      * Actualiza la cantidad de generadores de un tipo específico en la base de datos.
      *
-     * @param i La nueva cantidad de generadores.
+     * @param quantitat La nueva cantidad de generadores.
      * @param type El tipo de generador a actualizar.
      */
-    public void actualitzarQuantitat(int i, String type) {
-        // Crear la consulta SQL para actualizar la cantidad de generadores de un tipo específico
-        String query = "UPDATE generators SET Quantitat = " + i + " WHERE Type = '" + type + "'";
-
-        // Ejecutar la consulta SQL
+    public void actualitzarQuantitat(int quantitat, int ID_P, int ID_G, String type) {
+        String query = "UPDATE generators SET Quantitat = " + quantitat + " WHERE ID_P = " + ID_P + " AND ID_G = " + ID_G + " AND Type = '" + type + "'";
         Connector.getInstance().updateQuery(query);
     }
 
@@ -148,15 +142,43 @@ public class SQLGeneratorsDAO{
         }
     }
 
+    public Generator getGenerator(int ID_P, int ID_G, String type) {
+    String query = "SELECT * FROM generators WHERE ID_P = " + ID_P + " AND ID_G = " + ID_G + " AND Type = '" + type + "'";
+    ResultSet result = Connector.getInstance().selectQuery(query);
+    try {
+        if (result.next()) {
+            Generator generator = new Generator(
+                result.getString("Type"),
+                result.getInt("Quantitat"),
+                result.getDouble("ProduccioActual"),
+                result.getDouble("ProduccioGlobal"),
+                result.getInt("Num_Millores")
+            );
+            return generator;
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return null; // Devolver null si no se encuentra el generador
+}
+
 
 
 
     public void initGenerators(int ID_P, int ID_G) {
         String types[] = {"A", "B", "C"};
+        int quantitats[] = {0, 0, 0};       //AIXO HO FEM MANUALMENT
+        int costBase[] = {10, 150, 2000};
+        double produccioInicial[] = {0.2,1,15};
+
 
         for (String type : types) {
             String query = "INSERT INTO generators(ID_P, ID_G, Type, Quantitat, CostActual, ProduccioActual, ProduccioGlobal, Num_Millores) VALUES " +
+<<<<<<< HEAD
                     "('" + ID_P + "', '" + ID_G + "', '" + type + "', '" + 0 + "', '" + 0 + "', '" + 0 + "', '" + 0 + "', '" + 0 + "')";
+=======
+                    "('" + ID_P + "', '" + ID_G + "', '" + types[i] + "', '" + quantitats[i] + "', '" + costBase[i] + "', '" + produccioInicial[i] + "', '" + 0 + "', '" + 0 + "');";
+>>>>>>> PersistenciaBBDDUnificada
 
             Connector.getInstance().insertQuery(query);
         }

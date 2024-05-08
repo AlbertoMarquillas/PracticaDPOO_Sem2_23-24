@@ -1,30 +1,87 @@
 package Business.Entities;
 
 public class Generator {
-
     private String type;
-    private double costBase;
-    private double costActual;
-    private double produccio; //cafes / segon
-    private double produccioGlobal; //cafes / segon
-    private double increment; //increment del cost
     private int quantitat;
+    private double increment;
+    private double produccioActual;
+    private double produccioGlobal;
     private int numeroMillores;
+    private double costActual;
+    private double incrementCost; // Nueva variable
+    private double baseCost; // Nueva variable
+    private double baseProduction; // Nueva variable
 
+    public Generator(String type, int quantitat, double produccioActual, double produccioGlobal, int numeroMillores) {
+        this.type = type;
+        this.quantitat = quantitat;
+        this.produccioActual = produccioActual;
+        this.produccioGlobal = produccioGlobal;
+        this.numeroMillores = numeroMillores;
+        this.incrementCost = setIncrement(type);
+        this.baseCost = setBaseCost(type);
+        this.costActual = setCostActual(type);
+        this.baseProduction = setBaseProduction(type);
 
-    public Generator(){}
+    }
+    public double setIncrement(String type) {
+        if (type.equals("A")) {
+            return 1.07;
+        } else if (type.equals("B")) {
+            return 1.15;
+        } else if (type.equals("C")) {
+            return 1.12;
+        } else {
+            return 1000000.0;
+        }
+    }
+    public double setBaseCost(String type) {
+        if (type.equals("A")) {
+            return 10.0;
+        } else if (type.equals("B")) {
+            return 150.0;
+        } else if (type.equals("C")) {
+            return 2000.0;
+        } else {
+            return 1000000.0;
+        }
+    }
+    public double setCostActual(String type) {
+        return Math.round(baseCost * Math.pow(incrementCost, quantitat));
+    }
 
+    public double setBaseProduction(String type) {
+        if (type.equals("A")) {
+            return 0.2;
+        } else if (type.equals("B")) {
+            return 1.0;
+        } else if (type.equals("C")) {
+            return 15.0;
+        } else {
+            return 1000000.0;
+        }
+    }
+
+    public double getProduccioActual() {
+        return produccioActual;
+    }
+
+    public double getQuantitat() {
+        return quantitat;
+    }
+
+    /*
+    public double getCostBase() {
+        // Implementación por defecto (puede lanzar una excepción o devolver un valor por defecto)
+        throw new UnsupportedOperationException();
+    }
 
     public String getType() {
         return type;
     }
 
-    public double getCostBase() {
-        return costBase;
-    }
-
-    public double getProduccio() {
-        return produccio;
+    public double getProduccioActual() {
+        return produccioActual;
     }
 
     public double getIncrement() {
@@ -35,12 +92,8 @@ public class Generator {
         this.type = type;
     }
 
-    public void setCostBase(double cost) {
-        this.costBase = cost;
-    }
-
-    public void setProduccio(double produccio) {
-        this.produccio = produccio;
+    public void setProduccioActual(double produccioActual) {
+        this.produccioActual = produccioActual;
     }
 
     public void setIncrement(double increment) {
@@ -60,13 +113,6 @@ public class Generator {
         return Math.round(getCostBase() * Math.pow(getIncrement(), getQuantitat()));
     }
 
-    public double getCostActual() {
-        return costActual;
-    }
-
-    public void setCostActual(double costActual) {
-        this.costActual = costActual;
-    }
 
     public double getProduccioGlobal() {
         return produccioGlobal;
@@ -83,4 +129,11 @@ public class Generator {
     public void setNumeroMillores(int numeroMillores) {
         this.numeroMillores = numeroMillores;
     }
+
+
+    public void getCurrentCost() {
+        //return costBase * Math.pow(increment, quantitat);
+    }
+*/
+
 }

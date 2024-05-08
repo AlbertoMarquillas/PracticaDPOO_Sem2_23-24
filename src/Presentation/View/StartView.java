@@ -190,9 +190,6 @@ public class StartView extends JPanel implements KeyListener, ActionListener {
             statisticsButton.setBackgroundColor(Color.LIGHT_GRAY);
     }
 
-
-
-
     @Override
     public void actionPerformed(ActionEvent e) {
 

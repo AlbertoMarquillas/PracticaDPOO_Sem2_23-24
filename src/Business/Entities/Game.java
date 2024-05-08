@@ -26,9 +26,13 @@ public class Game {
         return sqlGameDAO.getGameCount(sqlUserDAO.getConnectedUserId());
     }
 
+<<<<<<< HEAD
     public void setQuantitatCafes(double quantitatCafes) {
         sqlGameDAO.setNCoffees(sqlUserDAO.getConnectedUserId(), quantitatCafes);
     }
+=======
+
+>>>>>>> PersistenciaBBDDUnificada
 
     public int getId_jugador() {
         return id_jugador;
