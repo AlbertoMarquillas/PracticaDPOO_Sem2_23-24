@@ -63,11 +63,48 @@ public class Generator {
     }
 
     public double getProduccioActual() {
-        return produccioActual;
+        return this.produccioActual;
     }
 
     public double getQuantitat() {
         return quantitat;
+    }
+
+    public void setProduccioActual() {
+        this.produccioActual = baseProduction * Math.pow(increment, quantitat);
+    }
+
+    public void buyGenerator() {
+        this.quantitat++;
+        this.costActual = baseCost * Math.pow(incrementCost, quantitat);
+    }
+
+    public String getCostActualString() {
+        return String.valueOf(costActual);
+    }
+
+    public String getProduccioGlobalString() {
+        return String.valueOf(produccioGlobal);
+    }
+
+    public String getNumMilloresString() {
+        return String.valueOf(numeroMillores);
+    }
+
+    public double getGeneratorCost() {
+        return this.costActual;
+    }
+
+    public double getProduccioTotal() {
+        return this.produccioGlobal;
+    }
+
+    public void setProduccioTotal(double generat) {
+        this.produccioGlobal = this.produccioGlobal + generat;
+    }
+
+    public String getTypeString() {
+        return this.type;
     }
 
     /*

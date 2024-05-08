@@ -8,6 +8,7 @@ public interface ComptadorInterficie {
 
     long getGameTime();
 
-    void updateQuantitatCoffe(double quantitatCafes);
+    void updateQuantitatCoffe(double quantitatCafes, Generator generator1, Generator generator2, Generator generator3);
 
+    void setTaulaContenido(Generator generador1, Generator generador2, Generator generador3);
 }

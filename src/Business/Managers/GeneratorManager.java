@@ -77,8 +77,13 @@ public class GeneratorManager {
         }
     }
 
-    public int updateCost(int ID_P, int ID_G, String type) {
-        int i;
+    public double getCostGenerator(int ID_P, int ID_G, String type) {
+        Generator generator = sqlGeneratorsDAO.getGenerator(ID_P, ID_G, type);
+        double costGenerator = generator.getGeneratorCost();
+        costGenerator = Math.round(costGenerator * 100.0) / 100.0;
+        return costGenerator;
+
+        /*int i;
         double increment;
         if(Objects.equals(type, "A")){
             i = 0;
@@ -96,29 +101,38 @@ public class GeneratorManager {
             return (int) Math.round(increment);
         } else {
             return 0;
-        }
+        }*/
 
 
     }
 
-    public int getCostActual(int i) {
-        switch (i) {
-            case 1 -> {
-                return sqlGeneratorsDAO.getCostActual("A");
-            }
-            case 2 -> {
-                return sqlGeneratorsDAO.getCostActual("B");
-            }
-            case 3 -> {
-                return sqlGeneratorsDAO.getCostActual("C");
-            }
-            default -> {
-                return 0;
-            }
-        }
+    public double getCostActual(int ID_p, int ID_G, String type) {
+        return sqlGeneratorsDAO.getCostActual(ID_p, ID_G, type);
     }
 
     public void initGeneratorPesistance(int ID_P, int ID_G){
         sqlGeneratorsDAO.initGenerators(ID_P, ID_G);
+    }
+
+    public boolean buyGenerator(int ID_P, int ID_G, String type) {
+        Generator generator = sqlGeneratorsDAO.getGenerator(ID_P, ID_G, type);
+        double costGenerator = generator.getGeneratorCost();
+        if (sqlGameDAO.getNCoffees(ID_P, ID_G) >= costGenerator) {
+            sqlGeneratorsDAO.buyGenerator(ID_P, ID_G, type, generator);
+            sqlGameDAO.setNCoffees(ID_P, ID_G, sqlGameDAO.getNCoffees(ID_P, ID_G) - costGenerator);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public double getProduccioTotal(int ID_P, int ID_G, String type) {
+        Generator generator = sqlGeneratorsDAO.getGenerator(ID_P, ID_G, type);
+        return generator.getProduccioTotal();
+    }
+
+    public double getProdActual(int ID_P, int ID_G, String type) {
+        Generator generator = sqlGeneratorsDAO.getGenerator(ID_P, ID_G, type);
+        return generator.getProduccioActual();
     }
 }

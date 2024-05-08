@@ -1,5 +1,6 @@
 package Presentation.Controller;
 import Business.Entities.ComptadorInterficie;
+import Business.Entities.Generator;
 import Business.Managers.GameManager;
 import Business.Managers.GeneratorManager;
 import Presentation.View.GameView;
@@ -34,6 +35,9 @@ public class GameController implements ActionListener, ComptadorInterficie {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        int ID_P = gameManager.getConnectedUserId();
+        int ID_G = gameManager.getCurrentGameId(gameManager.getConnectedUserId());
+
         String type = null;
         if (e.getActionCommand().equals("settings")) {
             changeViewController.setComptador(false);
@@ -41,39 +45,54 @@ public class GameController implements ActionListener, ComptadorInterficie {
         } else if (e.getActionCommand().equals("createcofee")) {
             double n_Caffee = gameManager.getCaffeeNumber() + 1;
             //Guardem en la BBDD la quantitat de cafes actualitzada.
-            updateQuantitatCoffe(n_Caffee);
+            gameView.setComptador(String.valueOf(Math.round(n_Caffee)));
+            gameManager.setQuantitatCafe(n_Caffee);
 
             System.out.println("Cafes Actuals: " + gameView.getComptador());
         }else if (e.getActionCommand().equals("potenciador1")){
             type = "A";
-            //generatorManager.updateCost(generatorManager.incrementarPotenciador(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type);
-            gameView.setQuantitatPotenciador1(generatorManager.updateQuantitatGeneradors(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type));
-            //gameView.setCostPotenciador1(generatorManager.getCost(1));
-            gameView.setCostPotenciador1(generatorManager.updateCost(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), "A"));
+
+            //Generador nou en la bbdd
+            boolean created = generatorManager.buyGenerator(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type);
+            if (created) {
+                //Update info generador 1
+                gameView.updateGenerator1(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getProduccioTotal(ID_P, ID_G, type), generatorManager.getProdActual(ID_P, ID_G, type));
+
+                gameView.updateCostGenerator1(generatorManager.getCostActual(ID_P, ID_G, type));
+            }
+
             System.out.println("Quantitat Potenciadors 1: " + gameView.getQuantitatPotenciadors1());
             System.out.println("Cost potenciador 1: " + gameView.getCost1());
-            System.out.println("CostActual potenciador 1: " + generatorManager.getCostActual(1));
+            System.out.println("CostActual potenciador 1: " + generatorManager.getCostActual(ID_P, ID_G, type));
 
             //produccio total de cafes generats
 
         }else if (e.getActionCommand().equals("potenciador2")){
-            //generatorManager.updateCost(2,generatorManager.incrementarPotenciador(2));
-            gameView.setQuantitatPotenciador2(generatorManager.getQuantitatGenerados(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type));
-            gameView.setCostPotenciador2(generatorManager.getCost(2));
+            type = "B";
+
+            generatorManager.buyGenerator(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type);
+
+
+            //Update info generador 1
+            gameView.updateGenerator2(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getProduccioTotal(ID_P, ID_G, type), generatorManager.getProdActual(ID_P, ID_G, type));
 
             System.out.println("Quantitat Potenciadors 2: "  + gameView.getQuantitatPotenciadors2());
             System.out.println("Cost potenciador 2: " + gameView.getCost2());
-            System.out.println("CostActual potenciador 2: " + generatorManager.getCostActual(2));
+            System.out.println("CostActual potenciador 2: " + generatorManager.getCostActual(ID_P, ID_G, type));
 
 
         }else if (e.getActionCommand().equals("potenciador3")){
-            //generatorManager.updateCost(3, generatorManager.incrementarPotenciador(3));
-            gameView.setQuantitatPotenciador3(generatorManager.getQuantitatGenerados(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type));
-            gameView.setCostPotenciador3(generatorManager.getCost(3));
+            type = "C";
+            generatorManager.buyGenerator(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type);
+
+
+
+            //Update info generador 1
+            gameView.updateGenerator3(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getProduccioTotal(ID_P, ID_G, type), generatorManager.getProdActual(ID_P, ID_G, type));
 
             System.out.println("Quantitat Potenciadors 3: " + gameView.getQuantitatPotenciadors3());
             System.out.println("Cost potenciador 3: " + gameView.getCost3());
-            System.out.println("CostActual potenciador 3: " + generatorManager.getCostActual(3));
+            System.out.println("CostActual potenciador 3: " + generatorManager.getCostActual(ID_P, ID_G, type));
 
         }else if (e.getActionCommand().equals("millora1")){
 
@@ -124,9 +143,25 @@ public class GameController implements ActionListener, ComptadorInterficie {
     }
 
     @Override
-    public void updateQuantitatCoffe(double quantitatCafes) {
+    public void setTaulaContenido(Generator generador1, Generator generador2, Generator generador3) {
+        int ID_P = gameManager.getConnectedUserId();
+        int ID_G = gameManager.getCurrentGameId(gameManager.getConnectedUserId());
+
+        gameView.updateGenerator3(generatorManager.getQuantitatGenerados(ID_P, ID_G, "C"), generatorManager.getProduccioTotal(ID_P, ID_G, "C"), generatorManager.getProdActual(ID_P, ID_G, "C"));
+        gameView.updateGenerator2(generatorManager.getQuantitatGenerados(ID_P, ID_G, "B"), generatorManager.getProduccioTotal(ID_P, ID_G, "B"), generatorManager.getProdActual(ID_P, ID_G, "B"));
+        gameView.updateGenerator1(generatorManager.getQuantitatGenerados(ID_P, ID_G, "A"), generatorManager.getProduccioTotal(ID_P, ID_G, "A"), generatorManager.getProdActual(ID_P, ID_G, "A"));
+    }
+
+    @Override
+    public void updateQuantitatCoffe(double quantitatCafes, Generator generator1, Generator generator2, Generator generator3) {
+
         gameView.setComptador(String.valueOf(Math.round(quantitatCafes)));
         gameManager.setQuantitatCafe(quantitatCafes);
+        gameManager.updateCaffeeGenerators(generator1, generator2, generator3);
+        gameView.updateProduccioTotal(1, generator1.getProduccioTotal());
+        gameView.updateProduccioTotal(2, generator2.getProduccioTotal());
+        gameView.updateProduccioTotal(3, generator3.getProduccioTotal());
+
         System.out.println(quantitatCafes);
     }
 

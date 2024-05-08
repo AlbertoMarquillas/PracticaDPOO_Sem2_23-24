@@ -42,13 +42,13 @@ public class SQLGeneratorsDAO{
 
     // Getter and Setter for CostActual
 
-    public int getCostActual(String type) {
+    public double getCostActual(int ID_P, int ID_G, String type) {
         try {
-            String query = "SELECT CostActual AS Cost FROM generators WHERE Type = '"+ type + "'";
+            String query = "SELECT CostActual AS Cost FROM generators WHERE ID_P = " + ID_P + " AND ID_G = " + ID_G + " AND Type = '"+ type + "'";
             ResultSet result = Connector.getInstance().selectQuery(query);
-            int cost = 0;
+            double cost = 0;
             if (result.next()) { // Move the cursor to the first row
-                cost = result.getInt("Cost");
+                cost = result.getDouble("Cost");
             } else {
                 // Handle the case where no data is found
             }
@@ -174,9 +174,31 @@ public class SQLGeneratorsDAO{
 
         for (int i = 0; i < types.length; i++) {
             String query = "INSERT INTO generators(ID_P, ID_G, Type, Quantitat, CostActual, ProduccioActual, ProduccioGlobal, Num_Millores) VALUES " +
-                    "('" + ID_P + "', '" + ID_G + "', '" + types[i] + "', '" + quantitats[i] + "', '" + costBase[i] + "', '" + produccioInicial[i] + "', '" + 0 + "', '" + 0 + "');";
+                    "('" + ID_P + "', '" + (ID_G - 1) + "', '" + types[i] + "', '" + quantitats[i] + "', '" + costBase[i] + "', '" + produccioInicial[i] + "', '" + 0 + "', '" + 0 + "');";
 
             Connector.getInstance().insertQuery(query);
         }
+    }
+
+    public void buyGenerator(int ID_P, int ID_G, String type, Generator generator) {
+        generator.buyGenerator();
+        String query = "UPDATE generators SET Quantitat = " + generator.getQuantitat() + ", " +
+                "CostActual = " + generator.getCostActualString() + ", " +
+                "ProduccioActual = " + generator.getProduccioActual() + ", " +
+                "ProduccioGlobal = " + generator.getProduccioGlobalString() + ", " +
+                "Num_Millores = " + generator.getNumMilloresString() +
+                " WHERE ID_P = " + ID_P + " AND ID_G = " + ID_G + " AND Type = '" + type + "'";
+        Connector.getInstance().updateQuery(query);
+    }
+
+    public void updateCaffeeGenerators(int connectedUserId, int currentGameId, Generator generator) {
+        String type = generator.getTypeString();
+        String query = "UPDATE generators SET Quantitat = " + generator.getQuantitat() + ", " +
+                "CostActual = " + generator.getCostActualString() + ", " +
+                "ProduccioActual = " + generator.getProduccioActual() + ", " +
+                "ProduccioGlobal = " + generator.getProduccioGlobalString() + ", " +
+                "Num_Millores = " + generator.getNumMilloresString() +
+                " WHERE ID_P = " + connectedUserId + " AND ID_G = " + currentGameId + " AND Type = '" + type + "'";
+        Connector.getInstance().updateQuery(query);
     }
 }

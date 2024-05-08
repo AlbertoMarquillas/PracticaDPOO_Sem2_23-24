@@ -81,7 +81,8 @@ public class SQLGameDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return nCoffees;
+        double Nretrun = nCoffees;
+        return Nretrun;
     }
 
     public void setNCoffees(int ID_P, int ID_G, double newNCoffees) {

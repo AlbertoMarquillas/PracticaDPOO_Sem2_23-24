@@ -58,9 +58,9 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
     private String text = "0000";
     private final CustomLabel contador;
 
-    private int cost1 = 10;
-    private int cost2 = 150;
-    private int cost3 = 2000;
+    private double cost1 = 10;
+    private double cost2 = 150;
+    private double cost3 = 2000;
 
     private int quantitatPotenciadors1;
     private int quantitatPotenciadors2;
@@ -71,6 +71,9 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
     private float overallPot1;
     private float overallPot2;
     private float overallPot3;
+    private double produccioUnitat1;
+    private double produccioUnitat2;
+    private double produccioUnitat3;
 
     public GameView() {
 
@@ -119,9 +122,11 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         //Crear els panells dels potenciadors
         //El string producció fara falta canviar-los per les variables
         potenciador1 = createPotenciadorButton("Imagenes/potenciador1.png", "BARISTA BOOST", "Cost:" + cost1 +" Coffes", "<html><div style='text-align: center;'>Elevate your brew game<br>with lightning speed</div></html>");
+        this.potenciador1.setEnabled(true);
         potenciador2 = createPotenciadorButton("Imagenes/potenciador2.png", "WAFFLE WIZARD", "Cost: " + cost2 +" Coffes", "<html><div style='text-align: center;'>Master the art of waffle<br>making with prowess.</div></html>");
+        this.potenciador2.setEnabled(true);
         potenciador3 = createPotenciadorButton("Imagenes/potenciador3.png", "STEAMY BREW", "Cost: " + cost3 +" Coffes", "<html><div style='text-align: center;'>Experience the power<br>of a perfect brew cup.</div></html>");
-
+        this.potenciador3.setEnabled(true);
 
         finishGame = new CustomButton("Finish Game", 230, 50, Color.decode("#F8F2F0"), Color.decode("#3B1211"), new Font("Segoe UI Black", Font.PLAIN, 14));
         saveGame = new CustomButton("Save Game", 230, 50, Color.decode("#F8F2F0"), Color.decode("#3B1211"), new Font("Segoe UI Black", Font.PLAIN, 14));
@@ -666,20 +671,20 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         return contador.getText();
     }
 
-    public int getCost1() {
+    public double getCost1() {
         return cost1;
     }
 
-    public int getCost2() {
+    public double getCost2() {
         return cost2;
     }
 
-    public int getCost3() {
+    public double getCost3() {
         return cost3;
     }
 
-    public void setCostPotenciador1(int cost1) {
-        this.cost1 = cost1;
+    public void setCostPotenciador1(double cost1) {
+        this.cost1 = (int) Math.round(cost1);
     }
 
     public void setCostPotenciador2(int cost2) {
@@ -775,4 +780,81 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
     }
 
 
+
+
+    private void setProduccioUnitat(double produccio) {
+        this.produccioUnitat1 = produccio;
+    }
+    public void setPotenciador1Enabled(boolean isEnabled) {
+        this.potenciador1.setEnabled(isEnabled);
+    }
+    public void setPotenciador2Enabled(boolean isEnabled) {
+        this.potenciador2.setEnabled(isEnabled);
+    }
+    public void setPotenciador3Enabled(boolean isEnabled) {
+        this.potenciador3.setEnabled(isEnabled);
+    }
+
+    public void updateGenerator1(int quantitatGenerados, double produccioTotal, double prodActual) {
+        // Obtener el modelo de la tabla
+        DefaultTableModel tableModel = (DefaultTableModel) this.table.getModel();
+
+        // Actualizar los valores de la fila correspondiente al generador 1
+        tableModel.setValueAt(quantitatGenerados, 1, 1); // Actualizar la cantidad
+        tableModel.setValueAt(String.format("%.2f", prodActual) + " c/s", 1, 2); // Actualizar la producción por unidad
+        tableModel.setValueAt(produccioTotal, 1, 3); // Actualizar la producción total
+        tableModel.setValueAt(String.format("%.2f", overallPot1) + " %", 1, 4); // Actualizar el porcentaje de producción total
+
+        // Notificar al modelo de la tabla que los datos han cambiado, lo que provocará que la tabla se actualice
+        tableModel.fireTableDataChanged();
+        }
+
+    public void updateGenerator2(int quantitatGenerados, double produccioTotal, double prodActual) {
+        // Obtener el modelo de la tabla
+        DefaultTableModel tableModel = (DefaultTableModel) this.table.getModel();
+
+        // Actualizar los valores de la fila correspondiente al generador 2
+        tableModel.setValueAt(quantitatGenerados, 2, 1); // Actualizar la cantidad
+        tableModel.setValueAt(String.format("%.2f", prodActual) + " c/s", 2, 2); // Actualizar la producción por unidad
+        tableModel.setValueAt(produccioTotal, 2, 3); // Actualizar la producción total
+        tableModel.setValueAt(String.format("%.2f", overallPot2) + " %", 2, 4); // Actualizar el porcentaje de producción total
+
+        // Notificar al modelo de la tabla que los datos han cambiado, lo que provocará que la tabla se actualice
+        tableModel.fireTableDataChanged();
+    }
+
+    public void updateProduccioTotal(int generatorRow, double produccioTotal) {
+        // Obtener el modelo de la tabla
+        DefaultTableModel tableModel = (DefaultTableModel) this.table.getModel();
+
+        // Actualizar el valor de produccioTotal en la fila correspondiente al generador
+        tableModel.setValueAt(String.format("%.2f", produccioTotal), generatorRow, 3); // Actualizar la producción total
+
+        // Notificar al modelo de la tabla que los datos han cambiado, lo que provocará que la tabla se actualice
+        tableModel.fireTableDataChanged();
+    }
+
+
+    public void updateGenerator3(int quantitatGenerados, double produccioTotal, double prodActual) {
+        // Obtener el modelo de la tabla
+        DefaultTableModel tableModel = (DefaultTableModel) this.table.getModel();
+
+        // Actualizar los valores de la fila correspondiente al generador 3
+        tableModel.setValueAt(quantitatGenerados, 3, 1); // Actualizar la cantidad
+        tableModel.setValueAt(String.format("%.2f", prodActual) + " c/s", 3, 2); // Actualizar la producción por unidad
+        tableModel.setValueAt(produccioTotal, 3, 3); // Actualizar la producción total
+        tableModel.setValueAt(String.format("%.2f", overallPot3) + " %", 3, 4); // Actualizar el porcentaje de producción total
+
+        // Notificar al modelo de la tabla que los datos han cambiado, lo que provocará que la tabla se actualice
+        tableModel.fireTableDataChanged();
+    }
+
+
+
+    public void updateCostGenerator1(double costActual) {
+        this.cost1 = Math.round(costActual * 100.0) / 100.0;
+        this.potenciador1.setText("BARISTA BOOST" + " Cost:" + this.cost1 + " Coffes");
+        this.potenciador1.repaint();
+
+    }
 }

@@ -2,6 +2,7 @@ package Business.Managers;
 
 import Business.Entities.Comptador;
 import Business.Entities.ComptadorInterficie;
+import Business.Entities.Generator;
 import Persistance.sqlDAO.SQLGameDAO;
 import Persistance.sqlDAO.SQLGeneratorsDAO;
 import Persistance.sqlDAO.SQLUserDAO;
@@ -45,7 +46,7 @@ import Presentation.View.GameView;
     }
 
     public int getCurrentGameId(int connectedUserId) {
-        return (sqlGameDAO.getCurrentGameId(connectedUserId) - 1);
+        return (sqlGameDAO.getCurrentGameId(connectedUserId));
     }
 
     public boolean comprobarPartidesActives(int connectedUserId) {
@@ -66,5 +67,11 @@ import Presentation.View.GameView;
 
     public void disconnectUser() {
         sqlUserDAO.setAllUsersOff();
+    }
+
+    public void updateCaffeeGenerators(Generator generator1, Generator generator2, Generator generator3) {
+        sqlGeneratorsDAO.updateCaffeeGenerators(sqlUserDAO.getConnectedUserId(), getCurrentGameId(sqlUserDAO.getConnectedUserId()), generator1);
+        sqlGeneratorsDAO.updateCaffeeGenerators(sqlUserDAO.getConnectedUserId(), getCurrentGameId(sqlUserDAO.getConnectedUserId()), generator2);
+        sqlGeneratorsDAO.updateCaffeeGenerators(sqlUserDAO.getConnectedUserId(), getCurrentGameId(sqlUserDAO.getConnectedUserId()), generator3);
     }
 }
