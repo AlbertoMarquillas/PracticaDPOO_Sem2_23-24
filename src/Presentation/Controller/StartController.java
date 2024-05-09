@@ -16,15 +16,29 @@ public class StartController implements ActionListener {
     private final StartView startView;
     private final GeneratorManager generatorManager;
 
-
+    /**
+     * Constructor de la classe StartController.
+     *
+     * @param changeViewController Controlador per a gestionar els canvis de pantalla.
+     * @param userManager Gestor d'usuaris per a realitzar operacions relacionades amb els usuaris.
+     * @param gameManager Gestor de jocs per a realitzar operacions relacionades amb els jocs.
+     * @param generatorManager Gestor de generadors per a realitzar operacions relacionades amb els generadors.
+     * @param startView Vista d'inici per a mostrar la interfície d'usuari i rebre interaccions de l'usuari.
+     */
     public StartController(ChangeViewController changeViewController, UserManager userManager, GameManager gameManager, GeneratorManager generatorManager , StartView startView) {
         this.changeViewController = changeViewController;
         this.userManager = userManager;
         this.gameManager = gameManager;
         this.startView = startView;
         this.generatorManager = generatorManager;
-
     }
+
+
+    /**
+     * Gestiona les accions de l'usuari en la vista d'inici.
+     *
+     * @param e Event d'acció generat per l'usuari.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         //No es pot iniciar una partida si ja n'hi ha una activa

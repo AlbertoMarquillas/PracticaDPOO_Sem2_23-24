@@ -19,6 +19,17 @@ public class InitialController implements ActionListener{
     private final StartView startView;
     private final GameManager gameManager;
 
+
+    /**
+     * Constructor de la classe InitialController.
+     *
+     * @param initialView          La vista inicial de l'aplicació.
+     * @param logInManager         El gestor d'inici de sessió de l'aplicació.
+     * @param changeViewController El controlador de canvi de vistes de l'aplicació.
+     * @param userManager          El gestor d'usuaris de l'aplicació.
+     * @param startView            La vista d'inici de l'aplicació.
+     * @param gameManager          El gestor de jocs de l'aplicació.
+     */
     public InitialController(InitialView initialView, LogInManager logInManager, ChangeViewController changeViewController, UserManager userManager, StartView startView, GameManager gameManager) {
         this.initialView = initialView;
         this.logInManager = logInManager;
@@ -28,8 +39,12 @@ public class InitialController implements ActionListener{
         this.gameManager = gameManager;
     }
 
-    // ... otros métodos ...
 
+    /**
+     * Acció que es realitza quan es produeix un esdeveniment d'acció.
+     *
+     * @param e El esdeveniment d'acció que ha ocorregut.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         userManager.setAllConnectedsOff();
@@ -60,30 +75,61 @@ public class InitialController implements ActionListener{
         }
     }
 
+
+    /**
+     * Esborra la informació dels camps de nom d'usuari i contrasenya a la vista inicial.
+     */
     private void borrarInfoInit() {
         initialView.setUsernameField("");
         initialView.setPasswordField("");
     }
 
 
+    /**
+     * Obté el contingut del camp de nom d'usuari de la vista inicial.
+     *
+     * @return El contingut del camp de nom d'usuari.
+     */
     private String getUsernameFieldController() {
         return initialView.getUsernameField();
     }
 
+    /**
+     * Obté el contingut del camp de contrasenya de la vista inicial.
+     *
+     * @return El contingut del camp de contrasenya.
+     */
     private String getPasswordFieldController() {
         return initialView.getPasswordField();
     }
 
+
+    /**
+     * Habilita o deshabilita la funcionalitat segons la longitud dels camps de nom d'usuari i contrasenya.
+     *
+     * @return Cert si s'ha d'habilitar la funcionalitat, fals si s'ha de deshabilitar.
+     */
     public boolean enable(){
         return logInManager.keyTyped(getUsernameFieldController().length(), getPasswordFieldController().length());
     }
+
+    /**
+     * Mostra un missatge d'error indicant que l'usuari introduit no és válid.
+     */
     private void showWrongUser() {
         JOptionPane.showMessageDialog(initialView, "L'usuari o correu introduït no existeix");
     }
 
+    /**
+     * Mostra un missatge d'error indicant que la contrasenya introduïda és incorrecta.
+     */
     private void showWrongPassword() {
         JOptionPane.showMessageDialog(initialView, "La contrasenya introduïda es incorrecta");
     }
+
+    /**
+     * Mostra un missatge d'error indicant que cal omplir tots els camps.
+     */
     private void showErrorFillAll() {
         JOptionPane.showMessageDialog(initialView, "Tots els camps son obligatoris");
     }

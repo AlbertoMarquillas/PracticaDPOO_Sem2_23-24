@@ -75,6 +75,10 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
     private double produccioUnitat2;
     private double produccioUnitat3;
 
+
+    /**
+     * Constructor de la classe GameView.
+     */
     public GameView() {
 
         //Crear la finestra i posar-li tamany i títol
@@ -631,6 +635,12 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         this.settingsButton = settingsButton;
     }
 
+
+    /**
+     * Estableix el text del comptador i actualitza la seva aparença.
+     *
+     * @param text Text per al comptador.
+     */
     public void setComptador(String text) {
         this.text = text;
         this.contador.setText(this.text);
@@ -647,58 +657,79 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         this.contador.repaint();
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
-    }
-
+    /**
+     * Mètode per obtenir el comptador
+     * @return String del comptador
+     */
     public String getComptador() {
         return contador.getText();
     }
 
+    /**
+     * Mètode per obtenir el cost del generador1
+     * @return Cost del generador1
+     */
     public double getCost1() {
         return cost1;
     }
 
+
+    /**
+     * Mètode per obtenir el cost del generador2
+     * @return Cost del generador2
+     */
     public double getCost2() {
         return cost2;
     }
 
+
+    /**
+     * Mètode per obtenir el cost del generador3
+     * @return Cost del generador3
+     */
     public double getCost3() {
         return cost3;
     }
 
+
+    /**
+     * Estableix el cost del generador 1
+     * @param cost1 El cost a establir per al generador 1.
+     */
     public void setCostPotenciador1(double cost1) {
         this.cost1 = (int) Math.round(cost1);
     }
 
+    /**
+     * Estableix el cost del generador 2
+     * @param cost2 El cost a establir per al generador 2.
+     */
     public void setCostPotenciador2(int cost2) {
         this.cost2 = cost2;
     }
 
+
+    /**
+     * Estableix el cost del generador 3
+     * @param cost3 El cost a establir per al generador 3.
+     */
     public void setCostPotenciador3(int cost3) {
         this.cost3 = cost3;
     }
 
+    /**
+     * Mètode per obtenir la quantitat de potenciadors 1
+     * @return Quantitat de potenciadors 1
+     */
     public int getQuantitatPotenciadors1() {
         return quantitatPotenciadors1;
     }
 
+
+    /**
+     * Estableix la quantitat de potenciadors 1 que hi ha i edita la variable
+     * @param quantitatPotenciadors1 La quantitat a establir per al potenciador 1
+     */
     public void setQuantitatPotenciador1(int quantitatPotenciadors1) {
         this.quantitatPotenciadors1 = quantitatPotenciadors1;
         //voler a printar la celda 2,2 de table
@@ -707,46 +738,95 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
 
     }
 
+
+    /**
+     * Mètode per obtenir la quantitat de potenciadors 2
+     * @return Quantitat de potenciadors 2
+     */
     public int getQuantitatPotenciadors2() {
         return quantitatPotenciadors2;
     }
 
+
+    /**
+     * Estableix la quantitat de potenciadors 2 que hi ha i edita la variable
+     * @param quantitatPotenciadors2 La quantitat a establir per al potenciador 2
+     */
     public void setQuantitatPotenciador2(int quantitatPotenciadors2) {
         this.quantitatPotenciadors2 = quantitatPotenciadors2;
         this.table.repaint();
     }
 
+
+    /**
+     * Mètode per obtenir la quantitat de potenciadors 3
+     * @return Quantitat de potenciadors 3
+     */
     public int getQuantitatPotenciadors3() {
         return quantitatPotenciadors3;
     }
 
+
+    /**
+     * Estableix la quantitat de potenciadors 3 que hi ha i edita la variable
+     * @param quantitatPotenciadors3 La quantitat a establir per al potenciador 3
+     */
     public void setQuantitatPotenciador3(int quantitatPotenciadors3) {
         this.quantitatPotenciadors3 = quantitatPotenciadors3;
         this.table.repaint();
     }
 
+    /**
+     * Mètode per obtenir la producció total del generador 1
+     * @return Producció total del generador 1
+     */
     public float getProduccioTotal1() {
         return produccioTotal1;
     }
 
+
+    /**
+     * Estableix la producció total del generador 1 i repinta la taula per mostrar el nou valor
+     * @param produccioTotal1 La producció total a establir per al generador 1
+     */
     public void setProduccioTotal1(float produccioTotal1) {
         this.produccioTotal1 = produccioTotal1;
         this.table.repaint();
     }
 
+
+    /**
+     * Mètode per obtenir la producció total del generador 2
+     * @return Producció total del generador 2
+     */
     public float getProduccioTotal2() {
         return produccioTotal2;
     }
 
+
+    /**
+     * Estableix la producció total del generador 2 i repinta la taula per mostrar el nou valor
+     * @param produccioTotal2 La producció total a establir per al generador 2
+     */
     public void setProduccioTotal2(float produccioTotal2) {
         this.produccioTotal2 = produccioTotal2;
         this.table.repaint();
     }
 
+
+    /**
+     * Mètode per obtenir la producció total del generador 3
+     * @return Producció total del generador 3
+     */
     public float getProduccioTotal3() {
         return produccioTotal3;
     }
 
+
+    /**
+     * Estableix la producció total del generador 3 i repinta la taula per mostrar el nou valor
+     * @param produccioTotal3 La producció total a establir per al generador 3
+     */
     public void setProduccioTotal3(float produccioTotal3) {
         this.table.repaint();
         this.produccioTotal3 = produccioTotal3;
@@ -781,7 +861,9 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
 
 
 
-
+    /**
+     * Estableix la producció per unitat
+     */
     private void setProduccioUnitat(double produccio) {
         this.produccioUnitat1 = produccio;
     }
@@ -795,6 +877,14 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         this.potenciador3.setEnabled(isEnabled);
     }
 
+
+    /**
+     * Actualitza les dades del generador 1 a la taula.
+     *
+     * @param quantitatGenerados La quantitat de generadors 1.
+     * @param produccioTotal La producció total del generador 1.
+     * @param prodActual La producció actual del generador 1 per unitat de temps.
+     */
     public void updateGenerator1(int quantitatGenerados, double produccioTotal, double prodActual) {
         // Obtener el modelo de la tabla
         DefaultTableModel tableModel = (DefaultTableModel) this.table.getModel();
@@ -807,8 +897,16 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
 
         // Notificar al modelo de la tabla que los datos han cambiado, lo que provocará que la tabla se actualice
         tableModel.fireTableDataChanged();
-        }
+    }
 
+
+    /**
+     * Actualitza les dades del generador 2 a la taula.
+     *
+     * @param quantitatGenerados La quantitat de generadors 2.
+     * @param produccioTotal La producció total del generador 2.
+     * @param prodActual La producció actual del generador 2 per unitat de temps.
+     */
     public void updateGenerator2(int quantitatGenerados, double produccioTotal, double prodActual) {
         // Obtener el modelo de la tabla
         DefaultTableModel tableModel = (DefaultTableModel) this.table.getModel();
@@ -823,6 +921,13 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         tableModel.fireTableDataChanged();
     }
 
+
+    /**
+     * Actualitza la producció total d'un generador a la taula.
+     *
+     * @param generatorRow La fila de la taula corresponent al generador.
+     * @param produccioTotal La nova producció total del generador.
+     */
     public void updateProduccioTotal(int generatorRow, double produccioTotal) {
         // Obtener el modelo de la tabla
         DefaultTableModel tableModel = (DefaultTableModel) this.table.getModel();
@@ -835,6 +940,13 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
     }
 
 
+    /**
+     * Actualitza les dades del generador 3 a la taula.
+     *
+     * @param quantitatGenerados La quantitat de generadors 3.
+     * @param produccioTotal La producció total del generador 3.
+     * @param prodActual La producció actual del generador 3 per unitat de temps.
+     */
     public void updateGenerator3(int quantitatGenerados, double produccioTotal, double prodActual) {
         // Obtener el modelo de la tabla
         DefaultTableModel tableModel = (DefaultTableModel) this.table.getModel();
@@ -851,10 +963,53 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
 
 
 
+    /**
+     * Actualitza el cost del generador 1.
+     *
+     * @param costActual El cost actual del generador 1.
+     */
     public void updateCostGenerator1(double costActual) {
         this.cost1 = Math.round(costActual * 100.0) / 100.0;
         this.potenciador1.setText("BARISTA BOOST" + " Cost:" + this.cost1 + " Coffes");
         this.potenciador1.repaint();
+
+    }
+
+    /**
+     * Gestiona les accions produïdes per l'usuari.
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    }
+
+
+    /**
+     * Gestiona un esdeveniment quan s'escriu per pantalla.
+     * @param e L'esdeveniment que s'ha produit.
+     */
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+
+    /**
+     * Gestiona l'esdeveniment quan una tecla és premuda.
+     * @param e L'esdeveniment que representa una tecla que ha estat premuda.
+     */
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+
+    /**
+     * Gestiona l'esdeveniment quan una tecla és alliberada.
+     * @param e L'esdeveniment que representa una tecla que ha estat alliberada.
+     */
+    @Override
+    public void keyReleased(KeyEvent e) {
 
     }
 }

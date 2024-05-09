@@ -32,7 +32,7 @@ public class GameController implements ActionListener, ComptadorInterficie {
     }
 
     /**
-     * Metode que mostra un dialog de confirmacio
+     * Metode que mostra un dialeg de confirmació
      * @param message missatge a mostrar
      * @return true si es vol sortir, false si no
      */

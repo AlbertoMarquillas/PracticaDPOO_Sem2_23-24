@@ -26,6 +26,9 @@ public class InitialView extends JPanel implements KeyListener{
     private CustomPasswordField passwordField;
 
 
+    /**
+     * Constructor de la classe InitialView.
+     */
     public InitialView() {
         setSize(800, 450);
         //Inicialitzem els botons fent us de la classe CustomButton
@@ -207,16 +210,31 @@ public class InitialView extends JPanel implements KeyListener{
         this.loginButton = loginButton;
     }
 
+
+    /**
+     * Gestiona un esdeveniment quan s'escriu per pantalla.
+     * @param e L'esdeveniment que s'ha produit.
+     */
     @Override
     public void keyTyped(KeyEvent e) {
 
     }
 
+
+    /**
+     * Gestiona l'esdeveniment quan una tecla és premuda.
+     * @param e L'esdeveniment que representa una tecla que ha estat premuda.
+     */
     @Override
     public void keyPressed(KeyEvent e) {
 
     }
 
+
+    /**
+     * Gestiona l'esdeveniment quan una tecla és alliberada.
+     * @param e L'esdeveniment que representa una tecla que ha estat alliberada.
+     */
     @Override
     public void keyReleased(KeyEvent e) {
 

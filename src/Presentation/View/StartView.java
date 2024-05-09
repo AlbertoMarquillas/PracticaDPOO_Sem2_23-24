@@ -23,9 +23,10 @@ public class StartView extends JPanel implements KeyListener, ActionListener {
     private CustomButton startGameButton;
     private CustomButton statisticsButton;
 
-
+    /**
+     * Constructor de la classe StartView.
+     */
     public StartView() {
-
 
         //Marcar-li al JFrame un titol i tamany 800x450
         //setTitle("Start View");
@@ -159,6 +160,15 @@ public class StartView extends JPanel implements KeyListener, ActionListener {
     }
 
 
+    /**
+     * Estableix l'estat d'habilitat dels botons de nova partida, de continuar partida i d'estadístiques,
+     * segons les condicions proporcionades.
+     *
+     * @param enabledNewGame true si es vol habilitar el botó de nova partida, false si es vol deshabilitar
+     * @param enabledResumeGame true si es vol habilitar el botó de continuar partida, false si es vol deshabilitar
+     * @param enabledStatistics true si es vol habilitar el botó d'estadístiques, false si es vol deshabilitar
+     */
+
     public void setButtonsEnabled(boolean enabledNewGame, boolean enabledResumeGame, boolean enabledStatistics) {
         setNewGameEnable(enabledNewGame);
         setResumeGameEnable(enabledResumeGame);
@@ -166,6 +176,12 @@ public class StartView extends JPanel implements KeyListener, ActionListener {
 
     }
 
+
+    /**
+     * Habilita o deshabilita el botó de nova partida i canvia el color de fons segons la condició proporcionada.
+     *
+     * @param enableNew true si es vol habilitar el botó de nova partida, false si es vol deshabilitar
+     */
     public void setNewGameEnable (boolean enableNew) {
         newGameButton.setEnabled(enableNew);
         if (enableNew)
@@ -173,6 +189,13 @@ public class StartView extends JPanel implements KeyListener, ActionListener {
         else
             newGameButton.setBackgroundColor(Color.LIGHT_GRAY);
     }
+
+
+    /**
+     * Estableix l'estat d'habilitat del botó de continuar partida segons la condició proporcionada.
+     *
+     * @param enableResume true si es vol habilitar el botó de continuar partida, false si es vol deshabilitar
+     */
 
     public void setResumeGameEnable (boolean enableResume){
         startGameButton.setEnabled(enableResume);
@@ -182,6 +205,13 @@ public class StartView extends JPanel implements KeyListener, ActionListener {
             startGameButton.setBackgroundColor(Color.LIGHT_GRAY);
     }
 
+
+    /**
+     * Estableix l'estat d'habilitat del botó d'estadístiques segons la condició proporcionada.
+     *
+     * @param enableStatistics true si es vol habilitar el botó d'estadístiques, false si es vol deshabilitar
+     */
+
     public void setStatisticsEnable (boolean enableStatistics){
         statisticsButton.setEnabled(enableStatistics);
         if (enableStatistics)
@@ -190,21 +220,40 @@ public class StartView extends JPanel implements KeyListener, ActionListener {
             statisticsButton.setBackgroundColor(Color.LIGHT_GRAY);
     }
 
+
+    /**
+     * Gestiona les accions produïdes per l'usuari.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
 
     }
 
+
+    /**
+     * Gestiona un esdeveniment quan s'escriu per pantalla.
+     * @param e L'esdeveniment que s'ha produit.
+     */
     @Override
     public void keyTyped(KeyEvent e) {
 
     }
 
+
+    /**
+     * Gestiona l'esdeveniment quan una tecla és premuda.
+     * @param e L'esdeveniment que representa una tecla que ha estat premuda.
+     */
     @Override
     public void keyPressed(KeyEvent e) {
 
     }
 
+
+    /**
+     * Gestiona l'esdeveniment quan una tecla és alliberada.
+     * @param e L'esdeveniment que representa una tecla que ha estat alliberada.
+     */
     @Override
     public void keyReleased(KeyEvent e) {
 

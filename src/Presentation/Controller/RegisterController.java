@@ -68,48 +68,88 @@ public class RegisterController implements ActionListener {
         registerView.setConfirmPasswordField("");
     }
 
+
+    /**
+     * Mostra un missatge indicant que el nom introduït ja està sent utilitzat per un altre usuari.
+     */
     private void nameAlreadyExist() {
         JOptionPane.showMessageDialog(registerView, "El nom introduït ja el teu un altre usuari");
     }
+
+    /**
+     * Mostra un missatge indicant que el correu introduït ja està sent utilitzat per un altre usuari.
+     */
     private void showEmailExist() {
         JOptionPane.showMessageDialog(registerView, "El correu introduït ja esta registrat");
     }
+
+    /**
+     * Mostra un missatge indicant que la contrasenya ha de tenir com a mínim 8 caràcters.
+     */
     private void showErrorLengthPass() {
         JOptionPane.showMessageDialog(registerView, "Com a minim ha de haver 8 caracters");
     }
 
+
+    /**
+     * Mostra un missatge indicant que la contrasenya ha de tenir com a mínim una lletra minúscula.
+     */
     private void showErrorLowerCaseCounterPass() {
         JOptionPane.showMessageDialog(registerView, "Com a minim una minuscula");
     }
 
+    /**
+     * Mostra un missatge indicant que la contrasenya ha de tenir com a mínim una lletra majusula.
+     */
     private void showErrorUpperCaseCounterPass() {
         JOptionPane.showMessageDialog(registerView, "Com a minim una majúscula");
     }
 
+
+    /**
+     * Mostra un missatge indicant que la contrasenya ha de tenir com a mínim un número.
+     */
     private void showErrorDigitCounterPass() {
         JOptionPane.showMessageDialog(registerView, "Com a minim un numero");
     }
 
+    /**
+     * Mostra un missatge indicant que la contrasenya ha de tenir com a mínim un caràcter especial.
+     */
     private void showErrorSpecialCounterPass() {
         JOptionPane.showMessageDialog(registerView, "Com a minim 1 caracter especial");
     }
 
+
+    /**
+     * Mostra un missatge indicant que no ha sigut possible connectar-se a la base de dades
+     */
     private void showErrorCreateUser() {
         JOptionPane.showMessageDialog(registerView, "No ha pogut connectar-se a la base de dades");
     }
 
+
+    /**
+     * Mostra un missatge indicant que les contrasenyes no coincideixen.
+     */
     private void showDifferentPass() {
         JOptionPane.showMessageDialog(registerView, "Les contrasenyes no coincideixen");
     }
 
+
+    /**
+     * Mostra un missatge indicant que tots els camps són obligatoris.
+     */
     private void showErrorFillAll() {
         JOptionPane.showMessageDialog(registerView, "Tots els camps son obligatoris");
     }
 
-    private void panelChangeLog() {
-        //changeViewController.changePan("login");
-    }
 
+    /**
+     * Gestiona les accions de l'usuari en resposta a esdeveniments d'acció.
+     *
+     * @param e El esdeveniment d'acció que ha tingut lloc.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("next")) {

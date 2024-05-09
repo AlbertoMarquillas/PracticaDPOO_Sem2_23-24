@@ -7,6 +7,15 @@ public class MainView extends JFrame{
 
     CardLayout cardLayout;
 
+    /**
+     * Constructor de la clase MainView
+     * @param initialView vista inicial
+     * @param registerView vista de registro
+     * @param gameView vista del juego
+     * @param settingsView vista de ajustes
+     * @param startView vista de inicio
+     * @param statsView vista de estadisticas
+     */
     public void mainView(InitialView initialView, RegisterView registerView, GameView gameView, SettingsView settingsView, StartView startView, StatsView statsView){
 
         cardLayout = new CardLayout();
@@ -22,6 +31,13 @@ public class MainView extends JFrame{
         //this.getContentPane().add(statsView,"stats");
 
     }
+
+    /**
+     * Canvia el panell mostrat a la finestra principal segons l'índex proporcionat.
+     *
+     * @param index l'índex del panell a mostrar
+     *              Pot ser "login", "register", "settings", "start", "game" o "stats"
+     */
     public void panelChange(String index){
         switch (index) {
             case "login" -> {

@@ -9,7 +9,16 @@ import Presentation.Controller.*;
 import Presentation.View.MainView;
 import Presentation.View.*;
 
+/**
+ * Classe Main que conté el mètode main per a executar el programa.
+ */
 public class Main {
+
+    /**
+     * Mètode main per a executar el programa.
+     *
+     * @param args Arguments de la línia de comandes.
+     */
     public static void main(String[] args){
 
         DataBaseDAO dataBaseDAO = new DataBaseDAO();

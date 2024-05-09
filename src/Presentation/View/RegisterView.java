@@ -26,6 +26,10 @@ public class RegisterView extends JPanel implements KeyListener, ActionListener 
     private CustomButton nextButton;
     private CustomButton loginButton;
 
+
+    /**
+     * Constructor de la classe RegisterView.
+     */
     public RegisterView() {
         setBackground(Color.decode("#F8F2F0"));
 
@@ -257,22 +261,39 @@ public class RegisterView extends JPanel implements KeyListener, ActionListener 
 
 
 
-
+    /**
+     * Gestiona les accions produïdes per l'usuari.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
 
     }
 
+
+    /**
+     * Gestiona un esdeveniment quan s'escriu per pantalla.
+     * @param e L'esdeveniment que s'ha produit.
+     */
     @Override
     public void keyTyped(KeyEvent e) {
 
     }
 
+
+    /**
+     * Gestiona l'esdeveniment quan una tecla és premuda.
+     * @param e L'esdeveniment que representa una tecla que ha estat premuda.
+     */
     @Override
     public void keyPressed(KeyEvent e) {
 
     }
 
+
+    /**
+     * Gestiona l'esdeveniment quan una tecla és alliberada.
+     * @param e L'esdeveniment que representa una tecla que ha estat alliberada.
+     */
     @Override
     public void keyReleased(KeyEvent e) {
 
