@@ -31,6 +31,13 @@ public class Comptador {
     private Generator generador;
     private User user;
 
+    /**
+     * Constructor de la clase Comptador
+     * @param sqlGameDAO DAO de la taula Game
+     * @param sqlUserDAO DAO de la taula User
+     * @param sqlGeneratorsDAO DAO de la taula Generators
+     * @param sqlStatsDAO DAO de la taula Stats
+     */
     public Comptador(SQLGameDAO sqlGameDAO, SQLUserDAO sqlUserDAO, SQLGeneratorsDAO sqlGeneratorsDAO, SQLStatsDAO sqlStatsDAO) {
         this.sqlGameDAO = sqlGameDAO;
         this.sqlUserDAO = sqlUserDAO;
@@ -39,13 +46,7 @@ public class Comptador {
     }
 
 
-    /*public ComptadorInterficie getComptadorInterficie() {
-        return comptadorInterficie;
-    }*/
-    /*
-    public void setComptadorInterficie(ComptadorInterficie comptadorInterficie) {
-        this.comptadorInterficie = comptadorInterficie;
-    }*/
+
 
     public Thread getThread() {
         return thread;
@@ -156,14 +157,16 @@ public class Comptador {
         thread.start();
     }*/
 
+    /**
+     * Funció que compta el temps i la producció de cafè
+     * @param run booleà que indica si el thread està en execució
+     */
     public void comptar(boolean run) {
         // Establecer la variable running en true para indicar que el hilo debe estar en ejecución
         setRunning(run);
 
         // Crear nuevas instancias de tus tres generadores
         GameManager gameManager = new GameManager(sqlGameDAO, sqlUserDAO, sqlGeneratorsDAO, sqlStatsDAO);
-
-
 
         boolean flag = false;
 
@@ -172,7 +175,6 @@ public class Comptador {
             public void run() {
                 // Inicializar la variable nCoffee en 0
 
-
                 // Mientras la variable running sea true, el hilo seguirá en ejecución
                 while (running) {
 
@@ -180,9 +182,7 @@ public class Comptador {
                     Generator generador2 = sqlGeneratorsDAO.getGenerator(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()), "B");
                     Generator generador3 = sqlGeneratorsDAO.getGenerator(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()), "C");
 
-
                     double nCoffee = sqlGameDAO.getNCoffees(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()));
-
                     double gen1 = generador1.getProduccioActual() * generador1.getQuantitat();
                     double gen2 = generador2.getProduccioActual() * generador2.getQuantitat();
                     double gen3 = generador3.getProduccioActual() * generador3.getQuantitat();
@@ -221,7 +221,6 @@ public class Comptador {
                     // Actualizar la interfaz del contador con la cantidad actual de café y la producción total de los generadores
                     comptadorInterficie.updateQuantitatCoffe(nCoffee, generador1, generador2, generador3);
 
-
                     try {
                         // Hacer que el hilo duerma durante un segundo antes de continuar con la próxima iteración
                         Thread.sleep(1000);
@@ -238,6 +237,9 @@ public class Comptador {
         thread.start();
     }
 
+    /**
+     * Funció que setteja el comptador
+     */
     public void setComptadorInterficie(ComptadorInterficie comptadorInterficie) {
         this.comptadorInterficie = comptadorInterficie;
     }

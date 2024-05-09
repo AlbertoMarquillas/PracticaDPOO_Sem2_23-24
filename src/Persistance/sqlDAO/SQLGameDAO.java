@@ -11,12 +11,18 @@ import java.util.List;
 public class SQLGameDAO {
 
     /**
-     * constructor of the class SQLGameDAO without parameters and does nothing
+     * constructor de la clase SQLGameDAO
      */
     public SQLGameDAO() {
 
     }
 
+    /**
+     * Estableix el temps de joc per al jugador connectat i el joc actual amb el temps especificat.
+     * @param connectedUserId El ID de l'usuari connectat.
+     * @param currentGameId El ID del joc actual.
+     * @param counter El temps a establir per al joc.
+     */
     public static void setGameTime(int connectedUserId, int currentGameId, Time counter) {
         String query = "UPDATE game SET Time = '" + counter + "' WHERE ID_P = " + connectedUserId + " AND ID_G = " + currentGameId;
         Connector.getInstance().updateQuery(query);
@@ -24,8 +30,8 @@ public class SQLGameDAO {
 
 
     /**
-     * method that deletes all data related to the games of the user.
-     * @param id the id of the user that will delete the data.
+     * Mètode que elimina tota la informació relacionada amb l'usuari
+     * @param id id del usuari de qui s'ha d'eliminar la informació.
      */
     public void deleteUserGameData(int id){
         String query = "DELETE FROM game WHERE id = "+id+";";
@@ -33,8 +39,8 @@ public class SQLGameDAO {
     }
 
     /**
-     * method that updates all data related to the games of the user.
-     * @param id the id of the user that will delete the data.
+     * funció que actualitza la informació de l'usuari relacionada amb els jocs en la base de dades
+     * @param id id del usuari de qui s'ha d'eliminar la informació.
      */
     public void upadteUserGameData(int id){
         String query = "UPDATE FROM game WHERE id = "+id+";";
@@ -60,6 +66,10 @@ public class SQLGameDAO {
         return gameCount;
     }
 
+    /**
+     * Inicia una nova partida per a l'usuari especificat.
+     * @param userId L'ID de l'usuari per al qual es comença la nova partida.
+     */
     public void startNewGame(int userId) {
         // Establecer los valores iniciales para la nueva partida
         int numGame = getGameCount(userId);
@@ -76,6 +86,14 @@ public class SQLGameDAO {
         Connector.getInstance().insertQuery(query);
     }
 
+
+    /**
+     * Obté el nombre de cafès per a l'usuari i joc especificats.
+     *
+     * @param ID_P L'ID de l'usuari.
+     * @param ID_G L'ID del joc.
+     * @return El nombre de cafès per a l'usuari i joc especificats.
+     */
     public double getNCoffees(int ID_P, int ID_G) {
         double nCoffees = 0;
         String query = "SELECT N_Coffees FROM game WHERE ID_P = " + ID_P + " AND ID_G = " + ID_G;
@@ -91,11 +109,26 @@ public class SQLGameDAO {
         return Nretrun;
     }
 
+
+    /**
+     * Estableix el nombre de cafès per a l'usuari i joc especificats.
+     *
+     * @param ID_P L'ID de l'usuari.
+     * @param ID_G L'ID del joc.
+     * @param newNCoffees El nou nombre de cafès a establir.
+     */
     public void setNCoffees(int ID_P, int ID_G, double newNCoffees) {
         String query = "UPDATE game SET N_Coffees = " + newNCoffees + " WHERE ID_P = " + ID_P + " AND ID_G = " + ID_G;
         Connector.getInstance().updateQuery(query);
     }
 
+
+    /**
+     * Obté el valor de PowerUpClicker per a l'usuari especificat.
+     *
+     * @param id L'ID de l'usuari.
+     * @return El valor de PowerUpClicker per a l'usuari especificat.
+     */
     public int getPowerUpClicker(int id) {
         int powerUpClicker = 0;
         String query = "SELECT PowerUpClicker FROM game WHERE ID_P = " + id;
@@ -110,20 +143,48 @@ public class SQLGameDAO {
         return powerUpClicker;
     }
 
+
+    /**
+     * Estableix el valor de PowerUpClicker per a l'usuari especificat.
+     *
+     * @param id L'ID de l'usuari.
+     * @param newPowerUpClicker El nou valor de PowerUpClicker a establir.
+     */
     public void setPowerUpClicker(int id, int newPowerUpClicker) {
         String query = "UPDATE game SET PowerUpClicker = " + newPowerUpClicker + " WHERE ID_P = " + id;
         Connector.getInstance().updateQuery(query);
     }
 
+
+    /**
+     * Estableix l'estat de finalització del joc per a l'usuari especificat.
+     *
+     * @param id L'ID de l'usuari.
+     * @param newEnded El nou estat de finalització del joc a establir.
+     */
     public void setEnded(int id, boolean newEnded) {
         String query = "UPDATE game SET Ended = " + newEnded + " WHERE ID_P = " + id;
         Connector.getInstance().updateQuery(query);
     }
 
+
+    /**
+     * Obté l'ID del joc actual per a l'usuari connectat.
+     *
+     * @param connectedUserId L'ID de l'usuari connectat.
+     * @return L'ID del joc actual per a l'usuari connectat.
+     */
     public int getCurrentGameId(int connectedUserId) {
         return getGameCount(connectedUserId) - 1;
     }
 
+
+    /**
+     * Comprova si l'usuari té partides actives.
+     *
+     * @param userId L'ID de l'usuari.
+     * @return Cert si l'usuari té almenys una partida activa; fals en cas contrari.
+     */
     public boolean comprobarPartidesActives(int userId) {
         String query = "SELECT * FROM game WHERE ID_P = " + userId + " AND Ended = 0";
         ResultSet result = Connector.getInstance().selectQuery(query);
@@ -138,6 +199,13 @@ public class SQLGameDAO {
     }
 
 
+    /**
+     * Obté el temps guardat per a l'usuari connectat i el joc actual.
+     *
+     * @param connectedUserId L'ID de l'usuari connectat.
+     * @param currentGameId L'ID del joc actual.
+     * @return El temps guardat per a l'usuari i joc especificats, o null si no s'ha trobat cap resultat.
+     */
     public Time getSavedTime(int connectedUserId, int currentGameId) {
         String query = "SELECT Time FROM game WHERE ID_P = " + connectedUserId + " AND ID_G = " + currentGameId;
         ResultSet result = Connector.getInstance().selectQuery(query);

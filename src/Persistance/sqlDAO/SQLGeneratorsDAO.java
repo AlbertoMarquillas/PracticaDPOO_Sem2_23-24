@@ -10,11 +10,21 @@ import java.sql.SQLException;
 public class SQLGeneratorsDAO{
 
 
+    /**
+     * Constructor de la clase SQLGeneratorsDAO
+     */
     public SQLGeneratorsDAO() {
         //setGeneradorsPrincipals();
     }
 
-    // Getter and Setter for Quantitat
+    /**
+     * Obté la quantitat de generadors de tipus especificat per a l'usuari i joc indicats.
+     *
+     * @param ID_P L'ID de l'usuari.
+     * @param ID_G L'ID del joc.
+     * @param type El tipus de generador.
+     * @return La quantitat de generadors del tipus especificat per a l'usuari i joc indicats.
+     */
     public int getQuantitatGeneradors(int ID_P, int ID_G, String type) {
         String query = "SELECT Quantitat FROM generators WHERE ID_P = " + ID_P + " AND ID_G = " + ID_G + " AND Type = '" + type + "'";
         ResultSet result = Connector.getInstance().selectQuery(query);
@@ -33,15 +43,21 @@ public class SQLGeneratorsDAO{
      * Actualiza la cantidad de generadores de un tipo específico en la base de datos.
      *
      * @param quantitat La nueva cantidad de generadores.
-     * @param type El tipo de generador a actualizar.
+     * @param type El tipus de generador a actualizar.
      */
     public void actualitzarQuantitat(int quantitat, int ID_P, int ID_G, String type) {
         String query = "UPDATE generators SET Quantitat = " + quantitat + " WHERE ID_P = " + ID_P + " AND ID_G = " + ID_G + " AND Type = '" + type + "'";
         Connector.getInstance().updateQuery(query);
     }
 
-    // Getter and Setter for CostActual
-
+    /**
+     * Obté el cost actual del generador del tipus especificat per a l'usuari i joc indicats.
+     *
+     * @param ID_P L'ID de l'usuari.
+     * @param ID_G L'ID del joc.
+     * @param type El tipus de generador.
+     * @return El cost actual del generador del tipus especificat per a l'usuari i joc indicats, o 0 si no es troba cap dada.
+     */
     public double getCostActual(int ID_P, int ID_G, String type) {
         try {
             String query = "SELECT CostActual AS Cost FROM generators WHERE ID_P = " + ID_P + " AND ID_G = " + ID_G + " AND Type = '"+ type + "'";

@@ -11,12 +11,12 @@ public class User {
     private boolean partidaActiva;
 
     /**
-     * constructor of the class User, it contains the credentials of the people who uses the program
+     * Constructor of the class User que conté informació sobre un usuari
      *
-     * @param id       integer that contains the number that identifies the user in the database
-     * @param email    string that contains the mail address of the user
-     * @param username is a string that allows us to identify a user
-     * @param password used to prove who you are when connecting to database
+     * @param id       integer que conté l'identificador de l'usuari
+     * @param email    string que conté l'email de l'usuari
+     * @param username string del nom d'usuari per identificar-se
+     * @param password string de la contrasenya de l'usuari
      */
     public User(int id, String username, String email, String password, boolean connected) {
         this.id = id;
@@ -27,34 +27,66 @@ public class User {
         this.partidaActiva = false;
     }
 
+    /**
+     * Getter que retorna la contrasenya de l'usuari
+     * @return string de la contrasenya de l'usuari
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     * Getter que retorna l'identificador de l'usuari
+     * @return integer de l'identificador de l'usuari
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Getter que retorna l'email de l'usuari
+     * @return string de l'email de l'usuari
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     * Getter que retorna el nom d'usuari
+     * @return string del nom d'usuari
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     * Getter que retorna si l'usuari està connectat
+     * @return boolean que indica si l'usuari està connectat
+     */
     public boolean isConnected() {
         return connected;
     }
 
+    /**
+     * Setter per indicar si l'usuari està connectat
+     * @param connected boolean que indica si l'usuari està connectat
+     */
     public void setConnected(boolean connected) {
         this.connected = connected;
     }
 
+    /**
+     * Getter que retorna si l'usuari té una partida activa
+     * @return boolean que indica si l'usuari té una partida activa
+     */
     public boolean isPartidaActiva() {
         return partidaActiva;
     }
 
+    /**
+     * Setter per indicar si l'usuari té una partida activa
+     * @param partidaActiva boolean que indica si l'usuari té una partida activa
+     */
     public void setPartidaActiva(boolean partidaActiva) {
         this.partidaActiva = partidaActiva;
     }

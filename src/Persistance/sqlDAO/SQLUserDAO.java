@@ -12,15 +12,15 @@ import java.util.List;
 public class SQLUserDAO{
 
     /**
-     * Receives nothing and does nothing
+     * Constructor de la clase SQLUserDAO
      */
     public SQLUserDAO() {
     }
 
 
     /**
-     * function that returns all the users in the database
-     * @return List of the type User that contains all the Users in our database
+     * Funció que retorna tots els usuaris de la base de dades.
+     * @return Llista del tipus User que conté tots els usuaris de la nostra base de dades.
      */
     public List<User> getAllUsers() {
         List<User> users = new LinkedList<>();
@@ -43,6 +43,12 @@ public class SQLUserDAO{
         return users;
     }
 
+    
+    /**
+     * Obté l'ID de l'usuari connectat.
+     *
+     * @return L'ID de l'usuari connectat, o -1 si no hi ha cap usuari connectat.
+     */
     public int getConnectedUserId() {
         try {
             String query = "SELECT id FROM user WHERE Connected = 1;";
