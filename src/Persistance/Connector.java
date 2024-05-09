@@ -23,12 +23,12 @@ public class Connector {
     private Connection connection;
 
     /**
-     * Constructor privado de la clase Connector.
-     * @param username Nombre de usuario para la conexión a la base de datos.
-     * @param password Contraseña para la conexión a la base de datos.
-     * @param ip Dirección IP del servidor de la base de datos.
-     * @param port Puerto del servidor de la base de datos.
-     * @param database Nombre de la base de datos.
+     * Constructor privat de la classe Connector.
+     * @param username Nom d'usuari per a la connexió a la base de dades.
+     * @param password Contrasenya per a la connexió a la base de dades.
+     * @param ip Adreça IP del servidor de la base de dades.
+     * @param port Port del servidor de la base de dades.
+     * @param database Nom de la base de dades.
      */
     private Connector(String username, String password, String ip, String port, String database) {
         this.username = username;
@@ -37,8 +37,8 @@ public class Connector {
     }
 
     /**
-     * Lee la configuración de la base de datos desde un archivo JSON.
-     * @return Configuración de la base de datos leída desde el archivo JSON.
+     * Llegeix la configuració de la base de dades des d'un fitxer JSON.
+     * @return Configuració de la base de dades llegida des del fitxer JSON.
      */
     private static DBConfig readConfig() {
         Gson gson = new Gson();
@@ -54,8 +54,8 @@ public class Connector {
     }
 
     /**
-     * Obtiene una instancia única de Connector.
-     * @return Instancia única de Connector.
+     * Obté una instància única de Connector.
+     * @return Instància única de Connector.
      */
     public static Connector getInstance() {
         if (instance == null) {
@@ -68,7 +68,7 @@ public class Connector {
     }
 
     /**
-     * Establece una conexión con la base de datos.
+     * Estableix una connexió amb la base de dades.
      */
     public void connect() {
         try {
@@ -79,9 +79,9 @@ public class Connector {
     }
 
     /**
-     * Ejecuta una consulta de inserción en la base de datos.
-     * @param query Consulta SQL de inserción.
-     * @return true si la inserción fue exitosa, false en caso contrario.
+     * Executa una consulta d'inserció a la base de dades.
+     * @param query Consulta SQL d'inserció.
+     * @return true si la inserció ha estat exitosa, false en cas contrari.
      */
     public boolean insertQuery(String query) {
         try {
@@ -95,9 +95,9 @@ public class Connector {
     }
 
     /**
-     * Ejecuta una consulta de actualización en la base de datos.
-     * @param query Consulta SQL de actualización.
-     * @return true si la actualización fue exitosa, false en caso contrario.
+     * Executa una consulta d'actualització a la base de dades.
+     * @param query Consulta SQL d'actualització.
+     * @return true si l'actualització ha estat exitosa, false en cas contrari.
      */
     public boolean updateQuery(String query) {
         try {
@@ -111,8 +111,8 @@ public class Connector {
     }
 
     /**
-     * Ejecuta una consulta de eliminación en la base de datos.
-     * @param query Consulta SQL de eliminación.
+     * Executa una consulta d'eliminació a la base de dades.
+     * @param query Consulta SQL d'eliminació.
      */
     public void deleteQuery(String query) {
         try {
@@ -124,9 +124,9 @@ public class Connector {
     }
 
     /**
-     * Ejecuta una consulta de selección en la base de datos.
-     * @param query Consulta SQL de selección.
-     * @return Resultado de la consulta.
+     * Executa una consulta de selecció a la base de dades.
+     * @param query Consulta SQL de selecció.
+     * @return Resultat de la consulta.
      */
     public ResultSet selectQuery(String query) {
         ResultSet resultSet = null;

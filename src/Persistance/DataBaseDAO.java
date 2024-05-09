@@ -6,8 +6,7 @@ package Persistance;
 public class DataBaseDAO {
 
     /**
-     * Crea la base de datos "CoffeeClicker" si no existe.
-     * @return true si la base de datos se creó correctamente, false en caso contrario.
+     * Crea la base de dades "CoffeeClicker" si no existeix.
      */
     public void createDataBase() {
         String query = "CREATE DATABASE IF NOT EXISTS coffeeclickerdb";
@@ -15,8 +14,7 @@ public class DataBaseDAO {
     }
 
     /**
-     * Crea las tablas necesarias en la base de datos.
-     * @return true si las tablas se crearon correctamente, false en caso contrario.
+     * Crea les taules necessàries a la base de dades.
      */
     public void createTables() {
 
