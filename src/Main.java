@@ -20,7 +20,7 @@ public class Main {
         SQLGameDAO sqlGameDAO = new SQLGameDAO();
         SQLGeneratorsDAO sqlGeneratorsDAO = new SQLGeneratorsDAO();
         SQLUserDAO sqlUserDAO = new SQLUserDAO();
-        //SQLStatsDAO sqlStatsDAO = new SQLStatsDAO();
+        SQLStatsDAO sqlStatsDAO = new SQLStatsDAO();
 
         Comptador comptador = new Comptador(sqlGameDAO, sqlUserDAO, sqlGeneratorsDAO, sqlStatsDAO);
         UserManager userManager = new UserManager(sqlUserDAO);
