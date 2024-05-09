@@ -69,8 +69,10 @@ public class SQLUserDAO{
     }
 
     /**
-     * function that checks if the user entered while signing in already is registered
-     * @return boolean that indicates if it exists or not
+     * Comprova si l'usuari existeix a la base de dades.
+     *
+     * @param user El nom d'usuari a comprovar.
+     * @return Cert si l'usuari existeix; fals en cas contrari o si hi ha algun error de connexió.
      */
     public boolean userExist(String user) {
         try {
@@ -83,8 +85,10 @@ public class SQLUserDAO{
     }
 
     /**
-     * function that checks if the email entered while signing in already is registered
-     * @return boolean that indicates if it exists or not
+     * Comprova si l'email existeix a la base de dades.
+     *
+     * @param email L'email a comprovar.
+     * @return Cert si l'email existeix; fals en cas contrari o si hi ha algun error de connexió.
      */
     public boolean emailExist(String email) {
         try {
@@ -97,8 +101,10 @@ public class SQLUserDAO{
     }
 
     /**
-     * function that deletes a user from the database, deletes all game information
-     * @return boolean that indicates if it has been deleted correctly
+     * Esborra un usuari de la base de dades segons el nom d'usuari proporcionat.
+     *
+     * @param name El nom d'usuari de l'usuari a esborrar.
+     * @return Cert si l'usuari s'ha esborrat amb èxit; fals en cas contrari o si hi ha algún error.
      */
     public boolean deleteUser (String name) {
         boolean check;
@@ -108,9 +114,11 @@ public class SQLUserDAO{
     }
 
     /**
-     * function that checks if the password entered by the user is valid
-     * @param password is a string with the entered password by the user
-     * @return boolean that indicates if the password introduced by the user is valid (follows the format in the statement)
+     * Comprova si la contrasenya correspon al nom d'usuari especificat.
+     *
+     * @param userName El nom d'usuari de l'usuari.
+     * @param password La contrasenya a comprovar.
+     * @return Cert si la contrasenya correspon al nom d'usuari; fals en cas contrari o si hi ha algun error de connexió.
      */
     public boolean checkPassword(String userName, String password) {
         try {
@@ -122,6 +130,15 @@ public class SQLUserDAO{
         }
     }
 
+
+    /**
+     * Crea un nou usuari a la base de dades amb les dades proporcionades.
+     *
+     * @param name El nom de l'usuari.
+     * @param email El correu electrònic de l'usuari.
+     * @param password La contrasenya de l'usuari.
+     * @return Cert si l'usuari s'ha creat amb èxit; fals en cas contrari o si hi ha algún error.
+     */
     public boolean createUser(String name, String email, String password) {
         // Obtener el siguiente ID disponible para el nuevo usuario
         int id = getAllUsers().size() + 1;
@@ -131,9 +148,15 @@ public class SQLUserDAO{
         String query = "INSERT INTO user(id, UserName, Email, Password, Connected) VALUES " +
                 "('" + id + "', '" + name + "', '" + email + "', '" + password + "', 1);";
 
-    return Connector.getInstance().insertQuery(query);
-}
+        return Connector.getInstance().insertQuery(query);
+    }
 
+
+    /**
+     * Obté l'usuari connectat des de la base de dades.
+     *
+     * @return L'usuari connectat, o null si cap usuari està connectat o hi ha algún error.
+     */
     public User getUserConnected() {
         try {
             String query = "SELECT * FROM user WHERE User.Connected = 1;";
@@ -152,16 +175,36 @@ public class SQLUserDAO{
         return null;
     }
 
+
+    /**
+     * Connecta l'usuari especificat.
+     *
+     * @param name El nom de l'usuari a connectar.
+     */
     public void connectedUser(String name) {
         String query = "UPDATE user SET Connected = 1 WHERE User.UserName = '" + name + "';";
         Connector.getInstance().updateQuery(query);
     }
 
+
+    /**
+     * Desconnecta l'usuari especificat.
+     *
+     * @param name El nom de l'usuari a desconnectar.
+     */
     public void disconnectUser(String name) {
         String query = "UPDATE user SET Connected = 0 WHERE User.UserName = '" + name + "';";
         Connector.getInstance().updateQuery(query);
     }
 
+
+    /**
+     * Comprova si la contrasenya correspon al correu electrònic especificat.
+     *
+     * @param username El correu electrònic de l'usuari.
+     * @param password La contrasenya a comprovar.
+     * @return Cert si la contrasenya correspon al correu electrònic; fals en cas contrari o si hi ha algun error de connexió.
+     */
     public boolean checkPasswordMail(String username, String password) {
         try {
             String query = "SELECT * FROM user WHERE User.Email = '" + username + "' AND User.Password = '" + password + "';";
@@ -172,6 +215,13 @@ public class SQLUserDAO{
         }
     }
 
+
+    /**
+     * Obté l'ID de l'usuari a partir del seu nom d'usuari.
+     *
+     * @param userName El nom d'usuari de l'usuari.
+     * @return L'ID de l'usuari corresponent al nom d'usuari proporcionat, o -1 si no es troba cap usuari amb el nom d'usuari donat.
+     */
     public int getUserID(String userName) {
         try {
             String query = "SELECT id FROM user WHERE UserName = '" + userName + "'";
@@ -248,6 +298,9 @@ public class SQLUserDAO{
     }
 
 
+    /**
+     * Desconnecta tots els usuaris, establint el seu estat de connexió a 0.
+     */
     public void setAllUsersOff() {
         String query = "UPDATE user SET Connected = 0";
         Connector.getInstance().updateQuery(query);

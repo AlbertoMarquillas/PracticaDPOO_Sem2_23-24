@@ -80,7 +80,12 @@ public class SQLGeneratorsDAO{
         Connector.getInstance().updateQuery(query);
     }
 
-    // Getter and Setter for ProduccioActual
+    /**
+     * Obté la producció actual del tipus de generador especificat.
+     *
+     * @param type El tipus de generador.
+     * @return La producció actual del generador del tipus especificat, o 0 si no es troba cap dada.
+     */
     public int getProduccioActual(String type) {
         String query = "SELECT ProduccioActual FROM generators WHERE Type = '" + type + "'";
         ResultSet result = Connector.getInstance().selectQuery(query);
@@ -158,6 +163,15 @@ public class SQLGeneratorsDAO{
         }
     }
 
+
+    /**
+     * Obté el generador de l'usuari i joc especificats del tipus indicat.
+     *
+     * @param ID_P L'ID de l'usuari.
+     * @param ID_G L'ID del joc.
+     * @param type El tipus de generador.
+     * @return El generador corresponent a l'usuari, joc i tipus indicats, o null si no es troba cap generador.
+     */
     public Generator getGenerator(int ID_P, int ID_G, String type) {
     String query = "SELECT * FROM generators WHERE ID_P = " + ID_P + " AND ID_G = " + ID_G + " AND Type = '" + type + "'";
     ResultSet result = Connector.getInstance().selectQuery(query);
