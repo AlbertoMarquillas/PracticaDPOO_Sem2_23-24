@@ -3,6 +3,7 @@ package Persistance.sqlDAO;
 import Persistance.Connector;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,11 @@ public class SQLGameDAO {
      */
     public SQLGameDAO() {
 
+    }
+
+    public static void setGameTime(int connectedUserId, int currentGameId, Time counter) {
+        String query = "UPDATE game SET Time = '" + counter + "' WHERE ID_P = " + connectedUserId + " AND ID_G = " + currentGameId;
+        Connector.getInstance().updateQuery(query);
     }
 
 
@@ -132,4 +138,19 @@ public class SQLGameDAO {
     }
 
 
+    public Time getSavedTime(int connectedUserId, int currentGameId) {
+        String query = "SELECT Time FROM game WHERE ID_P = " + connectedUserId + " AND ID_G = " + currentGameId;
+        ResultSet result = Connector.getInstance().selectQuery(query);
+        try {
+            if (result.next()) {
+                // Asume que el tiempo se almacena como un TIME en la base de datos
+                Time time = result.getTime("Time");
+                // Ahora puedes usar la variable 'time' en tu código
+                return time;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null; // Devuelve null si no se encuentra ningún resultado
+    }
 }

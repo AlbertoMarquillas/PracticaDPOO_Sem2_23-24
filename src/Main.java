@@ -3,6 +3,7 @@ import Business.Managers.*;
 import Persistance.DataBaseDAO;
 import Persistance.sqlDAO.SQLGameDAO;
 import Persistance.sqlDAO.SQLGeneratorsDAO;
+import Persistance.sqlDAO.SQLStatsDAO;
 import Persistance.sqlDAO.SQLUserDAO;
 import Presentation.Controller.*;
 import Presentation.View.MainView;
@@ -19,13 +20,14 @@ public class Main {
         SQLGameDAO sqlGameDAO = new SQLGameDAO();
         SQLGeneratorsDAO sqlGeneratorsDAO = new SQLGeneratorsDAO();
         SQLUserDAO sqlUserDAO = new SQLUserDAO();
+        SQLStatsDAO sqlStatsDAO = new SQLStatsDAO();
 
-        Comptador comptador = new Comptador(sqlGameDAO, sqlUserDAO, sqlGeneratorsDAO);
+        Comptador comptador = new Comptador(sqlGameDAO, sqlUserDAO, sqlGeneratorsDAO, sqlStatsDAO);
         UserManager userManager = new UserManager(sqlUserDAO);
         LogInManager logInManager = new LogInManager(userManager);
         SignUpManager signUpManager = new SignUpManager(userManager);
         GeneratorManager generatorManager = new GeneratorManager(sqlGeneratorsDAO, sqlGameDAO);
-        GameManager gameManager = new GameManager(sqlGameDAO, sqlUserDAO, sqlGeneratorsDAO);
+        GameManager gameManager = new GameManager(sqlGameDAO, sqlUserDAO, sqlGeneratorsDAO, sqlStatsDAO);
 
         StartView startView = new StartView();
         StatsView statsView = new StatsView();

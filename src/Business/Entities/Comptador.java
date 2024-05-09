@@ -2,16 +2,22 @@ package Business.Entities;
 
 import Business.Managers.GameManager;
 import Persistance.sqlDAO.SQLGameDAO;
+import Persistance.sqlDAO.SQLStatsDAO;
 import Persistance.sqlDAO.SQLUserDAO;
 import Persistance.sqlDAO.SQLGeneratorsDAO;
 import Presentation.Controller.GameController;
 import Presentation.View.GameView;
+
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.LocalTime;
 
 public class Comptador {
 
     private final SQLGameDAO sqlGameDAO;
     private final SQLUserDAO sqlUserDAO;
     private final SQLGeneratorsDAO sqlGeneratorsDAO;
+    private final SQLStatsDAO sqlStatsDAO;
     private ComptadorInterficie comptadorInterficie;
     private Thread thread;
     private boolean running;
@@ -25,10 +31,11 @@ public class Comptador {
     private Generator generador;
     private User user;
 
-    public Comptador(SQLGameDAO sqlGameDAO, SQLUserDAO sqlUserDAO, SQLGeneratorsDAO sqlGeneratorsDAO) {
+    public Comptador(SQLGameDAO sqlGameDAO, SQLUserDAO sqlUserDAO, SQLGeneratorsDAO sqlGeneratorsDAO, SQLStatsDAO sqlStatsDAO) {
         this.sqlGameDAO = sqlGameDAO;
         this.sqlUserDAO = sqlUserDAO;
         this.sqlGeneratorsDAO = sqlGeneratorsDAO;
+        this.sqlStatsDAO = sqlStatsDAO;
     }
 
 
@@ -154,7 +161,9 @@ public class Comptador {
         setRunning(run);
 
         // Crear nuevas instancias de tus tres generadores
-        GameManager gameManager = new GameManager(sqlGameDAO, sqlUserDAO, sqlGeneratorsDAO);
+        GameManager gameManager = new GameManager(sqlGameDAO, sqlUserDAO, sqlGeneratorsDAO, sqlStatsDAO);
+
+
 
         boolean flag = false;
 
@@ -185,12 +194,33 @@ public class Comptador {
                     // Incrementar nCoffee por la cantidad de café producido por cada generador
                     nCoffee = nCoffee + (gen1) + (gen2) + (gen3);
 
+                    // Obtener savedTime de la base de datos
+                    Time savedTime = sqlGameDAO.getSavedTime(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()));
+
+                    // Convertir el Time a LocalTime
+                    LocalTime localTime = savedTime.toLocalTime();
+
+                    // Incrementar el LocalTime en un segundo
+                    localTime = localTime.plusSeconds(1);
+
+                    // Convertir el LocalTime de nuevo a Time
+                    savedTime = Time.valueOf(localTime);
+
+                    // Actualizar el tiempo en la base de datos
+                    sqlGameDAO.setGameTime(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()), savedTime);
+
+                    // Si ha pasado un minuto, ejecutar una función
+                    if (localTime.getSecond() == 0) {
+                        sqlStatsDAO.setSavedStats(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()), savedTime, nCoffee);
+                    }
+
                     if (!flag){
                         comptadorInterficie.setTaulaContenido(generador1, generador2, generador3);
                     }
 
                     // Actualizar la interfaz del contador con la cantidad actual de café y la producción total de los generadores
                     comptadorInterficie.updateQuantitatCoffe(nCoffee, generador1, generador2, generador3);
+
 
                     try {
                         // Hacer que el hilo duerma durante un segundo antes de continuar con la próxima iteración

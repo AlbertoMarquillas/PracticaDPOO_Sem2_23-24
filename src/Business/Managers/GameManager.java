@@ -5,6 +5,7 @@ import Business.Entities.ComptadorInterficie;
 import Business.Entities.Generator;
 import Persistance.sqlDAO.SQLGameDAO;
 import Persistance.sqlDAO.SQLGeneratorsDAO;
+import Persistance.sqlDAO.SQLStatsDAO;
 import Persistance.sqlDAO.SQLUserDAO;
 import Presentation.View.GameView;
 
@@ -13,12 +14,14 @@ import Presentation.View.GameView;
         private SQLGameDAO sqlGameDAO;
         private SQLUserDAO sqlUserDAO;
         private SQLGeneratorsDAO sqlGeneratorsDAO;
+        private SQLStatsDAO sqlStatsDAO;
 
-        public GameManager(SQLGameDAO sqlGameDAO, SQLUserDAO sqlUserDAO, SQLGeneratorsDAO sqlGeneratorsDAO){
+        public GameManager(SQLGameDAO sqlGameDAO, SQLUserDAO sqlUserDAO, SQLGeneratorsDAO sqlGeneratorsDAO, SQLStatsDAO sqlStatsDAO){
             this.sqlGameDAO = sqlGameDAO;
             this.sqlUserDAO = sqlUserDAO;
             this.sqlGeneratorsDAO = sqlGeneratorsDAO;
-            this.comptador = new Comptador(sqlGameDAO, sqlUserDAO, sqlGeneratorsDAO);
+            this.sqlStatsDAO = sqlStatsDAO;
+            this.comptador = new Comptador(sqlGameDAO, sqlUserDAO, sqlGeneratorsDAO, sqlStatsDAO);
         }
 
         // ... el resto del código ...
