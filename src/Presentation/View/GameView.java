@@ -57,11 +57,13 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
 
     private String text = "0000";
     private final CustomLabel contador;
-
     private double cost1 = 10;
     private double cost2 = 150;
     private double cost3 = 2000;
 
+    private JLabel labelPotCost1 = new JLabel(String.valueOf(cost1));
+    private JLabel labelPotCost2 = new JLabel(String.valueOf(cost2));
+    private JLabel labelPotCost3 = new JLabel(String.valueOf(cost3));
     private int quantitatPotenciadors1;
     private int quantitatPotenciadors2;
     private int quantitatPotenciadors3;
@@ -125,11 +127,11 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
 
         //Crear els panells dels potenciadors
         //El string producció fara falta canviar-los per les variables
-        potenciador1 = createPotenciadorButton("Imagenes/potenciador1.png", "BARISTA BOOST", "Cost:" + cost1 +" Coffes", "<html><div style='text-align: center;'>Elevate your brew game<br>with lightning speed</div></html>");
+        potenciador1 = createPotenciadorButton("Imagenes/potenciador1.png", "BARISTA BOOST", "Cost:" + this.cost1 +" Coffes", "<html><div style='text-align: center;'>Elevate your brew game<br>with lightning speed</div></html>");
         this.potenciador1.setEnabled(true);
-        potenciador2 = createPotenciadorButton("Imagenes/potenciador2.png", "WAFFLE WIZARD", "Cost: " + cost2 +" Coffes", "<html><div style='text-align: center;'>Master the art of waffle<br>making with prowess.</div></html>");
+        potenciador2 = createPotenciadorButton("Imagenes/potenciador2.png", "WAFFLE WIZARD", "Cost: " + this.cost2 +" Coffes", "<html><div style='text-align: center;'>Master the art of waffle<br>making with prowess.</div></html>");
         this.potenciador2.setEnabled(true);
-        potenciador3 = createPotenciadorButton("Imagenes/potenciador3.png", "STEAMY BREW", "Cost: " + cost3 +" Coffes", "<html><div style='text-align: center;'>Experience the power<br>of a perfect brew cup.</div></html>");
+        potenciador3 = createPotenciadorButton("Imagenes/potenciador3.png", "STEAMY BREW", "Cost: " + this.cost3 +" Coffes", "<html><div style='text-align: center;'>Experience the power<br>of a perfect brew cup.</div></html>");
         this.potenciador3.setEnabled(true);
 
         finishGame = new CustomButton("Finish Game", 230, 50, Color.decode("#F8F2F0"), Color.decode("#3B1211"), new Font("Segoe UI Black", Font.PLAIN, 14));
@@ -290,11 +292,19 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
      * @param produccio Producció del potenciador
      * @return JPanel amb les dades del potenciador
      */
-    public static CustomButton createPotenciadorButton(String pathFoto, String nom, String cost, String produccio) {
+    public CustomButton createPotenciadorButton(String pathFoto, String nom, String cost, String produccio) {
 
         //inicialitzar els labels amb les dades dels potenciadors
         CustomLabel nomLabel = new CustomLabel(nom, new Font("Segoe UI Black", Font.PLAIN, 19), Color.decode("#3B1211"));
-        CustomLabel costLabel = new CustomLabel(cost, new Font("Segoe UI Black", Font.PLAIN, 14), Color.decode("#3B1211"));
+        if (nom.equals("BARISTA BOOST")){
+            labelPotCost1 = new JLabel(cost);
+        } else if (nom.equals("WAFFLE WIZARD")) {
+            labelPotCost2 = new JLabel(cost);
+        } else if (nom.equals("STEAMY BREW")) {
+            labelPotCost3 = new JLabel(cost);
+
+        }
+
         CustomLabel produccioLabel = new CustomLabel(produccio, new Font("Segoe UI Black", Font.PLAIN, 12), Color.decode("#3B1211"));
 
         //inicialitzar la imatge del potenciador
@@ -325,8 +335,16 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         gbcInfo.gridx = 1;
         gbcInfo.gridy = 1;
         gbcInfo.insets = new Insets(10, 0, 0, 5); // Ajusta los márgenes
-        panelInfo.add(costLabel, gbcInfo);
 
+        if (nom.equals("BARISTA BOOST")){
+            panelInfo.add(labelPotCost1, gbcInfo);
+        } else if (nom.equals("WAFFLE WIZARD")) {
+            panelInfo.add(labelPotCost2, gbcInfo);
+
+        } else if (nom.equals("STEAMY BREW")) {
+            panelInfo.add(labelPotCost3, gbcInfo);
+
+        }
         //afegir la producció
         gbcInfo.gridx = 1;
         gbcInfo.gridy = 2;
@@ -970,11 +988,16 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
      */
     public void updateCostGenerator1(double costActual) {
         this.cost1 = Math.round(costActual * 100.0) / 100.0;
-        this.potenciador1.setText("BARISTA BOOST" + " Cost:" + this.cost1 + " Coffes");
-        this.potenciador1.repaint();
-
+        this.labelPotCost1.setText("Cost: " + String.valueOf(this.cost1));
     }
-
+    public void updateCostGenerator2(double costActual) {
+        this.cost2 = Math.round(costActual * 100.0) / 100.0;
+        this.labelPotCost2.setText("Cost: " + String.valueOf(this.cost2));
+    }
+    public void updateCostGenerator3(double costActual) {
+        this.cost3 = Math.round(costActual * 100.0) / 100.0;
+        this.labelPotCost3.setText("Cost: " + String.valueOf(this.cost3));
+    }
     /**
      * Gestiona les accions produïdes per l'usuari.
      */

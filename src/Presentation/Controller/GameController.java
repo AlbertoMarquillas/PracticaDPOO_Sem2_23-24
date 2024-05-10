@@ -94,6 +94,7 @@ public class GameController implements ActionListener, ComptadorInterficie {
 
             //Update info generador 1
             gameView.updateGenerator2(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getProduccioTotal(ID_P, ID_G, type), generatorManager.getProdActual(ID_P, ID_G, type));
+            gameView.updateCostGenerator2(generatorManager.getCostActual(ID_P, ID_G, type));
 
             System.out.println("Quantitat Potenciadors 2: "  + gameView.getQuantitatPotenciadors2());
             System.out.println("Cost potenciador 2: " + gameView.getCost2());
@@ -108,6 +109,7 @@ public class GameController implements ActionListener, ComptadorInterficie {
 
             //Update info generador 1
             gameView.updateGenerator3(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getProduccioTotal(ID_P, ID_G, type), generatorManager.getProdActual(ID_P, ID_G, type));
+            gameView.updateCostGenerator3(generatorManager.getCostActual(ID_P, ID_G, type));
 
             System.out.println("Quantitat Potenciadors 3: " + gameView.getQuantitatPotenciadors3());
             System.out.println("Cost potenciador 3: " + gameView.getCost3());
