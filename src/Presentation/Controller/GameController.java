@@ -4,6 +4,7 @@ import Business.Entities.Generator;
 import Business.Managers.GameManager;
 import Business.Managers.GeneratorManager;
 import Presentation.View.GameView;
+import Business.Managers.MilloraManager;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -17,6 +18,7 @@ public class GameController implements ActionListener, ComptadorInterficie {
 
     private final GameManager gameManager;
 
+    private final MilloraManager milloraManager;
     /**
      * Constructor de la clase GameController
      * @param changeViewController control de la vista del joc
@@ -24,11 +26,12 @@ public class GameController implements ActionListener, ComptadorInterficie {
      * @param generatorManager manager dels generadors
      * @param gameManager manager del joc
      */
-    public GameController(ChangeViewController changeViewController, GameView gameView, GeneratorManager generatorManager, GameManager gameManager) {
+    public GameController(ChangeViewController changeViewController, GameView gameView, GeneratorManager generatorManager, GameManager gameManager, MilloraManager milloraManager) {
         this.changeViewController = changeViewController;
         this.gameView = gameView;
         this.generatorManager = generatorManager;
         this.gameManager = gameManager;
+        this.milloraManager = milloraManager;
     }
 
     /**
@@ -110,13 +113,43 @@ public class GameController implements ActionListener, ComptadorInterficie {
             System.out.println("Cost potenciador 3: " + gameView.getCost3());
             System.out.println("CostActual potenciador 3: " + generatorManager.getCostActual(ID_P, ID_G, type));
 
-        }else if (e.getActionCommand().equals("millora1")){
+        }else if (e.getActionCommand().equals("millora1")) {
+            int valorActual = milloraManager.getvalorMilloraA();  //valor actual de la millora
+            //if (valorActual < ) {
+            milloraManager.setvalorMilloraA(valorActual * 2);  //actualitzo el valor millora per potències de 2
+
+            int costActual = milloraManager.getcostMultiplicadorA();   //preu actual de la millora
+            milloraManager.setcostMultiplicadorA(costActual * 2); //actualitzo el preu millora per potències de 2
+            //}
+
 
         }else if (e.getActionCommand().equals("millora2")){
+            int valorActual = milloraManager.getvalorMilloraB();  //valor actual de la millora
+            //if (valorActual < ) {
+            milloraManager.setvalorMilloraB(valorActual * 2);  //actualitzo el valor millora per potències de 2
+
+            int costActual = milloraManager.getcostMultiplicadorB();   //preu actual de la millora
+            // millora.setcostMultiplicadorB(costActual * 2); //actualitzo el preu millora per potències de 2
+            //}
 
         }else if (e.getActionCommand().equals("millora3")){
+            int valorActual = milloraManager.getvalorMilloraC();  //valor actual de la millora
+
+            //if (valorActual < ) {
+                milloraManager.setvalorMilloraC(valorActual * 2);  //actualitzo el valor millora per potències de 2
+
+                int costActual = milloraManager.getcostMultiplicadorC();   //preu actual de la millora
+                milloraManager.setcostMultiplicadorC(costActual * 2); //actualitzo el preu millora per potències de 2
+            //}
 
         }else if (e.getActionCommand().equals("millora4")){
+            int valorActual = milloraManager.getvalorMilloraGeneral();  //valor actual de la millora
+            //if (valorActual < gameManager.getCaffeNumber()) {
+                milloraManager.setvalorMilloraGeneral(valorActual * 2);  //actualitzo el valor millora per potències de 2
+
+                int costActual = milloraManager.getcostMultiplicadorGeneral();   //preu actual de la millora
+                milloraManager.setcostMultiplicadorGeneral(costActual * 2); //actualitzo el preu millora per potències de 2
+            //}
 
         } else if (e.getActionCommand().equals("finish")){
             changeViewController.setComptador(false);
