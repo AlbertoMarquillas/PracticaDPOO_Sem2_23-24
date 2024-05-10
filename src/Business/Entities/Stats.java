@@ -14,4 +14,5 @@ public class Stats {
         this.nCoffee = nCoffee;
     }
 
+
 }
