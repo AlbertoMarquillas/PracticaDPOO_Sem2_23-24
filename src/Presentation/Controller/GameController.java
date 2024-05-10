@@ -115,41 +115,40 @@ public class GameController implements ActionListener, ComptadorInterficie {
 
         }else if (e.getActionCommand().equals("millora1")) {
             int valorActual = milloraManager.getvalorMilloraA();  //valor actual de la millora
-            //if (valorActual < ) {
-            milloraManager.setvalorMilloraA(valorActual * 2);  //actualitzo el valor millora per potències de 2
+            if (valorActual < gameManager.getCaffeeNumber()) {
+                milloraManager.setvalorMilloraA(valorActual * 2);  //actualitzo el valor millora per potències de 2
 
-            int costActual = milloraManager.getcostMultiplicadorA();   //preu actual de la millora
-            milloraManager.setcostMultiplicadorA(costActual * 2); //actualitzo el preu millora per potències de 2
-            //}
-
+                int costActual = milloraManager.getcostMultiplicadorA();   //preu actual de la millora
+                milloraManager.setcostMultiplicadorA(costActual * 2); //actualitzo el preu millora per potències de 2
+            }
 
         }else if (e.getActionCommand().equals("millora2")){
             int valorActual = milloraManager.getvalorMilloraB();  //valor actual de la millora
-            //if (valorActual < ) {
-            milloraManager.setvalorMilloraB(valorActual * 2);  //actualitzo el valor millora per potències de 2
+            if (valorActual < gameManager.getCaffeeNumber()) {
+                milloraManager.setvalorMilloraB(valorActual * 2);  //actualitzo el valor millora per potències de 2
 
-            int costActual = milloraManager.getcostMultiplicadorB();   //preu actual de la millora
-            // millora.setcostMultiplicadorB(costActual * 2); //actualitzo el preu millora per potències de 2
-            //}
+                int costActual = milloraManager.getcostMultiplicadorB();   //preu actual de la millora
+                milloraManager.setcostMultiplicadorB(costActual * 2); //actualitzo el preu millora per potències de 2
+            }
 
         }else if (e.getActionCommand().equals("millora3")){
             int valorActual = milloraManager.getvalorMilloraC();  //valor actual de la millora
 
-            //if (valorActual < ) {
+            if (valorActual < gameManager.getCaffeeNumber()) {
                 milloraManager.setvalorMilloraC(valorActual * 2);  //actualitzo el valor millora per potències de 2
 
                 int costActual = milloraManager.getcostMultiplicadorC();   //preu actual de la millora
                 milloraManager.setcostMultiplicadorC(costActual * 2); //actualitzo el preu millora per potències de 2
-            //}
+            }
 
         }else if (e.getActionCommand().equals("millora4")){
             int valorActual = milloraManager.getvalorMilloraGeneral();  //valor actual de la millora
-            //if (valorActual < gameManager.getCaffeNumber()) {
+            if (valorActual < gameManager.getCaffeeNumber()) {
                 milloraManager.setvalorMilloraGeneral(valorActual * 2);  //actualitzo el valor millora per potències de 2
 
                 int costActual = milloraManager.getcostMultiplicadorGeneral();   //preu actual de la millora
                 milloraManager.setcostMultiplicadorGeneral(costActual * 2); //actualitzo el preu millora per potències de 2
-            //}
+            }
 
         } else if (e.getActionCommand().equals("finish")){
             changeViewController.setComptador(false);

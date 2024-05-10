@@ -9,6 +9,7 @@ import Presentation.Controller.*;
 import Presentation.View.MainView;
 import Presentation.View.*;
 
+
 /**
  * Classe Main que conté el mètode main per a executar el programa.
  */
@@ -37,6 +38,7 @@ public class Main {
         SignUpManager signUpManager = new SignUpManager(userManager);
         GeneratorManager generatorManager = new GeneratorManager(sqlGeneratorsDAO, sqlGameDAO);
         GameManager gameManager = new GameManager(sqlGameDAO, sqlUserDAO, sqlGeneratorsDAO, sqlStatsDAO);
+        MilloraManager milloraManager = new MilloraManager();
 
         StartView startView = new StartView();
         StatsView statsView = new StatsView();
@@ -54,7 +56,7 @@ public class Main {
         SettingsController settingsController = new SettingsController(changeViewController, userManager);
         StartController startController = new StartController(changeViewController, userManager, gameManager, generatorManager ,startView);
         StatsController statsController = new StatsController(changeViewController);
-        GameController gameController = new GameController(changeViewController, gameView, generatorManager, gameManager);
+        GameController gameController = new GameController(changeViewController, gameView, generatorManager, gameManager, milloraManager);
 
         startView.buttonController(startController);
         //startView.setButtonsEnabled(userManager.comprobarPartidesActives());
