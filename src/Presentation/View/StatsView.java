@@ -2,6 +2,7 @@ package Presentation.View;
 
 import Presentation.View.Custom.CustomButton;
 import Presentation.View.Custom.CustomLabel;
+import Presentation.View.Custom.CustomStatisticsGraph;
 
 import javax.swing.*;
 import java.awt.*;
@@ -57,6 +58,12 @@ public class StatsView extends JPanel implements KeyListener, ActionListener {
         infoPanel.setBackground(Color.decode("#F8F2F0"));
         infoPanel.setLayout(new GridBagLayout());
         GridBagConstraints gbcCent = new GridBagConstraints();//Crear GridBagLayout del panell central per poder posar els elements
+        //Afegim el panell amb el grafic
+        CustomStatisticsGraph graph = new CustomStatisticsGraph();
+        infoPanel.add(graph, gbcSup);
+
+
+
 
         //Afegir el gràfic amb les estadístiques
         //gbcCent.gridx = 0;

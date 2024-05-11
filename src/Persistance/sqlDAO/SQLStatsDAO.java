@@ -18,19 +18,19 @@ public class SQLStatsDAO {
         Connector.getInstance().insertQuery(query);
     }
 
-    /*
+
     public static List<Stats> getMatchStats(int ID_P, int ID_G) {
         List<Stats> stats = new LinkedList<Stats>();
-        String query = "SELECT Stats.ID_P, Stats.ID_G FROM stats;";
+        String query = "SELECT N_Coffees FROM game WHERE ID_P = " + ID_P + " AND ID_G = " + ID_G;
         ResultSet result = Connector.getInstance().selectQuery(query);
 
         try {
             while(result.next()) {
 
-                long time = result.getTime("Time");         //Problemes amb el tipus
+                //long time = result.getTime("Time");         //Problemes amb el tipus
                 double nCoffee = result.getDouble("N_Cafe");
 
-                stats.add(new Stats(time, nCoffee));
+                //stats.add(new Stats(time, nCoffee));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -39,5 +39,5 @@ public class SQLStatsDAO {
     }
 
 
-     */
+
 }
