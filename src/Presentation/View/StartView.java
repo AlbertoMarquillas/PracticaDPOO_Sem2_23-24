@@ -18,10 +18,13 @@ public class StartView extends JPanel implements KeyListener, ActionListener {
     private static final String NEWGAME = "newgame";
     private static final String RESUMEGAME = "resumegame";
     private static final String STATISTICS = "stats";
+    private static final String SETTINGS = "settings";
 
     private CustomButton newGameButton;
     private CustomButton startGameButton;
     private CustomButton statisticsButton;
+    private JButton settingsButton;
+    private JButton imageButton;
 
     /**
      * Constructor de la classe StartView.
@@ -45,6 +48,13 @@ public class StartView extends JPanel implements KeyListener, ActionListener {
         statisticsButton = new CustomButton("Statistics", 350, 45, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 18));
         statisticsButton.setEnabled(false);
 
+        imageButton = new JButton();
+        settingsButton = new JButton();
+        ImageIcon ajustesIcon = new ImageIcon("Imagenes/ajustes.png"); // Ruta de la imagen del logo
+        settingsButton.setIcon(ajustesIcon);
+        settingsButton.setBorderPainted(false);         // Eliminar borde
+        settingsButton.setContentAreaFilled(false);
+
         //Crear el logo amb la foto del logo
         ImageIcon logoIcon = new ImageIcon("Imagenes/logo.png"); // Ruta de la imagen del logo
         JLabel logoLabel = new JLabel(logoIcon);
@@ -53,8 +63,18 @@ public class StartView extends JPanel implements KeyListener, ActionListener {
         //Panell esquerra que contindrà la imatge del logo
         JPanel panelIzquierdo = new JPanel();
         panelIzquierdo.setBackground(Color.decode("#F8F2F0"));
-        panelIzquierdo.setLayout(new BorderLayout());               //Crear Layout del panell esquerra per poder posar el logo
-        panelIzquierdo.add(logoLabel);                              //Afegir el logo al panell esquerra
+        panelIzquierdo.setLayout(new GridBagLayout());               //Crear Layout del panell esquerra per poder posar el logo
+        GridBagConstraints gbcIzq = new GridBagConstraints();
+        gbcIzq.gridx = 0;
+        gbcIzq.gridy = 0;
+        gbcIzq.insets = new Insets(10, 0, 0, 175);
+        panelIzquierdo.add(settingsButton, gbcIzq);
+
+        gbcIzq.gridx = 0;
+        gbcIzq.gridy = 1;
+        gbcIzq.insets = new Insets(0, 0, 40, 0);
+        panelIzquierdo.add(logoLabel, gbcIzq);
+
         add(panelIzquierdo, BorderLayout.WEST);                     //Afegir el panell esquerra a la finestra principal, a l'esquerra
 
 
@@ -64,10 +84,11 @@ public class StartView extends JPanel implements KeyListener, ActionListener {
         panelInfo.setLayout(new GridBagLayout());                   //Crear GridBagLayout del panell central per poder posar els elements
         GridBagConstraints gbcCent = new GridBagConstraints();
 
+
         //Afegir el Titol
         gbcCent.gridx = 0;
         gbcCent.gridy = 0;
-        gbcCent.insets = new Insets(10, 0, 0, 0);
+        gbcCent.insets = new Insets(0, 0, 0, 0);
         panelInfo.add(titleLabel, gbcCent);
 
         //Afegir el botó de new game
@@ -88,6 +109,8 @@ public class StartView extends JPanel implements KeyListener, ActionListener {
         gbcCent.insets = new Insets(20, 0, 20, 0);
         panelInfo.add(statisticsButton, gbcCent);
 
+
+
         //Afegir el panell a la finestra
         add(panelInfo, BorderLayout.CENTER);
     }
@@ -104,6 +127,8 @@ public class StartView extends JPanel implements KeyListener, ActionListener {
         newGameButton.setActionCommand(NEWGAME);
         statisticsButton.addActionListener(rvc);
         statisticsButton.setActionCommand(STATISTICS);
+        settingsButton.addActionListener(rvc);
+        settingsButton.setActionCommand(SETTINGS);
     }
 
 

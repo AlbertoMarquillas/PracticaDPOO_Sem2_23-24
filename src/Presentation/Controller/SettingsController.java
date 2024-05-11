@@ -10,6 +10,10 @@ public class SettingsController implements ActionListener {
 
     public final ChangeViewController changeViewController;
     private final UserManager userManager;
+    private final StartController startController;
+    private final StatsController statsController;
+    private final GameController gameController;
+
 
     /**
      * Constructor de la classe SettingsController.
@@ -17,9 +21,12 @@ public class SettingsController implements ActionListener {
      * @param changeViewController Controlador per a gestionar els canvis de pantalla.
      * @param userManager Gestor d'usuari per a realitzar operacions relacionades amb els usuaris.
      */
-    public SettingsController(ChangeViewController changeViewController, UserManager userManager) {
+    public SettingsController(ChangeViewController changeViewController, UserManager userManager, StartController startController, StatsController statsController, GameController gameController) {
         this.changeViewController = changeViewController;
         this.userManager = userManager;
+        this.startController = startController;
+        this.statsController = statsController;
+        this.gameController = gameController;
     }
 
 
@@ -37,6 +44,7 @@ public class SettingsController implements ActionListener {
             return false;
         }
     }
+
 
 
     /**
@@ -57,7 +65,7 @@ public class SettingsController implements ActionListener {
             }
 
         } else if (e.getActionCommand().equals("close")) {
-            boolean exit = showConfirmationDialog("Are you sure you want to close your session?");
+            boolean exit = showConfirmationDialog("Are you sure you want to log out?");
             if(exit){
                 String user = userManager.getNameUserConnected();
                 userManager.disconnectedUser(user);
@@ -66,8 +74,18 @@ public class SettingsController implements ActionListener {
                 changeViewController.changePan("settings");
             }
         } else if (e.getActionCommand().equals("back")) {
-            changeViewController.setComptador(true);
-            changeViewController.changePan("game");
+            if(gameController.isCameFromGame()){
+                changeViewController.setComptador(true);
+                changeViewController.changePan("game");
+                gameController.setCameFromGame(false);
+            } else if(startController.isCameFromStart()){
+                changeViewController.changePan("start");
+                startController.setCameFromStart(false);
+            } else if(statsController.isCameFromStats()){
+                changeViewController.changePan("stats");
+                statsController.setCameFromStats(false);
+            }
+
         }
     }
 }

@@ -305,6 +305,13 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
 
         }
 
+        labelPotCost1.setFont(new Font("Segoe UI Black", Font.PLAIN, 14));
+        labelPotCost1.setForeground(Color.decode("#3B1211"));
+        labelPotCost2.setFont(new Font("Segoe UI Black", Font.PLAIN, 14));
+        labelPotCost2.setForeground(Color.decode("#3B1211"));
+        labelPotCost3.setFont(new Font("Segoe UI Black", Font.PLAIN, 14));
+        labelPotCost3.setForeground(Color.decode("#3B1211"));
+
         CustomLabel produccioLabel = new CustomLabel(produccio, new Font("Segoe UI Black", Font.PLAIN, 12), Color.decode("#3B1211"));
 
         //inicialitzar la imatge del potenciador

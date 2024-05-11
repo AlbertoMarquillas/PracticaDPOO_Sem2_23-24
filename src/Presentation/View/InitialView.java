@@ -20,6 +20,7 @@ public class InitialView extends JPanel implements KeyListener{
     public static final String REGISTER = "register";
     public static final String LOGIN = "login";
 
+
     private CustomButton registerButton;
     private CustomButton loginButton;
     private CustomTextField userNameField;

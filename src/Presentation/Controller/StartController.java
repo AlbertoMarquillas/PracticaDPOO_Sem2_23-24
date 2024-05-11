@@ -15,6 +15,7 @@ public class StartController implements ActionListener {
     private final GameManager gameManager;
     private final StartView startView;
     private final GeneratorManager generatorManager;
+    private boolean cameFromStart = false;
 
     /**
      * Constructor de la classe StartController.
@@ -33,6 +34,14 @@ public class StartController implements ActionListener {
         this.generatorManager = generatorManager;
     }
 
+
+    public boolean isCameFromStart() {
+        return cameFromStart;
+    }
+
+    public void setCameFromStart(boolean cameFromStart) {
+        this.cameFromStart = cameFromStart;
+    }
 
     /**
      * Gestiona les accions de l'usuari en la vista d'inici.
@@ -55,6 +64,11 @@ public class StartController implements ActionListener {
             changeViewController.changePan("game");
         } else if (e.getActionCommand().equals("stats")) {
             changeViewController.changePan("stats");
+        }
+
+        if(e.getActionCommand().equals("settings")){
+            setCameFromStart(true);
+            changeViewController.changePan("settings");
         }
     }
 }

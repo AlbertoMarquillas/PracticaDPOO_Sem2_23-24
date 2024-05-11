@@ -10,6 +10,7 @@ public class StatsController implements ActionListener {
 
     private final ChangeViewController changeViewController;
     private StatsView statsView;
+    private boolean cameFromStats = false;
 
     /**
      * Constructor de la classe StatsController.
@@ -22,6 +23,14 @@ public class StatsController implements ActionListener {
     }
 
 
+    public boolean isCameFromStats() {
+        return cameFromStats;
+    }
+
+    public void setCameFromStats(boolean cameFromStats) {
+        this.cameFromStats = cameFromStats;
+    }
+
     /**
      * Gestiona les accions de l'usuari en la pantalla d'estadístiques.
      *
@@ -31,6 +40,10 @@ public class StatsController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("back")) {
             changeViewController.changePan("start");
+        } else if(e.getActionCommand().equals("settings")){
+            setCameFromStats(true);
+            changeViewController.changePan("settings");
+
         }
     }
 }

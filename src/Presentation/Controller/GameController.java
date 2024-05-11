@@ -19,6 +19,7 @@ public class GameController implements ActionListener, ComptadorInterficie {
     private final GameManager gameManager;
 
     private final MilloraManager milloraManager;
+    private boolean cameFromGame = false;
     /**
      * Constructor de la clase GameController
      * @param changeViewController control de la vista del joc
@@ -32,6 +33,14 @@ public class GameController implements ActionListener, ComptadorInterficie {
         this.generatorManager = generatorManager;
         this.gameManager = gameManager;
         this.milloraManager = milloraManager;
+    }
+
+    public boolean isCameFromGame() {
+        return cameFromGame;
+    }
+
+    public void setCameFromGame(boolean cameFromGame) {
+        this.cameFromGame = cameFromGame;
     }
 
     /**
@@ -59,6 +68,7 @@ public class GameController implements ActionListener, ComptadorInterficie {
 
         String type = null;
         if (e.getActionCommand().equals("settings")) {
+            setCameFromGame(true);
             changeViewController.setComptador(false);
             changeViewController.changePan("settings");
         } else if (e.getActionCommand().equals("createcofee")) {
