@@ -72,12 +72,18 @@ public class GameController implements ActionListener, ComptadorInterficie {
             changeViewController.setComptador(false);
             changeViewController.changePan("settings");
         } else if (e.getActionCommand().equals("createcofee")) {
-            double n_Caffee = gameManager.getCaffeeNumber() + 1;
+            //if(gameManager.)
+            double n_Caffee = 0;
+            if(gameManager.getQuantitatMillores(ID_P) == 0) {
+                n_Caffee = gameManager.getCaffeeNumber() + 1;
+            } else {
+                n_Caffee = gameManager.getCaffeeNumber() + Math.pow(2, gameManager.getQuantitatMillores(ID_P));
+            }
             //Guardem en la BBDD la quantitat de cafes actualitzada.
             gameView.setComptador(String.valueOf(Math.round(n_Caffee)));
             gameManager.setQuantitatCafe(n_Caffee);
-
             System.out.println("Cafes Actuals: " + gameView.getComptador());
+
         }else if (e.getActionCommand().equals("potenciador1")){
             type = "A";
 
@@ -101,7 +107,6 @@ public class GameController implements ActionListener, ComptadorInterficie {
 
             generatorManager.buyGenerator(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type);
 
-
             //Update info generador 1
             gameView.updateGenerator2(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getProduccioTotal(ID_P, ID_G, type), generatorManager.getProdActual(ID_P, ID_G, type));
             gameView.updateCostGenerator2(generatorManager.getCostActual(ID_P, ID_G, type));
@@ -115,8 +120,6 @@ public class GameController implements ActionListener, ComptadorInterficie {
             type = "C";
             generatorManager.buyGenerator(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type);
 
-
-
             //Update info generador 1
             gameView.updateGenerator3(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getProduccioTotal(ID_P, ID_G, type), generatorManager.getProdActual(ID_P, ID_G, type));
             gameView.updateCostGenerator3(generatorManager.getCostActual(ID_P, ID_G, type));
@@ -124,8 +127,7 @@ public class GameController implements ActionListener, ComptadorInterficie {
         }else if (e.getActionCommand().equals("millora1")) {
             type = "A";
 
-            if(milloraManager.getCostMillora(type) < gameManager.getCaffeeNumber()){
-                generatorManager.buyMillora(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type);
+            if(generatorManager.buyMillora(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type)){
                 gameView.updateGenerator1(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getProduccioTotal(ID_P, ID_G, type), generatorManager.getProdActual(ID_P, ID_G, type));
 
             }
@@ -133,7 +135,7 @@ public class GameController implements ActionListener, ComptadorInterficie {
             type = "B";
             if(milloraManager.getCostMillora(type) < gameManager.getCaffeeNumber()){
                 generatorManager.buyMillora(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type);
-                gameView.updateGenerator1(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getProduccioTotal(ID_P, ID_G, type), generatorManager.getProdActual(ID_P, ID_G, type));
+                gameView.updateGenerator2(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getProduccioTotal(ID_P, ID_G, type), generatorManager.getProdActual(ID_P, ID_G, type));
 
             }
 
@@ -142,11 +144,12 @@ public class GameController implements ActionListener, ComptadorInterficie {
 
             if(milloraManager.getCostMillora(type) < gameManager.getCaffeeNumber()){
                 generatorManager.buyMillora(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type);
-                gameView.updateGenerator1(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getProduccioTotal(ID_P, ID_G, type), generatorManager.getProdActual(ID_P, ID_G, type));
+                gameView.updateGenerator3(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getProduccioTotal(ID_P, ID_G, type), generatorManager.getProdActual(ID_P, ID_G, type));
             }
 
         }else if (e.getActionCommand().equals("millora4")){
-            //Gestio de dublicar els clicks dels cafes
+            type = "D";
+            gameManager.buyMillores(ID_P, ID_G, type);
 
         } else if (e.getActionCommand().equals("finish")){
             changeViewController.setComptador(false);

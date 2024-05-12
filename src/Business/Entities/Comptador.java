@@ -243,4 +243,5 @@ public class Comptador {
     public void setComptadorInterficie(ComptadorInterficie comptadorInterficie) {
         this.comptadorInterficie = comptadorInterficie;
     }
+
 }

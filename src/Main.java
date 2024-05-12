@@ -1,4 +1,5 @@
 import Business.Entities.Comptador;
+import Business.Entities.Millora;
 import Business.Managers.*;
 import Persistance.DataBaseDAO;
 import Persistance.sqlDAO.SQLGameDAO;
@@ -31,6 +32,7 @@ public class Main {
         SQLGeneratorsDAO sqlGeneratorsDAO = new SQLGeneratorsDAO();
         SQLUserDAO sqlUserDAO = new SQLUserDAO();
         SQLStatsDAO sqlStatsDAO = new SQLStatsDAO();
+
 
         //StatsManager statsManager = new StatsManager(sqlGameDAO, sqlUserDAO);
         Comptador comptador = new Comptador(sqlGameDAO, sqlUserDAO, sqlGeneratorsDAO, sqlStatsDAO);

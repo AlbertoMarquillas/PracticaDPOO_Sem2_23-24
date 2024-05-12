@@ -938,8 +938,8 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
 
         // Actualizar los valores de la fila correspondiente al generador 2
         tableModel.setValueAt(quantitatGenerados, 2, 1); // Actualizar la cantidad
-        tableModel.setValueAt(String.format("%.2f", prodActual) + " c/s", 2, 2); // Actualizar la producción por unidad
-        tableModel.setValueAt(produccioTotal, 2, 3); // Actualizar la producción total
+        tableModel.setValueAt(String.format("%.2f", prodActual) + " c/s", 2, 3); // Actualizar la producción por unidad
+        tableModel.setValueAt(produccioTotal, 2, 4); // Actualizar la producción total
         tableModel.setValueAt(String.format("%.2f", overallPot2) + " %", 2, 4); // Actualizar el porcentaje de producción total
 
         // Notificar al modelo de la tabla que los datos han cambiado, lo que provocará que la tabla se actualice

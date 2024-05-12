@@ -1,6 +1,7 @@
 package Business.Managers;
 
 import Business.Entities.Generator;
+import Business.Entities.Millora;
 import Persistance.sqlDAO.SQLGeneratorsDAO;
 import Persistance.sqlDAO.SQLGameDAO; //NO SE SI AIXO ES POT FEEER !!!!!!!!!!!!!
 
@@ -10,6 +11,7 @@ public class GeneratorManager {
     private final SQLGeneratorsDAO sqlGeneratorsDAO;
     private final SQLGameDAO sqlGameDAO; //NO SE SI AIXO ES POR FER !!!!!!!!!!!!!!!
 
+   // private final Millora millora;
     String[] types = {"A", "B", "C"};
     int[] costBase = {10, 150, 2000};
     double[] baseProduction = {0.2, 1.0, 15.0};
@@ -140,22 +142,34 @@ public class GeneratorManager {
     }
 
 
-    public void buyMillora(int ID_P, int ID_G, String type){
+    public boolean buyMillora(int ID_P, int ID_G, String type){
         int n_millores = sqlGeneratorsDAO.getNumMillores(type) + 1;
+        Millora millora = new Millora(type, n_millores);
+
         sqlGeneratorsDAO.setNumMillores(n_millores, type);
+        System.out.println("preu millora: " + millora.getPreu());
 
+        if ((sqlGameDAO.getNCoffees(ID_P, ID_G) >= millora.getPreu()) && n_millores != 0) {
 
-        if(n_millores != 0) {
             if (type.equals("A")) {
                 double produccioActualiztada = costBase[0] * 2 * n_millores;
+
                 sqlGeneratorsDAO.setProduccioActual(produccioActualiztada, type);
+                sqlGameDAO.setNCoffees(ID_P, ID_G, sqlGameDAO.getNCoffees(ID_P, ID_G) - millora.getPreu());
             } else if (type.equals("B")) {
                 double produccioActualiztada = costBase[1] * 2 * n_millores;
                 sqlGeneratorsDAO.setProduccioActual(produccioActualiztada, type);
+
+                sqlGameDAO.setNCoffees(ID_P, ID_G, sqlGameDAO.getNCoffees(ID_P, ID_G) - millora.getPreu());
             } else if (type.equals("C")) {
                 double produccioActualiztada = costBase[2] * 2 * n_millores;
+
                 sqlGeneratorsDAO.setProduccioActual(produccioActualiztada, type);
+                sqlGameDAO.setNCoffees(ID_P, ID_G, sqlGameDAO.getNCoffees(ID_P, ID_G) - millora.getPreu());
             }
+            return true;
+        } else {
+            return false;
         }
     }
 }

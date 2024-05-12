@@ -3,6 +3,7 @@ package Business.Managers;
 import Business.Entities.Comptador;
 import Business.Entities.ComptadorInterficie;
 import Business.Entities.Generator;
+import Business.Entities.Millora;
 import Persistance.sqlDAO.SQLGameDAO;
 import Persistance.sqlDAO.SQLGeneratorsDAO;
 import Persistance.sqlDAO.SQLStatsDAO;
@@ -76,5 +77,21 @@ import Presentation.View.GameView;
         sqlGeneratorsDAO.updateCaffeeGenerators(sqlUserDAO.getConnectedUserId(), getCurrentGameId(sqlUserDAO.getConnectedUserId()), generator1);
         sqlGeneratorsDAO.updateCaffeeGenerators(sqlUserDAO.getConnectedUserId(), getCurrentGameId(sqlUserDAO.getConnectedUserId()), generator2);
         sqlGeneratorsDAO.updateCaffeeGenerators(sqlUserDAO.getConnectedUserId(), getCurrentGameId(sqlUserDAO.getConnectedUserId()), generator3);
+    }
+
+    public void buyMillores(int ID_P, int ID_G, String type){
+
+        int n_millores = sqlGameDAO.getPowerUpClicker(ID_P) + 1;
+        Millora millora = new Millora("D", n_millores);
+
+        if(sqlGameDAO.getNCoffees(ID_P, ID_G) >= millora.getPreu()) {
+            sqlGameDAO.setPowerUpClicker(ID_P, n_millores);
+            sqlGameDAO.setNCoffees(ID_P, ID_G, sqlGameDAO.getNCoffees(ID_P, ID_G) - millora.getPreu());
+
+        }
+    }
+
+    public int getQuantitatMillores(int id){
+        return sqlGameDAO.getPowerUpClicker(id);
     }
 }

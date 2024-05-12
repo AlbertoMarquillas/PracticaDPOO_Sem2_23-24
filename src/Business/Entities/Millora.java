@@ -6,9 +6,9 @@ public class Millora {
     private double preu; //cost del valor de millora
     private int quantitat;
 
-    public Millora(String type, double preu, int quantitat) {
+    public Millora(String type, int quantitat) {
         this.type = type;
-        this.preu = preu;
+        this.preu = setPreu(type);
         this.quantitat = quantitat;
     }
 
@@ -19,8 +19,10 @@ public class Millora {
             return 20.0;
         } else if (type.equals("C")) {
             return 30.0;
+        } else if(type.equals("D")){
+            return 40.0;
         } else {
-            return 1000000.0;
+            return -1;
         }
     }
 
@@ -45,8 +47,8 @@ public class Millora {
         return quantitat;
     }
 
-    public void setQuantitat(int quantitat) {
-        this.quantitat = quantitat;
+    public void setQuantitat() {
+        this.quantitat = 0;
     }
 
     public void buyMillora(){

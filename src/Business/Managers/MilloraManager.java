@@ -11,13 +11,10 @@ public class MilloraManager {
     String[] types = {"A", "B", "C", "D"};
     int[] quanitatMillores = {0, 0, 0, 0};
 
-    public MilloraManager () {
-        millores = new Millora[4];
-        millores[0] = new Millora("A", 10.0, 0);
-        millores[1] = new Millora("A", 20.0, 0);
-        millores[2] = new Millora("A", 30.0, 0);
-        millores[3] = new Millora("A", 40.0, 0);
+    public MilloraManager(){
+
     }
+
 
 
     /*public void buyMillora(String type) {
