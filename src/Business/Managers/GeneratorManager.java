@@ -128,11 +128,11 @@ public class GeneratorManager {
 
     public double getProduccioTotal(int ID_P, int ID_G, String type) {
         Generator generator = sqlGeneratorsDAO.getGenerator(ID_P, ID_G, type);
-        return generator.getProduccioTotal();
+        return generator.getProduccioActual();
     }
 
     public double getProdActual(int ID_P, int ID_G, String type) {
         Generator generator = sqlGeneratorsDAO.getGenerator(ID_P, ID_G, type);
-        return generator.getProduccioActual();
+        return generator.getProduccioTotal();
     }
 }

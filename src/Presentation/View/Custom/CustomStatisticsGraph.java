@@ -1,20 +1,22 @@
 package Presentation.View.Custom;
 
 import Business.Entities.Stats;
+import Business.Managers.StatsManager;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.List;
 
-public class CustomStatisticsGraph extends  JPanel{
-        private List<Stats> stats;
+public class CustomStatisticsGraph extends JPanel{
+    private List<Stats> stats;
 
     public CustomStatisticsGraph() {
-        //stats = getStatsFromSQL();
+        //stats = StatsManager.getStatsFromSQL();
 
 
     }
+
+
 
     @Override
     protected void paintComponent(Graphics g) {

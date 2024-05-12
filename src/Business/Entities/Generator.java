@@ -188,5 +188,5 @@ public class Generator {
     public String getTypeString() {
         return this.type;
     }
-
+    
 }

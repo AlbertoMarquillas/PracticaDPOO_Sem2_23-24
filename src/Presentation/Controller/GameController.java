@@ -244,9 +244,9 @@ public class GameController implements ActionListener, ComptadorInterficie {
         gameView.setComptador(String.valueOf(Math.round(quantitatCafes)));
         gameManager.setQuantitatCafe(quantitatCafes);
         gameManager.updateCaffeeGenerators(generator1, generator2, generator3);
-        gameView.updateProduccioTotal(1, generator1.getProduccioTotal());
-        gameView.updateProduccioTotal(2, generator2.getProduccioTotal());
-        gameView.updateProduccioTotal(3, generator3.getProduccioTotal());
+        gameView.updateProduccioTotal(1, generator1.getProduccioActual());
+        gameView.updateProduccioTotal(2, generator2.getProduccioActual());
+        gameView.updateProduccioTotal(3, generator3.getProduccioActual());
 
         System.out.println(quantitatCafes);
     }

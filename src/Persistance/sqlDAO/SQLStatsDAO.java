@@ -27,16 +27,18 @@ public class SQLStatsDAO {
         try {
             while(result.next()) {
 
-                //long time = result.getTime("Time");         //Problemes amb el tipus
+                Time time = result.getTime("Time");
                 double nCoffee = result.getDouble("N_Cafe");
 
-                //stats.add(new Stats(time, nCoffee));
+                stats.add(new Stats(time, nCoffee));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return stats;
     }
+
+
 
 
 
