@@ -126,6 +126,8 @@ public class GameController implements ActionListener, ComptadorInterficie {
             System.out.println("CostActual potenciador 3: " + generatorManager.getCostActual(ID_P, ID_G, type));
 
         }else if (e.getActionCommand().equals("millora1")) {
+            type = "A";
+            milloraManager.buyMillora(type, gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()));
             int valorActual = milloraManager.getvalorMilloraA();  //valor actual de la millora
             if (valorActual < gameManager.getCaffeeNumber()) {
                 milloraManager.setvalorMilloraA(valorActual * 2);  //actualitzo el valor millora per potències de 2

@@ -2,39 +2,78 @@ package Business.Managers;
 
 import Business.Entities.Millora;
 
-import java.util.ArrayList;
-
 public class MilloraManager {
 
-    private ArrayList<Millora> millores;
+    private Millora[] millores;
+    double[] costMillora = {10.0, 20.0, 30.0, 40.0};
+    String[] types = {"A", "B", "C", "D"};
+    int[] quanitatMillores = {0, 0, 0, 0};
 
     public MilloraManager () {
-        millores = new ArrayList<>();
-        millores.add(new Millora(2, 10));       //millora pel generador A
-        millores.add(new Millora(2, 150));      //millora pel generador B
-        millores.add(new Millora(2, 2000));     //millora pel generador C
-        millores.add(new Millora(15, 70));      //millora General
+        millores = new Millora[4];
+        millores[0] = new Millora("A", 10.0, 0);
+        millores[1] = new Millora("A", 20.0, 0);
+        millores[2] = new Millora("A", 30.0, 0);
+        millores[3] = new Millora("A", 40.0, 0);
+    }
+    
+
+    public void buyMillora(String type) {
+        if(type.equals("A")) {
+            quanitatMillores[0]++;
+        } else if (type.equals("B")) {
+            quanitatMillores[1]++;
+        } else if (type.equals("C")) {
+            quanitatMillores[2]++;
+        } else {
+            quanitatMillores[3]++;
+        }
     }
 
-    public int getvalorMilloraA(){ return millores.get(0).getValorDeMillora(); }           //valor multiplicador millora A
-    public int getcostMultiplicadorA(){ return millores.get(0).getCostMultiplicador(); }   //preu cost multiplicador A
+    public int getQuantitatMillores(String type) {
+        if(type.equals("A")) {
+            return quanitatMillores[0];
+        } else if (type.equals("B")) {
+            return quanitatMillores[1];
+        } else if (type.equals("C")) {
+            return quanitatMillores[2];
+        } else if (type.equals("D")){
+            return quanitatMillores[3];
+        } else {
+            return 0;
+        }
+    }
 
-    public int getvalorMilloraB(){ return millores.get(1).getValorDeMillora(); }           //valor multiplicador millora B
-    public int getcostMultiplicadorB(){ return millores.get(1).getCostMultiplicador(); }   //preu cost multiplicador B
+    public Millora[] getMillores() {
+        return millores;
+    }
 
-    public int getvalorMilloraC(){ return millores.get(2).getValorDeMillora(); }           //valor multiplicador millora C
-    public int getcostMultiplicadorC(){ return millores.get(2).getCostMultiplicador(); }   //preu cost multiplicador C
+    public void setMillores(Millora[] millores) {
+        this.millores = millores;
+    }
 
-    public int getvalorMilloraGeneral(){ return millores.get(3).getValorDeMillora(); }   //valor multiplicador millora General
-    public int getcostMultiplicadorGeneral(){ return millores.get(3).getCostMultiplicador(); }   //preu cost multiplicador General
+    public double[] getCostMillora() {
+        return costMillora;
+    }
 
+    public void setCostMillora(double[] costMillora) {
+        this.costMillora = costMillora;
+    }
 
-    public void setvalorMilloraA(int valorActualitzatMillora) { millores.get(0).setValorDeMillora(valorActualitzatMillora);}    //per poder actualizar valor A
-    public void setvalorMilloraB(int valorActualitzatMillora) { millores.get(1).setValorDeMillora(valorActualitzatMillora);}    //per poder actualizar valor B
-    public void setvalorMilloraC(int valorActualitzatMillora) { millores.get(2).setValorDeMillora(valorActualitzatMillora);}    //per poder actualizar valor C
-    public void setvalorMilloraGeneral(int valorActualitzatMillora) { millores.get(3).setValorDeMillora(valorActualitzatMillora);}    //per poder actualizar valor General
-    public void setcostMultiplicadorA(int costActualitzatMillora) { millores.get(0).setCostMultiplicador(costActualitzatMillora);}    //per poder actualizar cost A
-    public void setcostMultiplicadorB(int costActualitzatMillora) { millores.get(1).setCostMultiplicador(costActualitzatMillora);}    //per poder actualizar cost B
-    public void setcostMultiplicadorC(int costActualitzatMillora) { millores.get(2).setCostMultiplicador(costActualitzatMillora);}    //per poder actualizar cost C
-    public void setcostMultiplicadorGeneral(int costActualitzatMillora) { millores.get(3).setCostMultiplicador(costActualitzatMillora);}    //per poder actualizar cost General
+    public String[] getTypes() {
+        return types;
+    }
+
+    public void setTypes(String[] types) {
+        this.types = types;
+    }
+
+    public int[] getQuanitatMillores() {
+        return quanitatMillores;
+    }
+
+    public void setQuanitatMillores(int[] quanitatMillores) {
+        this.quanitatMillores = quanitatMillores;
+    }
 }
+

@@ -32,7 +32,7 @@ public class Main {
         SQLUserDAO sqlUserDAO = new SQLUserDAO();
         SQLStatsDAO sqlStatsDAO = new SQLStatsDAO();
 
-        StatsManager statsManager = new StatsManager(sqlGameDAO, sqlUserDAO);
+        //StatsManager statsManager = new StatsManager(sqlGameDAO, sqlUserDAO);
         Comptador comptador = new Comptador(sqlGameDAO, sqlUserDAO, sqlGeneratorsDAO, sqlStatsDAO);
         UserManager userManager = new UserManager(sqlUserDAO);
         LogInManager logInManager = new LogInManager(userManager);

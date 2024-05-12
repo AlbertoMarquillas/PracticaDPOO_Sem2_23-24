@@ -2,27 +2,55 @@ package Business.Entities;
 
 public class Millora {
 
-    private int valorDeMillora; //valor millora és el multiplicador de la millora, p.ex: millora1 = actual * 2, ha de ser int
-    private int costMultiplicador; //cost del valor de millora
+    private String type;
+    private double preu; //cost del valor de millora
+    private int quantitat;
 
-    public Millora(int valorDeMillora, int costMultiplicador) {
-        this.valorDeMillora = valorDeMillora;
-        this.costMultiplicador = costMultiplicador;
+    public Millora(String type, double preu, int quantitat) {
+        this.type = type;
+        this.preu = preu;
+        this.quantitat = quantitat;
     }
 
-    public int getValorDeMillora() {
-        return valorDeMillora;
+    public double setPreu(String type){
+        if (type.equals("A")) {
+            return 10.0;
+        } else if (type.equals("B")) {
+            return 20.0;
+        } else if (type.equals("C")) {
+            return 30.0;
+        } else {
+            return 1000000.0;
+        }
     }
 
-    public void setValorDeMillora(int valorDeMillora) {
-        this.valorDeMillora = valorDeMillora;
+
+    public String getType() {
+        return type;
     }
 
-    public int getCostMultiplicador() {
-        return costMultiplicador;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public void setCostMultiplicador(int costMultiplicador) {
-        this.costMultiplicador = costMultiplicador;
+    public double getPreu() {
+        return preu;
     }
+
+    public void setPreu(double preu) {
+        this.preu = preu;
+    }
+
+    public int getQuantitat() {
+        return quantitat;
+    }
+
+    public void setQuantitat(int quantitat) {
+        this.quantitat = quantitat;
+    }
+
+    public void buyMillora(){
+        this.quantitat++;
+    }
+
 }

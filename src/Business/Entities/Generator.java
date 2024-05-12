@@ -83,11 +83,23 @@ public class Generator {
      */
     public double setBaseProduction(String type) {
         if (type.equals("A")) {
-            return 0.2;
+            if(Integer.parseInt(getNumMilloresString()) == 0){
+                return 0.2;
+            } else {
+                return ((0.2) * Integer.parseInt(getNumMilloresString()));
+            }
         } else if (type.equals("B")) {
-            return 1.0;
+            if(Integer.parseInt(getNumMilloresString()) == 0){
+                return 1.0;
+            } else {
+                return ((1.0) * Integer.parseInt(getNumMilloresString()));
+            }
         } else if (type.equals("C")) {
-            return 15.0;
+            if(Integer.parseInt(getNumMilloresString()) == 0){
+                return 15.0;
+            } else {
+                return ((15.0) * Integer.parseInt(getNumMilloresString()));
+            }
         } else {
             return 1000000.0;
         }
