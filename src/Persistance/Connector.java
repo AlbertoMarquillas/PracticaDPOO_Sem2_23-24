@@ -63,7 +63,7 @@ public class Connector {
             instance = new Connector(config.getUser(), config.getPassword(), config.getIp(), config.getPort(), "coffeeclickerdb");
             instance.connect();
         }
-        System.out.println("url: " + url);
+        //System.out.println("url: " + url);
         return instance;
     }
 

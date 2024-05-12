@@ -1,9 +1,11 @@
 package Business.Managers;
 
+import Business.Entities.Generator;
 import Business.Entities.Millora;
 
-public class MilloraManager {
 
+public class MilloraManager {
+    Generator generator;
     private Millora[] millores;
     double[] costMillora = {10.0, 20.0, 30.0, 40.0};
     String[] types = {"A", "B", "C", "D"};
@@ -16,19 +18,23 @@ public class MilloraManager {
         millores[2] = new Millora("A", 30.0, 0);
         millores[3] = new Millora("A", 40.0, 0);
     }
-    
 
-    public void buyMillora(String type) {
+
+    /*public void buyMillora(String type) {
         if(type.equals("A")) {
             quanitatMillores[0]++;
+            generator.setNumeroMillores(quanitatMillores[0]);
         } else if (type.equals("B")) {
             quanitatMillores[1]++;
+            generator.setBaseProduction(type);
         } else if (type.equals("C")) {
             quanitatMillores[2]++;
+            generator.setBaseProduction(type);
         } else {
             quanitatMillores[3]++;
+            generator.setBaseProduction(type);
         }
-    }
+    }*/
 
     public int getQuantitatMillores(String type) {
         if(type.equals("A")) {
@@ -52,8 +58,18 @@ public class MilloraManager {
         this.millores = millores;
     }
 
-    public double[] getCostMillora() {
-        return costMillora;
+    public double getCostMillora(String type) {
+        if(type.equals("A")){
+            return costMillora[0];
+        } else if (type.equals("B")){
+            return costMillora[1];
+        } else if (type.equals("C")){
+            return costMillora[2];
+        } else if (type.equals("D")){
+            return costMillora[3];
+        } else {
+            return -1;
+        }
     }
 
     public void setCostMillora(double[] costMillora) {

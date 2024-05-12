@@ -7,7 +7,6 @@ import Persistance.sqlDAO.SQLGameDAO; //NO SE SI AIXO ES POT FEEER !!!!!!!!!!!!!
 import java.util.Objects;
 
 public class GeneratorManager {
-
     private final SQLGeneratorsDAO sqlGeneratorsDAO;
     private final SQLGameDAO sqlGameDAO; //NO SE SI AIXO ES POR FER !!!!!!!!!!!!!!!
 
@@ -134,5 +133,29 @@ public class GeneratorManager {
     public double getProdActual(int ID_P, int ID_G, String type) {
         Generator generator = sqlGeneratorsDAO.getGenerator(ID_P, ID_G, type);
         return generator.getProduccioTotal();
+    }
+
+    public int getQuantitatMillores(int ID_P, int ID_G, String type) {
+        return sqlGeneratorsDAO.getNumMillores(type);
+    }
+
+
+    public void buyMillora(int ID_P, int ID_G, String type){
+        int n_millores = sqlGeneratorsDAO.getNumMillores(type) + 1;
+        sqlGeneratorsDAO.setNumMillores(n_millores, type);
+
+
+        if(n_millores != 0) {
+            if (type.equals("A")) {
+                double produccioActualiztada = costBase[0] * 2 * n_millores;
+                sqlGeneratorsDAO.setProduccioActual(produccioActualiztada, type);
+            } else if (type.equals("B")) {
+                double produccioActualiztada = costBase[1] * 2 * n_millores;
+                sqlGeneratorsDAO.setProduccioActual(produccioActualiztada, type);
+            } else if (type.equals("C")) {
+                double produccioActualiztada = costBase[2] * 2 * n_millores;
+                sqlGeneratorsDAO.setProduccioActual(produccioActualiztada, type);
+            }
+        }
     }
 }

@@ -11,6 +11,7 @@ public class Generator {
     private double incrementCost; // Nueva variable
     private double baseCost; // Nueva variable
     private double baseProduction; // Nueva variable
+    private Millora millora;
 
     /**
      * Constructor de la clase Generator
@@ -83,26 +84,19 @@ public class Generator {
      */
     public double setBaseProduction(String type) {
         if (type.equals("A")) {
-            if(Integer.parseInt(getNumMilloresString()) == 0){
-                return 0.2;
-            } else {
-                return ((0.2) * Integer.parseInt(getNumMilloresString()));
-            }
-        } else if (type.equals("B")) {
-            if(Integer.parseInt(getNumMilloresString()) == 0){
-                return 1.0;
-            } else {
-                return ((1.0) * Integer.parseInt(getNumMilloresString()));
-            }
+            return 0.2;
+        } else if(type.equals("B")) {
+            return 1.0;
         } else if (type.equals("C")) {
-            if(Integer.parseInt(getNumMilloresString()) == 0){
-                return 15.0;
-            } else {
-                return ((15.0) * Integer.parseInt(getNumMilloresString()));
-            }
+            return 15.0;
         } else {
-            return 1000000.0;
+            return -1;
         }
+
+    }
+
+    public double getBaseProduction() {
+        return this.baseProduction;
     }
 
 
@@ -164,6 +158,14 @@ public class Generator {
      */
     public String getNumMilloresString() {
         return String.valueOf(numeroMillores);
+    }
+
+    public int getNumeroMillores() {
+        return numeroMillores;
+    }
+
+    public void setNumeroMillores(int numeroMillores) {
+        this.numeroMillores = numeroMillores;
     }
 
 

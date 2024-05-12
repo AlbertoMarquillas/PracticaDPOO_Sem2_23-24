@@ -121,48 +121,32 @@ public class GameController implements ActionListener, ComptadorInterficie {
             gameView.updateGenerator3(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getProduccioTotal(ID_P, ID_G, type), generatorManager.getProdActual(ID_P, ID_G, type));
             gameView.updateCostGenerator3(generatorManager.getCostActual(ID_P, ID_G, type));
 
-            System.out.println("Quantitat Potenciadors 3: " + gameView.getQuantitatPotenciadors3());
-            System.out.println("Cost potenciador 3: " + gameView.getCost3());
-            System.out.println("CostActual potenciador 3: " + generatorManager.getCostActual(ID_P, ID_G, type));
-
         }else if (e.getActionCommand().equals("millora1")) {
             type = "A";
-            milloraManager.buyMillora(type, gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()));
-            int valorActual = milloraManager.getvalorMilloraA();  //valor actual de la millora
-            if (valorActual < gameManager.getCaffeeNumber()) {
-                milloraManager.setvalorMilloraA(valorActual * 2);  //actualitzo el valor millora per potències de 2
 
-                int costActual = milloraManager.getcostMultiplicadorA();   //preu actual de la millora
-                milloraManager.setcostMultiplicadorA(costActual * 2); //actualitzo el preu millora per potències de 2
+            if(milloraManager.getCostMillora(type) < gameManager.getCaffeeNumber()){
+                generatorManager.buyMillora(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type);
+                gameView.updateGenerator1(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getProduccioTotal(ID_P, ID_G, type), generatorManager.getProdActual(ID_P, ID_G, type));
+
             }
-
         }else if (e.getActionCommand().equals("millora2")){
-            int valorActual = milloraManager.getvalorMilloraB();  //valor actual de la millora
-            if (valorActual < gameManager.getCaffeeNumber()) {
-                milloraManager.setvalorMilloraB(valorActual * 2);  //actualitzo el valor millora per potències de 2
+            type = "B";
+            if(milloraManager.getCostMillora(type) < gameManager.getCaffeeNumber()){
+                generatorManager.buyMillora(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type);
+                gameView.updateGenerator1(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getProduccioTotal(ID_P, ID_G, type), generatorManager.getProdActual(ID_P, ID_G, type));
 
-                int costActual = milloraManager.getcostMultiplicadorB();   //preu actual de la millora
-                milloraManager.setcostMultiplicadorB(costActual * 2); //actualitzo el preu millora per potències de 2
             }
 
         }else if (e.getActionCommand().equals("millora3")){
-            int valorActual = milloraManager.getvalorMilloraC();  //valor actual de la millora
+            type = "C";
 
-            if (valorActual < gameManager.getCaffeeNumber()) {
-                milloraManager.setvalorMilloraC(valorActual * 2);  //actualitzo el valor millora per potències de 2
-
-                int costActual = milloraManager.getcostMultiplicadorC();   //preu actual de la millora
-                milloraManager.setcostMultiplicadorC(costActual * 2); //actualitzo el preu millora per potències de 2
+            if(milloraManager.getCostMillora(type) < gameManager.getCaffeeNumber()){
+                generatorManager.buyMillora(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type);
+                gameView.updateGenerator1(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getProduccioTotal(ID_P, ID_G, type), generatorManager.getProdActual(ID_P, ID_G, type));
             }
 
         }else if (e.getActionCommand().equals("millora4")){
-            int valorActual = milloraManager.getvalorMilloraGeneral();  //valor actual de la millora
-            if (valorActual < gameManager.getCaffeeNumber()) {
-                milloraManager.setvalorMilloraGeneral(valorActual * 2);  //actualitzo el valor millora per potències de 2
-
-                int costActual = milloraManager.getcostMultiplicadorGeneral();   //preu actual de la millora
-                milloraManager.setcostMultiplicadorGeneral(costActual * 2); //actualitzo el preu millora per potències de 2
-            }
+            //Gestio de dublicar els clicks dels cafes
 
         } else if (e.getActionCommand().equals("finish")){
             changeViewController.setComptador(false);

@@ -100,7 +100,7 @@ public class SQLGeneratorsDAO{
         return produccioActual;
     }
 
-    public void setProduccioActual(int produccioActual, String type) {
+    public void setProduccioActual(double produccioActual, String type) {
         String query = "UPDATE generators SET ProduccioActual = " + produccioActual + " WHERE Type = '" + type + "'";
         Connector.getInstance().updateQuery(query);
     }
