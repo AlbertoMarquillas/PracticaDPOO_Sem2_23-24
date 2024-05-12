@@ -28,7 +28,7 @@ public class MainView extends JFrame{
         this.getContentPane().add(settingsView,"settings");
         this.getContentPane().add(startView,"start");
         this.getContentPane().add(gameView,"game");
-        //this.getContentPane().add(statsView,"stats");
+        this.getContentPane().add(statsView,"stats");
 
     }
 
