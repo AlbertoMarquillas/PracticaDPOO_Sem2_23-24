@@ -2,60 +2,41 @@ package Business.Entities;
 
 public class Millora {
 
+    private static final double INCREMENT_A = 10.0; // Incremento para el tipo A
+    private static final double INCREMENT_B = 20.0; // Incremento para el tipo B
+    private static final double INCREMENT_C = 30.0; // Incremento para el tipo C
+    private static final double INCREMENT_D = 40.0; // Incremento para el tipo D
+
     private String type;
     private double preu; //cost del valor de millora
     private int quantitat;
 
     public Millora(String type, int quantitat) {
         this.type = type;
-        this.preu = setPreu(type);
+        this.preu = setPreu(type, quantitat);
         this.quantitat = quantitat;
     }
 
-    public double setPreu(String type){
+    public double setPreu(String type, int quantitat){
+        double increment;
         if (type.equals("A")) {
-            return 10.0;
+            increment = INCREMENT_A;
         } else if (type.equals("B")) {
-            return 20.0;
+            increment = INCREMENT_B;
         } else if (type.equals("C")) {
-            return 30.0;
+            increment = INCREMENT_C;
         } else if(type.equals("D")){
-            return 40.0;
+            increment = INCREMENT_D;
         } else {
             return -1;
         }
+
+        return increment + (quantitat * increment);
     }
 
-    public void setQuantitat(int quantitat) {
-        this.quantitat = quantitat;
+    public double getPreu(){
+        return this.preu;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public double getPreu() {
-        return preu;
-    }
-
-    public void setPreu(double preu) {
-        this.preu = preu;
-    }
-
-    public int getQuantitat() {
-        return quantitat;
-    }
-
-    public void setQuantitat() {
-        this.quantitat = 0;
-    }
-
-    public void buyMillora(){
-        this.quantitat++;
-    }
-
+    // Resto del código...
 }

@@ -126,12 +126,12 @@ public class SQLGameDAO {
     /**
      * Obté el valor de PowerUpClicker per a l'usuari especificat.
      *
-     * @param id L'ID de l'usuari.
+     * @param ID_P L'ID de l'usuari.
      * @return El valor de PowerUpClicker per a l'usuari especificat.
      */
-    public int getPowerUpClicker(int id) {
+    public int getPowerUpClicker(int ID_P, int ID_G) {
         int powerUpClicker = 0;
-        String query = "SELECT PowerUpClicker FROM game WHERE ID_P = " + id;
+        String query = "SELECT PowerUpClicker FROM game WHERE ID_P = " + ID_P + " AND ID_G = " + ID_G;
         ResultSet result = Connector.getInstance().selectQuery(query);
         try {
             if (result.next()) {
@@ -147,11 +147,11 @@ public class SQLGameDAO {
     /**
      * Estableix el valor de PowerUpClicker per a l'usuari especificat.
      *
-     * @param id L'ID de l'usuari.
+     * @param ID_P L'ID de l'usuari.
      * @param newPowerUpClicker El nou valor de PowerUpClicker a establir.
      */
-    public void setPowerUpClicker(int id, int newPowerUpClicker) {
-        String query = "UPDATE game SET PowerUpClicker = " + newPowerUpClicker + " WHERE ID_P = " + id;
+    public void setPowerUpClicker(int ID_P, int ID_G, int newPowerUpClicker) {
+        String query = "UPDATE game SET PowerUpClicker = " + newPowerUpClicker + " WHERE ID_P = " + ID_P + " AND ID_G = " + ID_G;
         Connector.getInstance().updateQuery(query);
     }
 

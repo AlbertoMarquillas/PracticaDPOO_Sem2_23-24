@@ -83,16 +83,23 @@ public class Generator {
      * @return producció base
      */
     public double setBaseProduction(String type) {
+        double baseProduction;
         if (type.equals("A")) {
-            return 0.2;
+            baseProduction = 0.2;
         } else if(type.equals("B")) {
-            return 1.0;
+            baseProduction = 1.0;
         } else if (type.equals("C")) {
-            return 15.0;
+            baseProduction = 15.0;
         } else {
-            return -1;
+            baseProduction = -1;
         }
 
+        if (numeroMillores > 0) {
+            baseProduction = baseProduction * Math.pow(2, numeroMillores);
+        }
+
+        this.baseProduction = baseProduction;
+        return this.baseProduction;
     }
 
     public double getBaseProduction() {
@@ -105,7 +112,8 @@ public class Generator {
      * @return producció actual
      */
     public double getProduccioActual() {
-        return this.produccioActual;
+        this.produccioActual = baseProduction * quantitat;
+        return produccioActual;
     }
 
     /**
@@ -121,8 +129,9 @@ public class Generator {
      * Setter que calcula la producció actual del generador
      * @return cost actual
      */
-    public void setProduccioActual() {
-        this.produccioActual = baseProduction * Math.pow(increment, quantitat);
+    public double setProduccioActual() {
+        this.produccioActual = baseProduction * quantitat;
+        return this.produccioActual;
     }
 
 
@@ -202,5 +211,12 @@ public class Generator {
     public String getTypeString() {
         return this.type;
     }
-    
+
+    public void setNewMillora() {
+        this.numeroMillores = this.numeroMillores + 1;
+        this.baseProduction = setBaseProduction(this.type);
+        this.produccioActual = setProduccioActual();
+    }
+
+
 }

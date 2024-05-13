@@ -907,17 +907,17 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
      * Actualitza les dades del generador 1 a la taula.
      *
      * @param quantitatGenerados La quantitat de generadors 1.
-     * @param produccioTotal La producció total del generador 1.
+     * @param baseProducction La producció total del generador 1.
      * @param prodActual La producció actual del generador 1 per unitat de temps.
      */
-    public void updateGenerator1(int quantitatGenerados, double produccioTotal, double prodActual, double overall) {
+    public void updateGenerator1(int quantitatGenerados, double baseProducction, double prodActual, double overall) {
         // Obtener el modelo de la tabla
         DefaultTableModel tableModel = (DefaultTableModel) this.table.getModel();
 
         // Actualizar los valores de la fila correspondiente al generador 1
         tableModel.setValueAt(quantitatGenerados, 1, 1); // Actualizar la cantidad
-        tableModel.setValueAt(String.format("%.2f", prodActual) + " c/s", 1, 2); // Actualizar la producción por unidad
-        tableModel.setValueAt(produccioTotal, 1, 3); // Actualizar la producción total
+        tableModel.setValueAt(baseProducction + " c/s", 1, 2); // Actualizar la producción por unidad
+        tableModel.setValueAt(String.format("%.2f", prodActual) + " c/s", 1, 3); // Actualizar la producción total
         tableModel.setValueAt(String.format("%.2f", overall) + " %", 1, 4); // Actualizar el porcentaje de producción total
 
         // Notificar al modelo de la tabla que los datos han cambiado, lo que provocará que la tabla se actualice
@@ -929,17 +929,17 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
      * Actualitza les dades del generador 2 a la taula.
      *
      * @param quantitatGenerados La quantitat de generadors 2.
-     * @param produccioTotal La producció total del generador 2.
+     * @param baseProduction La producció total del generador 2.
      * @param prodActual La producció actual del generador 2 per unitat de temps.
      */
-    public void updateGenerator2(int quantitatGenerados, double produccioTotal, double prodActual, double overall) {
+    public void updateGenerator2(int quantitatGenerados, double baseProduction, double prodActual, double overall) {
         // Obtener el modelo de la tabla
         DefaultTableModel tableModel = (DefaultTableModel) this.table.getModel();
 
         // Actualizar los valores de la fila correspondiente al generador 2
         tableModel.setValueAt(quantitatGenerados, 2, 1); // Actualizar la cantidad
-        tableModel.setValueAt(String.format("%.2f", prodActual) + " c/s", 2, 3); // Actualizar la producción por unidad
-        tableModel.setValueAt(produccioTotal, 2, 4); // Actualizar la producción total
+        tableModel.setValueAt(baseProduction  + " c/s", 2, 2); // Actualizar la producción por unidad
+        tableModel.setValueAt(String.format("%.2f", prodActual) + " c/s", 2, 3); // Actualizar la producción total
         tableModel.setValueAt(String.format("%.2f", overall) + " %", 2, 4); // Actualizar el porcentaje de producción total
 
         // Notificar al modelo de la tabla que los datos han cambiado, lo que provocará que la tabla se actualice
@@ -978,17 +978,17 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
      * Actualitza les dades del generador 3 a la taula.
      *
      * @param quantitatGenerados La quantitat de generadors 3.
-     * @param produccioTotal La producció total del generador 3.
+     * @param baseProduction La producció total del generador 3.
      * @param prodActual La producció actual del generador 3 per unitat de temps.
      */
-    public void updateGenerator3(int quantitatGenerados, double produccioTotal, double prodActual, double overall) {
+    public void updateGenerator3(int quantitatGenerados, double baseProduction, double prodActual, double overall) {
         // Obtener el modelo de la tabla
         DefaultTableModel tableModel = (DefaultTableModel) this.table.getModel();
 
         // Actualizar los valores de la fila correspondiente al generador 3
         tableModel.setValueAt(quantitatGenerados, 3, 1); // Actualizar la cantidad
-        tableModel.setValueAt(String.format("%.2f", prodActual) + " c/s", 3, 2); // Actualizar la producción por unidad
-        tableModel.setValueAt(produccioTotal, 3, 3); // Actualizar la producción total
+        tableModel.setValueAt(baseProduction + " c/s", 3, 2); // Actualizar la producción por unidad
+        tableModel.setValueAt(String.format("%.2f", prodActual) + " c/s", 3, 3); // Actualizar la producción total
         tableModel.setValueAt(String.format("%.2f", overall) + " %", 3, 4); // Actualizar el porcentaje de producción total
 
         // Notificar al modelo de la tabla que los datos han cambiado, lo que provocará que la tabla se actualice

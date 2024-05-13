@@ -183,9 +183,9 @@ public class Comptador {
                     Generator generador3 = sqlGeneratorsDAO.getGenerator(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()), "C");
 
                     double nCoffee = sqlGameDAO.getNCoffees(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()));
-                    double gen1 = generador1.getProduccioActual() * generador1.getQuantitat();
-                    double gen2 = generador2.getProduccioActual() * generador2.getQuantitat();
-                    double gen3 = generador3.getProduccioActual() * generador3.getQuantitat();
+                    double gen1 = generador1.getProduccioActual();
+                    double gen2 = generador2.getProduccioActual();
+                    double gen3 = generador3.getProduccioActual();
 
                     generador1.setProduccioTotal(gen1);
                     generador2.setProduccioTotal(gen2);

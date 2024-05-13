@@ -80,18 +80,17 @@ import Presentation.View.GameView;
     }
 
     public void buyMillores(int ID_P, int ID_G, String type){
-        int n_millores = sqlGameDAO.getPowerUpClicker(ID_P) + 1;
+        int n_millores = sqlGameDAO.getPowerUpClicker(ID_P, ID_G) + 1;
         System.out.println("N_MILLORES: " + n_millores);
-        Millora millora = new Millora("D", n_millores);
+        Millora millora = new Millora(type, n_millores);
 
         if(sqlGameDAO.getNCoffees(ID_P, ID_G) >= millora.getPreu()) {
-            sqlGameDAO.setPowerUpClicker(ID_P, n_millores);
+            sqlGameDAO.setPowerUpClicker(ID_P, ID_G, n_millores);
             sqlGameDAO.setNCoffees(ID_P, ID_G, sqlGameDAO.getNCoffees(ID_P, ID_G) - millora.getPreu());
-
         }
     }
 
-    public int getQuantitatMillores(int id){
-        return sqlGameDAO.getPowerUpClicker(id);
+    public int getQuantitatMillores(int ID_P, int ID_G){
+        return sqlGameDAO.getPowerUpClicker(ID_P, ID_G);
     }
 }

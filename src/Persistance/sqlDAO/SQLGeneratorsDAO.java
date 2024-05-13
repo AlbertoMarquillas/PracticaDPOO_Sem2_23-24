@@ -140,8 +140,8 @@ public class SQLGeneratorsDAO{
         return numMillores;
     }
 
-    public void setNumMillores(int numMillores, String type) {
-        String query = "UPDATE generators SET Num_Millores = " + numMillores + " WHERE Type = '" + type + "'";
+    public void setNumMillores(int ID_P, int ID_G, int numMillores, String type) {
+        String query = "UPDATE generators SET Num_Millores = " + numMillores + " WHERE ID_P = " + ID_P + " AND ID_G = " + ID_G + " AND Type = '" + type + "'";
         Connector.getInstance().updateQuery(query);
     }
 
@@ -223,12 +223,25 @@ public class SQLGeneratorsDAO{
 
     public void updateCaffeeGenerators(int connectedUserId, int currentGameId, Generator generator) {
         String type = generator.getTypeString();
-        String query = "UPDATE generators SET Quantitat = " + generator.getQuantitat() + ", " +
-                "CostActual = " + generator.getCostActualString() + ", " +
-                "ProduccioActual = " + generator.getProduccioActual() + ", " +
-                "ProduccioGlobal = " + generator.getProduccioGlobalString() + ", " +
-                "Num_Millores = " + generator.getNumMilloresString() +
+        String query = "UPDATE generators SET ProduccioActual = " + generator.getProduccioActual() +
                 " WHERE ID_P = " + connectedUserId + " AND ID_G = " + currentGameId + " AND Type = '" + type + "'";
         Connector.getInstance().updateQuery(query);
     }
+    public void updateMilloresAndProduccioActual(int ID_P, int ID_G, Generator generator) {
+        int numMillores = generator.getNumeroMillores();
+        double produccioActual = generator.getProduccioActual();
+        String type = generator.getTypeString();
+
+        // Actualizar el número de mejoras
+        String queryMillores = "UPDATE generators SET Num_Millores = " + numMillores + " WHERE ID_P = " + ID_P + " AND ID_G = " + ID_G + " AND Type = '" + type + "'";
+        Connector.getInstance().updateQuery(queryMillores);
+
+        // Actualizar la producción actual
+        String queryProduccioActual = "UPDATE generators SET ProduccioActual = " + produccioActual + " WHERE ID_P = " + ID_P + " AND ID_G = " + ID_G + " AND Type = '" + type + "'";
+        Connector.getInstance().updateQuery(queryProduccioActual);
+    }
+
+
+
+
 }

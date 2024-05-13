@@ -141,7 +141,7 @@ public class GeneratorManager {
 
     public double getProdActual(int ID_P, int ID_G, String type) {
         Generator generator = sqlGeneratorsDAO.getGenerator(ID_P, ID_G, type);
-        return generator.getProduccioTotal();
+        return generator.getProduccioActual();
     }
 
     public int getQuantitatMillores(int ID_P, int ID_G, String type) {
@@ -150,34 +150,35 @@ public class GeneratorManager {
 
 
     public boolean buyMillora(int ID_P, int ID_G, String type){
-        int n_millores = sqlGeneratorsDAO.getNumMillores(type) + 1;
-        System.out.println("N_MILLORES: " + n_millores);
-        Millora millora = new Millora(type, n_millores);
+        Generator generator = sqlGeneratorsDAO.getGenerator(ID_P, ID_G, type);
+        int n_millores = generator.getNumeroMillores();
+        System.out.println("N_MILLORES Actual: " + n_millores);
+        Millora millora = new Millora(type, n_millores + 1);
 
-        sqlGeneratorsDAO.setNumMillores(n_millores, type);
         System.out.println("preu millora: " + millora.getPreu());
 
-        if ((sqlGameDAO.getNCoffees(ID_P, ID_G) >= millora.getPreu()) && n_millores != 0) {
-
+        if ((sqlGameDAO.getNCoffees(ID_P, ID_G) >= millora.getPreu())) {
             if (type.equals("A")) {
-                double produccioActualiztada = costBase[0] * 2 * n_millores;
-
-                sqlGeneratorsDAO.setProduccioActual(produccioActualiztada, type);
+                generator.setNewMillora();
+                sqlGeneratorsDAO.updateMilloresAndProduccioActual(ID_P, ID_G, generator);
                 sqlGameDAO.setNCoffees(ID_P, ID_G, sqlGameDAO.getNCoffees(ID_P, ID_G) - millora.getPreu());
             } else if (type.equals("B")) {
-                double produccioActualiztada = costBase[1] * 2 * n_millores;
-                sqlGeneratorsDAO.setProduccioActual(produccioActualiztada, type);
-
+                generator.setNewMillora();
+                sqlGeneratorsDAO.updateMilloresAndProduccioActual(ID_P, ID_G, generator);
                 sqlGameDAO.setNCoffees(ID_P, ID_G, sqlGameDAO.getNCoffees(ID_P, ID_G) - millora.getPreu());
             } else if (type.equals("C")) {
-                double produccioActualiztada = costBase[2] * 2 * n_millores;
-
-                sqlGeneratorsDAO.setProduccioActual(produccioActualiztada, type);
+                generator.setNewMillora();
+                sqlGeneratorsDAO.updateMilloresAndProduccioActual(ID_P, ID_G, generator);
                 sqlGameDAO.setNCoffees(ID_P, ID_G, sqlGameDAO.getNCoffees(ID_P, ID_G) - millora.getPreu());
             }
             return true;
         } else {
             return false;
         }
+    }
+
+    public double getBaseProduction(int idP, int idG, String type) {
+        Generator generator = sqlGeneratorsDAO.getGenerator(idP, idG, type);
+        return generator.getBaseProduction();
     }
 }
