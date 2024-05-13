@@ -22,6 +22,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 /**
@@ -107,10 +109,11 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         settingsButton.setContentAreaFilled(false);     //Fer que l'àrea de contingut del botó sigui transparent
 
         //Crear els botons de cada millora fent us de la classe CustomButton
-        millora1 = new CustomButton("<html><div style='text-align: center;'>Double the efficiency in BARISTA BOOST</div></html>", 170, 75, Color.decode("#F8F2F0"), Color.decode("#3B1211"), new Font("Segoe UI Black", Font.PLAIN, 14));
-        millora2 = new CustomButton("<html><div style='text-align: center;'>Double the efficiency in WAFFLE WIZARD</div></html>", 170, 75, Color.decode("#F8F2F0"), Color.decode("#3B1211"), new Font("Segoe UI Black", Font.PLAIN, 14));
-        millora3 = new CustomButton("<html><div style='text-align: center;'>Double the efficiency in STEAMY BREW</div></html>", 170, 75, Color.decode("#F8F2F0"), Color.decode("#3B1211"), new Font("Segoe UI Black", Font.PLAIN, 14));
-        millora4 = new CustomButton("<html><div style='text-align: center;'>Double the efficiency in clicks</div></html>", 170, 75, Color.decode("#F8F2F0"), Color.decode("#3B1211"), new Font("Segoe UI Black", Font.PLAIN, 14));
+        millora1 = new CustomButton("<html><div style='text-align: center;'>Double the efficiency in BARISTA BOOST</div></html>", 170, 75, Color.decode("#F8F2F0"), Color.black, new Font("Segoe UI Black", Font.PLAIN, 14));
+        millora1.setForeground(Color.BLACK);
+        millora2 = new CustomButton("<html><div style='text-align: center;'>Double the efficiency in WAFFLE WIZARD</div></html>", 170, 75, Color.decode("#F8F2F0"), Color.decode("#000000"), new Font("Segoe UI Black", Font.PLAIN, 14));
+        millora3 = new CustomButton("<html><div style='text-align: center;'>Double the efficiency in STEAMY BREW</div></html>", 170, 75, Color.decode("#F8F2F0"), Color.decode("#000000"), new Font("Segoe UI Black", Font.PLAIN, 14));
+        millora4 = new CustomButton("<html><div style='text-align: center;'>Double the efficiency in clicks</div></html>", 170, 75, Color.decode("#F8F2F0"), Color.decode("#000000"), new Font("Segoe UI Black", Font.PLAIN, 14));
 
         //hacer que si se pulsa el boton millora 1, quantitatPotenciadors1 sume +1
 
@@ -293,79 +296,67 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
      * @return JPanel amb les dades del potenciador
      */
     public CustomButton createPotenciadorButton(String pathFoto, String nom, String cost, String produccio) {
-
-        //inicialitzar els labels amb les dades dels potenciadors
+        //inicializar los labels con los datos de los potenciadores
         CustomLabel nomLabel = new CustomLabel(nom, new Font("Segoe UI Black", Font.PLAIN, 19), Color.decode("#3B1211"));
+        JLabel costLabel;
         if (nom.equals("BARISTA BOOST")){
-            labelPotCost1 = new JLabel(cost);
+            costLabel = labelPotCost1;
         } else if (nom.equals("WAFFLE WIZARD")) {
-            labelPotCost2 = new JLabel(cost);
-        } else if (nom.equals("STEAMY BREW")) {
-            labelPotCost3 = new JLabel(cost);
-
+            costLabel = labelPotCost2;
+        } else { // STEAMY BREW
+            costLabel = labelPotCost3;
         }
-
-        labelPotCost1.setFont(new Font("Segoe UI Black", Font.PLAIN, 14));
-        labelPotCost1.setForeground(Color.decode("#3B1211"));
-        labelPotCost2.setFont(new Font("Segoe UI Black", Font.PLAIN, 14));
-        labelPotCost2.setForeground(Color.decode("#3B1211"));
-        labelPotCost3.setFont(new Font("Segoe UI Black", Font.PLAIN, 14));
-        labelPotCost3.setForeground(Color.decode("#3B1211"));
-
+        costLabel.setFont(new Font("Segoe UI Black", Font.PLAIN, 14));
+        costLabel.setForeground(Color.decode("#3B1211"));
         CustomLabel produccioLabel = new CustomLabel(produccio, new Font("Segoe UI Black", Font.PLAIN, 12), Color.decode("#3B1211"));
 
-        //inicialitzar la imatge del potenciador
+        //inicializar la imagen del potenciador
         ImageIcon foto = new ImageIcon(pathFoto);
         JLabel fotoLabel = new JLabel(foto);
+        fotoLabel.setOpaque(false); // Hacer el fondo del label de la imagen transparente
 
-        //crear el panel principal que cotindrá totes les dades del potenciador
+        //crear el panel principal que contendrá todas las datos del potenciador
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(350, 170));
-        panel.setBackground(Color.decode("#F8F2F0"));
+        panel.setOpaque(false);
+        panel.setBackground(null);
         panel.setLayout(new BorderLayout());
 
-        //crear el subpanell de la informació del potenciador (nom, cost i producció)
+        //crear el subpanel de la información del potenciador (nom, cost y producción)
         JPanel panelInfo = new JPanel();
-        panelInfo.setBackground(Color.decode("#F8F2F0"));
+        panelInfo.setOpaque(false); // Hacer el fondo del panel de información transparente
+        panelInfo.setBackground(null); // Establecer el color de fondo del panel de información en null
         panelInfo.setLayout(new GridBagLayout());
 
-        //crear el layout dels labels de la informació del subpanell
+        //crear el layout de los labels de la información del subpanel
         GridBagConstraints gbcInfo = new GridBagConstraints();
 
-        //afegir el nom
+        //añadir el nombre
         gbcInfo.gridx = 1;
         gbcInfo.gridy = 0;
         gbcInfo.insets = new Insets(10, 0, 0, 0);
         panelInfo.add(nomLabel, gbcInfo);
 
-        //afegir el cost
+        //añadir el coste
         gbcInfo.gridx = 1;
         gbcInfo.gridy = 1;
         gbcInfo.insets = new Insets(10, 0, 0, 5); // Ajusta los márgenes
+        panelInfo.add(costLabel, gbcInfo);
 
-        if (nom.equals("BARISTA BOOST")){
-            panelInfo.add(labelPotCost1, gbcInfo);
-        } else if (nom.equals("WAFFLE WIZARD")) {
-            panelInfo.add(labelPotCost2, gbcInfo);
-
-        } else if (nom.equals("STEAMY BREW")) {
-            panelInfo.add(labelPotCost3, gbcInfo);
-
-        }
-        //afegir la producció
+        //añadir la producción
         gbcInfo.gridx = 1;
         gbcInfo.gridy = 2;
         gbcInfo.insets = new Insets(10, 0, 0, 20); // Ajusta los márgenes
         panelInfo.add(produccioLabel, gbcInfo);
 
-        //afegir la imatge i el subpanell amb la informació al panell principal
+        //añadir la imagen y el subpanel con la información al panel principal
         panel.add(fotoLabel, BorderLayout.WEST);
         panel.add(panelInfo, BorderLayout.CENTER);
 
         CustomButton potenciadorButton = new CustomButton(350, 170, Color.decode("#F8F2F0"));
         potenciadorButton.add(panel);
-        potenciadorButton.setBorderPainted(false);            // Eliminar borde
-        potenciadorButton.setContentAreaFilled(false);        //Fer que l'àrea de contingut del botó sigui transparent
+        potenciadorButton.setBorderPainted(false); // Eliminar borde
+        potenciadorButton.setContentAreaFilled(false); // Hacer que el área de contenido del botón sea transparente
 
         return potenciadorButton;
     }
@@ -695,7 +686,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
      * @return Cost del generador1
      */
     public double getCost1() {
-        return cost1;
+        return this.cost1;
     }
 
 
@@ -715,24 +706,6 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
     public double getCost3() {
         return cost3;
     }
-
-
-    /**
-     * Estableix el cost del generador 1
-     * @param cost1 El cost a establir per al generador 1.
-     */
-    public void setCostPotenciador1(double cost1) {
-        this.cost1 = (int) Math.round(cost1);
-    }
-
-    /**
-     * Estableix el cost del generador 2
-     * @param cost2 El cost a establir per al generador 2.
-     */
-    public void setCostPotenciador2(int cost2) {
-        this.cost2 = cost2;
-    }
-
 
     /**
      * Estableix el cost del generador 3
@@ -889,18 +862,6 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
     /**
      * Estableix la producció per unitat
      */
-    private void setProduccioUnitat(double produccio) {
-        this.produccioUnitat1 = produccio;
-    }
-    public void setPotenciador1Enabled(boolean isEnabled) {
-        this.potenciador1.setEnabled(isEnabled);
-    }
-    public void setPotenciador2Enabled(boolean isEnabled) {
-        this.potenciador2.setEnabled(isEnabled);
-    }
-    public void setPotenciador3Enabled(boolean isEnabled) {
-        this.potenciador3.setEnabled(isEnabled);
-    }
 
 
     /**
@@ -993,6 +954,103 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
 
         // Notificar al modelo de la tabla que los datos han cambiado, lo que provocará que la tabla se actualice
         tableModel.fireTableDataChanged();
+    }
+
+    public void setGameViewButtonsEnabled(ArrayList<Boolean> enabled) {
+        setPotenciador1Enable(enabled.get(0));
+        setPotenciador2Enable(enabled.get(1));
+        setPotenciador3Enable(enabled.get(2));
+        setMillora1Enable(enabled.get(3));
+        setMillora2Enable(enabled.get(4));
+        setMillora3Enable(enabled.get(5));
+        setMillora4Enable(enabled.get(6));
+        this.repaint();
+    }
+
+    private void setMillora4Enable(Boolean aBoolean) {
+        millora4.setEnabled(aBoolean);
+        if (aBoolean) {
+            millora4.setBackgroundColor(Color.decode("#F8F2F0")); // Gris claro
+            millora4.setTextColor(Color.decode("#000000")); // Gris oscuro
+        } else {
+            millora4.setBackgroundColor(Color.LIGHT_GRAY);
+            millora4.setTextColor(Color.DARK_GRAY);
+        }
+    }
+
+    private void setMillora3Enable(Boolean aBoolean) {
+        millora3.setEnabled(aBoolean);
+        if (aBoolean) {
+            millora3.setBackgroundColor(Color.decode("#F8F2F0")); // Gris claro
+            millora3.setTextColor(Color.decode("#000000")); // Gris oscuro
+        } else {
+            millora3.setBackgroundColor(Color.LIGHT_GRAY);
+            millora3.setTextColor(Color.DARK_GRAY);
+        }
+    }
+
+    private void setMillora2Enable(Boolean aBoolean) {
+        millora2.setEnabled(aBoolean);
+        if (aBoolean) {
+            millora2.setBackgroundColor(Color.decode("#F8F2F0")); // Gris claro
+            millora2.setTextColor(Color.decode("#000000")); // Gris oscuro
+        } else {
+            millora2.setBackgroundColor(Color.LIGHT_GRAY);
+            millora2.setTextColor(Color.DARK_GRAY);
+        }
+    }
+
+    private void setMillora1Enable(Boolean aBoolean) {
+        millora1.setEnabled(aBoolean);
+        if (aBoolean) {
+            millora1.setBackgroundColor(Color.decode("#F8F2F0")); // Gris claro
+            millora1.setForeground(Color.black);
+        } else {
+            millora1.setBackgroundColor(Color.LIGHT_GRAY);
+            millora4.setForeground(Color.DARK_GRAY);
+        }
+    }
+
+    private void setPotenciador3Enable(Boolean aBoolean) {
+        potenciador3.setEnabled(aBoolean);
+        if (aBoolean) {
+            potenciador3.setBackgroundColor(Color.decode("#F8F2F0"));
+            potenciador3.setTextColor(Color.decode("#000000")); // Gris oscuro
+        } else {
+            potenciador3.setBackgroundColor(Color.LIGHT_GRAY);
+            potenciador3.setTextColor(Color.DARK_GRAY);
+        }
+    }
+
+    public void setPotenciador1Enable (boolean enableNew) {
+        potenciador1.setEnabled(enableNew);
+        if (enableNew) {
+            potenciador1.setBackgroundColor(Color.decode("#F8F2F0"));
+            potenciador1.setTextColor(Color.decode("#000000")); // Gris oscuro
+        } else {
+            potenciador1.setBackgroundColor(Color.LIGHT_GRAY);
+            potenciador1.setTextColor(Color.DARK_GRAY);
+        }
+    }
+
+    public void setPotenciador2Enable (boolean enableNew) {
+        potenciador2.setEnabled(enableNew);
+        if (enableNew) {
+            potenciador2.setBackgroundColor(Color.decode("#F8F2F0"));
+            potenciador2.setTextColor(Color.decode("#000000")); // Gris oscuro
+        } else {
+            potenciador2.setBackgroundColor(Color.LIGHT_GRAY);
+            potenciador2.setTextColor(Color.DARK_GRAY);
+        }
+    }
+
+    private void setButtonEnabledAndColor(CustomButton button, boolean isEnabled) {
+        button.setEnabled(isEnabled);
+        if (isEnabled) {
+            button.setBackground(Color.decode("#F8F2F0")); // Color claro cuando está habilitado
+        } else {
+            button.setBackground(Color.LIGHT_GRAY); // Color oscuro cuando está deshabilitado
+        }
     }
 
 

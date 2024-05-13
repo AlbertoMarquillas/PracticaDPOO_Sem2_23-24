@@ -62,6 +62,7 @@ public class StartController implements ActionListener {
             //Carregar la partida
             changeViewController.setComptador(true);
             changeViewController.changePan("game");
+
         } else if (e.getActionCommand().equals("stats")) {
             changeViewController.changePan("stats");
         }

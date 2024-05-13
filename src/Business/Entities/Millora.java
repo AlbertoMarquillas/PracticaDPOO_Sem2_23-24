@@ -2,10 +2,10 @@ package Business.Entities;
 
 public class Millora {
 
-    private static final double INCREMENT_A = 10.0; // Incremento para el tipo A
-    private static final double INCREMENT_B = 20.0; // Incremento para el tipo B
-    private static final double INCREMENT_C = 30.0; // Incremento para el tipo C
-    private static final double INCREMENT_D = 40.0; // Incremento para el tipo D
+    private static final double INCREMENT_A = 100.0; // Incremento para el tipo A
+    private static final double INCREMENT_B = 200.0; // Incremento para el tipo B
+    private static final double INCREMENT_C = 300.0; // Incremento para el tipo C
+    private static final double INCREMENT_D = 400.0; // Incremento para el tipo D
 
     private String type;
     private double preu; //cost del valor de millora

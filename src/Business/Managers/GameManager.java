@@ -10,7 +10,10 @@ import Persistance.sqlDAO.SQLStatsDAO;
 import Persistance.sqlDAO.SQLUserDAO;
 import Presentation.View.GameView;
 
-    public class GameManager {
+import java.util.ArrayList;
+import java.util.List;
+
+public class GameManager {
         private Comptador comptador;
         private SQLGameDAO sqlGameDAO;
         private SQLUserDAO sqlUserDAO;
@@ -92,5 +95,69 @@ import Presentation.View.GameView;
 
     public int getQuantitatMillores(int ID_P, int ID_G){
         return sqlGameDAO.getPowerUpClicker(ID_P, ID_G);
+    }
+
+    public boolean comprobarEstatPartida(int connectedUserId, int currentGameId) {
+        return sqlGameDAO.comprobarPartidaFinalitzada(connectedUserId, currentGameId);
+    }
+
+    public ArrayList<Boolean> comprobarHabilitarBotons(int ID_P, int ID_G) {
+        ArrayList<Boolean> botonsEnables = new ArrayList<>();
+
+        double currentCafe = sqlGameDAO.getNCoffees(ID_P, ID_G);
+
+        Generator generatorA = sqlGeneratorsDAO.getGenerator(ID_P, ID_G, "A");
+        Generator generatorB = sqlGeneratorsDAO.getGenerator(ID_P, ID_G, "B");
+        Generator generatorC = sqlGeneratorsDAO.getGenerator(ID_P, ID_G, "C");
+
+        if (currentCafe >= generatorA.getGeneratorCost()) {
+            botonsEnables.add(true);
+        } else {
+            botonsEnables.add(false);
+        }
+
+        if (currentCafe >= generatorB.getGeneratorCost()) {
+            botonsEnables.add(true);
+        } else {
+            botonsEnables.add(false);
+        }
+
+        if (currentCafe >= generatorC.getGeneratorCost()) {
+            botonsEnables.add(true);
+        } else {
+            botonsEnables.add(false);
+        }
+
+        Millora millora1 = new Millora("A", generatorA.getNumeroMillores()); // Reemplaza "tipoGenerador" y 1 con los valores correctos para tu mejora
+        Millora millora2 = new Millora("B", generatorB.getNumeroMillores()); // Reemplaza "tipoGenerador" y 1 con los valores correctos para tu mejora
+        Millora millora3 = new Millora("C", generatorC.getNumeroMillores()); // Reemplaza "tipoGenerador" y 1 con los valores correctos para tu mejora
+        Millora millora4 = new Millora("D", getQuantitatMillores(ID_P, ID_G)); // Reemplaza "tipoGenerador" y 1 con los valores correctos para tu mejora
+
+        if (currentCafe >= millora1.getPreu()) {
+            botonsEnables.add(true);
+        } else {
+            botonsEnables.add(false);
+        }
+
+        if (currentCafe >= millora2.getPreu()) {
+            botonsEnables.add(true);
+        } else {
+            botonsEnables.add(false);
+        }
+
+        if (currentCafe >= millora3.getPreu()) {
+            botonsEnables.add(true);
+        } else {
+            botonsEnables.add(false);
+        }
+
+        if (currentCafe >= millora4.getPreu()) {
+            botonsEnables.add(true);
+        } else {
+            botonsEnables.add(false);
+        }
+
+
+        return botonsEnables;
     }
 }

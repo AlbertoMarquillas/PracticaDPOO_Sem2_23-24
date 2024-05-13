@@ -9,6 +9,8 @@ import Business.Managers.MilloraManager;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameController implements ActionListener, ComptadorInterficie {
 
@@ -65,6 +67,10 @@ public class GameController implements ActionListener, ComptadorInterficie {
     public void actionPerformed(ActionEvent e) {
         int ID_P = gameManager.getConnectedUserId();
         int ID_G = gameManager.getCurrentGameId(gameManager.getConnectedUserId());
+
+
+        //Habilitar o deshabilitar botons
+        gameView.setGameViewButtonsEnabled(gameManager.comprobarHabilitarBotons(ID_P, ID_G));
 
         String type = null;
         if (e.getActionCommand().equals("settings")) {
@@ -214,6 +220,10 @@ public class GameController implements ActionListener, ComptadorInterficie {
         gameView.updateGenerator3(generatorManager.getQuantitatGenerados(ID_P, ID_G, "C"), generatorManager.getBaseProduction(ID_P, ID_G, "C"), generatorManager.getProdActual(ID_P, ID_G, "C"), generatorManager.updateOverallProduction("C"));
         gameView.updateGenerator2(generatorManager.getQuantitatGenerados(ID_P, ID_G, "B"), generatorManager.getBaseProduction(ID_P, ID_G, "B"), generatorManager.getProdActual(ID_P, ID_G, "B"), generatorManager.updateOverallProduction("B"));
         gameView.updateGenerator1(generatorManager.getQuantitatGenerados(ID_P, ID_G, "A"), generatorManager.getBaseProduction(ID_P, ID_G, "A"), generatorManager.getProdActual(ID_P, ID_G, "A"), generatorManager.updateOverallProduction("A"));
+
+        gameView.updateCostGenerator1(generatorManager.getCostActual(ID_P, ID_G, "A"));
+        gameView.updateCostGenerator2(generatorManager.getCostActual(ID_P, ID_G, "B"));
+        gameView.updateCostGenerator3(generatorManager.getCostActual(ID_P, ID_G, "C"));
     }
 
     /**
@@ -228,6 +238,7 @@ public class GameController implements ActionListener, ComptadorInterficie {
         gameView.setComptador(String.valueOf(Math.round(quantitatCafes)));
         gameManager.setQuantitatCafe(quantitatCafes);
         gameManager.updateCaffeeGenerators(generator1, generator2, generator3);
+        gameView.setGameViewButtonsEnabled(gameManager.comprobarHabilitarBotons(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId())));
         //gameView.updateProduccioTotal(1, generator1.getProduccioActual());
         //gameView.updateProduccioTotal(2, generator2.getProduccioActual());
         //gameView.updateProduccioTotal(3, generator3.getProduccioActual());

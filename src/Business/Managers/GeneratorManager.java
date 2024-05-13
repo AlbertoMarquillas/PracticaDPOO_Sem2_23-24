@@ -153,7 +153,7 @@ public class GeneratorManager {
         Generator generator = sqlGeneratorsDAO.getGenerator(ID_P, ID_G, type);
         int n_millores = generator.getNumeroMillores();
         System.out.println("N_MILLORES Actual: " + n_millores);
-        Millora millora = new Millora(type, n_millores + 1);
+        Millora millora = new Millora(type, n_millores);
 
         System.out.println("preu millora: " + millora.getPreu());
 

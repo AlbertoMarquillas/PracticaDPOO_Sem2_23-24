@@ -221,4 +221,17 @@ public class SQLGameDAO {
         }
         return null; // Devuelve null si no se encuentra ningún resultado
     }
+
+    public boolean comprobarPartidaFinalitzada(int connectedUserId, int currentGameId) {
+        String query = "SELECT * FROM game WHERE ID_P = " + connectedUserId + " AND ID_G = " + currentGameId + " AND Ended = 1";
+        ResultSet result = Connector.getInstance().selectQuery(query);
+        try {
+            if (result.next()) {
+                return true; // Hay al menos una partida con Ended = 1 para este usuario
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false; // No hay partidas con Ended = 1 para este usuario
+    }
 }
