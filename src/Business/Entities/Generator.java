@@ -219,4 +219,13 @@ public class Generator {
     }
 
 
+    public int getOverallProduction(double totalProduction) {
+        if (this.produccioActual == 0){
+            return 0;
+        }
+        else{
+            return (int) Math.round((this.produccioActual / totalProduction) * 100);
+        }
+
+    }
 }

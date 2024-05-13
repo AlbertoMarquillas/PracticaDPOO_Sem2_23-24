@@ -53,16 +53,15 @@ public class GeneratorManager {
     }
 
 
-    public double updateOverallProduction(String type){
-        double produccioAcumulada = 0;
-        //Editar a la base de dades el valor overall -> Falten totes les funcions
-        for (int i = 0; i < types.length; i++){
-            produccioAcumulada = sqlGeneratorsDAO.getProduccioGlobal(types[i]) + produccioAcumulada;
-        }
+    public double updateOverallProduction(int ID_P, int ID_G, String type){
+        Generator generatorA = sqlGeneratorsDAO.getGenerator(ID_P, ID_G, "A");
+        Generator generatorB = sqlGeneratorsDAO.getGenerator(ID_P, ID_G, "B");
+        Generator generatorC = sqlGeneratorsDAO.getGenerator(ID_P, ID_G, "C");
 
-        double overall = (sqlGeneratorsDAO.getProduccioGlobal(type) / produccioAcumulada) * 100;
+        Generator generator = sqlGeneratorsDAO.getGenerator(ID_P, ID_G, type);
 
-        return overall;
+        double totalProduction = generatorA.getProduccioActual() + generatorB.getProduccioActual() + generatorC.getProduccioActual();
+        return generator.getOverallProduction(totalProduction);
 
     }
 
