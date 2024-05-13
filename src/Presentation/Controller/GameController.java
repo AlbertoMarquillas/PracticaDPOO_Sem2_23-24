@@ -91,7 +91,7 @@ public class GameController implements ActionListener, ComptadorInterficie {
             boolean created = generatorManager.buyGenerator(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type);
             if (created) {
                 //Update info generador 1
-                gameView.updateGenerator1(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getProduccioTotal(ID_P, ID_G, type), generatorManager.getProdActual(ID_P, ID_G, type));
+                gameView.updateGenerator1(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getProduccioTotal(ID_P, ID_G, type), generatorManager.getProdActual(ID_P, ID_G, type), generatorManager.updateOverallProduction(type));
 
                 gameView.updateCostGenerator1(generatorManager.getCostActual(ID_P, ID_G, type));
             }
@@ -108,7 +108,7 @@ public class GameController implements ActionListener, ComptadorInterficie {
             generatorManager.buyGenerator(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type);
 
             //Update info generador 1
-            gameView.updateGenerator2(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getProduccioTotal(ID_P, ID_G, type), generatorManager.getProdActual(ID_P, ID_G, type));
+            gameView.updateGenerator2(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getProduccioTotal(ID_P, ID_G, type), generatorManager.getProdActual(ID_P, ID_G, type), generatorManager.updateOverallProduction(type));
             gameView.updateCostGenerator2(generatorManager.getCostActual(ID_P, ID_G, type));
 
             System.out.println("Quantitat Potenciadors 2: "  + gameView.getQuantitatPotenciadors2());
@@ -121,31 +121,26 @@ public class GameController implements ActionListener, ComptadorInterficie {
             generatorManager.buyGenerator(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type);
 
             //Update info generador 1
-            gameView.updateGenerator3(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getProduccioTotal(ID_P, ID_G, type), generatorManager.getProdActual(ID_P, ID_G, type));
+            gameView.updateGenerator3(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getProduccioTotal(ID_P, ID_G, type), generatorManager.getProdActual(ID_P, ID_G, type), generatorManager.updateOverallProduction(type));
             gameView.updateCostGenerator3(generatorManager.getCostActual(ID_P, ID_G, type));
 
         }else if (e.getActionCommand().equals("millora1")) {
             type = "A";
+            generatorManager.buyMillora(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type);
+            gameView.updateGenerator1(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getProduccioTotal(ID_P, ID_G, type), generatorManager.getProdActual(ID_P, ID_G, type), generatorManager.updateOverallProduction(type));
 
-            if(generatorManager.buyMillora(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type)){
-                gameView.updateGenerator1(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getProduccioTotal(ID_P, ID_G, type), generatorManager.getProdActual(ID_P, ID_G, type));
-
-            }
         }else if (e.getActionCommand().equals("millora2")){
             type = "B";
-            if(milloraManager.getCostMillora(type) < gameManager.getCaffeeNumber()){
-                generatorManager.buyMillora(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type);
-                gameView.updateGenerator2(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getProduccioTotal(ID_P, ID_G, type), generatorManager.getProdActual(ID_P, ID_G, type));
+            generatorManager.buyMillora(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type);
+            gameView.updateGenerator2(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getProduccioTotal(ID_P, ID_G, type), generatorManager.getProdActual(ID_P, ID_G, type), generatorManager.updateOverallProduction(type));
 
-            }
+
 
         }else if (e.getActionCommand().equals("millora3")){
             type = "C";
+            generatorManager.buyMillora(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type);
+            gameView.updateGenerator3(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getProduccioTotal(ID_P, ID_G, type), generatorManager.getProdActual(ID_P, ID_G, type), generatorManager.updateOverallProduction(type));
 
-            if(milloraManager.getCostMillora(type) < gameManager.getCaffeeNumber()){
-                generatorManager.buyMillora(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type);
-                gameView.updateGenerator3(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getProduccioTotal(ID_P, ID_G, type), generatorManager.getProdActual(ID_P, ID_G, type));
-            }
 
         }else if (e.getActionCommand().equals("millora4")){
             type = "D";
@@ -215,9 +210,9 @@ public class GameController implements ActionListener, ComptadorInterficie {
         int ID_P = gameManager.getConnectedUserId();
         int ID_G = gameManager.getCurrentGameId(gameManager.getConnectedUserId());
 
-        gameView.updateGenerator3(generatorManager.getQuantitatGenerados(ID_P, ID_G, "C"), generatorManager.getProduccioTotal(ID_P, ID_G, "C"), generatorManager.getProdActual(ID_P, ID_G, "C"));
-        gameView.updateGenerator2(generatorManager.getQuantitatGenerados(ID_P, ID_G, "B"), generatorManager.getProduccioTotal(ID_P, ID_G, "B"), generatorManager.getProdActual(ID_P, ID_G, "B"));
-        gameView.updateGenerator1(generatorManager.getQuantitatGenerados(ID_P, ID_G, "A"), generatorManager.getProduccioTotal(ID_P, ID_G, "A"), generatorManager.getProdActual(ID_P, ID_G, "A"));
+        gameView.updateGenerator3(generatorManager.getQuantitatGenerados(ID_P, ID_G, "C"), generatorManager.getProduccioTotal(ID_P, ID_G, "C"), generatorManager.getProdActual(ID_P, ID_G, "C"), generatorManager.updateOverallProduction("C"));
+        gameView.updateGenerator2(generatorManager.getQuantitatGenerados(ID_P, ID_G, "B"), generatorManager.getProduccioTotal(ID_P, ID_G, "B"), generatorManager.getProdActual(ID_P, ID_G, "B"), generatorManager.updateOverallProduction("B"));
+        gameView.updateGenerator1(generatorManager.getQuantitatGenerados(ID_P, ID_G, "A"), generatorManager.getProduccioTotal(ID_P, ID_G, "A"), generatorManager.getProdActual(ID_P, ID_G, "A"), generatorManager.updateOverallProduction("A"));
     }
 
     /**
@@ -236,6 +231,9 @@ public class GameController implements ActionListener, ComptadorInterficie {
         gameView.updateProduccioTotal(1, generator1.getProduccioActual());
         gameView.updateProduccioTotal(2, generator2.getProduccioActual());
         gameView.updateProduccioTotal(3, generator3.getProduccioActual());
+        gameView.updateOverall(1, generatorManager.updateOverallProduction("A"));
+        gameView.updateOverall(2, generatorManager.updateOverallProduction("B"));
+        gameView.updateOverall(3, generatorManager.updateOverallProduction("C"));
 
         System.out.println(quantitatCafes);
     }

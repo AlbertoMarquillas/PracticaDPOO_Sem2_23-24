@@ -54,7 +54,7 @@ public class StatsView extends JPanel implements KeyListener, ActionListener {
 
         //Panell per afagir el gràfic de les estadístiques
         //ORIOL FES LA GRÀFICA DE STATS DINTRE D'AQUEST PANELL
-        JPanel infoPanel = new JPanel();
+       /* JPanel infoPanel = new JPanel();
         infoPanel.setBackground(Color.decode("#F8F2F0"));
         infoPanel.setLayout(new GridBagLayout());
         GridBagConstraints gbcCent = new GridBagConstraints();//Crear GridBagLayout del panell central per poder posar els elements
@@ -79,7 +79,7 @@ public class StatsView extends JPanel implements KeyListener, ActionListener {
         infoPanel.add(backButton, gbcCent);
 
         add(titolPanel, BorderLayout.NORTH);
-        add(infoPanel, BorderLayout.CENTER);
+        add(infoPanel, BorderLayout.CENTER);*/
     }
 
     /**

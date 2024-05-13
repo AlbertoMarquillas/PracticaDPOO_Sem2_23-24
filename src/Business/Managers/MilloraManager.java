@@ -6,10 +6,10 @@ import Business.Entities.Millora;
 
 public class MilloraManager {
     Generator generator;
-    private Millora[] millores;
-    double[] costMillora = {10.0, 20.0, 30.0, 40.0};
-    String[] types = {"A", "B", "C", "D"};
-    int[] quanitatMillores = {0, 0, 0, 0};
+    private Millora millores;
+    double costMillora;
+    String type;
+    int quanitatMillores;
 
     public MilloraManager(){
 
@@ -33,59 +33,62 @@ public class MilloraManager {
         }
     }*/
 
-    public int getQuantitatMillores(String type) {
-        if(type.equals("A")) {
-            return quanitatMillores[0];
-        } else if (type.equals("B")) {
-            return quanitatMillores[1];
-        } else if (type.equals("C")) {
-            return quanitatMillores[2];
-        } else if (type.equals("D")){
-            return quanitatMillores[3];
-        } else {
-            return 0;
-        }
-    }
 
-    public Millora[] getMillores() {
-        return millores;
-    }
 
-    public void setMillores(Millora[] millores) {
-        this.millores = millores;
-    }
+
 
     public double getCostMillora(String type) {
         if(type.equals("A")){
-            return costMillora[0];
+            return 10.0;
         } else if (type.equals("B")){
-            return costMillora[1];
+            return 20.0;
         } else if (type.equals("C")){
-            return costMillora[2];
+            return 30.0;
         } else if (type.equals("D")){
-            return costMillora[3];
+            return 40.0;
         } else {
             return -1;
         }
     }
 
-    public void setCostMillora(double[] costMillora) {
+
+    public Generator getGenerator() {
+        return generator;
+    }
+
+    public void setGenerator(Generator generator) {
+        this.generator = generator;
+    }
+
+    public Millora getMillores() {
+        return millores;
+    }
+
+    public void setMillores(Millora millores) {
+        this.millores = millores;
+    }
+
+    public double getCostMillora() {
+        return costMillora;
+    }
+
+    public void setCostMillora(double costMillora) {
         this.costMillora = costMillora;
     }
 
-    public String[] getTypes() {
-        return types;
+    public String getType() {
+        return type;
     }
 
-    public void setTypes(String[] types) {
-        this.types = types;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public int[] getQuanitatMillores() {
+    public int getQuanitatMillores() {
         return quanitatMillores;
     }
 
-    public void setQuanitatMillores(int[] quanitatMillores) {
+    public void setQuanitatMillores(int quanitatMillores) {
         this.quanitatMillores = quanitatMillores;
     }
 }

@@ -910,7 +910,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
      * @param produccioTotal La producció total del generador 1.
      * @param prodActual La producció actual del generador 1 per unitat de temps.
      */
-    public void updateGenerator1(int quantitatGenerados, double produccioTotal, double prodActual) {
+    public void updateGenerator1(int quantitatGenerados, double produccioTotal, double prodActual, double overall) {
         // Obtener el modelo de la tabla
         DefaultTableModel tableModel = (DefaultTableModel) this.table.getModel();
 
@@ -918,7 +918,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         tableModel.setValueAt(quantitatGenerados, 1, 1); // Actualizar la cantidad
         tableModel.setValueAt(String.format("%.2f", prodActual) + " c/s", 1, 2); // Actualizar la producción por unidad
         tableModel.setValueAt(produccioTotal, 1, 3); // Actualizar la producción total
-        tableModel.setValueAt(String.format("%.2f", overallPot1) + " %", 1, 4); // Actualizar el porcentaje de producción total
+        tableModel.setValueAt(String.format("%.2f", overall) + " %", 1, 4); // Actualizar el porcentaje de producción total
 
         // Notificar al modelo de la tabla que los datos han cambiado, lo que provocará que la tabla se actualice
         tableModel.fireTableDataChanged();
@@ -932,7 +932,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
      * @param produccioTotal La producció total del generador 2.
      * @param prodActual La producció actual del generador 2 per unitat de temps.
      */
-    public void updateGenerator2(int quantitatGenerados, double produccioTotal, double prodActual) {
+    public void updateGenerator2(int quantitatGenerados, double produccioTotal, double prodActual, double overall) {
         // Obtener el modelo de la tabla
         DefaultTableModel tableModel = (DefaultTableModel) this.table.getModel();
 
@@ -940,7 +940,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         tableModel.setValueAt(quantitatGenerados, 2, 1); // Actualizar la cantidad
         tableModel.setValueAt(String.format("%.2f", prodActual) + " c/s", 2, 3); // Actualizar la producción por unidad
         tableModel.setValueAt(produccioTotal, 2, 4); // Actualizar la producción total
-        tableModel.setValueAt(String.format("%.2f", overallPot2) + " %", 2, 4); // Actualizar el porcentaje de producción total
+        tableModel.setValueAt(String.format("%.2f", overall) + " %", 2, 4); // Actualizar el porcentaje de producción total
 
         // Notificar al modelo de la tabla que los datos han cambiado, lo que provocará que la tabla se actualice
         tableModel.fireTableDataChanged();
@@ -964,6 +964,15 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         tableModel.fireTableDataChanged();
     }
 
+    public void updateOverall(int generatorRow, double overall){
+        DefaultTableModel tableModel = (DefaultTableModel) this.table.getModel();
+
+        // Actualizar el valor de produccioTotal en la fila correspondiente al generador
+        tableModel.setValueAt(String.format("%.2f", overall) + " c/s", generatorRow, 4); // Actualizar la producción total
+
+        // Notificar al modelo de la tabla que los datos han cambiado, lo que provocará que la tabla se actualice
+        tableModel.fireTableDataChanged();
+    }
 
     /**
      * Actualitza les dades del generador 3 a la taula.
@@ -972,7 +981,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
      * @param produccioTotal La producció total del generador 3.
      * @param prodActual La producció actual del generador 3 per unitat de temps.
      */
-    public void updateGenerator3(int quantitatGenerados, double produccioTotal, double prodActual) {
+    public void updateGenerator3(int quantitatGenerados, double produccioTotal, double prodActual, double overall) {
         // Obtener el modelo de la tabla
         DefaultTableModel tableModel = (DefaultTableModel) this.table.getModel();
 
@@ -980,7 +989,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         tableModel.setValueAt(quantitatGenerados, 3, 1); // Actualizar la cantidad
         tableModel.setValueAt(String.format("%.2f", prodActual) + " c/s", 3, 2); // Actualizar la producción por unidad
         tableModel.setValueAt(produccioTotal, 3, 3); // Actualizar la producción total
-        tableModel.setValueAt(String.format("%.2f", overallPot3) + " %", 3, 4); // Actualizar el porcentaje de producción total
+        tableModel.setValueAt(String.format("%.2f", overall) + " %", 3, 4); // Actualizar el porcentaje de producción total
 
         // Notificar al modelo de la tabla que los datos han cambiado, lo que provocará que la tabla se actualice
         tableModel.fireTableDataChanged();

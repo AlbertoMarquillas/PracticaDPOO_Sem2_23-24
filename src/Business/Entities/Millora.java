@@ -26,6 +26,9 @@ public class Millora {
         }
     }
 
+    public void setQuantitat(int quantitat) {
+        this.quantitat = quantitat;
+    }
 
     public String getType() {
         return type;

@@ -80,8 +80,8 @@ import Presentation.View.GameView;
     }
 
     public void buyMillores(int ID_P, int ID_G, String type){
-
         int n_millores = sqlGameDAO.getPowerUpClicker(ID_P) + 1;
+        System.out.println("N_MILLORES: " + n_millores);
         Millora millora = new Millora("D", n_millores);
 
         if(sqlGameDAO.getNCoffees(ID_P, ID_G) >= millora.getPreu()) {

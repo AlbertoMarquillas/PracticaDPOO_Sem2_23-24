@@ -1,6 +1,7 @@
 package Presentation.Controller;
 
 import Business.Managers.LogInManager;
+import Business.Managers.MilloraManager;
 import Business.Managers.UserManager;
 import Business.Managers.GameManager;
 import Presentation.View.InitialView;
@@ -18,6 +19,7 @@ public class InitialController implements ActionListener{
     private final UserManager userManager;
     private final StartView startView;
     private final GameManager gameManager;
+    private final MilloraManager milloraManager;
 
 
     /**
@@ -30,13 +32,14 @@ public class InitialController implements ActionListener{
      * @param startView            La vista d'inici de l'aplicació.
      * @param gameManager          El gestor de jocs de l'aplicació.
      */
-    public InitialController(InitialView initialView, LogInManager logInManager, ChangeViewController changeViewController, UserManager userManager, StartView startView, GameManager gameManager) {
+    public InitialController(InitialView initialView, LogInManager logInManager, ChangeViewController changeViewController, UserManager userManager, StartView startView, GameManager gameManager, MilloraManager milloraManager) {
         this.initialView = initialView;
         this.logInManager = logInManager;
         this.changeViewController = changeViewController;
         this.userManager = userManager;
         this.startView = startView;
         this.gameManager = gameManager;
+        this.milloraManager = milloraManager;
     }
 
 

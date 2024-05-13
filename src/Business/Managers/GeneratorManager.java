@@ -53,9 +53,16 @@ public class GeneratorManager {
     }
 
 
-    public float updateOverallProduction(int ID_P, int ID_G, String type){
+    public double updateOverallProduction(String type){
+        double produccioAcumulada = 0;
         //Editar a la base de dades el valor overall -> Falten totes les funcions
-        return (float) (100 * (sqlGeneratorsDAO.getProduccioActual(type) / sqlGameDAO.getNCoffees(ID_P, ID_G)));
+        for (int i = 0; i < types.length; i++){
+            produccioAcumulada = sqlGeneratorsDAO.getProduccioGlobal(types[i]) + produccioAcumulada;
+        }
+
+        double overall = (sqlGeneratorsDAO.getProduccioGlobal(type) / produccioAcumulada) * 100;
+
+        return overall;
 
     }
 
@@ -144,6 +151,7 @@ public class GeneratorManager {
 
     public boolean buyMillora(int ID_P, int ID_G, String type){
         int n_millores = sqlGeneratorsDAO.getNumMillores(type) + 1;
+        System.out.println("N_MILLORES: " + n_millores);
         Millora millora = new Millora(type, n_millores);
 
         sqlGeneratorsDAO.setNumMillores(n_millores, type);

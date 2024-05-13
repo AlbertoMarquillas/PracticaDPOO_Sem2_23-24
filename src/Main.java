@@ -54,7 +54,7 @@ public class Main {
         mainView.mainView(initialView, registerView, gameView, settingsView, startView,statsView);
 
         ChangeViewController changeViewController = new ChangeViewController(mainView, gameManager);
-        InitialController initialController = new InitialController(initialView, logInManager, changeViewController, userManager, startView, gameManager);
+        InitialController initialController = new InitialController(initialView, logInManager, changeViewController, userManager, startView, gameManager, milloraManager);
         RegisterController registerController = new RegisterController(registerView, signUpManager, changeViewController);
         StartController startController = new StartController(changeViewController, userManager, gameManager, generatorManager ,startView);
         StatsController statsController = new StatsController(changeViewController);
