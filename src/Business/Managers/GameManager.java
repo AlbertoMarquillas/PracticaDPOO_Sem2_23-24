@@ -77,7 +77,6 @@ public class GameManager {
     }
 
     public void updateCaffeeGenerators(Generator generator1, Generator generator2, Generator generator3) {
-        System.out.println("UPDATE GENERATORS: " + generator1.getProduccioGlobal());
         sqlGeneratorsDAO.updateCaffeeGenerators(sqlUserDAO.getConnectedUserId(), getCurrentGameId(sqlUserDAO.getConnectedUserId()), generator1);
         sqlGeneratorsDAO.updateCaffeeGenerators(sqlUserDAO.getConnectedUserId(), getCurrentGameId(sqlUserDAO.getConnectedUserId()), generator2);
         sqlGeneratorsDAO.updateCaffeeGenerators(sqlUserDAO.getConnectedUserId(), getCurrentGameId(sqlUserDAO.getConnectedUserId()), generator3);
@@ -85,7 +84,6 @@ public class GameManager {
 
     public void buyMillores(int ID_P, int ID_G, String type){
         int n_millores = sqlGameDAO.getPowerUpClicker(ID_P, ID_G) + 1;
-        System.out.println("N_MILLORES: " + n_millores);
         Millora millora = new Millora(type, n_millores);
 
         if(sqlGameDAO.getNCoffees(ID_P, ID_G) >= millora.getPreu()) {

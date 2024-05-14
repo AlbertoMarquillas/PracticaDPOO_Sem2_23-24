@@ -183,16 +183,13 @@ public class Comptador {
                     Generator generador3 = sqlGeneratorsDAO.getGenerator(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()), "C");
 
                     double nCoffee = sqlGameDAO.getNCoffees(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()));
-                    System.out.println("global: " + generador1.getProduccioGlobal() + " || acutal: " + generador1.getProduccioActual());
                     double gen1 = generador1.getProduccioGlobal() + generador1.getProduccioActual();
-                    double gen2 = generador1.getProduccioGlobal() + generador2.getProduccioActual();
+                    double gen2 = generador2.getProduccioGlobal() + generador2.getProduccioActual();
                     double gen3 = generador3.getProduccioGlobal() +generador3.getProduccioActual();
 
                     generador1.setProduccioGlobal(gen1);
                     generador2.setProduccioGlobal(gen2);
                     generador3.setProduccioGlobal(gen3);
-
-                    System.out.println("Generador 1: " + generador1.getProduccioGlobal());
 
                     // Incrementar nCoffee por la cantidad de café producido por cada generador
                     nCoffee = nCoffee + (gen1) + (gen2) + (gen3);
