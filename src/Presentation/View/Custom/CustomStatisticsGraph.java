@@ -5,15 +5,14 @@ import Business.Managers.StatsManager;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CustomStatisticsGraph extends JPanel{
-    private List<Stats> stats;
+    private ArrayList<Stats> stats;
 
     public CustomStatisticsGraph() {
-        //stats = StatsManager.getStatsFromSQL();
-
-
+        //this.stats = StatsManager.getStatsFromSQL();     //Aquesta funcio s'h d'acabar d'ajustar
     }
 
 

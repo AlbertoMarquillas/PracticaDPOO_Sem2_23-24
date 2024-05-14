@@ -5,6 +5,7 @@ import Business.Entities.User;
 import Persistance.Connector;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -19,17 +20,15 @@ public class SQLStatsDAO {
     }
 
 
-    public static List<Stats> getMatchStats(int ID_P, int ID_G) {
-        List<Stats> stats = new LinkedList<Stats>();
-        String query = "SELECT N_Coffees FROM game WHERE ID_P = " + ID_P + " AND ID_G = " + ID_G;
+    public static ArrayList<Stats> getMatchStats(int ID_P, int ID_G) {
+        ArrayList<Stats> stats = new ArrayList<>();
+        String query = "SELECT Time, N_Cafe FROM game WHERE ID_P = " + ID_P + " AND ID_G = " + ID_G;
         ResultSet result = Connector.getInstance().selectQuery(query);
 
         try {
             while(result.next()) {
-
                 Time time = result.getTime("Time");
                 double nCoffee = result.getDouble("N_Cafe");
-
                 stats.add(new Stats(time, nCoffee));
             }
         } catch (SQLException e) {
