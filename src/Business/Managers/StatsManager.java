@@ -5,7 +5,6 @@ import Persistance.sqlDAO.SQLStatsDAO;
 import Persistance.sqlDAO.SQLGameDAO;
 import Persistance.sqlDAO.SQLUserDAO;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class StatsManager {
@@ -18,8 +17,8 @@ public class StatsManager {
         this.sqlGameDAO = sqlGameDAO;
     }
 
-    public ArrayList<Stats> getStatsFromSQL() {
-        ArrayList<Stats> stats = SQLStatsDAO.getMatchStats(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()));
+    public List<Stats> getStatsFromSQL() {
+        List<Stats> stats = SQLStatsDAO.getMatchStats(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()));
         return stats;
     }
 }
