@@ -455,7 +455,13 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
     }
 
 
-
+    public void updateComptadorSize(boolean sizeComp){
+        if(sizeComp){
+            this.contador.setFont(new Font("Segoe UI Black", Font.PLAIN, 35));
+        } else {
+            this.contador.setFont(new Font("Segoe UI Black", Font.PLAIN, 50));
+        }
+    }
 
     /**
      * Mètode per controlar els botons de la vista.
@@ -1058,8 +1064,6 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
             button.setBackground(Color.LIGHT_GRAY); // Color oscuro cuando está deshabilitado
         }
     }
-
-
 
     /**
      * Actualitza el cost del generador 1.

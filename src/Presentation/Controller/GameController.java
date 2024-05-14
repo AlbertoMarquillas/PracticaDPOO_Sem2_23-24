@@ -102,9 +102,9 @@ public class GameController implements ActionListener, ComptadorInterficie {
                 gameView.updateCostGenerator1(generatorManager.getCostActual(ID_P, ID_G, type));
             }
 
-            System.out.println("Quantitat Potenciadors 1: " + gameView.getQuantitatPotenciadors1());
-            System.out.println("Cost potenciador 1: " + gameView.getCost1());
-            System.out.println("CostActual potenciador 1: " + generatorManager.getCostActual(ID_P, ID_G, type));
+            gameView.updateComptadorSize(getSizeComp());
+
+
 
             //produccio total de cafes generats
 
@@ -116,10 +116,7 @@ public class GameController implements ActionListener, ComptadorInterficie {
             //Update info generador 1
             gameView.updateGenerator2(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getProduccioTotal(ID_P, ID_G, type), generatorManager.getProduccioGlobal(ID_P, ID_G, type), generatorManager.updateOverallProduction(ID_P, ID_G, type));
             gameView.updateCostGenerator2(generatorManager.getCostActual(ID_P, ID_G, type));
-
-            System.out.println("Quantitat Potenciadors 2: "  + gameView.getQuantitatPotenciadors2());
-            System.out.println("Cost potenciador 2: " + gameView.getCost2());
-            System.out.println("CostActual potenciador 2: " + generatorManager.getCostActual(ID_P, ID_G, type));
+            gameView.updateComptadorSize(getSizeComp());
 
 
         }else if (e.getActionCommand().equals("potenciador3")){
@@ -129,25 +126,31 @@ public class GameController implements ActionListener, ComptadorInterficie {
             //Update info generador 1
             gameView.updateGenerator3(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getProduccioTotal(ID_P, ID_G, type), generatorManager.getProduccioGlobal(ID_P, ID_G, type), generatorManager.updateOverallProduction(ID_P, ID_G, type));
             gameView.updateCostGenerator3(generatorManager.getCostActual(ID_P, ID_G, type));
+            gameView.updateComptadorSize(getSizeComp());
 
         }else if (e.getActionCommand().equals("millora1")) {
             type = "A";
             generatorManager.buyMillora(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type);
             gameView.updateGenerator1(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getBaseProduction(ID_P, ID_G, type), generatorManager.getProduccioGlobal(ID_P, ID_G, type), generatorManager.updateOverallProduction(ID_P, ID_G, type));
+            gameView.updateComptadorSize(getSizeComp());
 
         }else if (e.getActionCommand().equals("millora2")){
             type = "B";
             generatorManager.buyMillora(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type);
             gameView.updateGenerator2(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getBaseProduction(ID_P, ID_G, type), generatorManager.getProduccioGlobal(ID_P, ID_G, type), generatorManager.updateOverallProduction(ID_P, ID_G, type));
+            gameView.updateComptadorSize(getSizeComp());
+
         } else if (e.getActionCommand().equals("millora3")){
             type = "C";
             generatorManager.buyMillora(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type);
             gameView.updateGenerator3(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getBaseProduction(ID_P, ID_G, type), generatorManager.getProduccioGlobal(ID_P, ID_G, type), generatorManager.updateOverallProduction(ID_P, ID_G, type));
+            gameView.updateComptadorSize(getSizeComp());
 
 
         }else if (e.getActionCommand().equals("millora4")){
             type = "D";
             gameManager.buyMillores(ID_P, ID_G, type);
+            gameView.updateComptadorSize(getSizeComp());
 
         } else if (e.getActionCommand().equals("finish")){
             changeViewController.setComptador(false);
@@ -236,6 +239,10 @@ public class GameController implements ActionListener, ComptadorInterficie {
         gameManager.setQuantitatCafe(quantitatCafes);
         gameManager.updateCaffeeGenerators(generator1, generator2, generator3);
         gameView.setGameViewButtonsEnabled(gameManager.comprobarHabilitarBotons(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId())));
+        //comprovar si el string tiene mas de cinco caracteres
+
+
+        gameView.updateComptadorSize(getSizeComp());
         //gameView.updateProduccioTotal(1, generator1.getProduccioActual());
         //gameView.updateProduccioTotal(2, generator2.getProduccioActual());
         //gameView.updateProduccioTotal(3, generator3.getProduccioActual());
@@ -244,6 +251,16 @@ public class GameController implements ActionListener, ComptadorInterficie {
         //gameView.updateOverall(3, generatorManager.updateOverallProduction("C"));
 
         System.out.println(quantitatCafes);
+    }
+
+    public boolean getSizeComp(){
+        double tamany = gameManager.getCaffeeNumber();
+        if(tamany >= 1000){
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
     /**

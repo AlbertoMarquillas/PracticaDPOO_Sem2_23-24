@@ -218,7 +218,6 @@ public class Comptador {
                         comptadorInterficie.setTaulaContenido(generador1, generador2, generador3);
                     }
 
-                    System.out.println("abans de update" + generador1.getProduccioGlobal());
                     // Actualizar la interfaz del contador con la cantidad actual de café y la producción total de los generadores
                     comptadorInterficie.updateQuantitatCoffe(nCoffee, generador1, generador2, generador3);
 
