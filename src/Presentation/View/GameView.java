@@ -62,10 +62,19 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
     private double cost1 = 10;
     private double cost2 = 150;
     private double cost3 = 2000;
+    private double costMillora1 = 100;
+    private double costMillora2 = 200;
+    private double costMillora3 = 300;
+    private double costMillora4 = 400;
 
     private JLabel labelPotCost1 = new JLabel(String.valueOf(cost1));
     private JLabel labelPotCost2 = new JLabel(String.valueOf(cost2));
     private JLabel labelPotCost3 = new JLabel(String.valueOf(cost3));
+    private String labelMillora1 = String.valueOf(costMillora1);
+    private CustomLabel labelMillora2 = new CustomLabel(String.valueOf(costMillora2), new Font("Segoe UI Black", Font.PLAIN, 12), Color.decode("#3B1211"));
+    private CustomLabel labelMillora3 = new CustomLabel(String.valueOf(costMillora3), new Font("Segoe UI Black", Font.PLAIN, 12), Color.decode("#3B1211"));
+    private CustomLabel labelMillora4 = new CustomLabel(String.valueOf(costMillora4), new Font("Segoe UI Black", Font.PLAIN, 12), Color.decode("#3B1211"));
+
     private int quantitatPotenciadors1;
     private int quantitatPotenciadors2;
     private int quantitatPotenciadors3;
@@ -109,10 +118,10 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         settingsButton.setContentAreaFilled(false);     //Fer que l'àrea de contingut del botó sigui transparent
 
         //Crear els botons de cada millora fent us de la classe CustomButton
-        millora1 = createMilloraButton("<html><div style='text-align: center;'>Double the efficiency in BARISTA BOOST</div></html>");
-        millora2 = createMilloraButton("<html><div style='text-align: center;'>Double the efficiency in WAFFLE WIZARD</div></html>");
-        millora3 = createMilloraButton("<html><div style='text-align: center;'>Double the efficiency in STEAMY BREW</div></html>");
-        millora4 = createMilloraButton("<html><div style='text-align: center;'>Double the efficiency in clicks</div></html>");
+        millora1 = createMilloraButton("Double the efficiency in BARISTA BOOST");
+        millora2 = createMilloraButton("Double the efficiency in WAFFLE WIZARD");
+        millora3 = createMilloraButton("Double the efficiency in STEAMY BREW");
+        millora4 = createMilloraButton("Double the efficiency in clicks");
 
         //hacer que si se pulsa el boton millora 1, quantitatPotenciadors1 sume +1
 
@@ -140,7 +149,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         saveGame = new CustomButton("Save Game", 230, 50, Color.decode("#F8F2F0"), Color.decode("#3B1211"), new Font("Segoe UI Black", Font.PLAIN, 14));
 
         //Crear la taula amb les dades dels potenciadors
-       table = createTable(quantitatPotenciadors1, quantitatPotenciadors2, quantitatPotenciadors3, produccioTotal1, produccioTotal2, produccioTotal3, overallPot1, overallPot2, overallPot3);
+        table = createTable(quantitatPotenciadors1, quantitatPotenciadors2, quantitatPotenciadors3, produccioTotal1, produccioTotal2, produccioTotal3, overallPot1, overallPot2, overallPot3);
 
 
         //Crear el panell central, que es el que contindrà el títol, la taula i el botó de configuració
@@ -285,7 +294,20 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
 
 
     public CustomButton createMilloraButton(String text){
-        CustomLabel textLabel = new CustomLabel(text, new Font("Segoe UI Black", Font.PLAIN, 14), Color.decode("#3B1211"));
+        String aux = null;
+        if(text.equals("Double the efficiency in BARISTA BOOST")){
+            String cost = labelMillora1;
+            System.out.println("DESDE LA FUNCIO: " + labelMillora1);
+            aux = text + "<br>" + cost + " coffes";
+        } else if(text.equals("Double the efficiency in WAFFLE WIZARD")){
+            aux = text + "<br>" + this.costMillora2 + " coffes";
+        } else if(text.equals("Double the efficiency in STEAMY BREW")){
+            aux = text + "<br>" + this.costMillora3 + " coffes";
+        } else {
+            aux = text + "<br>" + this.costMillora4 + " coffes";
+        }
+        String info = "<html><div style='text-align: center;'>" + aux + "</div></html>";
+        CustomLabel textLabel = new CustomLabel(info, new Font("Segoe UI Black", Font.PLAIN, 12), Color.decode("#3B1211"));
 
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(160, 70));
@@ -906,6 +928,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
     }
 
 
+
     /**
      * Actualitza les dades del generador 2 a la taula.
      *
@@ -1078,10 +1101,53 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         this.cost2 = Math.round(costActual * 100.0) / 100.0;
         this.labelPotCost2.setText("Cost: " + String.valueOf(this.cost2));
     }
+
     public void updateCostGenerator3(double costActual) {
         this.cost3 = Math.round(costActual * 100.0) / 100.0;
         this.labelPotCost3.setText("Cost: " + String.valueOf(this.cost3));
     }
+
+    public void updateCostMillora1(double costActual){
+        this.costMillora1 = costActual;
+        System.out.println("Cost actual: " + costActual);
+        this.labelMillora1 = (String.valueOf(costActual));
+        System.out.println("Label: " + labelMillora1);
+        millora1.repaint();
+    }
+
+
+    public double getCostMillora1() {
+        return costMillora1;
+    }
+
+    public void setCostMillora1(double costMillora1) {
+        this.costMillora1 = costMillora1;
+    }
+
+    public double getCostMillora2() {
+        return costMillora2;
+    }
+
+    public void setCostMillora2(double costMillora2) {
+        this.costMillora2 = costMillora2;
+    }
+
+    public double getCostMillora3() {
+        return costMillora3;
+    }
+
+    public void setCostMillora3(double costMillora3) {
+        this.costMillora3 = costMillora3;
+    }
+
+    public double getCostMillora4() {
+        return costMillora4;
+    }
+
+    public void setCostMillora4(double costMillora4) {
+        this.costMillora4 = costMillora4;
+    }
+
     /**
      * Gestiona les accions produïdes per l'usuari.
      */

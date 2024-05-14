@@ -153,7 +153,7 @@ public class GeneratorManager {
     }
 
 
-    public boolean buyMillora(int ID_P, int ID_G, String type){
+    public double buyMillora(int ID_P, int ID_G, String type){
         Generator generator = sqlGeneratorsDAO.getGenerator(ID_P, ID_G, type);
         int n_millores = generator.getNumeroMillores();
         System.out.println("N_MILLORES Actual: " + n_millores);
@@ -175,10 +175,12 @@ public class GeneratorManager {
                 sqlGeneratorsDAO.updateMilloresAndProduccioActual(ID_P, ID_G, generator);
                 sqlGameDAO.setNCoffees(ID_P, ID_G, sqlGameDAO.getNCoffees(ID_P, ID_G) - millora.getPreu());
             }
-            return true;
+            return millora.getPreu();
+
         } else {
-            return false;
+            return -1;
         }
+
     }
 
     public double getBaseProduction(int idP, int idG, String type) {

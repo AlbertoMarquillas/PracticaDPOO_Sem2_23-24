@@ -89,7 +89,6 @@ public class GameController implements ActionListener, ComptadorInterficie {
             //Guardem en la BBDD la quantitat de cafes actualitzada.
             gameView.setComptador(String.valueOf(Math.round(n_Caffee)));
             gameManager.setQuantitatCafe(n_Caffee);
-            System.out.println("Cafes Actuals: " + gameView.getComptador());
 
         }else if (e.getActionCommand().equals("potenciador1")){
             type = "A";
@@ -110,9 +109,7 @@ public class GameController implements ActionListener, ComptadorInterficie {
 
         }else if (e.getActionCommand().equals("potenciador2")){
             type = "B";
-
             generatorManager.buyGenerator(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type);
-
             //Update info generador 1
             gameView.updateGenerator2(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getProduccioTotal(ID_P, ID_G, type), generatorManager.getProduccioGlobal(ID_P, ID_G, type), generatorManager.updateOverallProduction(ID_P, ID_G, type));
             gameView.updateCostGenerator2(generatorManager.getCostActual(ID_P, ID_G, type));
@@ -130,7 +127,9 @@ public class GameController implements ActionListener, ComptadorInterficie {
 
         }else if (e.getActionCommand().equals("millora1")) {
             type = "A";
-            generatorManager.buyMillora(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type);
+
+            double preu = generatorManager.buyMillora(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type);
+            gameView.updateCostMillora1(preu);
             gameView.updateGenerator1(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getBaseProduction(ID_P, ID_G, type), generatorManager.getProduccioGlobal(ID_P, ID_G, type), generatorManager.updateOverallProduction(ID_P, ID_G, type));
             gameView.updateComptadorSize(getSizeComp());
 
@@ -241,7 +240,6 @@ public class GameController implements ActionListener, ComptadorInterficie {
         gameView.setGameViewButtonsEnabled(gameManager.comprobarHabilitarBotons(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId())));
         //comprovar si el string tiene mas de cinco caracteres
 
-
         gameView.updateComptadorSize(getSizeComp());
         //gameView.updateProduccioTotal(1, generator1.getProduccioActual());
         //gameView.updateProduccioTotal(2, generator2.getProduccioActual());
@@ -250,7 +248,6 @@ public class GameController implements ActionListener, ComptadorInterficie {
         //gameView.updateOverall(2, generatorManager.updateOverallProduction("B"));
         //gameView.updateOverall(3, generatorManager.updateOverallProduction("C"));
 
-        System.out.println(quantitatCafes);
     }
 
     public boolean getSizeComp(){
