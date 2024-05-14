@@ -112,7 +112,7 @@ public class GameController implements ActionListener, ComptadorInterficie {
             type = "B";
             generatorManager.buyGenerator(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type);
             //Update info generador 1
-            gameView.updateGenerator2(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getProduccioTotal(ID_P, ID_G, type), generatorManager.getProdActual(ID_P, ID_G, type), generatorManager.updateOverallProduction(ID_P, ID_G, type));
+            gameView.updateGenerator2(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getBaseProduction(ID_P, ID_G, type), generatorManager.getProdActual(ID_P, ID_G, type), generatorManager.updateOverallProduction(ID_P, ID_G, type));
             gameView.updateCostGenerator2(generatorManager.getCostActual(ID_P, ID_G, type));
             gameView.updateComptadorSize(getSizeComp());
 
@@ -122,7 +122,7 @@ public class GameController implements ActionListener, ComptadorInterficie {
             generatorManager.buyGenerator(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type);
 
             //Update info generador 1
-            gameView.updateGenerator3(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getProduccioTotal(ID_P, ID_G, type), generatorManager.getProdActual(ID_P, ID_G, type), generatorManager.updateOverallProduction(ID_P, ID_G, type));
+            gameView.updateGenerator3(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getBaseProduction(ID_P, ID_G, type), generatorManager.getProdActual(ID_P, ID_G, type), generatorManager.updateOverallProduction(ID_P, ID_G, type));
             gameView.updateCostGenerator3(generatorManager.getCostActual(ID_P, ID_G, type));
             gameView.updateComptadorSize(getSizeComp());
 
