@@ -17,7 +17,7 @@ public class Millora {
         this.quantitat = quantitat;
     }
 
-    public double setPreu(String type, int quantitat){
+    public double setPreu(String type, int quantitat) {
         double increment;
         if (type.equals("A")) {
             increment = INCREMENT_A;
@@ -25,19 +25,20 @@ public class Millora {
             increment = INCREMENT_B;
         } else if (type.equals("C")) {
             increment = INCREMENT_C;
-        } else if(type.equals("D")){
+        } else if (type.equals("D")) {
             increment = INCREMENT_D;
         } else {
             return -1;
         }
 
-        if(quantitat == 0){
+        if (quantitat == 0) {
             return increment;
-        } else{
-            return increment + ((quantitat +1) * increment);
+        } else {
+            return increment + ((quantitat) * increment);
 
         }
     }
+
 
     public double getPreu(){
         return this.preu;

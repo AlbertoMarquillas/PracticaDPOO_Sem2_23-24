@@ -214,9 +214,10 @@ public class Comptador {
                         sqlStatsDAO.setSavedStats(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()), savedTime, nCoffee);
                     }
 
-                    if (!flag){
-                        comptadorInterficie.setTaulaContenido(generador1, generador2, generador3);
-                    }
+
+                    comptadorInterficie.setTaulaContenido(generador1, generador2, generador3);
+                    comptadorInterficie.setMillores(generador1.getMillora(), generador2.getMillora(), generador3.getMillora(), sqlGameDAO.getMilloraPowerUpClicker(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId())));
+
 
                     // Actualizar la interfaz del contador con la cantidad actual de café y la producción total de los generadores
                     comptadorInterficie.updateQuantitatCoffe(nCoffee, generador1, generador2, generador3);

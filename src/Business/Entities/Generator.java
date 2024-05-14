@@ -235,4 +235,8 @@ public class Generator {
         }
 
     }
+
+    public Millora getMillora() {
+        return new Millora(this.type, this.numeroMillores);
+    }
 }

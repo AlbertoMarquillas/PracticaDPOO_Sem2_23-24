@@ -82,12 +82,12 @@ public class GameManager {
         sqlGeneratorsDAO.updateCaffeeGenerators(sqlUserDAO.getConnectedUserId(), getCurrentGameId(sqlUserDAO.getConnectedUserId()), generator3);
     }
 
-    public void buyMillores(int ID_P, int ID_G, String type){
-        int n_millores = sqlGameDAO.getPowerUpClicker(ID_P, ID_G) + 1;
+    public void buyMilloresPowerUpClicker(int ID_P, int ID_G, String type){
+        int n_millores = sqlGameDAO.getPowerUpClicker(ID_P, ID_G);
         Millora millora = new Millora(type, n_millores);
 
         if(sqlGameDAO.getNCoffees(ID_P, ID_G) >= millora.getPreu()) {
-            sqlGameDAO.setPowerUpClicker(ID_P, ID_G, n_millores);
+            sqlGameDAO.setPowerUpClicker(ID_P, ID_G, (n_millores + 1));
             sqlGameDAO.setNCoffees(ID_P, ID_G, sqlGameDAO.getNCoffees(ID_P, ID_G) - millora.getPreu());
         }
     }

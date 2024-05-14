@@ -1,5 +1,6 @@
 package Persistance.sqlDAO;
 
+import Business.Entities.Millora;
 import Persistance.Connector;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -233,5 +234,19 @@ public class SQLGameDAO {
             e.printStackTrace();
         }
         return false; // No hay partidas con Ended = 1 para este usuario
+    }
+
+    public Millora getMilloraPowerUpClicker(int ID_P, int ID_G) {
+        String query = "SELECT powerUpClicker FROM game WHERE ID_P = " + ID_P + " AND ID_G = " + ID_G;
+        ResultSet result = Connector.getInstance().selectQuery(query);
+        try {
+            if (result.next()) {
+                return new Millora("D", result.getInt("powerUpClicker"));
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

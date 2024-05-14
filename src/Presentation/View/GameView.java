@@ -62,10 +62,10 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
     private double cost1 = 10;
     private double cost2 = 150;
     private double cost3 = 2000;
-    private double costMillora1 = 100;
-    private double costMillora2 = 200;
-    private double costMillora3 = 300;
-    private double costMillora4 = 400;
+    private double costMillora1 = 10;
+    private double costMillora2 = 20;
+    private double costMillora3 = 30;
+    private double costMillora4 = 15;
 
     private JLabel labelPotCost1 = new JLabel(String.valueOf(cost1));
     private JLabel labelPotCost2 = new JLabel(String.valueOf(cost2));
@@ -121,7 +121,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         millora1 = createMilloraButton("<html><div style='text-align: center;'>Double the efficiency<br>in BARISTA BOOST</div></html>");
         millora2 = createMilloraButton("<html><div style='text-align: center;'>Double the efficiency<br>in WAFFLE WIZARD</div></html>");
         millora3 = createMilloraButton("<html><div style='text-align: center;'>Double the efficiency<br>in STEAMY BREW</div></html>");
-        millora4 = createMilloraButton("<html><div style='text-align: center;'>Double the efficiency in clicks</div></html>");
+        millora4 = createMilloraButton("<html><div style='text-align: center;'>Double the efficiency<br>in clicks</div></html>");
 
         //hacer que si se pulsa el boton millora 1, quantitatPotenciadors1 sume +1
 

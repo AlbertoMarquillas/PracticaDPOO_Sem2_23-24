@@ -149,7 +149,7 @@ public class GameController implements ActionListener, ComptadorInterficie {
 
         }else if (e.getActionCommand().equals("millora4")){
             type = "D";
-            gameManager.buyMillores(ID_P, ID_G, type);
+            gameManager.buyMilloresPowerUpClicker(ID_P, ID_G, type);
             gameView.updateComptadorSize(getSizeComp());
 
         } else if (e.getActionCommand().equals("finish")){
@@ -227,14 +227,6 @@ public class GameController implements ActionListener, ComptadorInterficie {
 
     @Override
     public void setMillores(Millora millora1, Millora millora2, Millora millora3, Millora millora4) {
-        int ID_P = gameManager.getConnectedUserId();
-        int ID_G = gameManager.getCurrentGameId(gameManager.getConnectedUserId());
-
-        millora1.setPreu("A", generatorManager.getQuantitatMillores(ID_P, ID_G, "A"));
-        millora1.setPreu("A", generatorManager.getQuantitatMillores(ID_P, ID_G, "A"));
-        millora2.setPreu("A", generatorManager.getQuantitatMillores(ID_P, ID_G, "A"));
-        millora3.setPreu("A", generatorManager.getQuantitatMillores(ID_P, ID_G, "A"));
-        millora4.setPreu("A", generatorManager.getQuantitatMillores(ID_P, ID_G, "A"));
 
         gameView.updateCostMillora1(millora1.getPreu());
         gameView.updateCostMillora2(millora2.getPreu());
