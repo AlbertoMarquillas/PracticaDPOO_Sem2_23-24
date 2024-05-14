@@ -175,6 +175,7 @@ public class GeneratorManager {
                 sqlGeneratorsDAO.updateMilloresAndProduccioActual(ID_P, ID_G, generator);
                 sqlGameDAO.setNCoffees(ID_P, ID_G, sqlGameDAO.getNCoffees(ID_P, ID_G) - millora.getPreu());
             }
+            System.out.println("PREU MILLORA:" + millora.getPreu());
             return millora.getPreu();
 
         } else {

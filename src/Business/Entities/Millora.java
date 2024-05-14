@@ -31,7 +31,12 @@ public class Millora {
             return -1;
         }
 
-        return increment + (quantitat * increment);
+        if(quantitat == 0){
+            return increment;
+        } else{
+            return increment + ((quantitat +1) * increment);
+
+        }
     }
 
     public double getPreu(){

@@ -24,4 +24,7 @@ public interface ComptadorInterficie {
      * @param generador3 generador 3
      */
     void setTaulaContenido(Generator generador1, Generator generador2, Generator generador3);
+
+
+    void setMillores(Millora millora1, Millora millora2, Millora millora3, Millora millora4);
 }

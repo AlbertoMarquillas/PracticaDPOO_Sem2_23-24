@@ -70,10 +70,10 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
     private JLabel labelPotCost1 = new JLabel(String.valueOf(cost1));
     private JLabel labelPotCost2 = new JLabel(String.valueOf(cost2));
     private JLabel labelPotCost3 = new JLabel(String.valueOf(cost3));
-    private String labelMillora1 = String.valueOf(costMillora1);
-    private CustomLabel labelMillora2 = new CustomLabel(String.valueOf(costMillora2), new Font("Segoe UI Black", Font.PLAIN, 12), Color.decode("#3B1211"));
-    private CustomLabel labelMillora3 = new CustomLabel(String.valueOf(costMillora3), new Font("Segoe UI Black", Font.PLAIN, 12), Color.decode("#3B1211"));
-    private CustomLabel labelMillora4 = new CustomLabel(String.valueOf(costMillora4), new Font("Segoe UI Black", Font.PLAIN, 12), Color.decode("#3B1211"));
+    private JLabel labelMillora1 = new JLabel(String.valueOf(costMillora1));
+    private JLabel labelMillora2 = new JLabel(String.valueOf(costMillora2));
+    private JLabel labelMillora3 = new JLabel(String.valueOf(costMillora3));
+    private JLabel labelMillora4 =new JLabel(String.valueOf(costMillora4));
 
     private int quantitatPotenciadors1;
     private int quantitatPotenciadors2;
@@ -118,10 +118,10 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         settingsButton.setContentAreaFilled(false);     //Fer que l'àrea de contingut del botó sigui transparent
 
         //Crear els botons de cada millora fent us de la classe CustomButton
-        millora1 = createMilloraButton("Double the efficiency in BARISTA BOOST");
-        millora2 = createMilloraButton("Double the efficiency in WAFFLE WIZARD");
-        millora3 = createMilloraButton("Double the efficiency in STEAMY BREW");
-        millora4 = createMilloraButton("Double the efficiency in clicks");
+        millora1 = createMilloraButton("<html><div style='text-align: center;'>Double the efficiency<br>in BARISTA BOOST</div></html>");
+        millora2 = createMilloraButton("<html><div style='text-align: center;'>Double the efficiency<br>in WAFFLE WIZARD</div></html>");
+        millora3 = createMilloraButton("<html><div style='text-align: center;'>Double the efficiency<br>in STEAMY BREW</div></html>");
+        millora4 = createMilloraButton("<html><div style='text-align: center;'>Double the efficiency in clicks</div></html>");
 
         //hacer que si se pulsa el boton millora 1, quantitatPotenciadors1 sume +1
 
@@ -294,27 +294,39 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
 
 
     public CustomButton createMilloraButton(String text){
-        String aux = null;
-        if(text.equals("Double the efficiency in BARISTA BOOST")){
-            String cost = labelMillora1;
-            System.out.println("DESDE LA FUNCIO: " + labelMillora1);
-            aux = text + "<br>" + cost + " coffes";
-        } else if(text.equals("Double the efficiency in WAFFLE WIZARD")){
-            aux = text + "<br>" + this.costMillora2 + " coffes";
-        } else if(text.equals("Double the efficiency in STEAMY BREW")){
-            aux = text + "<br>" + this.costMillora3 + " coffes";
+        JLabel cost;
+        if(text.equals("<html><div style='text-align: center;'>Double the efficiency<br>in BARISTA BOOST</div></html>")){
+            cost = this.labelMillora1;
+        } else if(text.equals("<html><div style='text-align: center;'>Double the efficiency<br>in WAFFLE WIZARD</div></html>")){
+            cost = this.labelMillora2;
+        } else if(text.equals("<html><div style='text-align: center;'>Double the efficiency<br>in STEAMY BREW</div></html>")){
+            cost = this.labelMillora3;
         } else {
-            aux = text + "<br>" + this.costMillora4 + " coffes";
+            cost = this.labelMillora4;
         }
-        String info = "<html><div style='text-align: center;'>" + aux + "</div></html>";
-        CustomLabel textLabel = new CustomLabel(info, new Font("Segoe UI Black", Font.PLAIN, 12), Color.decode("#3B1211"));
+
+
+        cost.setFont(new Font("Segoe UI Black", Font.PLAIN, 12));
+        cost.setForeground(Color.decode("#3B1211"));
+
+        CustomLabel textLabel = new CustomLabel(text, new Font("Segoe UI Black", Font.PLAIN, 12), Color.decode("#3B1211"));
+        textLabel.setSize(160, 70);
 
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(160, 70));
         panel.setOpaque(false);
         panel.setBackground(null);
-        panel.setLayout(new BorderLayout());
-        panel.add(textLabel, BorderLayout.CENTER);
+        panel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(0, 0, 0, 0);
+        panel.add(textLabel, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.insets = new Insets(0, 0, 0, 0);
+        panel.add(cost, gbc);
 
         CustomButton milloraButton = new CustomButton(170, 75, Color.decode("#F8F2F0"));
         milloraButton.add(panel);
@@ -1108,12 +1120,43 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
     }
 
     public void updateCostMillora1(double costActual){
-        this.costMillora1 = costActual;
+        setCostMillora1(costActual);
+
         System.out.println("Cost actual: " + costActual);
-        this.labelMillora1 = (String.valueOf(costActual));
+        this.labelMillora1.setText(String.valueOf(costActual));
         System.out.println("Label: " + labelMillora1);
         millora1.repaint();
     }
+
+    public void updateCostMillora4(double costActual){
+        setCostMillora1(costActual);
+
+        System.out.println("Cost actual: " + costActual);
+        this.labelMillora4.setText(String.valueOf(costActual));
+        System.out.println("Label: " + labelMillora4);
+        millora1.repaint();
+    }
+
+
+    public void updateCostMillora2(double costActual){
+        setCostMillora1(costActual);
+
+        System.out.println("Cost actual: " + costActual);
+        this.labelMillora2.setText(String.valueOf(costActual));
+        System.out.println("Label: " + labelMillora2);
+        millora1.repaint();
+    }
+
+
+    public void updateCostMillora3(double costActual){
+        setCostMillora1(costActual);
+
+        System.out.println("Cost actual: " + costActual);
+        this.labelMillora3.setText(String.valueOf(costActual));
+        System.out.println("Label: " + labelMillora3);
+        millora1.repaint();
+    }
+
 
 
     public double getCostMillora1() {

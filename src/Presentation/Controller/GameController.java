@@ -1,6 +1,7 @@
 package Presentation.Controller;
 import Business.Entities.ComptadorInterficie;
 import Business.Entities.Generator;
+import Business.Entities.Millora;
 import Business.Managers.GameManager;
 import Business.Managers.GeneratorManager;
 import Presentation.View.GameView;
@@ -67,7 +68,7 @@ public class GameController implements ActionListener, ComptadorInterficie {
     public void actionPerformed(ActionEvent e) {
         int ID_P = gameManager.getConnectedUserId();
         int ID_G = gameManager.getCurrentGameId(gameManager.getConnectedUserId());
-
+        gameView.setCostMillora1(milloraManager.getCostMillora("A"));
 
         //Habilitar o deshabilitar botons
         gameView.setGameViewButtonsEnabled(gameManager.comprobarHabilitarBotons(ID_P, ID_G));
@@ -224,6 +225,23 @@ public class GameController implements ActionListener, ComptadorInterficie {
         gameView.updateCostGenerator3(generatorManager.getCostActual(ID_P, ID_G, "C"));
     }
 
+    @Override
+    public void setMillores(Millora millora1, Millora millora2, Millora millora3, Millora millora4) {
+        int ID_P = gameManager.getConnectedUserId();
+        int ID_G = gameManager.getCurrentGameId(gameManager.getConnectedUserId());
+
+        millora1.setPreu("A", generatorManager.getQuantitatMillores(ID_P, ID_G, "A"));
+        millora1.setPreu("A", generatorManager.getQuantitatMillores(ID_P, ID_G, "A"));
+        millora2.setPreu("A", generatorManager.getQuantitatMillores(ID_P, ID_G, "A"));
+        millora3.setPreu("A", generatorManager.getQuantitatMillores(ID_P, ID_G, "A"));
+        millora4.setPreu("A", generatorManager.getQuantitatMillores(ID_P, ID_G, "A"));
+
+        gameView.updateCostMillora1(millora1.getPreu());
+        gameView.updateCostMillora2(millora2.getPreu());
+        gameView.updateCostMillora3(millora3.getPreu());
+        gameView.updateCostMillora4(millora4.getPreu());
+    }
+
     /**
      * Metode que actualitza la quantitat de cafes
      * @param quantitatCafes quantitat de cafes
@@ -234,7 +252,6 @@ public class GameController implements ActionListener, ComptadorInterficie {
     @Override
     public void updateQuantitatCoffe(double quantitatCafes, Generator generator1, Generator generator2, Generator generator3) {
         gameView.setComptador(String.valueOf(Math.round(quantitatCafes)));
-        System.out.println("DESDE UPDATE: " + generator1.getProduccioGlobal());
         gameManager.setQuantitatCafe(quantitatCafes);
         gameManager.updateCaffeeGenerators(generator1, generator2, generator3);
         gameView.setGameViewButtonsEnabled(gameManager.comprobarHabilitarBotons(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId())));
