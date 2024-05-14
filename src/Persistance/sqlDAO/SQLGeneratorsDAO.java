@@ -223,7 +223,7 @@ public class SQLGeneratorsDAO{
 
     public void updateCaffeeGenerators(int connectedUserId, int currentGameId, Generator generator) {
         String type = generator.getTypeString();
-        String query = "UPDATE generators SET ProduccioActual = " + generator.getProduccioActual() +
+        String query = "UPDATE generators SET ProduccioActual = " + generator.getProduccioActual() + ", "+ " ProduccioGlobal = " + generator.getProduccioGlobal() +
                 " WHERE ID_P = " + connectedUserId + " AND ID_G = " + currentGameId + " AND Type = '" + type + "'";
         Connector.getInstance().updateQuery(query);
     }

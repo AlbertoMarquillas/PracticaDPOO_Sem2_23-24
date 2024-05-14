@@ -46,6 +46,11 @@ public class GeneratorManager {
         }
     }
 
+    public double getProduccioGlobal(int ID_P, int ID_G, String type) {
+        Generator generator = sqlGeneratorsDAO.getGenerator(ID_P, ID_G, type);
+        return generator.getProduccioGlobal();
+    }
+
     public int updateQuantitatGeneradors(int ID_P, int ID_G, String type){
         int quantitat = getQuantitatGenerados(ID_P, ID_G, type) +1;
         sqlGeneratorsDAO.actualitzarQuantitat(quantitat, ID_P, ID_G, type);

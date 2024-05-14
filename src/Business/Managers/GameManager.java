@@ -77,6 +77,7 @@ public class GameManager {
     }
 
     public void updateCaffeeGenerators(Generator generator1, Generator generator2, Generator generator3) {
+        System.out.println("UPDATE GENERATORS: " + generator1.getProduccioGlobal());
         sqlGeneratorsDAO.updateCaffeeGenerators(sqlUserDAO.getConnectedUserId(), getCurrentGameId(sqlUserDAO.getConnectedUserId()), generator1);
         sqlGeneratorsDAO.updateCaffeeGenerators(sqlUserDAO.getConnectedUserId(), getCurrentGameId(sqlUserDAO.getConnectedUserId()), generator2);
         sqlGeneratorsDAO.updateCaffeeGenerators(sqlUserDAO.getConnectedUserId(), getCurrentGameId(sqlUserDAO.getConnectedUserId()), generator3);

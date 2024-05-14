@@ -134,6 +134,13 @@ public class Generator {
         return this.produccioActual;
     }
 
+    public double getProduccioGlobal() {
+        return this.produccioGlobal;
+    }
+
+    public void setProduccioGlobal(double produccioGlobal) {
+        this.produccioGlobal = produccioGlobal;
+    }
 
     /**
      * Funció que incrementa la quantitat de generadors i el cost actual quan es compra un

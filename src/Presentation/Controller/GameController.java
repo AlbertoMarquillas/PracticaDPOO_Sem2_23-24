@@ -236,6 +236,7 @@ public class GameController implements ActionListener, ComptadorInterficie {
     @Override
     public void updateQuantitatCoffe(double quantitatCafes, Generator generator1, Generator generator2, Generator generator3) {
         gameView.setComptador(String.valueOf(Math.round(quantitatCafes)));
+        System.out.println("DESDE UPDATE: " + generator1.getProduccioGlobal());
         gameManager.setQuantitatCafe(quantitatCafes);
         gameManager.updateCaffeeGenerators(generator1, generator2, generator3);
         gameView.setGameViewButtonsEnabled(gameManager.comprobarHabilitarBotons(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId())));
