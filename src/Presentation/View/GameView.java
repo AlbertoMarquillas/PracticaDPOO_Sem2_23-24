@@ -109,11 +109,10 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         settingsButton.setContentAreaFilled(false);     //Fer que l'àrea de contingut del botó sigui transparent
 
         //Crear els botons de cada millora fent us de la classe CustomButton
-        millora1 = new CustomButton("<html><div style='text-align: center;'>Double the efficiency in BARISTA BOOST</div></html>", 170, 75, Color.decode("#F8F2F0"), Color.black, new Font("Segoe UI Black", Font.PLAIN, 14));
-        millora1.setForeground(Color.BLACK);
-        millora2 = new CustomButton("<html><div style='text-align: center;'>Double the efficiency in WAFFLE WIZARD</div></html>", 170, 75, Color.decode("#F8F2F0"), Color.decode("#000000"), new Font("Segoe UI Black", Font.PLAIN, 14));
-        millora3 = new CustomButton("<html><div style='text-align: center;'>Double the efficiency in STEAMY BREW</div></html>", 170, 75, Color.decode("#F8F2F0"), Color.decode("#000000"), new Font("Segoe UI Black", Font.PLAIN, 14));
-        millora4 = new CustomButton("<html><div style='text-align: center;'>Double the efficiency in clicks</div></html>", 170, 75, Color.decode("#F8F2F0"), Color.decode("#000000"), new Font("Segoe UI Black", Font.PLAIN, 14));
+        millora1 = createMilloraButton("<html><div style='text-align: center;'>Double the efficiency in BARISTA BOOST</div></html>");
+        millora2 = createMilloraButton("<html><div style='text-align: center;'>Double the efficiency in WAFFLE WIZARD</div></html>");
+        millora3 = createMilloraButton("<html><div style='text-align: center;'>Double the efficiency in STEAMY BREW</div></html>");
+        millora4 = createMilloraButton("<html><div style='text-align: center;'>Double the efficiency in clicks</div></html>");
 
         //hacer que si se pulsa el boton millora 1, quantitatPotenciadors1 sume +1
 
@@ -285,7 +284,22 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
     }
 
 
+    public CustomButton createMilloraButton(String text){
+        CustomLabel textLabel = new CustomLabel(text, new Font("Segoe UI Black", Font.PLAIN, 14), Color.decode("#3B1211"));
 
+        JPanel panel = new JPanel();
+        panel.setPreferredSize(new Dimension(160, 70));
+        panel.setOpaque(false);
+        panel.setBackground(null);
+        panel.setLayout(new BorderLayout());
+        panel.add(textLabel, BorderLayout.CENTER);
+
+        CustomButton milloraButton = new CustomButton(170, 75, Color.decode("#F8F2F0"));
+        milloraButton.add(panel);
+        milloraButton.setBorderPainted(false); // Eliminar borde
+        milloraButton.setContentAreaFilled(false); // Hacer que el área de contenido del botón sea transparente
+        return milloraButton;
+    }
 
     /**
      * Funció que crea un JPanel pels potenciadors amb un layout i un color determinat.
@@ -971,10 +985,8 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         millora4.setEnabled(aBoolean);
         if (aBoolean) {
             millora4.setBackgroundColor(Color.decode("#F8F2F0")); // Gris claro
-            millora4.setTextColor(Color.decode("#000000")); // Gris oscuro
         } else {
             millora4.setBackgroundColor(Color.LIGHT_GRAY);
-            millora4.setTextColor(Color.DARK_GRAY);
         }
     }
 
@@ -982,10 +994,8 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         millora3.setEnabled(aBoolean);
         if (aBoolean) {
             millora3.setBackgroundColor(Color.decode("#F8F2F0")); // Gris claro
-            millora3.setTextColor(Color.decode("#000000")); // Gris oscuro
         } else {
             millora3.setBackgroundColor(Color.LIGHT_GRAY);
-            millora3.setTextColor(Color.DARK_GRAY);
         }
     }
 
@@ -993,10 +1003,8 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         millora2.setEnabled(aBoolean);
         if (aBoolean) {
             millora2.setBackgroundColor(Color.decode("#F8F2F0")); // Gris claro
-            millora2.setTextColor(Color.decode("#000000")); // Gris oscuro
         } else {
             millora2.setBackgroundColor(Color.LIGHT_GRAY);
-            millora2.setTextColor(Color.DARK_GRAY);
         }
     }
 
@@ -1004,10 +1012,8 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         millora1.setEnabled(aBoolean);
         if (aBoolean) {
             millora1.setBackgroundColor(Color.decode("#F8F2F0")); // Gris claro
-            millora1.setForeground(Color.black);
         } else {
             millora1.setBackgroundColor(Color.LIGHT_GRAY);
-            millora4.setForeground(Color.DARK_GRAY);
         }
     }
 
