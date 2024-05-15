@@ -2,8 +2,10 @@ package Presentation.Controller;
 
 import Business.Managers.GameManager;
 import Business.Managers.GeneratorManager;
+import Business.Managers.StatsManager;
 import Business.Managers.UserManager;
 import Presentation.View.StartView;
+import Presentation.View.StatsView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +15,8 @@ public class StartController implements ActionListener {
     private final ChangeViewController changeViewController;
     private final UserManager userManager;
     private final GameManager gameManager;
+    private final StatsView statsView;
+    private final StatsManager statsManager;
     private final StartView startView;
     private final GeneratorManager generatorManager;
     private boolean cameFromStart = false;
@@ -26,10 +30,12 @@ public class StartController implements ActionListener {
      * @param generatorManager Gestor de generadors per a realitzar operacions relacionades amb els generadors.
      * @param startView Vista d'inici per a mostrar la interfície d'usuari i rebre interaccions de l'usuari.
      */
-    public StartController(ChangeViewController changeViewController, UserManager userManager, GameManager gameManager, GeneratorManager generatorManager , StartView startView) {
+    public StartController(ChangeViewController changeViewController, UserManager userManager, GameManager gameManager, GeneratorManager generatorManager , StartView startView, StatsManager statsManager, StatsView statsView) {
         this.changeViewController = changeViewController;
         this.userManager = userManager;
         this.gameManager = gameManager;
+        this.statsManager = statsManager;
+        this.statsView = statsView;
         this.startView = startView;
         this.generatorManager = generatorManager;
     }
@@ -64,6 +70,10 @@ public class StartController implements ActionListener {
             changeViewController.changePan("game");
 
         } else if (e.getActionCommand().equals("stats")) {
+            statsManager.setCurrentGraph(gameManager.getConnectedUserId(), 0);
+            statsView.setStats(statsManager.getCurrentStats(), userManager.getNameUserConnected(), gameManager.getCurrentGameId(statsManager.getConnectedUserId()));
+
+
             changeViewController.changePan("stats");
         }
 

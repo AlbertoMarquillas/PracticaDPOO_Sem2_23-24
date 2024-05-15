@@ -31,7 +31,7 @@ public class Main {
         SQLStatsDAO sqlStatsDAO = new SQLStatsDAO();
 
 
-        StatsManager statsManager = new StatsManager(sqlGameDAO, sqlUserDAO);
+        StatsManager statsManager = new StatsManager(sqlGameDAO, sqlUserDAO, sqlStatsDAO);
         Comptador comptador = new Comptador(sqlGameDAO, sqlUserDAO, sqlGeneratorsDAO, sqlStatsDAO);
         UserManager userManager = new UserManager(sqlUserDAO);
         LogInManager logInManager = new LogInManager(userManager);
@@ -53,8 +53,8 @@ public class Main {
         ChangeViewController changeViewController = new ChangeViewController(mainView, gameManager);
         InitialController initialController = new InitialController(initialView, logInManager, changeViewController, userManager, startView, gameManager, milloraManager);
         RegisterController registerController = new RegisterController(registerView, signUpManager, changeViewController);
-        StartController startController = new StartController(changeViewController, userManager, gameManager, generatorManager ,startView);
-        StatsController statsController = new StatsController(changeViewController);
+        StartController startController = new StartController(changeViewController, userManager, gameManager, generatorManager ,startView, statsManager, statsView);
+        StatsController statsController = new StatsController(changeViewController, statsManager, statsView);
         GameController gameController = new GameController(changeViewController, gameView, generatorManager, gameManager, milloraManager);
         SettingsController settingsController = new SettingsController(changeViewController, userManager, startController, statsController, gameController );
 

@@ -73,7 +73,7 @@ public class MainView extends JFrame{
                 setVisible(true);
             }
             case "stats" -> {
-                setBounds(750,500,800,450);
+                setBounds(750,500,1700,1000);
                 this.cardLayout.show(getContentPane(), "stats");
                 setLocationRelativeTo(null);
                 setVisible(true);

@@ -1,15 +1,19 @@
 package Presentation.Controller;
 
+import Business.Entities.Stats;
+import Business.Managers.StatsManager;
 import Presentation.View.StatsView;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class StatsController implements ActionListener {
 
     private final ChangeViewController changeViewController;
     private StatsView statsView;
+    private StatsManager statsManager;
     private boolean cameFromStats = false;
 
     /**
@@ -17,9 +21,10 @@ public class StatsController implements ActionListener {
      *
      * @param changeViewController Controlador per canviar de vistes.
      */
-    public StatsController(ChangeViewController changeViewController) {
+    public StatsController(ChangeViewController changeViewController, StatsManager statsManager, StatsView statsView) {
+        this.statsManager = statsManager;
         this.changeViewController = changeViewController;
-        this.statsView = new StatsView();
+        this.statsView = statsView;
     }
 
 
@@ -44,6 +49,26 @@ public class StatsController implements ActionListener {
             setCameFromStats(true);
             changeViewController.changePan("settings");
 
+        } else if(e.getActionCommand().equals("Next Player")){
+            statsManager.nextPlayerGraph();
+            statsView.setStats(statsManager.getCurrentStats(), statsManager.getNameUserConnected(), statsManager.getCurrentGameIDSatats());
+
+        } else if(e.getActionCommand().equals("Prevous Player")){
+            statsManager.previousPlayerGraph();
+            statsView.setStats(statsManager.getCurrentStats(), statsManager.getNameUserConnected(), statsManager.getCurrentGameIDSatats());
+
+        } else if(e.getActionCommand().equals("Next Game")){
+            statsManager.nextGameGraph();
+            statsView.setStats(statsManager.getCurrentStats(), statsManager.getNameUserConnected(), statsManager.getCurrentGameIDSatats());
+
+        } else if(e.getActionCommand().equals("Previous Game")) {
+            statsManager.previousGameGraph();
+            statsView.setStats(statsManager.getCurrentStats(), statsManager.getNameUserConnected(), statsManager.getCurrentGameIDSatats());
+
         }
+    }
+
+    public ArrayList<Stats> getCurrentGraph() {
+        return statsManager.getCurrentStats();
     }
 }

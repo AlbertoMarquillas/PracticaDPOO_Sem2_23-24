@@ -10,6 +10,8 @@ import Persistance.sqlDAO.SQLStatsDAO;
 import Persistance.sqlDAO.SQLUserDAO;
 import Presentation.View.GameView;
 
+import java.sql.Time;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +45,10 @@ public class GameManager {
 
     public void initGame() {
         sqlGameDAO.startNewGame(sqlUserDAO.getConnectedUserId());
+        LocalTime midnight = LocalTime.MIDNIGHT;
+        Time time = Time.valueOf(midnight);
+
+        sqlStatsDAO.setSavedStats(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()), time, 0);
     }
     public int getConnectedUserId(){
         return sqlUserDAO.getConnectedUserId();

@@ -239,4 +239,43 @@ public class SQLUserDAO{
         String query = "UPDATE user SET Connected = 0";
         Connector.getInstance().updateQuery(query);
     }
+
+    public boolean userIdExist(int idP) {
+    try {
+        String query = "SELECT * FROM user WHERE id = " + idP;
+        ResultSet result = Connector.getInstance().selectQuery(query);
+        return result.next();
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
+    }
+}
+
+    public int getMaxUserId() {
+        try {
+            String query = "SELECT MAX(id) AS max_id FROM user";
+            ResultSet result = Connector.getInstance().selectQuery(query);
+            if (result.next()) {
+                return result.getInt("max_id");
+            } else {
+                return -1;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String getUserNameConnected(int idP) {
+        try {
+            String query = "SELECT UserName FROM user WHERE id = " + idP;
+            ResultSet result = Connector.getInstance().selectQuery(query);
+            if (result.next()) {
+                return result.getString("UserName");
+            } else {
+                return null; // Devuelve null si no se encuentra ningún resultado
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

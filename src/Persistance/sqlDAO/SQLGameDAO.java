@@ -226,4 +226,28 @@ public class SQLGameDAO {
         }
         return null;
     }
+
+    public int getMaxGameId() {
+        try {
+            String query = "SELECT MAX(ID_G) AS max_id FROM game";
+            ResultSet result = Connector.getInstance().selectQuery(query);
+            if (result.next()) {
+                return result.getInt("max_id");
+            } else {
+                return -1;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public boolean gameIdExist(int idG) {
+        try {
+            String query = "SELECT * FROM game WHERE ID_G = " + idG;
+            ResultSet result = Connector.getInstance().selectQuery(query);
+            return result.next();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

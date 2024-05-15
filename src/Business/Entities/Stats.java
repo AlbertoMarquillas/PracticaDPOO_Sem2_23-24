@@ -19,9 +19,8 @@ public class Stats {
     }
 
 
-    public int getTimeint() {
-        long timeInMillis = this.time.getTime();
-        return (int) (timeInMillis / 1000);
+    public int getTimeInMinutes() {
+        return this.time.getMinutes();
     }
 
     public int getnCoffeeint() {

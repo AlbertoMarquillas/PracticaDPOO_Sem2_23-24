@@ -168,11 +168,11 @@ public class Comptador {
         // Crear nuevas instancias de tus tres generadores
         GameManager gameManager = new GameManager(sqlGameDAO, sqlUserDAO, sqlGeneratorsDAO, sqlStatsDAO);
 
-        boolean flag = false;
 
         // Crear un nuevo hilo
         this.thread = new Thread() {
             public void run() {
+                boolean flag = false;
                 // Inicializar la variable nCoffee en 0
 
                 // Mientras la variable running sea true, el hilo seguirá en ejecución
@@ -210,7 +210,7 @@ public class Comptador {
                     sqlGameDAO.setGameTime(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()), savedTime);
 
                     // Si ha pasado un minuto, ejecutar una función
-                    if (localTime.getSecond() == 0) {
+                    if (localTime.getSecond() == 0 ) {
                         sqlStatsDAO.setSavedStats(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()), savedTime, nCoffee);
                     }
 

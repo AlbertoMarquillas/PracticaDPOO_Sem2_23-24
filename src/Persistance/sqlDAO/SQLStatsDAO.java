@@ -5,6 +5,7 @@ import Business.Entities.User;
 import Persistance.Connector;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -18,9 +19,9 @@ public class SQLStatsDAO {
         Connector.getInstance().insertQuery(query);
     }
 
-    public static List<Stats> getMatchStats(int ID_P, int ID_G) {
-        List<Stats> stats = new LinkedList<Stats>();
-        String query = "SELECT N_Coffees FROM game WHERE ID_P = " + ID_P + " AND ID_G = " + ID_G;
+    public static ArrayList<Stats> getMatchStats(int ID_P, int ID_G) {
+        ArrayList<Stats> stats = new ArrayList<>();
+        String query = "SELECT Time, N_Cafe FROM stats WHERE ID_P = " + ID_P + " AND ID_G = " + ID_G;
         ResultSet result = Connector.getInstance().selectQuery(query);
 
         try {
@@ -37,4 +38,20 @@ public class SQLStatsDAO {
         return stats;
     }
 
+    public boolean playerHasGames(int ID_P) {
+        String query = "SELECT 1 FROM stats WHERE ID_P = " + ID_P;
+        ResultSet result = Connector.getInstance().selectQuery(query);
+
+        try {
+            // Si el resultado tiene al menos una fila, entonces hay estadísticas para ese ID_P
+            if (result.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // Si no se encontraron filas, entonces no hay estadísticas para ese ID_P
+        return false;
+    }
 }

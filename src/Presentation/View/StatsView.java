@@ -1,131 +1,230 @@
 package Presentation.View;
 
+import Presentation.Controller.StatsController;
 import Presentation.View.Custom.CustomButton;
 import Presentation.View.Custom.CustomLabel;
 import Presentation.View.Custom.CustomStatisticsGraph;
 
+
+import javax.swing.table.DefaultTableModel;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 public class StatsView extends JPanel implements KeyListener, ActionListener {
 
     private CustomButton backButton;
+    private JButton nextGameButton;
+    private JButton nextPlayerButton;
+    private JButton backGameButton;
+    private JButton backPlayerButton;
+    private CustomStatisticsGraph customStadisticsGraph;
+    private StatsController statsController;
+    private ArrayList stats = new ArrayList();
     private static final String BACK = "back";
+    private JPanel statsPanel;  // Make statsPanel an instance variable
 
-    /**
-     * Constructor de la classe StatsView.
-     */
+    private JPanel backButtonPanel;
+    private JPanel titleLabelPanel;
+    private JPanel settingsButtonPanel;
+    private JLabel dynamicLabel;  // JLabel que se actualizará dinámicamente
+
+
     public StatsView() {
-        setLayout(new BorderLayout()); // Layout de la ventana principal
+        setLayout(new GridBagLayout());
         setBackground(Color.decode("#F8F2F0"));
 
-        //Inicialització del Label del títol fent us de la classe CustomLabel
         CustomLabel titleLabel = new CustomLabel("COFFEE CLICKER", new Font("Bauhaus 93", Font.PLAIN, 50), Color.decode("#DB5C39"));
 
-        //Inicialitzem la imatge del logo
-        ImageIcon logoIcon = new ImageIcon("Imagenes/logoSmall.png"); // Ruta de la imagen del logo
-        JLabel logoLabel = new JLabel(logoIcon);
-
-        //Incicialitzar el botó del back
         backButton = new CustomButton("Back", 150, 30, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
 
-        //Panell per posar el títol i el logo
-        JPanel titolPanel = new JPanel();
-        titolPanel.setBackground(Color.decode("#F8F2F0"));
-        titolPanel.setLayout(new GridBagLayout());               //Crear GridBagLayout del panell central per poder posar els elements
-        GridBagConstraints gbcSup = new GridBagConstraints();
+        // Create a new settings button
+        CustomButton settingsButton = new CustomButton("Settings", 150, 30, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
 
-        //Afegir el Logo
-        gbcSup.gridx = 0;
-        gbcSup.gridy = 0;
-        gbcSup.insets = new Insets(30, 0, 0, 400);
-        titolPanel.add(logoLabel, gbcSup);
+        backButtonPanel = new JPanel();
+        setBackButtonPanelSize(200, 100);
+        backButtonPanel.setBackground(Color.decode("#F8F2F0"));
+        backButtonPanel.add(backButton);  // Add the back button to backButtonPanel
 
-        //Afegir el Titol
-        gbcSup.gridx = 0;
-        gbcSup.gridy = 0;
-        gbcSup.insets = new Insets(45, 70, 0, 0);
-        titolPanel.add(titleLabel, gbcSup);
+        titleLabelPanel = new JPanel();
+        titleLabelPanel.setBackground(Color.decode("#F8F2F0"));
+        ImageIcon logoIcon = new ImageIcon("path/to/your/logo.png");  // Replace with the path to your logo
+        JLabel logoLabel = new JLabel(logoIcon);
+        titleLabelPanel.add(logoLabel);
+        titleLabelPanel.add(titleLabel);
 
+        settingsButtonPanel = new JPanel();
+        setSettingsButtonPanelSize(200, 100);
+        settingsButtonPanel.setBackground(Color.decode("#F8F2F0"));
+        settingsButtonPanel.add(settingsButton);  // Add the settings button to settingsButtonPanel
 
-        //Panell per afagir el gràfic de les estadístiques
-        //ORIOL FES LA GRÀFICA DE STATS DINTRE D'AQUEST PANELL
-       /* JPanel infoPanel = new JPanel();
-        infoPanel.setBackground(Color.decode("#F8F2F0"));
-        infoPanel.setLayout(new GridBagLayout());
-        GridBagConstraints gbcCent = new GridBagConstraints();//Crear GridBagLayout del panell central per poder posar els elements
-        //Afegim el panell amb el grafic
-        CustomStatisticsGraph graph = new CustomStatisticsGraph();
-        infoPanel.add(graph, gbcSup);
+        JPanel titlePanel = new JPanel();
+        titlePanel.setLayout(new BorderLayout());
+        titlePanel.setBackground(Color.decode("#F8F2F0"));
+
+        dynamicLabel = new JLabel("");  // Inicializa el JLabel con texto vacío
+        dynamicLabel.setFont(new Font("Segoe UI Black", Font.PLAIN, 12));  // Establece la fuente del JLabel
 
 
+        titlePanel.add(backButtonPanel, BorderLayout.WEST);
+        titlePanel.add(titleLabelPanel, BorderLayout.CENTER);
+        titlePanel.add(settingsButtonPanel, BorderLayout.EAST);
 
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        add(titlePanel, gbc);
 
-        //Afegir el gràfic amb les estadístiques
-        //gbcCent.gridx = 0;
-        //gbcCent.gridy = 0;
-        //gbcCent.insets = new Insets(30, 0, 0, 0);
-        //infoPanel.add(backButton, gbcCent);
+        // Initialize the buttons
+        nextGameButton = new CustomButton("Next Game", 150, 30, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
+        backGameButton = new CustomButton("Previous Game", 150, 30, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
+        nextPlayerButton = new CustomButton("Next Player", 150, 30, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
+        backPlayerButton = new CustomButton("Previous Player", 150, 30, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
 
+        // Add the buttons to the panel
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(backPlayerButton);
+        buttonPanel.add(nextPlayerButton);
+        buttonPanel.add(backGameButton);
+        buttonPanel.add(nextGameButton);
+        buttonPanel.add(dynamicLabel);
 
-        //Afegir el botó
-        gbcCent.gridx = 0;
-        gbcCent.gridy = 1;
-        gbcCent.insets = new Insets(30, 0, 0, 0);
-        infoPanel.add(backButton, gbcCent);
+        statsPanel = new JPanel();  // Initialize statsPanel
+        customStadisticsGraph = new CustomStatisticsGraph(stats);
+        customStadisticsGraph.setPreferredSize(new Dimension(800, 600));  // Adjust the width and height as needed
+        statsPanel.add(customStadisticsGraph);
 
-        add(titolPanel, BorderLayout.NORTH);
-        add(infoPanel, BorderLayout.CENTER);*/
+        // Add the title panel to the view
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        add(titlePanel, gbc);
+
+        // Add the rest of the components to the panel
+        gbc.gridy = 1;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        add(statsPanel, gbc);
+
+        gbc.gridy = 2;
+        gbc.weighty = 0;
+        add(buttonPanel, gbc);
     }
 
-    /**
-     * Gestiona les accions produïdes per l'usuari.
-     */
+    public void updateDynamicLabel(String player, int ID_G) {
+        dynamicLabel.setText("Player: " + player + " Game: " + ID_G);
+    }
+
+    public void setStats(ArrayList newStats, String player, int ID_G) {
+        this.stats = newStats;
+
+        // Create a new graph with the updated stats
+        customStadisticsGraph = new CustomStatisticsGraph(stats);
+
+        updateDynamicLabel(player, ID_G);
+
+        // Update statsPanel
+        statsPanel.removeAll();
+        statsPanel.add(customStadisticsGraph);
+        statsPanel.revalidate();
+        statsPanel.repaint();
+    }
+
+    public void setBackButtonPanelSize(int width, int height) {
+        backButtonPanel.setPreferredSize(new Dimension(width, height));
+        backButtonPanel.revalidate();
+    }
+
+    public void setTitleLabelPanelSize(int width, int height) {
+        titleLabelPanel.setPreferredSize(new Dimension(width, height));
+        titleLabelPanel.revalidate();
+    }
+
+    public void setSettingsButtonPanelSize(int width, int height) {
+        settingsButtonPanel.setPreferredSize(new Dimension(width, height));
+        settingsButtonPanel.revalidate();
+    }
+
+
+    public void buildView() {
+        // Remove all components from the current view
+        this.removeAll();
+        this.revalidate();
+        this.repaint();
+
+        // Create a new graph with the updated stats
+        customStadisticsGraph = new CustomStatisticsGraph(stats);
+
+        // Add all components back to the view
+        this.add(backButton, BorderLayout.NORTH);
+        this.add(nextGameButton, BorderLayout.SOUTH);
+        this.add(nextPlayerButton, BorderLayout.EAST);
+        this.add(backGameButton, BorderLayout.WEST);
+        this.add(backPlayerButton, BorderLayout.CENTER);
+
+        // Add the updated graph to the view
+        JPanel statsPanel = new JPanel();
+        statsPanel.add(customStadisticsGraph);
+        this.add(statsPanel, BorderLayout.CENTER);
+
+        // Don't forget to call revalidate() and repaint() after adding the components
+        this.revalidate();
+        this.repaint();
+    }
+
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
     }
 
-
-    /**
-     * Gestiona un esdeveniment quan s'escriu per pantalla.
-     * @param e L'esdeveniment que s'ha produit.
-     */
     @Override
     public void keyTyped(KeyEvent e) {
 
     }
 
-
-    /**
-     * Gestiona l'esdeveniment quan una tecla és premuda.
-     * @param e L'esdeveniment que representa una tecla que ha estat premuda.
-     */
     @Override
     public void keyPressed(KeyEvent e) {
 
     }
 
-
-    /**
-     * Gestiona l'esdeveniment quan una tecla és alliberada.
-     * @param e L'esdeveniment que representa una tecla que ha estat alliberada.
-     */
     @Override
     public void keyReleased(KeyEvent e) {
 
     }
 
-    /**
-     * Mètode per controlar els botons de la vista.
-     * @param rvc ActionListener
-     */
-    public void buttonController(ActionListener rvc) {
+
+
+    // Getters for the buttons
+    public JButton getNextGameButton() {
+        return nextGameButton;
+    }
+
+    public JButton getNextPlayerButton() {
+        return nextPlayerButton;
+    }
+
+    public JButton getBackGameButton() {
+        return backGameButton;
+    }
+
+    public JButton getBackPlayerButton() {
+        return backPlayerButton;
+    }
+
+    public void buttonController(ActionListener rvc){
         backButton.addActionListener(rvc);
         backButton.setActionCommand(BACK);
+        nextGameButton.addActionListener(rvc);
+        nextPlayerButton.addActionListener(rvc);
+        backGameButton.addActionListener(rvc);
+        backPlayerButton.addActionListener(rvc);
     }
 }
