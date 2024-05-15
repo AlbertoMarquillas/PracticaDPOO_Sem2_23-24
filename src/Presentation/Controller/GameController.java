@@ -87,6 +87,7 @@ public class GameController implements ActionListener, ComptadorInterficie {
             } else {
                 n_Caffee = gameManager.getCaffeeNumber() + Math.pow(2, gameManager.getQuantitatMillores(ID_P, ID_G));
             }
+            gameView.setGameViewButtonsEnabled(gameManager.comprobarHabilitarBotons(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId())));
             //Guardem en la BBDD la quantitat de cafes actualitzada.
             gameView.setComptador(String.valueOf(Math.round(n_Caffee)));
             gameManager.setQuantitatCafe(n_Caffee);
