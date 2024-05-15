@@ -105,8 +105,6 @@ public class GameController implements ActionListener, ComptadorInterficie {
 
             gameView.updateComptadorSize(getSizeComp());
 
-
-
             //produccio total de cafes generats
 
         }else if (e.getActionCommand().equals("potenciador2")){

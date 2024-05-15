@@ -18,7 +18,6 @@ public class SQLStatsDAO {
         Connector.getInstance().insertQuery(query);
     }
 
-
     public static List<Stats> getMatchStats(int ID_P, int ID_G) {
         List<Stats> stats = new LinkedList<Stats>();
         String query = "SELECT N_Coffees FROM game WHERE ID_P = " + ID_P + " AND ID_G = " + ID_G;
@@ -37,9 +36,5 @@ public class SQLStatsDAO {
         }
         return stats;
     }
-
-
-
-
 
 }

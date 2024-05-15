@@ -5,9 +5,6 @@ import Persistance.Connector;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
 
 public class SQLGameDAO {
 
@@ -28,26 +25,6 @@ public class SQLGameDAO {
         String query = "UPDATE game SET Time = '" + counter + "' WHERE ID_P = " + connectedUserId + " AND ID_G = " + currentGameId;
         Connector.getInstance().updateQuery(query);
     }
-
-
-    /**
-     * Mètode que elimina tota la informació relacionada amb l'usuari
-     * @param id id del usuari de qui s'ha d'eliminar la informació.
-     */
-    public void deleteUserGameData(int id){
-        String query = "DELETE FROM game WHERE id = "+id+";";
-        Connector.getInstance().deleteQuery(query);
-    }
-
-    /**
-     * funció que actualitza la informació de l'usuari relacionada amb els jocs en la base de dades
-     * @param id id del usuari de qui s'ha d'eliminar la informació.
-     */
-    public void upadteUserGameData(int id){
-        String query = "UPDATE FROM game WHERE id = "+id+";";
-        Connector.getInstance().updateQuery(query);
-    }
-
 
     /**
      * Busca el numero de partides que portes per generar el ID_G

@@ -63,11 +63,6 @@ public class SQLUserDAO{
         return -1; // Retorna -1 si no hay ningún usuario conectado
     }
 
-    public void setConnected(int id, boolean newConnected) {
-        String query = "UPDATE user SET Connected = " + (newConnected ? 1 : 0) + " WHERE id = " + id;
-        Connector.getInstance().updateQuery(query);
-    }
-
     /**
      * Comprova si l'usuari existeix a la base de dades.
      *
@@ -236,67 +231,6 @@ public class SQLUserDAO{
             throw new RuntimeException(e);
         }
     }
-
-    public void setUserID(String userName, int newID) {
-        try {
-            String query = "UPDATE user SET id = " + newID + " WHERE UserName = '" + userName + "'";
-            Connector.getInstance().updateQuery(query);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    // Getter for Email
-    public String getEmail(int id) {
-        try {
-            String query = "SELECT Email FROM user WHERE id = " + id;
-            ResultSet result = Connector.getInstance().selectQuery(query);
-            if (result.next()) {
-                return result.getString("Email");
-            } else {
-                // Handle the case where no user with the given id is found
-                return null;
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    // Setter for Email
-    public void setEmail(int id, String newEmail) {
-        try {
-            String query = "UPDATE user SET Email = '" + newEmail + "' WHERE id = " + id;
-            Connector.getInstance().updateQuery(query);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public String getPassword(int id) {
-        try {
-            String query = "SELECT Password FROM user WHERE id = " + id;
-            ResultSet result = Connector.getInstance().selectQuery(query);
-            if (result.next()) {
-                return result.getString("Password");
-            } else {
-                // Handle the case where no user with the given id is found
-                return null;
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    // Setter for Password
-    public void setPassword(int id, String newPassword) {
-        try {
-            String query = "UPDATE user SET Password = '" + newPassword + "' WHERE id = " + id;
-            Connector.getInstance().updateQuery(query);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
 
     /**
      * Desconnecta tots els usuaris, establint el seu estat de connexió a 0.

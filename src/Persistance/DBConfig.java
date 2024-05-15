@@ -65,14 +65,6 @@ public class DBConfig {
     }
 
     /**
-     * Estableix la direcció IP.
-     * @param ip La direcció IP.
-     */
-    public void setIp(String ip) {
-        this.ip = ip;
-    }
-
-    /**
      * Obté el port.
      * @return El port.
      */
@@ -80,11 +72,4 @@ public class DBConfig {
         return port;
     }
 
-    /**
-     * Estableix el port.
-     * @param port El port.
-     */
-    public void setPort(String port) {
-        this.port = port;
-    }
 }

@@ -14,7 +14,7 @@ public class SQLGeneratorsDAO{
      * Constructor de la clase SQLGeneratorsDAO
      */
     public SQLGeneratorsDAO() {
-        //setGeneradorsPrincipals();
+
     }
 
     /**
@@ -74,57 +74,6 @@ public class SQLGeneratorsDAO{
         }
     }
 
-
-    public void updateCost(double incrementarPotenciador, String type) {
-        String query = "UPDATE generators SET CostActual = "+ incrementarPotenciador + "WHERE Type = '" + type + "';";
-        Connector.getInstance().updateQuery(query);
-    }
-
-    /**
-     * Obté la producció actual del tipus de generador especificat.
-     *
-     * @param type El tipus de generador.
-     * @return La producció actual del generador del tipus especificat, o 0 si no es troba cap dada.
-     */
-    public int getProduccioActual(String type) {
-        String query = "SELECT ProduccioActual FROM generators WHERE Type = '" + type + "'";
-        ResultSet result = Connector.getInstance().selectQuery(query);
-        int produccioActual = 0;
-        try {
-            if (result.next()) {
-                produccioActual = result.getInt("ProduccioActual");
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return produccioActual;
-    }
-
-    public void setProduccioActual(double produccioActual, String type) {
-        String query = "UPDATE generators SET ProduccioActual = " + produccioActual + " WHERE Type = '" + type + "'";
-        Connector.getInstance().updateQuery(query);
-    }
-
-    // Getter and Setter for ProduccioGlobal
-    public int getProduccioGlobal(String type) {
-        String query = "SELECT ProduccioGlobal FROM generators WHERE Type = '" + type + "'";
-        ResultSet result = Connector.getInstance().selectQuery(query);
-        int produccioGlobal = 0;
-        try {
-            if (result.next()) {
-                produccioGlobal = result.getInt("ProduccioGlobal");
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return produccioGlobal;
-    }
-
-    public void setProduccioGlobal(int produccioGlobal, String type) {
-        String query = "UPDATE generators SET ProduccioGlobal = " + produccioGlobal + " WHERE Type = '" + type + "'";
-        Connector.getInstance().updateQuery(query);
-    }
-
     // Getter and Setter for Num_Millores
     public int getNumMillores(String type) {
         String query = "SELECT Num_Millores FROM generators WHERE Type = '" + type + "'";
@@ -140,30 +89,6 @@ public class SQLGeneratorsDAO{
         return numMillores;
     }
 
-    public void setNumMillores(int ID_P, int ID_G, int numMillores, String type) {
-        String query = "UPDATE generators SET Num_Millores = " + numMillores + " WHERE ID_P = " + ID_P + " AND ID_G = " + ID_G + " AND Type = '" + type + "'";
-        Connector.getInstance().updateQuery(query);
-    }
-
-
-
-
-    /**
-     * FUNCIO QUE SERA SUBSTITUIDA PER LÒGICA EN EL BUSINESS
-     */
-    public int getCost(String type){
-        if (type.equals("A")) {
-            return 10;
-        } else if (type.equals("B")) {
-            return 150;
-        } else if (type.equals("C")) {
-            return 2000;
-        } else {
-            return 0;
-        }
-    }
-
-
     /**
      * Obté el generador de l'usuari i joc especificats del tipus indicat.
      *
@@ -173,27 +98,24 @@ public class SQLGeneratorsDAO{
      * @return El generador corresponent a l'usuari, joc i tipus indicats, o null si no es troba cap generador.
      */
     public Generator getGenerator(int ID_P, int ID_G, String type) {
-    String query = "SELECT * FROM generators WHERE ID_P = " + ID_P + " AND ID_G = " + ID_G + " AND Type = '" + type + "'";
-    ResultSet result = Connector.getInstance().selectQuery(query);
-    try {
-        if (result.next()) {
-            Generator generator = new Generator(
-                result.getString("Type"),
-                result.getInt("Quantitat"),
-                result.getDouble("ProduccioActual"),
-                result.getDouble("ProduccioGlobal"),
-                result.getInt("Num_Millores")
-            );
-            return generator;
+        String query = "SELECT * FROM generators WHERE ID_P = " + ID_P + " AND ID_G = " + ID_G + " AND Type = '" + type + "'";
+        ResultSet result = Connector.getInstance().selectQuery(query);
+        try {
+            if (result.next()) {
+                Generator generator = new Generator(
+                    result.getString("Type"),
+                    result.getInt("Quantitat"),
+                    result.getDouble("ProduccioActual"),
+                    result.getDouble("ProduccioGlobal"),
+                    result.getInt("Num_Millores")
+                );
+                return generator;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-    } catch (SQLException e) {
-        e.printStackTrace();
+        return null; // Devolver null si no se encuentra el generador
     }
-    return null; // Devolver null si no se encuentra el generador
-}
-
-
-
 
     public void initGenerators(int ID_P, int ID_G) {
         String types[] = {"A", "B", "C"};
@@ -240,8 +162,4 @@ public class SQLGeneratorsDAO{
         String queryProduccioActual = "UPDATE generators SET ProduccioActual = " + produccioActual + " WHERE ID_P = " + ID_P + " AND ID_G = " + ID_G + " AND Type = '" + type + "'";
         Connector.getInstance().updateQuery(queryProduccioActual);
     }
-
-
-
-
 }
