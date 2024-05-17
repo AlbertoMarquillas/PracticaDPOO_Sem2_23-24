@@ -246,15 +246,7 @@ public class GameController implements ActionListener, ComptadorInterficie {
         gameManager.setQuantitatCafe(quantitatCafes);
         gameManager.updateCaffeeGenerators(generator1, generator2, generator3);
         gameView.setGameViewButtonsEnabled(gameManager.comprobarHabilitarBotons(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId())));
-        //comprovar si el string tiene mas de cinco caracteres
-
         gameView.updateComptadorSize(getSizeComp());
-        //gameView.updateProduccioTotal(1, generator1.getProduccioActual());
-        //gameView.updateProduccioTotal(2, generator2.getProduccioActual());
-        //gameView.updateProduccioTotal(3, generator3.getProduccioActual());
-        //gameView.updateOverall(1, generatorManager.updateOverallProduction("A"));
-        //gameView.updateOverall(2, generatorManager.updateOverallProduction("B"));
-        //gameView.updateOverall(3, generatorManager.updateOverallProduction("C"));
 
     }
 

@@ -5,10 +5,7 @@ import Presentation.View.Custom.CustomButton;
 import Presentation.View.Custom.CustomLabel;
 import Presentation.View.Custom.CustomStatisticsGraph;
 
-
-import javax.swing.table.DefaultTableModel;
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -153,33 +150,6 @@ public class StatsView extends JPanel implements KeyListener, ActionListener {
     }
 
 
-    public void buildView() {
-        // Remove all components from the current view
-        this.removeAll();
-        this.revalidate();
-        this.repaint();
-
-        // Create a new graph with the updated stats
-        customStadisticsGraph = new CustomStatisticsGraph(stats);
-
-        // Add all components back to the view
-        this.add(backButton, BorderLayout.NORTH);
-        this.add(nextGameButton, BorderLayout.SOUTH);
-        this.add(nextPlayerButton, BorderLayout.EAST);
-        this.add(backGameButton, BorderLayout.WEST);
-        this.add(backPlayerButton, BorderLayout.CENTER);
-
-        // Add the updated graph to the view
-        JPanel statsPanel = new JPanel();
-        statsPanel.add(customStadisticsGraph);
-        this.add(statsPanel, BorderLayout.CENTER);
-
-        // Don't forget to call revalidate() and repaint() after adding the components
-        this.revalidate();
-        this.repaint();
-    }
-
-
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -200,24 +170,6 @@ public class StatsView extends JPanel implements KeyListener, ActionListener {
 
     }
 
-
-
-    // Getters for the buttons
-    public JButton getNextGameButton() {
-        return nextGameButton;
-    }
-
-    public JButton getNextPlayerButton() {
-        return nextPlayerButton;
-    }
-
-    public JButton getBackGameButton() {
-        return backGameButton;
-    }
-
-    public JButton getBackPlayerButton() {
-        return backPlayerButton;
-    }
 
     public void buttonController(ActionListener rvc){
         backButton.addActionListener(rvc);

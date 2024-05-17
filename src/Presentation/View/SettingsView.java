@@ -100,41 +100,6 @@ public class SettingsView extends JPanel implements KeyListener, ActionListener 
     }
 
     /**
-     * Mètode per obtenir el botó de delete.
-     * @return CustomButton
-     */
-    public CustomButton getDeleteButton() {
-        return deleteButton;
-    }
-
-
-    /**
-     * Mètode per obtenir el botó de close.
-     * @return CustomButton
-     */
-    public CustomButton getCloseButton() {
-        return closeButton;
-    }
-
-    /**
-     * Mètode per assignar el botó de delete.
-     * @param deleteButton CustomButton
-     */
-    public void setDeleteButton(CustomButton deleteButton) {
-        this.deleteButton = deleteButton;
-    }
-
-
-    /**
-     * Mètode per assignar el botó de close.
-     * @param closeButton CustomButton
-     */
-    public void setCloseButton(CustomButton closeButton) {
-        this.closeButton = closeButton;
-    }
-
-
-    /**
      * Gestiona les accions produïdes per l'usuari.
      */
     @Override

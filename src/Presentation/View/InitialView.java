@@ -159,24 +159,6 @@ public class InitialView extends JPanel implements KeyListener{
 
 
     /**
-     * Metode per obtenir el botó de registre
-     * @return CustomButton del botó de registre
-     */
-    public CustomButton getRegisterButton() {
-        return registerButton;
-    }
-
-
-    /**
-     * Metode per obtenir el botó de login
-     * @return CustomButton del botó de login
-     */
-    public CustomButton getLoginButton() {
-        return loginButton;
-    }
-
-
-    /**
      * Metode per establir el nom d'usuari
      * @param passwordField String amb el nom d'usuari
      */
@@ -191,24 +173,6 @@ public class InitialView extends JPanel implements KeyListener{
      */
     public void setUsernameField(String username) {
         this.userNameField.setText(username);
-    }
-
-
-    /**
-     * Metode per establir el botó de registre
-     * @param registerButton CustomButton del botó de registre
-     */
-    public void setRegisterButton(CustomButton registerButton) {
-        this.registerButton = registerButton;
-    }
-
-
-    /**
-     * Metode per establir el botó de login
-     * @param loginButton CustomButton del botó de login
-     */
-    public void setLoginButton(CustomButton loginButton) {
-        this.loginButton = loginButton;
     }
 
 

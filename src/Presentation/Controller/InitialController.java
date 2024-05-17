@@ -108,15 +108,6 @@ public class InitialController implements ActionListener{
 
 
     /**
-     * Habilita o deshabilita la funcionalitat segons la longitud dels camps de nom d'usuari i contrasenya.
-     *
-     * @return Cert si s'ha d'habilitar la funcionalitat, fals si s'ha de deshabilitar.
-     */
-    public boolean enable(){
-        return logInManager.keyTyped(getUsernameFieldController().length(), getPasswordFieldController().length());
-    }
-
-    /**
      * Mostra un missatge d'error indicant que l'usuari introduit no és válid.
      */
     private void showWrongUser() {

@@ -1,11 +1,3 @@
-
-/*
-#DB5C39 naranja
-#3B1211 marron oscuro
-#F8F2F0 blanco
-#C3986A marron claro
- */
-
 package Presentation.View;
 
 import Presentation.View.Custom.CustomButton;
@@ -13,17 +5,11 @@ import Presentation.View.Custom.CustomLabel;
 import Presentation.View.Custom.CustomRenderer;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
-import javax.swing.event.AncestorEvent;
-import javax.swing.event.AncestorListener;
-import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Vector;
 
 /**
@@ -84,9 +70,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
     private float overallPot1;
     private float overallPot2;
     private float overallPot3;
-    private double produccioUnitat1;
-    private double produccioUnitat2;
-    private double produccioUnitat3;
+
 
 
     /**
@@ -526,185 +510,6 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         saveGame.setActionCommand(SAVE);
     }
 
-    /**
-     * Mètode per obtenir el botó de la imatge.
-     * @return JButton de la millora 1
-     */
-    public CustomButton getMillora1() {
-        return millora1;
-    }
-
-
-    /**
-     * Mètode per obtenir el botó de la imatge.
-     * @return JButton del botó de guardar el joc
-     */
-    public CustomButton getSaveGame() {
-        return saveGame;
-    }
-
-
-    /**
-     * Mètode per obtenir el botó de la imatge.
-     * @return JButton del botó de finalitzar la partida
-     */
-    public CustomButton getFinishGame(){
-        return finishGame;
-    }
-
-
-    /**
-     * Mètode per obtenir el botó de la imatge.
-     * @return JButton de la millora 2
-     */
-    public CustomButton getMillora2() {
-        return millora2;
-    }
-
-
-    /**
-     * Mètode per obtenir el botó de la imatge.
-     * @return JButton de la millora 3
-     */
-    public CustomButton getMillora3() {
-        return millora3;
-    }
-
-
-    /**
-     * Mètode per obtenir el botó de la imatge.
-     * @return JButton de la millora 4
-     */
-    public CustomButton getMillora4() {
-        return millora4;
-    }
-
-
-    /**
-     * Mètode per obtenir el botó de la imatge.
-     * @return JButton potenciador 1
-     */
-    public CustomButton getPotenciador1() {
-        return potenciador1;
-    }
-
-
-
-    /**
-     * Mètode per obtenir el botó de la imatge.
-     * @return JButton potenciador 2
-     */
-    public CustomButton getPotenciador2() {
-        return potenciador2;
-    }
-
-
-    /**
-     * Mètode per obtenir el botó de la imatge.
-     * @return JButton del potenciador 3
-     */
-    public CustomButton getPotenciador3() {
-        return potenciador3;
-    }
-
-
-    /**
-     * Mètode per obtenir el botó de la imatge.
-     * @return JButton de la imatge que genera cafes
-     */
-    public JButton getImageButton() {
-        return imageButton;
-    }
-
-
-    /**
-     * Mètode per obtenir el botó de la imatge.
-     * @return JButton de settings
-     */
-    public JButton getSettingsButton() {
-        return settingsButton;
-    }
-
-
-    /**
-     * Mètode per rebre la millora 1
-     * @param millora1 CustomButton de la millora 1
-     */
-    public void setMillora1(CustomButton millora1) {
-        this.millora1 = millora1;
-    }
-
-    /**
-     * Mètode per rebre la millora 2
-     * @param millora2 CustomButton de la millora 2
-     */
-    public void setMillora2(CustomButton millora2) {
-        this.millora2 = millora2;
-    }
-
-
-    /**
-     * Mètode per rebre la millora 3
-     * @param millora3 CustomButton de la millora 3
-     */
-    public void setMillora3(CustomButton millora3) {
-        this.millora3 = millora3;
-    }
-
-
-    /**
-     * Mètode per rebre la millora 4
-     * @param millora4 CustomButton de la millora 4
-     */
-    public void setMillora4(CustomButton millora4) {
-        this.millora4 = millora4;
-    }
-
-
-    /**
-     * Mètode per rebre el potenciador 1
-     * @param potenciador1 CustomButton del potenciador 1
-     */
-    public void setPotenciador1(CustomButton potenciador1) {
-        this.potenciador1 = potenciador1;
-    }
-
-
-    /**
-     * Mètode per rebre el potenciador 2
-     * @param potenciador2 CustomButton del potenciador 2
-     */
-    public void setPotenciador2(CustomButton potenciador2) {
-        this.potenciador2 = potenciador2;
-    }
-
-
-    /**
-     * Mètode per rebre el potenciador 3
-     * @param potenciador3 CustomButton del potenciador 3
-     */
-    public void setPotenciador3(CustomButton potenciador3) {
-        this.potenciador3 = potenciador3;
-    }
-
-
-    /**
-     * Mètode per rebre la imatge que genera cafes
-     * @param imageButton JButton de la imatge que genera cafes
-     */
-    public void setImageButton(JButton imageButton) {
-        this.imageButton = imageButton;
-    }
-
-
-    /**
-     * Mètode per rebre el botó de settings
-     * @param settingsButton JButton de settings
-     */
-    public void setSettingsButton(JButton settingsButton) {
-        this.settingsButton = settingsButton;
-    }
-
 
     /**
      * Estableix el text del comptador i actualitza la seva aparença.
@@ -720,202 +525,8 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         this.contador.setMaximumSize(size);
         this.contador.setPreferredSize(size);
 
-        // Cambiar el color del borde
-        //Color borderColor = Color.RED; // Cambia esto al color que desees
-        //this.contador.setBorder(new LineBorder(borderColor));
-
         this.contador.repaint();
     }
-
-    /**
-     * Mètode per obtenir el comptador
-     * @return String del comptador
-     */
-    public String getComptador() {
-        return contador.getText();
-    }
-
-    /**
-     * Mètode per obtenir el cost del generador1
-     * @return Cost del generador1
-     */
-    public double getCost1() {
-        return this.cost1;
-    }
-
-
-    /**
-     * Mètode per obtenir el cost del generador2
-     * @return Cost del generador2
-     */
-    public double getCost2() {
-        return cost2;
-    }
-
-
-    /**
-     * Mètode per obtenir el cost del generador3
-     * @return Cost del generador3
-     */
-    public double getCost3() {
-        return cost3;
-    }
-
-    /**
-     * Estableix el cost del generador 3
-     * @param cost3 El cost a establir per al generador 3.
-     */
-    public void setCostPotenciador3(int cost3) {
-        this.cost3 = cost3;
-    }
-
-    /**
-     * Mètode per obtenir la quantitat de potenciadors 1
-     * @return Quantitat de potenciadors 1
-     */
-    public int getQuantitatPotenciadors1() {
-        return quantitatPotenciadors1;
-    }
-
-
-    /**
-     * Estableix la quantitat de potenciadors 1 que hi ha i edita la variable
-     * @param quantitatPotenciadors1 La quantitat a establir per al potenciador 1
-     */
-    public void setQuantitatPotenciador1(int quantitatPotenciadors1) {
-        this.quantitatPotenciadors1 = quantitatPotenciadors1;
-        //voler a printar la celda 2,2 de table
-        //this.table.remove(quantitatPotenciadors1);
-        this.table.repaint();
-
-    }
-
-
-    /**
-     * Mètode per obtenir la quantitat de potenciadors 2
-     * @return Quantitat de potenciadors 2
-     */
-    public int getQuantitatPotenciadors2() {
-        return quantitatPotenciadors2;
-    }
-
-
-    /**
-     * Estableix la quantitat de potenciadors 2 que hi ha i edita la variable
-     * @param quantitatPotenciadors2 La quantitat a establir per al potenciador 2
-     */
-    public void setQuantitatPotenciador2(int quantitatPotenciadors2) {
-        this.quantitatPotenciadors2 = quantitatPotenciadors2;
-        this.table.repaint();
-    }
-
-
-    /**
-     * Mètode per obtenir la quantitat de potenciadors 3
-     * @return Quantitat de potenciadors 3
-     */
-    public int getQuantitatPotenciadors3() {
-        return quantitatPotenciadors3;
-    }
-
-
-    /**
-     * Estableix la quantitat de potenciadors 3 que hi ha i edita la variable
-     * @param quantitatPotenciadors3 La quantitat a establir per al potenciador 3
-     */
-    public void setQuantitatPotenciador3(int quantitatPotenciadors3) {
-        this.quantitatPotenciadors3 = quantitatPotenciadors3;
-        this.table.repaint();
-    }
-
-    /**
-     * Mètode per obtenir la producció total del generador 1
-     * @return Producció total del generador 1
-     */
-    public float getProduccioTotal1() {
-        return produccioTotal1;
-    }
-
-
-    /**
-     * Estableix la producció total del generador 1 i repinta la taula per mostrar el nou valor
-     * @param produccioTotal1 La producció total a establir per al generador 1
-     */
-    public void setProduccioTotal1(float produccioTotal1) {
-        this.produccioTotal1 = produccioTotal1;
-        this.table.repaint();
-    }
-
-
-    /**
-     * Mètode per obtenir la producció total del generador 2
-     * @return Producció total del generador 2
-     */
-    public float getProduccioTotal2() {
-        return produccioTotal2;
-    }
-
-
-    /**
-     * Estableix la producció total del generador 2 i repinta la taula per mostrar el nou valor
-     * @param produccioTotal2 La producció total a establir per al generador 2
-     */
-    public void setProduccioTotal2(float produccioTotal2) {
-        this.produccioTotal2 = produccioTotal2;
-        this.table.repaint();
-    }
-
-
-    /**
-     * Mètode per obtenir la producció total del generador 3
-     * @return Producció total del generador 3
-     */
-    public float getProduccioTotal3() {
-        return produccioTotal3;
-    }
-
-
-    /**
-     * Estableix la producció total del generador 3 i repinta la taula per mostrar el nou valor
-     * @param produccioTotal3 La producció total a establir per al generador 3
-     */
-    public void setProduccioTotal3(float produccioTotal3) {
-        this.table.repaint();
-        this.produccioTotal3 = produccioTotal3;
-    }
-
-    public float getOverallPot1() {
-        return overallPot1;
-    }
-
-    public void setOverallPot1(float overallPot1) {
-        this.overallPot1 = overallPot1;
-        this.table.repaint();
-    }
-
-    public float getOverallPot2() {
-        return overallPot2;
-    }
-
-    public void setOverallPot2(float overallPot2) {
-        this.overallPot2 = overallPot2;
-        this.table.repaint();
-    }
-
-    public float getOverallPot3() {
-        return overallPot3;
-    }
-
-    public void setOverallPot3(float overallPot3) {
-        this.overallPot3 = overallPot3;
-        this.table.repaint();
-    }
-
-
-
-    /**
-     * Estableix la producció per unitat
-     */
 
 
     /**
@@ -962,33 +573,6 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         tableModel.fireTableDataChanged();
     }
 
-
-    /**
-     * Actualitza la producció total d'un generador a la taula.
-     *
-     * @param generatorRow La fila de la taula corresponent al generador.
-     * @param produccioTotal La nova producció total del generador.
-     */
-    public void updateProduccioTotal(int generatorRow, double produccioTotal) {
-        // Obtener el modelo de la tabla
-        DefaultTableModel tableModel = (DefaultTableModel) this.table.getModel();
-
-        // Actualizar el valor de produccioTotal en la fila correspondiente al generador
-        tableModel.setValueAt(String.format("%.2f", produccioTotal) + " c/s", generatorRow, 3); // Actualizar la producción total
-
-        // Notificar al modelo de la tabla que los datos han cambiado, lo que provocará que la tabla se actualice
-        tableModel.fireTableDataChanged();
-    }
-
-    public void updateOverall(int generatorRow, double overall){
-        DefaultTableModel tableModel = (DefaultTableModel) this.table.getModel();
-
-        // Actualizar el valor de produccioTotal en la fila correspondiente al generador
-        tableModel.setValueAt(String.format("%.2f", overall) + " c/s", generatorRow, 4); // Actualizar la producción total
-
-        // Notificar al modelo de la tabla que los datos han cambiado, lo que provocará que la tabla se actualice
-        tableModel.fireTableDataChanged();
-    }
 
     /**
      * Actualitza les dades del generador 3 a la taula.
@@ -1091,14 +675,6 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         }
     }
 
-    private void setButtonEnabledAndColor(CustomButton button, boolean isEnabled) {
-        button.setEnabled(isEnabled);
-        if (isEnabled) {
-            button.setBackground(Color.decode("#F8F2F0")); // Color claro cuando está habilitado
-        } else {
-            button.setBackground(Color.LIGHT_GRAY); // Color oscuro cuando está deshabilitado
-        }
-    }
 
     /**
      * Actualitza el cost del generador 1.
@@ -1129,7 +705,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
     }
 
     public void updateCostMillora4(double costActual){
-        setCostMillora1(costActual);
+        setCostMillora4(costActual);
 
         System.out.println("Cost actual: " + costActual);
         this.labelMillora4.setText(String.valueOf(costActual));
@@ -1139,7 +715,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
 
 
     public void updateCostMillora2(double costActual){
-        setCostMillora1(costActual);
+        setCostMillora2(costActual);
 
         System.out.println("Cost actual: " + costActual);
         this.labelMillora2.setText(String.valueOf(costActual));
@@ -1149,7 +725,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
 
 
     public void updateCostMillora3(double costActual){
-        setCostMillora1(costActual);
+        setCostMillora3(costActual);
 
         System.out.println("Cost actual: " + costActual);
         this.labelMillora3.setText(String.valueOf(costActual));
@@ -1158,33 +734,16 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
     }
 
 
-
-    public double getCostMillora1() {
-        return costMillora1;
-    }
-
     public void setCostMillora1(double costMillora1) {
         this.costMillora1 = costMillora1;
-    }
-
-    public double getCostMillora2() {
-        return costMillora2;
     }
 
     public void setCostMillora2(double costMillora2) {
         this.costMillora2 = costMillora2;
     }
 
-    public double getCostMillora3() {
-        return costMillora3;
-    }
-
     public void setCostMillora3(double costMillora3) {
         this.costMillora3 = costMillora3;
-    }
-
-    public double getCostMillora4() {
-        return costMillora4;
     }
 
     public void setCostMillora4(double costMillora4) {

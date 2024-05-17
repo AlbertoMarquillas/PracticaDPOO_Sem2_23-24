@@ -190,24 +190,6 @@ public class RegisterView extends JPanel implements KeyListener, ActionListener 
         return String.valueOf(confirmationField.getPassword());
     }
 
-
-    /**
-     * Funció per obtenir el botó de NEXT
-     * @return CustomButton del botó de NEXT
-     */
-    public CustomButton getNextButton() {
-        return nextButton;
-    }
-
-
-    /**
-     * Funció per obtenir el botó de LOGIN
-     * @return CustomButton del botó de LOGIN
-     */
-    public CustomButton getLoginButton() {
-        return loginButton;
-    }
-
     /**
      * Funció per establir el text del textField de l'usuari
      * @param usernameField String amb el text del textField de l'usuari
@@ -240,25 +222,6 @@ public class RegisterView extends JPanel implements KeyListener, ActionListener 
     public void setConfirmPasswordField(String confirmPasswordField) {
         this.confirmationField.setText(confirmPasswordField);
     }
-
-
-    /**
-     * Funció per establir el botó de NEXT
-     * @param nextButton CustomButton del botó de NEXT
-     */
-    public void setNextButton(CustomButton nextButton) {
-        this.nextButton = nextButton;
-    }
-
-
-    /**
-     * Funció per establir el botó de LOGIN
-     * @param loginButton CustomButton del botó de LOGIN
-     */
-    public void setLoginButton(CustomButton loginButton) {
-        this.loginButton = loginButton;
-    }
-
 
 
     /**
