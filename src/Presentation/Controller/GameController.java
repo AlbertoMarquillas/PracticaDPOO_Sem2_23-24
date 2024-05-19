@@ -53,11 +53,7 @@ public class GameController implements ActionListener, ComptadorInterficie {
      */
     private boolean showConfirmationDialog(String message) {
         int respuesta = JOptionPane.showConfirmDialog(null, message, "Confirmation", JOptionPane.YES_NO_OPTION);
-        if (respuesta == JOptionPane.YES_OPTION) {
-            return true;
-        } else {
-            return false;
-        }
+        return respuesta == JOptionPane.YES_OPTION;
     }
 
     /**
@@ -177,33 +173,6 @@ public class GameController implements ActionListener, ComptadorInterficie {
     }
 
     /**
-     * Metode que retorna la quantitat de cafes
-     * @return quantitat de cafes
-     */
-    @Override
-    public double getQuantitatCoffe() {
-        return 0;
-    }
-
-    /**
-     * Setter del temps que dura la partida
-     * @param time temps que dura la partida
-     */
-    @Override
-    public void setGameTime(long time) {
-
-    }
-
-    /**
-     * Getter del temps que dura la partida
-     * @return temps que dura la partida
-     */
-    @Override
-    public long getGameTime() {
-        return 0;
-    }
-
-    /**
      * Actualitza la taula de contingut a la vista del joc amb les dades proporcionades pels generadors especificats.
      *
      * @param generador1 El primer generador a considerar.
@@ -252,11 +221,7 @@ public class GameController implements ActionListener, ComptadorInterficie {
 
     public boolean getSizeComp(){
         double tamany = gameManager.getCaffeeNumber();
-        if(tamany >= 1000){
-            return true;
-        } else {
-            return false;
-        }
+        return tamany >= 1000;
 
     }
 

@@ -21,13 +21,10 @@ public class StatsManager {
         this.sqlStatsDAO = sqlStatsDAO;
     }
 
-
-
     public ArrayList<Stats> getStatsFromSQL(int ID_P, int ID_G) {
         ArrayList<Stats> stats = SQLStatsDAO.getMatchStats(ID_P, ID_G);
         return stats;
     }
-
 
     public void previousPlayerGraph() {
         if (sqlUserDAO.userIdExist(ID_P - 1)) {
@@ -63,8 +60,6 @@ public class StatsManager {
             this.ID_G = 0;
         }
     }
-
-
 
     public void setCurrentGraph(int ID_P, int ID_G) {
         this.ID_G = ID_G;

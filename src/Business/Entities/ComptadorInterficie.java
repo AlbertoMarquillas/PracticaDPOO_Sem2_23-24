@@ -2,12 +2,6 @@ package Business.Entities;
 
 public interface ComptadorInterficie {
 
-    double getQuantitatCoffe();
-
-    void setGameTime(long time);
-
-    long getGameTime();
-
     /**
      * Actualitza la quantitat de cafès
      * @param quantitatCafes quantitat de cafès
@@ -25,6 +19,12 @@ public interface ComptadorInterficie {
      */
     void setTaulaContenido(Generator generador1, Generator generador2, Generator generador3);
 
-
+    /**
+     * Funcio que seteja les millores
+     * @param millora1 primera millora
+     * @param millora2 segona millora
+     * @param millora3 tercera millora
+     * @param millora4 cuarta millora
+     */
     void setMillores(Millora millora1, Millora millora2, Millora millora3, Millora millora4);
 }

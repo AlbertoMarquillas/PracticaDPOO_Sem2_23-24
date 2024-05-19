@@ -3,7 +3,6 @@ package Business.Entities;
 public class Generator {
     private String type;
     private int quantitat;
-    private double increment;
     private double produccioActual;
     private double produccioGlobal;
     private int numeroMillores;
@@ -11,7 +10,6 @@ public class Generator {
     private double incrementCost; // Nueva variable
     private double baseCost; // Nueva variable
     private double baseProduction; // Nueva variable
-    private Millora millora;
 
     /**
      * Constructor de la clase Generator
@@ -29,7 +27,7 @@ public class Generator {
         this.numeroMillores = numeroMillores;
         this.incrementCost = setIncrement(type);
         this.baseCost = setBaseCost(type);
-        this.costActual = setCostActual(type);
+        this.costActual = setCostActual();
         this.baseProduction = setBaseProduction(type);
     }
 
@@ -39,15 +37,12 @@ public class Generator {
      * @return increment de cost
      */
     public double setIncrement(String type) {
-        if (type.equals("A")) {
-            return 1.07;
-        } else if (type.equals("B")) {
-            return 1.15;
-        } else if (type.equals("C")) {
-            return 1.12;
-        } else {
-            return 1000000.0;
-        }
+        return switch (type) {
+            case "A" -> 1.07;
+            case "B" -> 1.15;
+            case "C" -> 1.12;
+            default -> 1000000.0;
+        };
     }
 
     /**
@@ -56,23 +51,19 @@ public class Generator {
      * @return cost base
      */
     public double setBaseCost(String type) {
-        if (type.equals("A")) {
-            return 10.0;
-        } else if (type.equals("B")) {
-            return 150.0;
-        } else if (type.equals("C")) {
-            return 2000.0;
-        } else {
-            return 1000000.0;
-        }
+        return switch (type) {
+            case "A" -> 10.0;
+            case "B" -> 150.0;
+            case "C" -> 2000.0;
+            default -> 1000000.0;
+        };
     }
 
     /**
      * Setter que indica el cost actual del generador
-     * @param type tipus de generador
      * @return cost actual
      */
-    public double setCostActual(String type) {
+    public double setCostActual() {
         return Math.round(baseCost * Math.pow(incrementCost, quantitat));
     }
 
@@ -83,16 +74,12 @@ public class Generator {
      * @return producció base
      */
     public double setBaseProduction(String type) {
-        double baseProduction;
-        if (type.equals("A")) {
-            baseProduction = 0.2;
-        } else if(type.equals("B")) {
-            baseProduction = 1.0;
-        } else if (type.equals("C")) {
-            baseProduction = 15.0;
-        } else {
-            baseProduction = -1;
-        }
+        double baseProduction = switch (type) {
+            case "A" -> 0.2;
+            case "B" -> 1.0;
+            case "C" -> 15.0;
+            default -> -1;
+        };
 
         if (numeroMillores > 0) {
             baseProduction = baseProduction * Math.pow(2, numeroMillores);
@@ -102,6 +89,10 @@ public class Generator {
         return this.baseProduction;
     }
 
+    /**
+     * Funció que retorna la produccio base del generador
+     * @return produccio base del generador
+     */
     public double getBaseProduction() {
         return this.baseProduction;
     }
@@ -134,10 +125,18 @@ public class Generator {
         return this.produccioActual;
     }
 
+    /**
+     * Funcio que retorna la producció global del generador
+     * @return double produccio del generador
+     */
     public double getProduccioGlobal() {
         return this.produccioGlobal;
     }
 
+    /**
+     * Funcio per indicar quina es la produccio global del generador
+     * @param produccioGlobal un double que indica la produccio global del generador
+     */
     public void setProduccioGlobal(double produccioGlobal) {
         this.produccioGlobal = produccioGlobal;
     }
@@ -176,12 +175,12 @@ public class Generator {
         return String.valueOf(numeroMillores);
     }
 
+    /**
+     * Getter que retorna el número de millores que té un generador
+     * @return int amb el número de millores
+     */
     public int getNumeroMillores() {
         return numeroMillores;
-    }
-
-    public void setNumeroMillores(int numeroMillores) {
-        this.numeroMillores = numeroMillores;
     }
 
 
@@ -193,24 +192,6 @@ public class Generator {
         return this.costActual;
     }
 
-
-    /**
-     * Getter per obtenir la producció global del generador
-     * @return producció global
-     */
-    public double getProduccioTotal() {
-        return this.produccioGlobal;
-    }
-
-
-    /**
-     * Setter per incrementar la producció global del generador
-     * @param generat quantitat de cafes que el generador ja ha generat
-     */
-    public void setProduccioTotal(double generat) {
-        this.produccioGlobal = this.produccioGlobal + generat;
-    }
-
     /**
      * Getter que retorna el tipus de generador
      * @return tipus de generador
@@ -219,13 +200,20 @@ public class Generator {
         return this.type;
     }
 
+    /**
+     * Fucnio que aumenta les millores en una
+     */
     public void setNewMillora() {
         this.numeroMillores = this.numeroMillores + 1;
         this.baseProduction = setBaseProduction(this.type);
         this.produccioActual = setProduccioActual();
     }
 
-
+    /**
+     * Funcio que serveix per retornar la produccio global del generador, si la produccio  acutal es 0 retorna 0
+     * @param totalProduction la produccio total del generador
+     * @return int que indica la produccio global
+     */
     public int getOverallProduction(double totalProduction) {
         if (this.produccioActual == 0){
             return 0;
@@ -236,6 +224,10 @@ public class Generator {
 
     }
 
+    /**
+     * Crea una nova millora
+     * @return una millora
+     */
     public Millora getMillora() {
         return new Millora(this.type, this.numeroMillores);
     }

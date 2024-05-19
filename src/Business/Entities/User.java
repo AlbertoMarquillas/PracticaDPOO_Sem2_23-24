@@ -35,21 +35,6 @@ public class User {
         return password;
     }
 
-    /**
-     * Getter que retorna l'identificador de l'usuari
-     * @return integer de l'identificador de l'usuari
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * Getter que retorna l'email de l'usuari
-     * @return string de l'email de l'usuari
-     */
-    public String getEmail() {
-        return email;
-    }
 
     /**
      * Getter que retorna el nom d'usuari
@@ -57,30 +42,6 @@ public class User {
      */
     public String getUsername() {
         return username;
-    }
-
-    /**
-     * Getter que retorna si l'usuari està connectat
-     * @return boolean que indica si l'usuari està connectat
-     */
-    public boolean isConnected() {
-        return connected;
-    }
-
-    /**
-     * Setter per indicar si l'usuari està connectat
-     * @param connected boolean que indica si l'usuari està connectat
-     */
-    public void setConnected(boolean connected) {
-        this.connected = connected;
-    }
-
-    /**
-     * Getter que retorna si l'usuari té una partida activa
-     * @return boolean que indica si l'usuari té una partida activa
-     */
-    public boolean isPartidaActiva() {
-        return partidaActiva;
     }
 
     /**

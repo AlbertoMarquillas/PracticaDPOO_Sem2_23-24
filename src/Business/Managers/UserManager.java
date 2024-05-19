@@ -120,39 +120,50 @@ public class UserManager {
     /**
      * Mètode que recupera la contrasenya dels usuaris conectats
      */
+    /**
+     * Retorna la contrasenya de l'usuari connectat actualment.
+     *
+     * @return la contrasenya de l'usuari connectat.
+     */
     public String getPasswordUserConnected() {
         User userConnected = userDAO.getUserConnected();
         return userConnected.getPassword();
     }
+
+    /**
+     * Retorna el nom de l'usuari connectat actualment.
+     *
+     * @return el nom de l'usuari connectat.
+     */
     public String getNameUserConnected() {
         User userConnected = userDAO.getUserConnected();
         return userConnected.getUsername();
     }
 
+    /**
+     * Comprova si el correu electrònic i la contrasenya coincideixen.
+     *
+     * @param username el nom d'usuari.
+     * @param password la contrasenya.
+     * @return true si el correu electrònic i la contrasenya coincideixen, false altrament.
+     */
     public boolean mailPass(String username, String password) {
         return userDAO.checkPasswordMail(username, password);
     }
 
+    /**
+     * Estableix que l'usuari té una partida activa.
+     */
     public void setPartidaActiva() {
         User user = userDAO.getUserConnected();
         user.setPartidaActiva(true);
     }
 
+    /**
+     * Estableix tots els usuaris connectats com a no actius.
+     */
     public void setAllConnectedsOff() {
         userDAO.setAllUsersOff();
     }
-
-
-
-
-
-    /*public boolean comprobarPartidesActives() {
-        User user = userDAO.partidaActiva();
-        if (user.isPartidaActiva()) {
-            return true;
-        }else {
-            return false;
-        }
-    }*/
 
 }

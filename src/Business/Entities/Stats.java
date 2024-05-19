@@ -18,13 +18,19 @@ public class Stats {
         this.nCoffee = nCoffee;
     }
 
-
+    /**
+     * Funcio que retorna el temps de partida
+     * @return un int que indica temps en minuts
+     */
     public int getTimeInMinutes() {
         return this.time.getMinutes();
     }
 
+    /**
+     * Funció que retorna el numero de cafés
+     * @return int amb el numero de cafés
+     */
     public int getnCoffeeint() {
-        int nCoffeeInt = (int) this.nCoffee;
-        return nCoffeeInt;
+        return (int) this.nCoffee;
     }
 }

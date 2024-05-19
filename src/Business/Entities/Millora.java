@@ -19,16 +19,21 @@ public class Millora {
 
     public double setPreu(String type, int quantitat) {
         double increment;
-        if (type.equals("A")) {
-            increment = INCREMENT_A;
-        } else if (type.equals("B")) {
-            increment = INCREMENT_B;
-        } else if (type.equals("C")) {
-            increment = INCREMENT_C;
-        } else if (type.equals("D")) {
-            increment = INCREMENT_D;
-        } else {
-            return -1;
+        switch (type) {
+            case "A":
+                increment = INCREMENT_A;
+                break;
+            case "B":
+                increment = INCREMENT_B;
+                break;
+            case "C":
+                increment = INCREMENT_C;
+                break;
+            case "D":
+                increment = INCREMENT_D;
+                break;
+            default:
+                return -1;
         }
 
         if (quantitat == 0) {
@@ -39,10 +44,12 @@ public class Millora {
         }
     }
 
-
+    /**
+     * Funcio que retorna el preu de la millora
+     * @return un double amb el preu de la millora
+     */
     public double getPreu(){
         return this.preu;
     }
 
-    // Resto del código...
 }
