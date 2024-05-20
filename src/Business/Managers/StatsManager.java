@@ -65,6 +65,10 @@ public class StatsManager {
                         this.ID_G = 0;
                         break;
                     }
+                    if (this.ID_P == -1) {
+                        this.ID_P = sqlUserDAO.getConnectedUserId();
+                        break;
+                    }
                 }
             }
         } else {
@@ -75,6 +79,11 @@ public class StatsManager {
                     break;
                 }
                 this.ID_P = ID_P - 1;
+
+                if (this.ID_P == -1) {
+                    this.ID_P = sqlUserDAO.getConnectedUserId();
+                    break;
+                }
             }
         }
     }
@@ -98,6 +107,11 @@ public class StatsManager {
                         this.ID_G = 0;
                         break;
                     }
+
+                    if (this.ID_P == sqlUserDAO.getMaxUserId()) {
+                        this.ID_P = sqlUserDAO.getConnectedUserId();
+                        break;
+                    }
                 }
             }
         }else{
@@ -106,6 +120,11 @@ public class StatsManager {
                 this.ID_P = ID_P + 1;
                 if(sqlStatsDAO.playerHasGames(ID_P)){
                     this.ID_G = 0;
+                    break;
+                }
+
+                if (this.ID_P == sqlUserDAO.getMaxUserId()) {
+                    this.ID_P = sqlUserDAO.getConnectedUserId();
                     break;
                 }
             }
