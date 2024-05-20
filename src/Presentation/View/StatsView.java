@@ -13,6 +13,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
+/**
+ * Classe de les vistes de la pantalla d'estadístiques.
+ */
 public class StatsView extends JPanel implements KeyListener, ActionListener {
 
     private CustomButton backButton;
@@ -33,6 +36,9 @@ public class StatsView extends JPanel implements KeyListener, ActionListener {
     private JLabel dynamicLabel;  // JLabel que se actualizará dinámicamente
 
 
+    /**
+     * Constructor de la classe StatsView.
+     */
     public StatsView() {
         setLayout(new GridBagLayout());
         setBackground(Color.decode("#F8F2F0"));
@@ -116,10 +122,26 @@ public class StatsView extends JPanel implements KeyListener, ActionListener {
         add(buttonPanel, gbc);
     }
 
+
+    /**
+     * Actualitza el text de l'etiqueta dinàmica amb el nom del jugador i l'identificador de joc especificats.
+     *
+     * @param player El nom del jugador.
+     * @param ID_G   L'identificador del joc.
+     */
     public void updateDynamicLabel(String player, int ID_G) {
         dynamicLabel.setText("Player: " + player + "      Game: " + ID_G);
     }
 
+
+    /**
+     * Estableix les estadístiques amb les noves dades, actualitza el text de l'etiqueta dinàmica amb el nom del jugador
+     * i l'identificador de joc especificats, i actualitza el panell d'estadístiques amb el nou gràfic.
+     *
+     * @param newStats    Les noves estadístiques.
+     * @param player      El nom del jugador.
+     * @param ID_G        L'identificador del joc.
+     */
     public void setStats(ArrayList newStats, String player, int ID_G) {
         this.stats = newStats;
 
@@ -135,15 +157,18 @@ public class StatsView extends JPanel implements KeyListener, ActionListener {
         statsPanel.repaint();
     }
 
+
+    /**
+     * Estableix les dimensions del panell del botó de retrocés.
+     *
+     * @param width  L'amplada del panell.
+     * @param height L'altura del panell.
+     */
     public void setBackButtonPanelSize(int width, int height) {
         backButtonPanel.setPreferredSize(new Dimension(width, height));
         backButtonPanel.revalidate();
     }
 
-    public void setTitleLabelPanelSize(int width, int height) {
-        titleLabelPanel.setPreferredSize(new Dimension(width, height));
-        titleLabelPanel.revalidate();
-    }
 
     public void setSettingsButtonPanelSize(int width, int height) {
         settingsButtonPanel.setPreferredSize(new Dimension(width, height));
@@ -151,27 +176,50 @@ public class StatsView extends JPanel implements KeyListener, ActionListener {
     }
 
 
+    /**
+     * Gestiona les accions produïdes per l'usuari.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
 
     }
 
+
+    /**
+     * Gestiona un esdeveniment quan s'escriu per pantalla.
+     * @param e L'esdeveniment que s'ha produit.
+     */
     @Override
     public void keyTyped(KeyEvent e) {
 
     }
 
+
+    /**
+     * Gestiona l'esdeveniment quan una tecla és premuda.
+     * @param e L'esdeveniment que representa una tecla que ha estat premuda.
+     */
     @Override
     public void keyPressed(KeyEvent e) {
 
     }
 
+
+    /**
+     * Gestiona l'esdeveniment quan una tecla és alliberada.
+     * @param e L'esdeveniment que representa una tecla que ha estat alliberada.
+     */
     @Override
     public void keyReleased(KeyEvent e) {
 
     }
 
 
+    /**
+     * Controlador dels botons de la vista.
+     *
+     * @param rvc L'objecte que gestionarà els esdeveniments dels botons.
+     */
     public void buttonController(ActionListener rvc){
         backButton.addActionListener(rvc);
         backButton.setActionCommand(BACK);

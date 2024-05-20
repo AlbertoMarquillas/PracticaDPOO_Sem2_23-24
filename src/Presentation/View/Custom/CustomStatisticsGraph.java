@@ -8,6 +8,10 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * Classe que representa un gràfic personalitzat per a les estadístiques.
+ */
 public class CustomStatisticsGraph extends JPanel{
     private ArrayList<Stats> stats;
 
@@ -16,7 +20,11 @@ public class CustomStatisticsGraph extends JPanel{
     }
 
 
-
+    /**
+     * Sobreescriu el mètode {@code paintComponent} per dibuixar un gràfic de dispersió amb línies connectades a partir de les dades d'estadístiques.
+     *
+     * @param g L'objecte {@code Graphics} utilitzat per dibuixar els components.
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -85,6 +93,13 @@ public class CustomStatisticsGraph extends JPanel{
         }
     }
 
+
+    /**
+     * Calcula l'interval de les marques de l'eix basat en el valor màxim especificat.
+     *
+     * @param max El valor màxim.
+     * @return L'interval de les marques de l'eix.
+     */
     private int calcularIntervalo(int max) {
         if (max <= 10) {
             return 1;

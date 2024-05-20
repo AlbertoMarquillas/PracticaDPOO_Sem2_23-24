@@ -78,7 +78,4 @@ public class StatsController implements ActionListener {
         }
     }
 
-    public ArrayList<Stats> getCurrentGraph() {
-        return statsManager.getCurrentStats();
-    }
 }

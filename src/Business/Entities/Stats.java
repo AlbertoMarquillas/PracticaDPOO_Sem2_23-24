@@ -4,6 +4,10 @@ package Business.Entities;
 import java.sql.Time;
 import java.util.List;
 
+
+/**
+ * Classe que representa les estadístiques d'una partida.
+ */
 public class Stats {
     private Time time;
     private double nCoffee;
