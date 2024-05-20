@@ -227,9 +227,9 @@ public class SQLGameDAO {
         return null;
     }
 
-    public int getMaxGameId() {
+    public int getMaxGameId(int ID_P) {
         try {
-            String query = "SELECT MAX(ID_G) AS max_id FROM game";
+            String query = "SELECT MAX(ID_G) AS max_id FROM game WHERE ID_P = " + ID_P;
             ResultSet result = Connector.getInstance().selectQuery(query);
             if (result.next()) {
                 return result.getInt("max_id");
@@ -241,13 +241,58 @@ public class SQLGameDAO {
         }
     }
 
-    public boolean gameIdExist(int idG) {
+    public boolean gameIdExist(int idP, int idG) {
         try {
-            String query = "SELECT * FROM game WHERE ID_G = " + idG;
+            String query = "SELECT * FROM game WHERE ID_G = " + idG + " AND ID_P = " + idP;
             ResultSet result = Connector.getInstance().selectQuery(query);
-            return result.next();
+            if (result.next()) {
+                if (result.getInt("Ended") == 1){
+                    return true;
+                }
+            } else {
+                return false;
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return false;
+    }
+
+     /**
+     * Comprueba si hay alguna partida que haya finalizado.
+     * Una partida se considera finalizada si el campo 'Ended' es igual a 1.
+     *
+     * @return true si hay al menos una partida que ha finalizado, false en caso contrario.
+     */
+    public boolean anyGameEnded() {
+        String query = "SELECT 1 FROM game WHERE Ended = 1";
+        ResultSet result = Connector.getInstance().selectQuery(query);
+        try {
+            if (result.next()) {
+                return true; // Hay al menos una partida con Ended = 1
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false; // No hay partidas con Ended = 1
+    }
+
+     /**
+     * Busca el primer usuario que tenga una partida finalizada.
+     * Una partida se considera finalizada si el campo 'Ended' es igual a 1.
+     *
+     * @return El ID del primer usuario que tiene una partida finalizada, o -1 si no se encuentra ninguno.
+     */
+    public int getConnectedUserIdEndedGame() {
+        String query = "SELECT ID_P FROM game WHERE Ended = 1 ORDER BY ID_P ASC LIMIT 1";
+        ResultSet result = Connector.getInstance().selectQuery(query);
+        try {
+            if (result.next()) {
+                return result.getInt("ID_P"); // Devuelve el ID del primer usuario con una partida finalizada
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1; // Devuelve -1 si no se encuentra ningún usuario con una partida finalizada
     }
 }

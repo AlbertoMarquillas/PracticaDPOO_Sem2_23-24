@@ -104,10 +104,9 @@ public class GameController implements ActionListener, ComptadorInterficie {
             type = "A";
 
             //Generador nou en la bbdd
-            boolean created = generatorManager.buyGenerator(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type);
+            boolean created = generatorManager.buyGenerator(ID_P, ID_G, type);
             if (created) {
-                //Update info generador 1
-                gameView.updateGenerator1(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getBaseProduction(ID_P, ID_G, type), generatorManager.getProdActual(ID_P, ID_G, type), generatorManager.updateOverallProduction(ID_P, ID_P, type));
+                gameView.updateGenerator1(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getBaseProduction(ID_P, ID_G, type), generatorManager.getProdActual(ID_P, ID_G, type), generatorManager.updateOverallProduction(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), "A"));
                 gameView.updateCostGenerator1(generatorManager.getCostActual(ID_P, ID_G, type));
             }
 

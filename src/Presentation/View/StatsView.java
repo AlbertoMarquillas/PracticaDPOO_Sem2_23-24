@@ -20,10 +20,11 @@ public class StatsView extends JPanel implements KeyListener, ActionListener {
     private JButton nextPlayerButton;
     private JButton backGameButton;
     private JButton backPlayerButton;
+    private CustomButton settingsButton;
     private CustomStatisticsGraph customStadisticsGraph;
-    private StatsController statsController;
     private ArrayList stats = new ArrayList();
     private static final String BACK = "back";
+    private static final String SETTINGS = "settings";
     private JPanel statsPanel;  // Make statsPanel an instance variable
 
     private JPanel backButtonPanel;
@@ -31,9 +32,7 @@ public class StatsView extends JPanel implements KeyListener, ActionListener {
     private JPanel settingsButtonPanel;
     private JLabel dynamicLabel;  // JLabel que se actualizará dinámicamente
 
-    /**
-     * Constructor de la classe StatsView
-     */
+
     public StatsView() {
         setLayout(new GridBagLayout());
         setBackground(Color.decode("#F8F2F0"));
@@ -43,7 +42,7 @@ public class StatsView extends JPanel implements KeyListener, ActionListener {
         backButton = new CustomButton("Back", 150, 30, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
 
         // Create a new settings button
-        CustomButton settingsButton = new CustomButton("Settings", 150, 30, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
+        settingsButton = new CustomButton("Settings", 150, 30, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
 
         backButtonPanel = new JPanel();
         setBackButtonPanelSize(200, 100);
@@ -118,7 +117,7 @@ public class StatsView extends JPanel implements KeyListener, ActionListener {
     }
 
     public void updateDynamicLabel(String player, int ID_G) {
-        dynamicLabel.setText("Player: " + player + " Game: " + ID_G);
+        dynamicLabel.setText("Player: " + player + "      Game: " + ID_G);
     }
 
     public void setStats(ArrayList newStats, String player, int ID_G) {
@@ -152,51 +151,27 @@ public class StatsView extends JPanel implements KeyListener, ActionListener {
     }
 
 
-
-    /**
-     * Gestiona les accions produïdes per l'usuari.
-     */
     @Override
     public void actionPerformed(ActionEvent e) {
 
     }
 
-
-    /**
-     * Gestiona un esdeveniment quan s'escriu per pantalla.
-     * @param e L'esdeveniment que s'ha produit.
-     */
     @Override
     public void keyTyped(KeyEvent e) {
 
     }
 
-
-    /**
-     * Gestiona l'esdeveniment quan una tecla és premuda.
-     * @param e L'esdeveniment que representa una tecla que ha estat premuda.
-     */
     @Override
     public void keyPressed(KeyEvent e) {
 
     }
 
-
-    /**
-     * Gestiona l'esdeveniment quan una tecla és alliberada.
-     * @param e L'esdeveniment que representa una tecla que ha estat alliberada.
-     */
     @Override
     public void keyReleased(KeyEvent e) {
 
     }
 
-    
-    /**
-     * Assigna un controlador d'esdeveniments als botons de navegació de la vista del joc.
-     *
-     * @param rvc l'ActionListener que gestionarà els esdeveniments dels botons.
-     */
+
     public void buttonController(ActionListener rvc){
         backButton.addActionListener(rvc);
         backButton.setActionCommand(BACK);
@@ -204,5 +179,7 @@ public class StatsView extends JPanel implements KeyListener, ActionListener {
         nextPlayerButton.addActionListener(rvc);
         backGameButton.addActionListener(rvc);
         backPlayerButton.addActionListener(rvc);
+        settingsButton.addActionListener(rvc);
+        settingsButton.setActionCommand(SETTINGS);
     }
 }

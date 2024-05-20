@@ -28,10 +28,27 @@ public class StatsManager {
 
     public void previousPlayerGraph() {
         if (sqlUserDAO.userIdExist(ID_P - 1)) {
-            this.ID_P = ID_P - 1;
+            if(sqlStatsDAO.playerHasGames(ID_P - 1)){
+                this.ID_P = ID_P - 1;
+                this.ID_G = 0;
+            }else {
+                while (true) {
+                    this.ID_P = ID_P - 1;
+                    if (sqlStatsDAO.playerHasGames(ID_P)) {
+                        this.ID_G = 0;
+                        break;
+                    }
+                }
+            }
         } else {
-            // You need to implement getMaxUserId() method in SQLUserDAO
             this.ID_P = sqlUserDAO.getMaxUserId();
+            while(true){
+                if(sqlStatsDAO.playerHasGames(ID_P)){
+                    this.ID_G = 0;
+                    break;
+                }
+                this.ID_P = ID_P - 1;
+            }
         }
     }
 
@@ -39,22 +56,39 @@ public class StatsManager {
         if (sqlUserDAO.userIdExist(ID_P + 1)) {
             if(sqlStatsDAO.playerHasGames(ID_P + 1)){
                 this.ID_P = ID_P + 1;
+                this.ID_G = 0;
+            }else{
+                while(true){
+                    this.ID_P = ID_P + 1;
+                    if(sqlStatsDAO.playerHasGames(ID_P)){
+                        this.ID_G = 0;
+                        break;
+                    }
+                }
             }
         }else{
+            this.ID_P = 0;
+            while(true){
+                this.ID_P = ID_P + 1;
+                if(sqlStatsDAO.playerHasGames(ID_P)){
+                    this.ID_G = 0;
+                    break;
+                }
+            }
         }
     }
 
     public void previousGameGraph() {
-        if (sqlGameDAO.gameIdExist(ID_G - 1)) {
+        if (sqlGameDAO.gameIdExist(this.ID_P, ID_G - 1)) {
             this.ID_G = ID_G - 1;
         } else {
             // You need to implement getMaxGameId() method in SQLGameDAO
-            this.ID_G = sqlGameDAO.getMaxGameId();
+            this.ID_G = sqlGameDAO.getMaxGameId(ID_P);
         }
     }
 
     public void nextGameGraph() {
-        if (sqlGameDAO.gameIdExist(ID_G + 1)) {
+        if (sqlGameDAO.gameIdExist(this.ID_P, ID_G + 1)) {
             this.ID_G = ID_G + 1;
         } else {
             this.ID_G = 0;
@@ -79,6 +113,6 @@ public class StatsManager {
     }
 
     public int getCurrentGameIDSatats() {
-        return sqlGameDAO.getCurrentGameId(this.ID_P);
+        return this.ID_G;
     }
 }

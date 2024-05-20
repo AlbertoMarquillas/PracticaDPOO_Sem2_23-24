@@ -81,9 +81,8 @@ public class StartController implements ActionListener {
             changeViewController.changePan("game");
 
         } else if (e.getActionCommand().equals("stats")) {
-            statsManager.setCurrentGraph(gameManager.getConnectedUserId(), 0);
-            statsView.setStats(statsManager.getCurrentStats(), userManager.getNameUserConnected(), gameManager.getCurrentGameId(statsManager.getConnectedUserId()));
-
+            statsManager.setCurrentGraph(gameManager.getConnectedUserIdEndedGame(), 0);
+            statsView.setStats(statsManager.getCurrentStats(), userManager.getUserName(gameManager.getConnectedUserIdEndedGame()), 0);
 
             changeViewController.changePan("stats");
         }

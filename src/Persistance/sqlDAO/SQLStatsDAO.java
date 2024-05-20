@@ -62,9 +62,8 @@ public class SQLStatsDAO {
      * @return true si el jugador té partides registrades; false altrament.
      */
     public boolean playerHasGames(int ID_P) {
-        String query = "SELECT 1 FROM stats WHERE ID_P = " + ID_P;
+        String query = "SELECT 1 FROM game WHERE ID_P = " + ID_P + " AND Ended = 1";
         ResultSet result = Connector.getInstance().selectQuery(query);
-
         try {
             if (result.next()) {
                 return true;

@@ -70,6 +70,8 @@ public class Comptador {
 
                 // Mientras la variable running sea true, el hilo seguirá en ejecución
                 while (running) {
+                    int ID_G = sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId());
+                    int ID_P = sqlUserDAO.getConnectedUserId();
 
                     Generator generador1 = sqlGeneratorsDAO.getGenerator(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()), "A");
                     Generator generador2 = sqlGeneratorsDAO.getGenerator(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()), "B");

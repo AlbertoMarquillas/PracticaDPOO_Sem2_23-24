@@ -63,7 +63,7 @@ public class InitialController implements ActionListener{
                     // Calcular el estado de los botones
                     boolean enabledNewGame = !gameManager.comprobarPartidesActives(gameManager.getConnectedUserId());
                     boolean enabledResumeGame = gameManager.comprobarPartidesActives(gameManager.getConnectedUserId());
-                    boolean enabledStatistics = gameManager.getCurrentGameId(gameManager.getConnectedUserId()) >= 0;
+                    boolean enabledStatistics = gameManager.anyGameEnded();
 
                     // Actualizar el estado de los botones en StartView
                     startView.setButtonsEnabled(enabledNewGame, enabledResumeGame, enabledStatistics);

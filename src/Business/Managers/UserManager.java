@@ -166,4 +166,7 @@ public class UserManager {
         userDAO.setAllUsersOff();
     }
 
+    public String getUserName(int ID_P) {
+        return userDAO.getUserNameConnected(ID_P);
+    }
 }

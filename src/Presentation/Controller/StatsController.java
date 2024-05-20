@@ -63,7 +63,7 @@ public class StatsController implements ActionListener {
             statsManager.nextPlayerGraph();
             statsView.setStats(statsManager.getCurrentStats(), statsManager.getNameUserConnected(), statsManager.getCurrentGameIDSatats());
 
-        } else if(e.getActionCommand().equals("Prevous Player")){
+        } else if(e.getActionCommand().equals("Previous Player")){
             statsManager.previousPlayerGraph();
             statsView.setStats(statsManager.getCurrentStats(), statsManager.getNameUserConnected(), statsManager.getCurrentGameIDSatats());
 

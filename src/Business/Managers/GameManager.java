@@ -245,4 +245,27 @@ public class GameManager {
 
         return botonsEnables;
     }
+
+    /**
+     * Comprova si en tota la base de dades hi ha minim una partida acabada.
+     *
+     * @return un boolea que indica si hi ha minim una partida acabada.
+     */
+    public boolean anyGameEnded() {
+        return sqlGameDAO.anyGameEnded();
+    }
+
+     /**
+     * Obté l'ID de l'usuari connectat si la seva partida ha finalitzat.
+     * Si la partida de l'usuari connectat no ha finalitzat, obté l'ID del primer usuari amb una partida finalitzada.
+     *
+     * @return L'ID de l'usuari connectat si la seva partida ha finalitzat, o l'ID del primer usuari amb una partida finalitzada si la partida de l'usuari connectat no ha finalitzat.
+     */
+    public int getConnectedUserIdEndedGame() {
+        if (sqlGameDAO.comprobarPartidaFinalitzada(sqlUserDAO.getConnectedUserId(), getCurrentGameId(sqlUserDAO.getConnectedUserId()))){
+            return sqlUserDAO.getConnectedUserId();
+        }else{
+            return sqlGameDAO.getConnectedUserIdEndedGame();
+        }
+    }
 }

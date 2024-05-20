@@ -56,8 +56,12 @@ public class GeneratorManager {
 
         Generator generator = sqlGeneratorsDAO.getGenerator(ID_P, ID_G, type);
 
-        double totalProduction = generatorA.getProduccioActual() + generatorB.getProduccioActual() + generatorC.getProduccioActual();
-        return generator.getOverallProduction(totalProduction);
+        if (generatorA == null || generatorB == null || generatorC == null || generator == null) {
+            return 0;
+        }else{
+            double totalProduction = generatorA.getProduccioActual() + generatorB.getProduccioActual() + generatorC.getProduccioActual();
+            return generator.getOverallProduction(totalProduction);
+        }
     }
 
     /**

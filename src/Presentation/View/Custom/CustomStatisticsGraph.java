@@ -36,7 +36,7 @@ public class CustomStatisticsGraph extends JPanel{
         }
 
         // Calcular el tamaño de la ventana proporcional al rango de valores
-        int windowHeight = 800;
+        int windowHeight = 600;
         int windowWidth = 1400;
         setPreferredSize(new Dimension(windowWidth, windowHeight));
         revalidate();
