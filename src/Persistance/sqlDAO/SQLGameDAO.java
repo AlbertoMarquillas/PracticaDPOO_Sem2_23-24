@@ -49,18 +49,17 @@ public class SQLGameDAO {
      * @param userId L'ID de l'usuari per al qual es comença la nova partida.
      */
     public void startNewGame(int userId) {
-        // Establecer los valores iniciales para la nueva partida
+        //Inicialitzar els valors de la nova partida
         int numGame = getGameCount(userId);
         int N_Coffees = 0;
         int PowerUpClicker = 0;
-        String Time = "00:00:00"; // Asume que el tiempo se almacena como una cadena en formato HH:MM:SS
+        String Time = "00:00:00";
         boolean Ended = false;
 
-        // Crear la consulta SQL para insertar la nueva partida
+        // Crear la consulta SQL per a afegir la nova partida a la base de dades
         String query = "INSERT INTO `game`(`ID_P`, `ID_G`, `N_Coffees`, `PowerUpClicker`, `Time`, `Ended`) VALUES " +
                 "(" + userId + ", " + numGame + ", " + N_Coffees + ", " + PowerUpClicker + ", '" + Time + "', " + Ended + ");";
 
-        // Ejecutar la consulta y devolver si se realizó con éxito
         Connector.getInstance().insertQuery(query);
     }
 
@@ -189,37 +188,8 @@ public class SQLGameDAO {
         ResultSet result = Connector.getInstance().selectQuery(query);
         try {
             if (result.next()) {
-                // Asume que el tiempo se almacena como un TIME en la base de datos
                 Time time = result.getTime("Time");
-                // Ahora puedes usar la variable 'time' en tu código
                 return time;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null; // Devuelve null si no se encuentra ningún resultado
-    }
-
-    public boolean comprobarPartidaFinalitzada(int connectedUserId, int currentGameId) {
-        String query = "SELECT * FROM game WHERE ID_P = " + connectedUserId + " AND ID_G = " + currentGameId + " AND Ended = 1";
-        ResultSet result = Connector.getInstance().selectQuery(query);
-        try {
-            if (result.next()) {
-                return true; // Hay al menos una partida con Ended = 1 para este usuario
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false; // No hay partidas con Ended = 1 para este usuario
-    }
-
-    public Millora getMilloraPowerUpClicker(int ID_P, int ID_G) {
-        String query = "SELECT powerUpClicker FROM game WHERE ID_P = " + ID_P + " AND ID_G = " + ID_G;
-        ResultSet result = Connector.getInstance().selectQuery(query);
-        try {
-            if (result.next()) {
-                return new Millora("D", result.getInt("powerUpClicker"));
-
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -227,6 +197,55 @@ public class SQLGameDAO {
         return null;
     }
 
+    /**
+     * Comprova si hi ha alguna partida que hagi finalitzat, es considera finalitzada si el camp 'Ended' és igual a 1.
+     *
+     * @param connectedUserId L'ID de l'usuari connectat.
+     * @param currentGameId L'ID del joc actual.
+     * @return Cert si hi ha almenys una partida que ha finalitzat; fals en cas contrari.
+     */
+    public boolean comprobarPartidaFinalitzada(int connectedUserId, int currentGameId) {
+        String query = "SELECT * FROM game WHERE ID_P = " + connectedUserId + " AND ID_G = " + currentGameId + " AND Ended = 1";
+        ResultSet result = Connector.getInstance().selectQuery(query);
+        try {
+            if (result.next()) {
+                return true; // Hi ha almenys una partida amb Ended = 1 per a aquest usuari
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false; //No hi ha partides amb Ended = 1 per a aquest usuari
+    }
+
+    /**
+     * Obté la informacó sobre la millora de Clicks de l'usuari.
+     * @param ID_P L'ID de l'usuari connectat.
+     * @param ID_G L'ID del joc actual.
+     * @return Retorna informacó sobre la millora de Clicks de l'usuari
+     */
+    public Millora getMilloraPowerUpClicker(int ID_P, int ID_G) {
+        String query = "SELECT powerUpClicker FROM game WHERE ID_P = " + ID_P + " AND ID_G = " + ID_G;
+        ResultSet result = Connector.getInstance().selectQuery(query);
+
+        try {
+            if (result.next()) {
+                return new Millora("D", result.getInt("powerUpClicker"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    /**
+     * Obté el màxim identificador de joc associat a un determinat identificador de jugador.
+     *
+     * @param ID_P L'identificador del jugador.
+     * @return El màxim identificador de joc associat al jugador especificat.
+     *         Si no es troba cap joc associat al jugador, es retorna -1.
+     * @throws RuntimeException Si es produeix un error en executar la consulta SQL.
+     */
     public int getMaxGameId(int ID_P) {
         try {
             String query = "SELECT MAX(ID_G) AS max_id FROM game WHERE ID_P = " + ID_P;
@@ -241,6 +260,15 @@ public class SQLGameDAO {
         }
     }
 
+
+    /**
+     * Comprova si existeix un identificador de joc per a un jugador determinat.
+     *
+     * @param idP L'identificador del jugador.
+     * @param idG L'identificador del joc.
+     * @return Cert si l'identificador de joc existeix per al jugador especificat i el joc no ha finalitzat; fals altrament.
+     * @throws RuntimeException Si es produeix un error en executar la consulta SQL.
+     */
     public boolean gameIdExist(int idP, int idG) {
         try {
             String query = "SELECT * FROM game WHERE ID_G = " + idG + " AND ID_P = " + idP;
@@ -257,6 +285,7 @@ public class SQLGameDAO {
         }
         return false;
     }
+
 
      /**
      * Comprueba si hay alguna partida que haya finalizado.
@@ -276,6 +305,7 @@ public class SQLGameDAO {
         }
         return false; // No hay partidas con Ended = 1
     }
+
 
      /**
      * Busca el primer usuario que tenga una partida finalizada.

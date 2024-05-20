@@ -1,13 +1,11 @@
 package Presentation.Controller;
 
-import Business.Entities.Stats;
 import Business.Managers.StatsManager;
 import Presentation.View.StatsView;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+
 
 public class StatsController implements ActionListener {
 

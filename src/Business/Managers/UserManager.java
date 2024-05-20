@@ -29,24 +29,6 @@ public class UserManager {
         return userDAO.createUser(name, email, password);
     }
 
-    /**
-     * Metode que comprova quines dades estan malament introduides i demana les que falten
-     * @param username nom de l'usuari
-     * @param password contrasenya de l'usuari
-     * @return retorna un string que indica si s'ha de fer un canvi de pantalla o no
-     */
-    public String comprovarDades(String username, String password){
-        if (username.isEmpty() || password.isEmpty() ) {
-            return "FillAll";
-        } else {
-            if(existUser(username)) {
-                return "WrongUser";
-            }else if (password(username, password)) {
-                return "WrongPass";
-            }else {
-                return "ChangeLog";
-            }
-        }}
 
     /**
      * Metode que crida al metode deleteUser de la classe SQLUserDAO per eliminar l'usuari
@@ -55,18 +37,6 @@ public class UserManager {
         userDAO.deleteUser(name);
     }
 
-    /**
-     * Funció que comprova si es la mateixa contrasenya i elimina el user si ho es
-     * @param password contrasenya introduida
-     * @return true si s'ha eliminat l'usuari, false si no
-     */
-    public boolean confirmPassword(String password){
-        if(samePassword(password)){
-            //deleteConnectedUser();
-            return true;
-        }
-        return false;
-    }
 
     /**
      * Mètode que crida al metode emailExist de la classe UserDAO per saber si existeix l'email
@@ -106,29 +76,14 @@ public class UserManager {
         userDAO.connectedUser(name);
     }
 
+    /**
+     * Mètode que crida al mètode disconnectedUser per poder indicar a la base de dades que l'usuari s'ha desconectat
+     * @param name nom de l'usuari
+     */
     public void disconnectedUser(String name) {
         userDAO.disconnectUser(name);
     }
 
-    /**
-     * Mètode per saber si es la mateixa contrasenya
-     */
-    public boolean samePassword(String password){
-        return getPasswordUserConnected().equals(password);
-    }
-
-    /**
-     * Mètode que recupera la contrasenya dels usuaris conectats
-     */
-    /**
-     * Retorna la contrasenya de l'usuari connectat actualment.
-     *
-     * @return la contrasenya de l'usuari connectat.
-     */
-    public String getPasswordUserConnected() {
-        User userConnected = userDAO.getUserConnected();
-        return userConnected.getPassword();
-    }
 
     /**
      * Retorna el nom de l'usuari connectat actualment.
@@ -166,6 +121,11 @@ public class UserManager {
         userDAO.setAllUsersOff();
     }
 
+    /**
+     * Obté el nom de l'usuari connectat.
+     * @param ID_P l'identificador de l'usuari.
+     * @return el nom de l'usuari connectat.
+     */
     public String getUserName(int ID_P) {
         return userDAO.getUserNameConnected(ID_P);
     }

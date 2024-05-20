@@ -173,11 +173,11 @@ public class SQLGeneratorsDAO{
         double produccioActual = generator.getProduccioActual();
         String type = generator.getTypeString();
 
-        // Actualizar el número de mejoras
+        //Actualitzar el nombre de millores
         String queryMillores = "UPDATE generators SET Num_Millores = " + numMillores + " WHERE ID_P = " + ID_P + " AND ID_G = " + ID_G + " AND Type = '" + type + "'";
         Connector.getInstance().updateQuery(queryMillores);
 
-        // Actualizar la producción actual
+        //Actualitzar la producció actual
         String queryProduccioActual = "UPDATE generators SET ProduccioActual = " + produccioActual + " WHERE ID_P = " + ID_P + " AND ID_G = " + ID_G + " AND Type = '" + type + "'";
         Connector.getInstance().updateQuery(queryProduccioActual);
     }

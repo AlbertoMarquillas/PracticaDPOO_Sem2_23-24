@@ -1,5 +1,5 @@
 package Presentation.Controller;
-import Business.Entities.ComptadorInterficie;
+import Business.Entities.DadesInterficie;
 import Business.Entities.Generator;
 import Business.Entities.Millora;
 import Business.Managers.GameManager;
@@ -10,10 +10,8 @@ import Business.Managers.MilloraManager;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
 
-public class GameController implements ActionListener, ComptadorInterficie {
+public class GameController implements ActionListener, DadesInterficie {
 
     public final ChangeViewController changeViewController;
     private final GameView gameView;
@@ -87,7 +85,6 @@ public class GameController implements ActionListener, ComptadorInterficie {
             changeViewController.setComptador(false);
             changeViewController.changePan("settings");
         } else if (e.getActionCommand().equals("createcofee")) {
-            //if(gameManager.)
             double n_Caffee = 0;
             int value = gameManager.getQuantitatMillores(ID_P, ID_G);
             if(value == 0) {
@@ -112,16 +109,14 @@ public class GameController implements ActionListener, ComptadorInterficie {
 
             gameView.updateComptadorSize(getSizeComp());
 
-            //produccio total de cafes generats
-
         }else if (e.getActionCommand().equals("potenciador2")){
             type = "B";
             generatorManager.buyGenerator(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type);
+
             //Update info generador 1
             gameView.updateGenerator2(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getBaseProduction(ID_P, ID_G, type), generatorManager.getProdActual(ID_P, ID_G, type), generatorManager.updateOverallProduction(ID_P, ID_G, type));
             gameView.updateCostGenerator2(generatorManager.getCostActual(ID_P, ID_G, type));
             gameView.updateComptadorSize(getSizeComp());
-
 
         }else if (e.getActionCommand().equals("potenciador3")){
             type = "C";
@@ -151,7 +146,6 @@ public class GameController implements ActionListener, ComptadorInterficie {
             generatorManager.buyMillora(gameManager.getConnectedUserId(), gameManager.getCurrentGameId(gameManager.getConnectedUserId()), type);
             gameView.updateGenerator3(generatorManager.getQuantitatGenerados(ID_P, ID_G, type), generatorManager.getBaseProduction(ID_P, ID_G, type), generatorManager.getProdActual(ID_P, ID_G, type), generatorManager.updateOverallProduction(ID_P, ID_G, type));
             gameView.updateComptadorSize(getSizeComp());
-
 
         }else if (e.getActionCommand().equals("millora4")){
             type = "D";
@@ -183,6 +177,7 @@ public class GameController implements ActionListener, ComptadorInterficie {
         }
     }
 
+
     /**
      * Actualitza la taula de contingut a la vista del joc amb les dades proporcionades pels generadors especificats.
      *
@@ -204,6 +199,13 @@ public class GameController implements ActionListener, ComptadorInterficie {
         gameView.updateCostGenerator3(generatorManager.getCostActual(ID_P, ID_G, "C"));
     }
 
+    /**
+     * Actualitza les millores de la vista del joc amb les dades proporcionades.
+     * @param millora1 primera millora
+     * @param millora2 segona millora
+     * @param millora3 tercera millora
+     * @param millora4 cuarta millora
+     */
     @Override
     public void setMillores(Millora millora1, Millora millora2, Millora millora3, Millora millora4) {
 
@@ -212,6 +214,7 @@ public class GameController implements ActionListener, ComptadorInterficie {
         gameView.updateCostMillora3(millora3.getPreu());
         gameView.updateCostMillora4(millora4.getPreu());
     }
+
 
     /**
      * Metode que actualitza la quantitat de cafes
@@ -241,12 +244,13 @@ public class GameController implements ActionListener, ComptadorInterficie {
         return tamany >= 1000;
     }
 
+
     /**
      * Estableix el comptador d'interfície per al gestor de jocs.
      *
-     * @param comptadorInterficie El comptador d'interfície a establir.
+     * @param dadesInterficie El comptador d'interfície a establir.
      */
-    public void setComptadorInterficie(ComptadorInterficie comptadorInterficie) {
-        gameManager.setComptadorInterficie(comptadorInterficie);
+    public void setComptadorInterficie(DadesInterficie dadesInterficie) {
+        gameManager.setComptadorInterficie(dadesInterficie);
     }
 }

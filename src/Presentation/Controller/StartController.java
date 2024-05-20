@@ -76,7 +76,6 @@ public class StartController implements ActionListener {
             changeViewController.changePan("game");
 
         } else if (e.getActionCommand().equals("resumegame")) {
-            //Carregar la partida
             changeViewController.setComptador(true);
             changeViewController.changePan("game");
 

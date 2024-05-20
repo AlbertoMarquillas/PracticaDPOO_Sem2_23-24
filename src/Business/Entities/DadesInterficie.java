@@ -1,6 +1,6 @@
 package Business.Entities;
 
-public interface ComptadorInterficie {
+public interface DadesInterficie {
 
     /**
      * Actualitza la quantitat de cafès

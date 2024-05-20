@@ -1,19 +1,17 @@
 package Business.Managers;
 
 import Business.Entities.Comptador;
-import Business.Entities.ComptadorInterficie;
+import Business.Entities.DadesInterficie;
 import Business.Entities.Generator;
 import Business.Entities.Millora;
 import Persistance.sqlDAO.SQLGameDAO;
 import Persistance.sqlDAO.SQLGeneratorsDAO;
 import Persistance.sqlDAO.SQLStatsDAO;
 import Persistance.sqlDAO.SQLUserDAO;
-import Presentation.View.GameView;
 
 import java.sql.Time;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * El GameManager gestiona la lògica de negoci del joc, incloent-hi el seguiment de les estadístiques, la compra de millores i altres funcionalitats relacionades amb el joc.
@@ -44,10 +42,10 @@ public class GameManager {
     /**
      * Estableix la interfície del comptador (Comptador) que s'utilitzarà per comptar els esdeveniments del joc.
      *
-     * @param comptadorInterficie la interfície del comptador que s'ha d'establir.
+     * @param dadesInterficie la interfície del comptador que s'ha d'establir.
      */
-    public void setComptadorInterficie(ComptadorInterficie comptadorInterficie) {
-        comptador.setComptadorInterficie(comptadorInterficie);
+    public void setComptadorInterficie(DadesInterficie dadesInterficie) {
+        comptador.setComptadorInterficie(dadesInterficie);
     }
 
     /**

@@ -7,7 +7,6 @@ public class User {
     private final String username;
     private final String password;
     private boolean connected;
-
     private boolean partidaActiva;
 
     /**

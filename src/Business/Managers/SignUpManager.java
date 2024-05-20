@@ -26,7 +26,6 @@ public class SignUpManager {
 
         int uppercaseCounter = 0, lowercaseCounter = 0, digitCounter = 0, specialCounter = 0;
 
-
         //Comprovo que estigui tot omplert
         if (username.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
             return "FillAll";
@@ -45,6 +44,7 @@ public class SignUpManager {
                     specialCounter++;
                 }
             }
+
             //miro la llargaria de la contrasenya i tota la resta de requisits
             if (password.length() < 8) {
                 return "ContrasenyaLalarga";

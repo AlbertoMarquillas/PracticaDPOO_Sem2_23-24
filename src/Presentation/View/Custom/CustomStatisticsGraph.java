@@ -67,7 +67,7 @@ public class CustomStatisticsGraph extends JPanel{
         g2d.setColor(Color.decode("#3B1211"));
         g2d.drawString("Time (min)", getWidth() / 2 - 40, getHeight() - 10);
         g2d.rotate(-Math.PI / 2);
-        g2d.drawString("Number of Coffees", -getHeight() / 2 - 50, 40);
+        g2d.drawString("Number of Coffees", -getHeight() / 2 - 50, 10);
         g2d.rotate(Math.PI / 2);
 
         int xInterval = calcularIntervalo(maxX);

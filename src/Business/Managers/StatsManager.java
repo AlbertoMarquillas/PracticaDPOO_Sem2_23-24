@@ -6,7 +6,6 @@ import Persistance.sqlDAO.SQLGameDAO;
 import Persistance.sqlDAO.SQLUserDAO;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Classe que gestiona les estadístiques dels jugadors.

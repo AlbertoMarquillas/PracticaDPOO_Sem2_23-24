@@ -172,8 +172,7 @@ public class RegisterController implements ActionListener {
                 case "JaExisteixUserName" -> nameAlreadyExist();
             }
 
-
-        }else if (e.getActionCommand().equals("login")) {
+        } else if (e.getActionCommand().equals("login")) {
             changeViewController.changePan("login");
         }
     }

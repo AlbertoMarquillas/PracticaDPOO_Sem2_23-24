@@ -8,7 +8,9 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-
+/**
+ * La classe SQLUserDAO és un DAO que s'encarrega de gestionar les dades dels usuaris a la base de dades.
+*/
 public class SQLUserDAO{
 
     /**
@@ -63,6 +65,7 @@ public class SQLUserDAO{
         return -1; // Retorna -1 si no hay ningún usuario conectado
     }
 
+
     /**
      * Comprova si l'usuari existeix a la base de dades.
      *
@@ -78,6 +81,7 @@ public class SQLUserDAO{
             return false;
         }
     }
+
 
     /**
      * Comprova si l'email existeix a la base de dades.
@@ -95,6 +99,7 @@ public class SQLUserDAO{
         }
     }
 
+
     /**
      * Esborra un usuari de la base de dades segons el nom d'usuari proporcionat.
      *
@@ -107,6 +112,7 @@ public class SQLUserDAO{
         Connector.getInstance().deleteQuery(query);
         return true;
     }
+
 
     /**
      * Comprova si la contrasenya correspon al nom d'usuari especificat.

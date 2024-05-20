@@ -1,7 +1,5 @@
 package Business.Managers;
 
-import Business.Entities.Generator;
-import Business.Entities.Millora;
 
 /**
  * Gestiona les operacions relacionades amb les millores, com ara obtenir el cost d'una millora.

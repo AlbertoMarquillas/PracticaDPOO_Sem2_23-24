@@ -14,7 +14,7 @@ public class Comptador {
     private final SQLUserDAO sqlUserDAO;
     private final SQLGeneratorsDAO sqlGeneratorsDAO;
     private final SQLStatsDAO sqlStatsDAO;
-    private ComptadorInterficie comptadorInterficie;
+    private DadesInterficie dadesInterficie;
     private Thread thread;
     private boolean running;
 
@@ -52,77 +52,59 @@ public class Comptador {
 
         this.thread = new Thread() {
             public void run() {
-                boolean flag = false;
 
-                // Mientras la variable running sea true, el hilo seguirá en ejecución
-                while (running) {
-                    int ID_G = sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId());
-                    int ID_P = sqlUserDAO.getConnectedUserId();
+            while (running) {
+                Generator generador1 = sqlGeneratorsDAO.getGenerator(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()), "A");
+                Generator generador2 = sqlGeneratorsDAO.getGenerator(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()), "B");
+                Generator generador3 = sqlGeneratorsDAO.getGenerator(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()), "C");
 
-                    Generator generador1 = sqlGeneratorsDAO.getGenerator(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()), "A");
-                    Generator generador2 = sqlGeneratorsDAO.getGenerator(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()), "B");
-                    Generator generador3 = sqlGeneratorsDAO.getGenerator(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()), "C");
+                double nCoffee = sqlGameDAO.getNCoffees(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()));
+                double gen1 = generador1.getProduccioActual();
+                double gen2 = generador2.getProduccioActual();
+                double gen3 = generador3.getProduccioActual();
 
-                    double nCoffee = sqlGameDAO.getNCoffees(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()));
-                    double gen1 = generador1.getProduccioActual();
-                    double gen2 = generador2.getProduccioActual();
-                    double gen3 = generador3.getProduccioActual();
+                generador1.setProduccioGlobal(gen1);
+                generador2.setProduccioGlobal(gen2);
+                generador3.setProduccioGlobal(gen3);
 
-                    generador1.setProduccioGlobal(gen1);
-                    generador2.setProduccioGlobal(gen2);
-                    generador3.setProduccioGlobal(gen3);
+                //Incrementar la quantitat de café en funció de la producció dels generadors
+                nCoffee = nCoffee + (gen1) + (gen2) + (gen3);
 
-                    // Incrementar nCoffee por la cantidad de café producido por cada generador
-                    nCoffee = nCoffee + (gen1) + (gen2) + (gen3);
+                //Actualizar la quantitat de cafes a la bbdd cada 1 seg
+                Time savedTime = sqlGameDAO.getSavedTime(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()));
+                LocalTime localTime = savedTime.toLocalTime();
+                localTime = localTime.plusSeconds(1);
+                savedTime = Time.valueOf(localTime);
+                sqlGameDAO.setGameTime(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()), savedTime);
 
-                    // Obtener savedTime de la base de datos
-                    Time savedTime = sqlGameDAO.getSavedTime(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()));
-
-                    // Convertir el Time a LocalTime
-                    LocalTime localTime = savedTime.toLocalTime();
-
-                    // Incrementar el LocalTime en un segundo
-                    localTime = localTime.plusSeconds(1);
-
-                    // Convertir el LocalTime de nuevo a Time
-                    savedTime = Time.valueOf(localTime);
-
-                    // Actualizar el tiempo en la base de datos
-                    sqlGameDAO.setGameTime(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()), savedTime);
-
-                    // Si ha pasado un minuto, ejecutar una función
-                    if (localTime.getSecond() == 0 ) {
-                        sqlStatsDAO.setSavedStats(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()), savedTime, nCoffee);
-                    }
-
-
-                    comptadorInterficie.setTaulaContenido(generador1, generador2, generador3);
-                    comptadorInterficie.setMillores(generador1.getMillora(), generador2.getMillora(), generador3.getMillora(), sqlGameDAO.getMilloraPowerUpClicker(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId())));
-                    
-                    // Actualizar la interfaz del contador con la cantidad actual de café y la producción total de los generadores
-                    comptadorInterficie.updateQuantitatCoffe(nCoffee, generador1, generador2, generador3);
-
-                    try {
-                        // Hacer que el hilo duerma durante un segundo antes de continuar con la próxima iteración
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        // Imprimir la traza de la pila si se produce una excepción
-                        e.printStackTrace();
-                    }
+                //Guardar les estadístiques a la bbdd cada 1 seg
+                if (localTime.getSecond() == 0 ) {
+                    sqlStatsDAO.setSavedStats(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId()), savedTime, nCoffee);
                 }
+
+                //Actualitzar les dades dels generadors, les millores i el comptador de GameView cada 1 seg
+                dadesInterficie.setTaulaContenido(generador1, generador2, generador3);
+                dadesInterficie.setMillores(generador1.getMillora(), generador2.getMillora(), generador3.getMillora(), sqlGameDAO.getMilloraPowerUpClicker(sqlUserDAO.getConnectedUserId(), sqlGameDAO.getCurrentGameId(sqlUserDAO.getConnectedUserId())));
+                dadesInterficie.updateQuantitatCoffe(nCoffee, generador1, generador2, generador3);
+
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
             }
 
         };
 
-        // Iniciar el hilo
         thread.start();
     }
 
     /**
      * Funció que setteja el comptador
      */
-    public void setComptadorInterficie(ComptadorInterficie comptadorInterficie) {
-        this.comptadorInterficie = comptadorInterficie;
+    public void setComptadorInterficie(DadesInterficie dadesInterficie) {
+        this.dadesInterficie = dadesInterficie;
     }
 
 }

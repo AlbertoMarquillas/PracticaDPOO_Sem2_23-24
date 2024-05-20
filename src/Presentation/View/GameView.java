@@ -767,10 +767,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
      */
     public void updateCostMillora1(double costActual){
         setCostMillora1(costActual);
-
-        System.out.println("Cost actual: " + costActual);
         this.labelMillora1.setText(String.valueOf(costActual));
-        System.out.println("Label: " + labelMillora1);
         millora1.repaint();
     }
 
@@ -782,10 +779,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
      */
     public void updateCostMillora4(double costActual){
         setCostMillora4(costActual);
-
-        System.out.println("Cost actual: " + costActual);
         this.labelMillora4.setText(String.valueOf(costActual));
-        System.out.println("Label: " + labelMillora4);
         millora1.repaint();
     }
 
@@ -797,10 +791,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
      */
     public void updateCostMillora2(double costActual){
         setCostMillora2(costActual);
-
-        System.out.println("Cost actual: " + costActual);
         this.labelMillora2.setText(String.valueOf(costActual));
-        System.out.println("Label: " + labelMillora2);
         millora1.repaint();
     }
 
@@ -812,10 +803,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
      */
     public void updateCostMillora3(double costActual){
         setCostMillora3(costActual);
-
-        System.out.println("Cost actual: " + costActual);
         this.labelMillora3.setText(String.valueOf(costActual));
-        System.out.println("Label: " + labelMillora3);
         millora1.repaint();
     }
 
