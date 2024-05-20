@@ -240,16 +240,29 @@ public class SQLUserDAO{
         Connector.getInstance().updateQuery(query);
     }
 
-    public boolean userIdExist(int idP) {
-    try {
-        String query = "SELECT * FROM user WHERE id = " + idP;
-        ResultSet result = Connector.getInstance().selectQuery(query);
-        return result.next();
-    } catch (SQLException e) {
-        throw new RuntimeException(e);
-    }
-}
 
+    /**
+     * Comprova si un identificador d'usuari existeix a la base de dades.
+     *
+     * @param idP  l'ID de l'usuari a comprovar.
+     * @return true si l'ID d'usuari existeix; false altrament.
+     */
+    public boolean userIdExist(int idP) {
+        try {
+            String query = "SELECT * FROM user WHERE id = " + idP;
+            ResultSet result = Connector.getInstance().selectQuery(query);
+            return result.next();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    /**
+     * Obté el valor màxim de l'identificador d'usuari a partir de la base de dades.
+     *
+     * @return el valor màxim de l'identificador d'usuari; -1 si no es troba cap valor.
+     */
     public int getMaxUserId() {
         try {
             String query = "SELECT MAX(id) AS max_id FROM user";
@@ -264,6 +277,13 @@ public class SQLUserDAO{
         }
     }
 
+
+    /**
+     * Obté el nom d'usuari connectat a partir de l'ID d'usuari especificat.
+     *
+     * @param idP  l'ID de l'usuari.
+     * @return el nom d'usuari connectat; null si no es troba cap resultat.
+     */
     public String getUserNameConnected(int idP) {
         try {
             String query = "SELECT UserName FROM user WHERE id = " + idP;

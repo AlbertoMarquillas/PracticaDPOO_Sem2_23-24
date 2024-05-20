@@ -74,20 +74,6 @@ public class SQLGeneratorsDAO{
         }
     }
 
-    // Getter and Setter for Num_Millores
-    public int getNumMillores(String type) {
-        String query = "SELECT Num_Millores FROM generators WHERE Type = '" + type + "'";
-        ResultSet result = Connector.getInstance().selectQuery(query);
-        int numMillores = 0;
-        try {
-            if (result.next()) {
-                numMillores = result.getInt("Num_Millores");
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return numMillores;
-    }
 
     /**
      * Obté el generador de l'usuari i joc especificats del tipus indicat.
@@ -117,6 +103,13 @@ public class SQLGeneratorsDAO{
         return null; // Devolver null si no se encuentra el generador
     }
 
+
+    /**
+     * Inicialitza els generadors amb els valors especificats i els insereix a la base de dades.
+     *
+     * @param ID_P  l'ID del projecte al qual estan associats els generadors.
+     * @param ID_G  l'ID del generador.
+     */
     public void initGenerators(int ID_P, int ID_G) {
         String types[] = {"A", "B", "C"};
         int quantitats[] = {0, 0, 0};       //AIXO HO FEM MANUALMENT
@@ -132,6 +125,15 @@ public class SQLGeneratorsDAO{
         }
     }
 
+
+    /**
+     * Compra un generador específic i actualitza la informació a la base de dades.
+     *
+     * @param ID_P      l'ID del projecte al qual està associat el generador.
+     * @param ID_G      l'ID del generador.
+     * @param type      el tipus del generador a comprar.
+     * @param generator l'objecte Generador que representa el generador a comprar.
+     */
     public void buyGenerator(int ID_P, int ID_G, String type, Generator generator) {
         generator.buyGenerator();
         String query = "UPDATE generators SET Quantitat = " + generator.getQuantitat() + ", " +
@@ -143,12 +145,29 @@ public class SQLGeneratorsDAO{
         Connector.getInstance().updateQuery(query);
     }
 
+
+    /**
+     * Actualitza la producció dels generadors de cafè i actualitza la informació a la base de dades.
+     *
+     * @param connectedUserId  l'ID de l'usuari connectat.
+     * @param currentGameId    l'ID del joc actual.
+     * @param generator        l'objecte Generador que representa el generador de cafè a actualitzar.
+     */
     public void updateCaffeeGenerators(int connectedUserId, int currentGameId, Generator generator) {
         String type = generator.getTypeString();
         String query = "UPDATE generators SET ProduccioActual = " + generator.getProduccioActual() + ", "+ " ProduccioGlobal = " + generator.getProduccioGlobal() +
                 " WHERE ID_P = " + connectedUserId + " AND ID_G = " + currentGameId + " AND Type = '" + type + "'";
         Connector.getInstance().updateQuery(query);
     }
+
+
+    /**
+     * Actualitza el nombre de millores i la producció actual d'un generador i actualitza la informació a la base de dades.
+     *
+     * @param ID_P      l'ID del projecte al qual està associat el generador.
+     * @param ID_G      l'ID del generador.
+     * @param generator l'objecte Generador que representa el generador a actualitzar.
+     */
     public void updateMilloresAndProduccioActual(int ID_P, int ID_G, Generator generator) {
         int numMillores = generator.getNumeroMillores();
         double produccioActual = generator.getProduccioActual();

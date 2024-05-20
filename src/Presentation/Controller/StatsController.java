@@ -27,11 +27,21 @@ public class StatsController implements ActionListener {
         this.statsView = statsView;
     }
 
-
+    /**
+     * Comprova si l'usuari ha vingut des de les estadístiques.
+     *
+     * @return true si l'usuari ha vingut des de les estadístiques; false altrament.
+     */
     public boolean isCameFromStats() {
         return cameFromStats;
     }
 
+
+    /**
+     * Estableix si l'usuari ha vingut des de les estadístiques.
+     *
+     * @param cameFromStats true si l'usuari ha vingut des de les estadístiques; false altrament.
+     */
     public void setCameFromStats(boolean cameFromStats) {
         this.cameFromStats = cameFromStats;
     }

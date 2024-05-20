@@ -37,11 +37,18 @@ public class CustomButton extends JButton {
         applyCustomStyles();
     }
 
+
+    /**
+     * Constructor d'un botó personalitzat amb les dimensions i el color de fons especificats.
+     *
+     * @param width   l'amplada del botó.
+     * @param height  l'altura del botó.
+     * @param bgColor el color de fons del botó.
+     */
     public CustomButton(int width, int height, Color bgColor) {
         setOpaque(false);
         setButtonSize(width, height);
         setBackgroundColor(bgColor);
-
     }
 
 
@@ -154,16 +161,6 @@ public class CustomButton extends JButton {
      */
     public int getArcHeight() {
         return ArcHeight;
-    }
-
-
-    /**
-     * Estableix l'altura de les vores arrodonides del botó.
-     *
-     * @param arcHeight L'altura desitjada per a les vores arrodonides.
-     */
-    public void setArcHeight(int arcHeight) {
-        this.ArcHeight = arcHeight;
     }
 
 

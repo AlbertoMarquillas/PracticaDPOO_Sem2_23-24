@@ -41,10 +41,21 @@ public class StartController implements ActionListener {
     }
 
 
+    /**
+     * Comprova si l'usuari ha vingut des de l'inici.
+     *
+     * @return true si l'usuari ha vingut des de l'inici; false altrament.
+     */
     public boolean isCameFromStart() {
         return cameFromStart;
     }
 
+
+    /**
+     * Estableix si l'usuari ha vingut des de l'inici.
+     *
+     * @param cameFromStart true si l'usuari ha vingut des de l'inici; false altrament.
+     */
     public void setCameFromStart(boolean cameFromStart) {
         this.cameFromStart = cameFromStart;
     }

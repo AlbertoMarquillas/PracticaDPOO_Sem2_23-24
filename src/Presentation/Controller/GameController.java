@@ -38,10 +38,22 @@ public class GameController implements ActionListener, ComptadorInterficie {
         this.milloraManager = milloraManager;
     }
 
+
+    /**
+     * Comprova si l'usuari ha vingut des d'una partida.
+     *
+     * @return true si l'usuari ha vingut des d'una partida; false altrament.
+     */
     public boolean isCameFromGame() {
         return cameFromGame;
     }
 
+
+    /**
+     * Estableix si l'usuari ha vingut des d'una partida.
+     *
+     * @param cameFromGame true si l'usuari ha vingut des d'una partida; false altrament.
+     */
     public void setCameFromGame(boolean cameFromGame) {
         this.cameFromGame = cameFromGame;
     }
@@ -219,10 +231,15 @@ public class GameController implements ActionListener, ComptadorInterficie {
 
     }
 
+
+    /**
+     * Obté la mida de la competició.
+     *
+     * @return true si la mida de la competició és superior o igual a 1000; false altrament.
+     */
     public boolean getSizeComp(){
         double tamany = gameManager.getCaffeeNumber();
         return tamany >= 1000;
-
     }
 
     /**

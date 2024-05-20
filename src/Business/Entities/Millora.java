@@ -11,12 +11,26 @@ public class Millora {
     private double preu; //cost del valor de millora
     private int quantitat;
 
+    /**
+     * Constructor de la classe Millora.
+     *
+     * @param type       el tipus de millora a aplicar.
+     * @param quantitat  la quantitat de la millora.
+     */
     public Millora(String type, int quantitat) {
         this.type = type;
         this.preu = setPreu(type, quantitat);
         this.quantitat = quantitat;
     }
 
+
+    /**
+     * Estableix el preu de la millora basant-se en el tipus i la quantitat especificats.
+     *
+     * @param type       el tipus de millora.
+     * @param quantitat  la quantitat de la millora.
+     * @return el preu de la millora.
+     */
     public double setPreu(String type, int quantitat) {
         double increment;
         switch (type) {

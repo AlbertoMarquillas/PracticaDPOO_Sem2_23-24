@@ -31,7 +31,9 @@ public class StatsView extends JPanel implements KeyListener, ActionListener {
     private JPanel settingsButtonPanel;
     private JLabel dynamicLabel;  // JLabel que se actualizará dinámicamente
 
-
+    /**
+     * Constructor de la classe StatsView
+     */
     public StatsView() {
         setLayout(new GridBagLayout());
         setBackground(Color.decode("#F8F2F0"));
@@ -150,27 +152,51 @@ public class StatsView extends JPanel implements KeyListener, ActionListener {
     }
 
 
+
+    /**
+     * Gestiona les accions produïdes per l'usuari.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
 
     }
 
+
+    /**
+     * Gestiona un esdeveniment quan s'escriu per pantalla.
+     * @param e L'esdeveniment que s'ha produit.
+     */
     @Override
     public void keyTyped(KeyEvent e) {
 
     }
 
+
+    /**
+     * Gestiona l'esdeveniment quan una tecla és premuda.
+     * @param e L'esdeveniment que representa una tecla que ha estat premuda.
+     */
     @Override
     public void keyPressed(KeyEvent e) {
 
     }
 
+
+    /**
+     * Gestiona l'esdeveniment quan una tecla és alliberada.
+     * @param e L'esdeveniment que representa una tecla que ha estat alliberada.
+     */
     @Override
     public void keyReleased(KeyEvent e) {
 
     }
 
-
+    
+    /**
+     * Assigna un controlador d'esdeveniments als botons de navegació de la vista del joc.
+     *
+     * @param rvc l'ActionListener que gestionarà els esdeveniments dels botons.
+     */
     public void buttonController(ActionListener rvc){
         backButton.addActionListener(rvc);
         backButton.setActionCommand(BACK);

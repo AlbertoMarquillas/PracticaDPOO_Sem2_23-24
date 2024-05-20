@@ -107,14 +107,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         millora3 = createMilloraButton("<html><div style='text-align: center;'>Double the efficiency<br>in STEAMY BREW</div></html>");
         millora4 = createMilloraButton("<html><div style='text-align: center;'>Double the efficiency<br>in clicks</div></html>");
 
-        //hacer que si se pulsa el boton millora 1, quantitatPotenciadors1 sume +1
-
-        //Comptador de cafès generats
-        //Fara falta canviar el valor del contador per la variable
-
-
         this.contador = new CustomLabel(this.text, new Font("Segoe UI Black", Font.PLAIN, 50), Color.decode("#F8F2F0"));
-
 
         //Crear els títols de la finestra
         CustomLabel supTitleLabel = new CustomLabel("COFFEE", new Font("Bauhaus 93", Font.BOLD, 80), Color.decode("#DB5C39"));
@@ -277,6 +270,12 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
     }
 
 
+    /**
+     * Crea un botó de millora personalitzat amb el text especificat.
+     *
+     * @param text el text a mostrar al botó de millora.
+     * @return un objecte CustomButton que representa el botó de millora creat.
+     */
     public CustomButton createMilloraButton(String text){
         JLabel cost;
         if(text.equals("<html><div style='text-align: center;'>Double the efficiency<br>in BARISTA BOOST</div></html>")){
@@ -320,7 +319,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
     }
 
     /**
-     * Funció que crea un JPanel pels potenciadors amb un layout i un color determinat.
+     * Crea un JPanel pels potenciadors amb un layout i un color determinat.
      * @param pathFoto  Ruta de la imatge del potenciador
      * @param nom Nom del potenciador
      * @param cost Cost del potenciador
@@ -395,7 +394,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
 
 
     /**
-     * Funció que crea una JTable amb les dades dels potenciadors.
+     * Crea una JTable amb les dades dels potenciadors.
      * @return JTable amb les dades dels generadors
      */
     public static JTable createTable(int quantitatPotenciadors1, int quantitatPotenciadors2, int quantitatPotenciadors3,
@@ -473,6 +472,11 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
     }
 
 
+    /**
+     * Actualitza la mida del comptador.
+     *
+     * @param sizeComp true si la mida de la competició és gran; false altrament.
+     */
     public void updateComptadorSize(boolean sizeComp){
         if(sizeComp){
             this.contador.setFont(new Font("Segoe UI Black", Font.PLAIN, 35));
@@ -524,7 +528,6 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         this.contador.setMinimumSize(size);
         this.contador.setMaximumSize(size);
         this.contador.setPreferredSize(size);
-
         this.contador.repaint();
     }
 
@@ -595,6 +598,12 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         tableModel.fireTableDataChanged();
     }
 
+
+    /**
+     * Estableix si els botons de la vista del joc estan habilitats o no.
+     *
+     * @param enabled una llista d'Boolean que indica si cada botó està habilitat (true) o no (false).
+     */
     public void setGameViewButtonsEnabled(ArrayList<Boolean> enabled) {
         setPotenciador1Enable(enabled.get(0));
         setPotenciador2Enable(enabled.get(1));
@@ -606,6 +615,12 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         this.repaint();
     }
 
+
+    /**
+     * Habilita o deshabilita el botó de millora 4 i actualitza el seu color de fons.
+     *
+     * @param aBoolean true per habilitar el botó; false per deshabilitar-lo.
+     */
     private void setMillora4Enable(Boolean aBoolean) {
         millora4.setEnabled(aBoolean);
         if (aBoolean) {
@@ -615,6 +630,12 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         }
     }
 
+
+    /**
+     * Habilita o deshabilita el botó de millora 3 i actualitza el seu color de fons.
+     *
+     * @param aBoolean true per habilitar el botó; false per deshabilitar-lo.
+     */
     private void setMillora3Enable(Boolean aBoolean) {
         millora3.setEnabled(aBoolean);
         if (aBoolean) {
@@ -624,6 +645,12 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         }
     }
 
+
+    /**
+     * Habilita o deshabilita el botó de millora 2 i actualitza el seu color de fons.
+     *
+     * @param aBoolean true per habilitar el botó; false per deshabilitar-lo.
+     */
     private void setMillora2Enable(Boolean aBoolean) {
         millora2.setEnabled(aBoolean);
         if (aBoolean) {
@@ -632,6 +659,13 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
             millora2.setBackgroundColor(Color.LIGHT_GRAY);
         }
     }
+
+
+    /**
+     * Habilita o deshabilita el botó de millora 1 i actualitza el seu color de fons.
+     *
+     * @param aBoolean true per habilitar el botó; false per deshabilitar-lo.
+     */
 
     private void setMillora1Enable(Boolean aBoolean) {
         millora1.setEnabled(aBoolean);
@@ -642,6 +676,12 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         }
     }
 
+
+    /**
+     * Habilita o deshabilita el botó del potenciador 3 i actualitza el seu color de fons i text.
+     *
+     * @param aBoolean true per habilitar el botó; false per deshabilitar-lo.
+     */
     private void setPotenciador3Enable(Boolean aBoolean) {
         potenciador3.setEnabled(aBoolean);
         if (aBoolean) {
@@ -653,6 +693,12 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         }
     }
 
+
+    /**
+     * Habilita o deshabilita el botó del potenciador 1 i actualitza el seu color de fons i text.
+     *
+     * @param enableNew true per habilitar el botó; false per deshabilitar-lo.
+     */
     public void setPotenciador1Enable (boolean enableNew) {
         potenciador1.setEnabled(enableNew);
         if (enableNew) {
@@ -664,6 +710,12 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         }
     }
 
+
+    /**
+     * Habilita o deshabilita el botó del potenciador 2 i actualitza el seu color de fons i text.
+     *
+     * @param enableNew true per habilitar el botó; false per deshabilitar-lo.
+     */
     public void setPotenciador2Enable (boolean enableNew) {
         potenciador2.setEnabled(enableNew);
         if (enableNew) {
@@ -685,16 +737,34 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         this.cost1 = Math.round(costActual * 100.0) / 100.0;
         this.labelPotCost1.setText("Cost: " + String.valueOf(this.cost1));
     }
+
+
+    /**
+     * Actualitza el cost del generador 2 i actualitza el text de la etiqueta de cost.
+     *
+     * @param costActual el cost actual del generador 2.
+     */
     public void updateCostGenerator2(double costActual) {
         this.cost2 = Math.round(costActual * 100.0) / 100.0;
         this.labelPotCost2.setText("Cost: " + String.valueOf(this.cost2));
     }
 
+    /**
+     * Actualitza el cost del generador 3 i actualitza el text de l'etiqueta de cost.
+     *
+     * @param costActual el cost actual del generador 3.
+     */
     public void updateCostGenerator3(double costActual) {
         this.cost3 = Math.round(costActual * 100.0) / 100.0;
         this.labelPotCost3.setText("Cost: " + String.valueOf(this.cost3));
     }
 
+
+    /**
+     * Actualitza el cost de la millora 1 i actualitza el text de l'etiqueta de cost.
+     *
+     * @param costActual el cost actual de la millora 1.
+     */
     public void updateCostMillora1(double costActual){
         setCostMillora1(costActual);
 
@@ -704,6 +774,12 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
         millora1.repaint();
     }
 
+
+    /**
+     * Actualitza el cost de la millora 4 i actualitza el text de l'etiqueta de cost.
+     *
+     * @param costActual el cost actual de la millora 4.
+     */
     public void updateCostMillora4(double costActual){
         setCostMillora4(costActual);
 
@@ -714,6 +790,11 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
     }
 
 
+    /**
+     * Actualitza el cost de la millora 2 i actualitza el text de l'etiqueta de cost.
+     *
+     * @param costActual el cost actual de la millora 2.
+     */
     public void updateCostMillora2(double costActual){
         setCostMillora2(costActual);
 
@@ -724,6 +805,11 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
     }
 
 
+    /**
+     * Actualitza el cost de la millora 3 i actualitza el text de l'etiqueta de cost.
+     *
+     * @param costActual el cost actual de la millora 3.
+     */
     public void updateCostMillora3(double costActual){
         setCostMillora3(costActual);
 
@@ -734,21 +820,45 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
     }
 
 
+    /**
+     * Estableix el cost de la millora 1.
+     *
+     * @param costMillora1 el cost de la millora 1 a establir.
+     */
     public void setCostMillora1(double costMillora1) {
         this.costMillora1 = costMillora1;
     }
 
+
+    /**
+     * Estableix el cost de la millora 2.
+     *
+     * @param costMillora2 el cost de la millora 2 a establir.
+     */
     public void setCostMillora2(double costMillora2) {
         this.costMillora2 = costMillora2;
     }
 
+
+    /**
+     * Estableix el cost de la millora 3.
+     *
+     * @param costMillora3 el cost de la millora 3 a establir.
+     */
     public void setCostMillora3(double costMillora3) {
         this.costMillora3 = costMillora3;
     }
 
+
+    /**
+     * Estableix el cost de la millora 4.
+     *
+     * @param costMillora4 el cost de la millora 4 a establir.
+     */
     public void setCostMillora4(double costMillora4) {
         this.costMillora4 = costMillora4;
     }
+
 
     /**
      * Gestiona les accions produïdes per l'usuari.

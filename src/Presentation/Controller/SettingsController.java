@@ -46,7 +46,6 @@ public class SettingsController implements ActionListener {
     }
 
 
-
     /**
      * Gestiona les accions de l'usuari en resposta a esdeveniments d'acció.
      *
