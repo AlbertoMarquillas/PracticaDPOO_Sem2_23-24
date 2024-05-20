@@ -120,13 +120,13 @@ public class StatsView extends JPanel implements KeyListener, ActionListener {
         statsPanel = new JPanel();  // Initialize statsPanel
         statsPanel.setLayout(new BorderLayout());
         statsPanel.setBackground(Color.decode("#F8F2F0"));
-        statsPanel.setSize(1400, 450);
+        statsPanel.setSize(1450, 450);
         customStadisticsGraph = new CustomStatisticsGraph(stats);
-        customStadisticsGraph.setPreferredSize(new Dimension(1350, 400));
+        customStadisticsGraph.setPreferredSize(new Dimension(1450, 400));
         statsPanel.add(customStadisticsGraph, BorderLayout.CENTER);
 
         //Afegir els subpanells al panell principal
-        add(statsPanel, BorderLayout.CENTER);
+        add(statsPanel, BorderLayout.EAST);
         add(supPanel, BorderLayout.NORTH);
         add(infPanel, BorderLayout.SOUTH);
 

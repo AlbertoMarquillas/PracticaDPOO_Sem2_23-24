@@ -52,7 +52,7 @@ public class CustomStatisticsGraph extends JPanel{
 
 
         int windowHeight = 450;
-        int windowWidth = 1400;
+        int windowWidth = 1450;
         setPreferredSize(new Dimension(windowWidth, windowHeight));
         setBackground(Color.decode("#F8F2F0"));
         revalidate();
