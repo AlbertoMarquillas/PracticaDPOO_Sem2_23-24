@@ -34,6 +34,14 @@ public class CustomStatisticsGraph extends JPanel{
         // Calcular el rango de valores en los datos
         int maxY = Integer.MIN_VALUE;
         int maxX = Integer.MIN_VALUE;
+
+        if (maxX <= 0) {
+            maxX = 1;
+        }
+        if (maxY <= 0) {
+            maxY = 1;
+        }
+
         for (Stats stats : stats) {
             if (stats.getnCoffeeint() > maxY) {
                 maxY = stats.getnCoffeeint();
@@ -111,8 +119,10 @@ public class CustomStatisticsGraph extends JPanel{
             return 1000;
         } else if (max <= 100000) {
             return 10000;
-        } else {
+        } else if (max <= 1000000) {
             return 100000;
+        } else {
+            return 10000000;
         }
     }
 }

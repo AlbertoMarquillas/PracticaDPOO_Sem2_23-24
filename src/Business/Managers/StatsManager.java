@@ -67,7 +67,12 @@ public class StatsManager {
                     }
                     if (this.ID_P == -1) {
                         this.ID_P = sqlUserDAO.getConnectedUserId();
-                        break;
+                        if (!sqlStatsDAO.playerHasGames(ID_P)) {
+                            this.ID_P = sqlUserDAO.getMaxUserId();
+                        }
+                        else {
+                            break;
+                        }
                     }
                 }
             }
@@ -82,7 +87,12 @@ public class StatsManager {
 
                 if (this.ID_P == -1) {
                     this.ID_P = sqlUserDAO.getConnectedUserId();
-                    break;
+                    if (!sqlStatsDAO.playerHasGames(ID_P)) {
+                        this.ID_P = sqlUserDAO.getMaxUserId();
+                    }
+                    else {
+                        break;
+                    }
                 }
             }
         }
@@ -109,8 +119,13 @@ public class StatsManager {
                     }
 
                     if (this.ID_P == sqlUserDAO.getMaxUserId()) {
-                        this.ID_P = sqlUserDAO.getConnectedUserId();
-                        break;
+                        this.ID_P = sqlUserDAO.getMaxUserId();
+                        if (!sqlStatsDAO.playerHasGames(ID_P)) {
+                            this.ID_P = 0;
+                        }
+                        else {
+                            break;
+                        }
                     }
                 }
             }
@@ -124,8 +139,13 @@ public class StatsManager {
                 }
 
                 if (this.ID_P == sqlUserDAO.getMaxUserId()) {
-                    this.ID_P = sqlUserDAO.getConnectedUserId();
-                    break;
+                    this.ID_P = sqlUserDAO.getMaxUserId();
+                    if (!sqlStatsDAO.playerHasGames(ID_P)) {
+                        this.ID_P = 0;
+                    }
+                    else {
+                        break;
+                    }
                 }
             }
         }
