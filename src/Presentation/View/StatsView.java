@@ -1,6 +1,5 @@
 package Presentation.View;
 
-import Presentation.Controller.StatsController;
 import Presentation.View.Custom.CustomButton;
 import Presentation.View.Custom.CustomLabel;
 import Presentation.View.Custom.CustomStatisticsGraph;
@@ -18,108 +17,119 @@ import java.util.ArrayList;
  */
 public class StatsView extends JPanel implements KeyListener, ActionListener {
 
-    private CustomButton backButton;
-    private JButton nextGameButton;
-    private JButton nextPlayerButton;
-    private JButton backGameButton;
-    private JButton backPlayerButton;
-    private CustomButton settingsButton;
-    private CustomStatisticsGraph customStadisticsGraph;
-    private ArrayList stats = new ArrayList();
     private static final String BACK = "back";
     private static final String SETTINGS = "settings";
-    private JPanel statsPanel;  // Make statsPanel an instance variable
 
-    private JPanel backButtonPanel;
-    private JPanel titleLabelPanel;
-    private JPanel settingsButtonPanel;
+    private CustomButton backButton;
+    private CustomButton nextGameButton;
+    private CustomButton nextPlayerButton;
+    private CustomButton backGameButton;
+    private CustomButton backPlayerButton;
+    private JButton settingsButton;
+    private CustomStatisticsGraph customStadisticsGraph;
+    private ArrayList stats = new ArrayList();
     private JLabel dynamicLabel;  // JLabel que se actualizará dinámicamente
-
-
+    private JPanel statsPanel;
     /**
      * Constructor de la classe StatsView.
      */
     public StatsView() {
-        setLayout(new GridBagLayout());
+
+        setSize(1500, 800);
+        setLayout(new BorderLayout());
         setBackground(Color.decode("#F8F2F0"));
 
-        CustomLabel titleLabel = new CustomLabel("COFFEE CLICKER", new Font("Bauhaus 93", Font.PLAIN, 50), Color.decode("#DB5C39"));
-
-        backButton = new CustomButton("Back", 150, 30, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
-
-        // Create a new settings button
-        settingsButton = new CustomButton("Settings", 150, 30, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
-
-        backButtonPanel = new JPanel();
-        setBackButtonPanelSize(200, 100);
-        backButtonPanel.setBackground(Color.decode("#F8F2F0"));
-        backButtonPanel.add(backButton);  // Add the back button to backButtonPanel
-
-        titleLabelPanel = new JPanel();
-        titleLabelPanel.setBackground(Color.decode("#F8F2F0"));
-        ImageIcon logoIcon = new ImageIcon("path/to/your/logo.png");  // Replace with the path to your logo
-        JLabel logoLabel = new JLabel(logoIcon);
-        titleLabelPanel.add(logoLabel);
-        titleLabelPanel.add(titleLabel);
-
-        settingsButtonPanel = new JPanel();
-        setSettingsButtonPanelSize(200, 100);
-        settingsButtonPanel.setBackground(Color.decode("#F8F2F0"));
-        settingsButtonPanel.add(settingsButton);  // Add the settings button to settingsButtonPanel
-
-        JPanel titlePanel = new JPanel();
-        titlePanel.setLayout(new BorderLayout());
-        titlePanel.setBackground(Color.decode("#F8F2F0"));
-
-        dynamicLabel = new JLabel("");  // Inicializa el JLabel con texto vacío
-        dynamicLabel.setFont(new Font("Segoe UI Black", Font.PLAIN, 12));  // Establece la fuente del JLabel
-
-
-        titlePanel.add(backButtonPanel, BorderLayout.WEST);
-        titlePanel.add(titleLabelPanel, BorderLayout.CENTER);
-        titlePanel.add(settingsButtonPanel, BorderLayout.EAST);
-
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.weightx = 1.0;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        add(titlePanel, gbc);
-
-        // Initialize the buttons
+        //Incialitzem els botons fent us de la classe CustomButton
+        backButton = new CustomButton("Back", 150, 30, Color.decode("#3B1211"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
         nextGameButton = new CustomButton("Next Game", 150, 30, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
         backGameButton = new CustomButton("Previous Game", 150, 30, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
         nextPlayerButton = new CustomButton("Next Player", 150, 30, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
         backPlayerButton = new CustomButton("Previous Player", 150, 30, Color.decode("#C3986A"), Color.decode("#F8F2F0"), new Font("Segoe UI Black", Font.PLAIN, 12));
 
-        // Add the buttons to the panel
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.add(backPlayerButton);
-        buttonPanel.add(nextPlayerButton);
-        buttonPanel.add(backGameButton);
-        buttonPanel.add(nextGameButton);
-        buttonPanel.add(dynamicLabel);
+        //Botó de settings amb la foto
+        settingsButton = new JButton();
+        ImageIcon ajustesIcon = new ImageIcon("Imagenes/ajustes.png"); // Ruta de la imagen del logo
+        settingsButton.setIcon(ajustesIcon);
+        settingsButton.setBorderPainted(false);         // Eliminar borde
+        settingsButton.setContentAreaFilled(false);
 
+        //Labels amb la info
+        CustomLabel titleLabel = new CustomLabel("COFFEE CLICKER", new Font("Bauhaus 93", Font.PLAIN, 65), Color.decode("#DB5C39"));
+        dynamicLabel = new JLabel("");  // Inicializa el JLabel con texto vacío
+        dynamicLabel.setFont(new Font("Segoe UI Black", Font.PLAIN, 12));  // Establece la fuente del JLabel
+        dynamicLabel.setForeground(Color.decode("#3B1211"));
+
+        //Panell superior (back + titol + settings)
+        JPanel supPanel = new JPanel();
+        supPanel.setBackground(Color.decode("#F8F2F0"));
+        supPanel.setLayout(new GridBagLayout());
+        supPanel.setSize(1500, 400);
+
+        GridBagConstraints gbcSup = new GridBagConstraints();
+
+        gbcSup.gridx = 0;
+        gbcSup.gridy = 0;
+        gbcSup.insets = new Insets(30, 500, 20, 150);
+        supPanel.add(titleLabel, gbcSup);
+
+        gbcSup.gridx = 1;
+        gbcSup.gridy = 0;
+        gbcSup.insets = new Insets(5, 170, 20, 0);
+        supPanel.add(settingsButton, gbcSup);
+
+
+        //Panell inferior (back + next + back + next + label)
+        JPanel infPanel = new JPanel();
+        infPanel.setBackground(Color.decode("#F8F2F0"));
+        infPanel.setSize(1500, 150);
+        infPanel.setLayout(new GridBagLayout());
+
+        GridBagConstraints gbcInf = new GridBagConstraints();
+        gbcInf.gridx = 0;
+        gbcInf.gridy = 0;
+        gbcInf.insets = new Insets(20, 15, 30, 230);
+        infPanel.add(backButton, gbcInf);
+
+        gbcInf.gridx = 1;
+        gbcInf.gridy = 0;
+        gbcInf.insets = new Insets(20, 0, 30, 0);
+        infPanel.add(backPlayerButton, gbcInf);
+
+        gbcInf.gridx = 2;
+        gbcInf.gridy = 0;
+        gbcInf.insets = new Insets(20, 20, 30, 0);
+        infPanel.add(nextPlayerButton, gbcInf);
+
+        gbcInf.gridx = 3;
+        gbcInf.gridy = 0;
+        gbcInf.insets = new Insets(20, 20, 30, 0);
+        infPanel.add(backGameButton, gbcInf);
+
+        gbcInf.gridx = 4;
+        gbcInf.gridy = 0;
+        gbcInf.insets = new Insets(20, 20, 30, 0);
+        infPanel.add(nextGameButton, gbcInf);
+
+        gbcInf.gridx = 5;
+        gbcInf.gridy = 0;
+        gbcInf.insets = new Insets(20, 30, 30, 250);
+        infPanel.add(dynamicLabel, gbcInf);
+
+
+        //Panell del centre amb la grafica
         statsPanel = new JPanel();  // Initialize statsPanel
+        statsPanel.setLayout(new BorderLayout());
+        statsPanel.setBackground(Color.decode("#F8F2F0"));
+        statsPanel.setSize(1400, 450);
         customStadisticsGraph = new CustomStatisticsGraph(stats);
-        customStadisticsGraph.setPreferredSize(new Dimension(800, 600));  // Adjust the width and height as needed
-        statsPanel.add(customStadisticsGraph);
+        customStadisticsGraph.setPreferredSize(new Dimension(1350, 400));
+        statsPanel.add(customStadisticsGraph, BorderLayout.CENTER);
 
-        // Add the title panel to the view
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        add(titlePanel, gbc);
+        //Afegir els subpanells al panell principal
+        add(statsPanel, BorderLayout.CENTER);
+        add(supPanel, BorderLayout.NORTH);
+        add(infPanel, BorderLayout.SOUTH);
 
-        // Add the rest of the components to the panel
-        gbc.gridy = 1;
-        gbc.fill = GridBagConstraints.BOTH;
-        gbc.weightx = 1.0;
-        gbc.weighty = 1.0;
-        add(statsPanel, gbc);
-
-        gbc.gridy = 2;
-        gbc.weighty = 0;
-        add(buttonPanel, gbc);
     }
 
 
@@ -158,22 +168,6 @@ public class StatsView extends JPanel implements KeyListener, ActionListener {
     }
 
 
-    /**
-     * Estableix les dimensions del panell del botó de retrocés.
-     *
-     * @param width  L'amplada del panell.
-     * @param height L'altura del panell.
-     */
-    public void setBackButtonPanelSize(int width, int height) {
-        backButtonPanel.setPreferredSize(new Dimension(width, height));
-        backButtonPanel.revalidate();
-    }
-
-
-    public void setSettingsButtonPanelSize(int width, int height) {
-        settingsButtonPanel.setPreferredSize(new Dimension(width, height));
-        settingsButtonPanel.revalidate();
-    }
 
 
     /**

@@ -1,15 +1,11 @@
 package Business.Entities;
 
-import Business.Managers.GameManager;
 import Persistance.sqlDAO.SQLGameDAO;
 import Persistance.sqlDAO.SQLStatsDAO;
 import Persistance.sqlDAO.SQLUserDAO;
 import Persistance.sqlDAO.SQLGeneratorsDAO;
-import Presentation.Controller.GameController;
-import Presentation.View.GameView;
 
 import java.sql.Time;
-import java.sql.Timestamp;
 import java.time.LocalTime;
 
 public class Comptador {
@@ -21,15 +17,7 @@ public class Comptador {
     private ComptadorInterficie comptadorInterficie;
     private Thread thread;
     private boolean running;
-    private double quantitatCoffee;
 
-    private long startTime;
-    private long currentTime;
-    private long finalTime;
-
-    private Game game;
-    private Generator generador;
-    private User user;
 
     /**
      * Constructor de la clase Comptador
@@ -61,12 +49,10 @@ public class Comptador {
     public void comptar(boolean run) {
         setRunning(run);
 
-        GameManager gameManager = new GameManager(sqlGameDAO, sqlUserDAO, sqlGeneratorsDAO, sqlStatsDAO);
 
         this.thread = new Thread() {
             public void run() {
                 boolean flag = false;
-                // Inicializar la variable nCoffee en 0
 
                 // Mientras la variable running sea true, el hilo seguirá en ejecución
                 while (running) {
