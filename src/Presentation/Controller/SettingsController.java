@@ -6,8 +6,11 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class SettingsController implements ActionListener {
 
+/**
+ * Classe que gestiona les accions de la vista de configuració de l'aplicació.
+ */
+public class SettingsController implements ActionListener {
     public final ChangeViewController changeViewController;
     private final UserManager userManager;
     private final StartController startController;

@@ -8,6 +8,9 @@ import Persistance.sqlDAO.SQLGeneratorsDAO;
 import java.sql.Time;
 import java.time.LocalTime;
 
+/**
+ * Classe que compta el temps i la producció de cafè
+ */
 public class Comptador {
 
     private final SQLGameDAO sqlGameDAO;

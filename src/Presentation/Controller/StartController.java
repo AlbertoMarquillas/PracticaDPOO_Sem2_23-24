@@ -10,8 +10,11 @@ import Presentation.View.StatsView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class StartController implements ActionListener {
 
+/**
+ * Classe que gestiona les accions de la vista inicial (login).
+ */
+public class StartController implements ActionListener {
     private final ChangeViewController changeViewController;
     private final UserManager userManager;
     private final GameManager gameManager;

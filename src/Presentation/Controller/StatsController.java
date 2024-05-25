@@ -6,9 +6,10 @@ import Presentation.View.StatsView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
+/**
+ * Classe que gestiona les accions de la vista d'estadístiques.
+ */
 public class StatsController implements ActionListener {
-
     private final ChangeViewController changeViewController;
     private StatsView statsView;
     private StatsManager statsManager;

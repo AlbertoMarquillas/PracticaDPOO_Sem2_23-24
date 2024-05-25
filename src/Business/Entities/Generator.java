@@ -1,5 +1,8 @@
 package Business.Entities;
 
+/**
+ * Classe que representa un generador
+ */
 public class Generator {
     private String type;
     private int quantitat;

@@ -7,6 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
+/**
+ * Classe que gestiona les operacions relacionades amb els generadors a la base de dades SQL.
+ */
 public class SQLGeneratorsDAO{
 
 

@@ -3,6 +3,9 @@ package Business.Entities;
 import Persistance.sqlDAO.SQLGameDAO;
 import Persistance.sqlDAO.SQLUserDAO;
 
+/**
+ * Classe que representa un joc
+ */
 public class Game {
     private final SQLGameDAO sqlGameDAO;
     private final SQLUserDAO sqlUserDAO;

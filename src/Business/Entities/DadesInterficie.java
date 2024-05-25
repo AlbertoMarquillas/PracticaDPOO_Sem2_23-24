@@ -1,5 +1,8 @@
 package Business.Entities;
 
+/**
+ * Interfície que conté les funcions per a actualitzar les dades de la interfície.
+ */
 public interface DadesInterficie {
 
     /**

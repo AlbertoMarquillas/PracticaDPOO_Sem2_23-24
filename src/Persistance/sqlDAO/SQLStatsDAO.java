@@ -10,6 +10,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 
+/**
+ * Classe que gestiona la actualització de les estadístiques del joc a la base de dades.
+ */
 public class SQLStatsDAO {
 
     /**

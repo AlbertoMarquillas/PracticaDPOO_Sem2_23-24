@@ -6,6 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
 
+
+/**
+ * Classe que gestiona les dades del joc a la base de dades SQL.
+ */
 public class SQLGameDAO {
 
     /**

@@ -3,6 +3,10 @@ package Presentation.View;
 import javax.swing.*;
 import java.awt.*;
 
+
+/**
+ * Classe que representa la vista principal de l'aplicació.
+ */
 public class MainView extends JFrame{
 
     CardLayout cardLayout;

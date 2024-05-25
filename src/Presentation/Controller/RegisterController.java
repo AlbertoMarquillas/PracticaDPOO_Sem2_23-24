@@ -8,6 +8,10 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
+/**
+ * Classe que gestiona les accions de la vista de registre de l'aplicació.
+ */
 public class RegisterController implements ActionListener {
     private final RegisterView registerView;
     private final SignUpManager signUpManager;
@@ -16,9 +20,9 @@ public class RegisterController implements ActionListener {
     /**
      * Constructor del controller del registre
      *
-     * @param registerView         : La vista del registre
-     * @param signUpManager        : El manager del registre
-     * @param changeViewController
+     * @param registerView         La vista del registre
+     * @param signUpManager        El manager del registre
+     * @param changeViewController El controlador del canvi de vistes
      */
     public RegisterController(RegisterView registerView, SignUpManager signUpManager, ChangeViewController changeViewController) {
         this.registerView = registerView;

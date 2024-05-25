@@ -1,7 +1,10 @@
 package Business.Entities;
 
-public class User {
 
+/**
+ * Classe que representa un usuari
+ */
+public class User {
     private final int id;
     private final String email;
     private final String username;

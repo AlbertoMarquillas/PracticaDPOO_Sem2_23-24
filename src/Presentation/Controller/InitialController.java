@@ -11,8 +11,11 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class InitialController implements ActionListener{
 
+/**
+ * Classe que gestiona les accions de la vista inicial de l'aplicació.
+ */
+public class InitialController implements ActionListener{
     private final InitialView initialView;
     private final LogInManager logInManager;
     private final ChangeViewController changeViewController;

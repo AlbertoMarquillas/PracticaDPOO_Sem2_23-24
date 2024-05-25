@@ -3,10 +3,12 @@ package Presentation.Controller;
 import Presentation.View.MainView;
 import Business.Managers.GameManager;
 
+
+/**
+ * Classe que gestiona el canvi de panells de la vista principal de l'aplicació.
+ */
 public class ChangeViewController {
-
     private final MainView mainView;
-
     private final GameManager gameManager;
 
 

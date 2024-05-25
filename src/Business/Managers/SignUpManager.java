@@ -1,5 +1,9 @@
 package Business.Managers;
 
+
+/**
+ * Gestiona el registre d'usuaris
+ */
 public class SignUpManager {
 
     private final UserManager userManager;

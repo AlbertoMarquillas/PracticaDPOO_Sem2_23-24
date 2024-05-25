@@ -3,6 +3,10 @@ package Business.Managers;
 import Business.Entities.User;
 import Persistance.sqlDAO.SQLUserDAO;
 
+
+/**
+ * Classe que gestiona les operacions relacionades amb els usuaris, com ara crear un usuari, comprovar si existeix un usuari, comprovar si l'email existeix, comprovar si la contrasenya es correcte, etc.
+ */
 public class UserManager {
 
     private final SQLUserDAO userDAO;

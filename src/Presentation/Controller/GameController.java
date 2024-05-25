@@ -11,6 +11,10 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
+/**
+ * Classe que gestiona les accions de la vista de la partida.
+ */
 public class GameController implements ActionListener, DadesInterficie {
 
     public final ChangeViewController changeViewController;

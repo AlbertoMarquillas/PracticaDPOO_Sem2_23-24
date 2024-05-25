@@ -1,5 +1,9 @@
 package Business.Entities;
 
+
+/**
+ * Classe que representa una millora
+ */
 public class Millora {
 
     private static final double INCREMENT_A = 100.0; // Incremento para el tipo A

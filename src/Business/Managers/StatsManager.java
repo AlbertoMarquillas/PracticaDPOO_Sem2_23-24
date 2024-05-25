@@ -48,7 +48,6 @@ public class StatsManager {
 
     /**
      * Actualitza els identificadors del jugador (ID_P) i del joc (ID_G) per mostrar les estadístiques del jugador anterior.
-     *
      * Si el jugador anterior té jocs registrats, es mostrarà el primer joc d'aquest jugador. Si no, es continuarà buscant cap enrere fins a trobar un jugador amb jocs.
      * Si no existeixen jugadors anteriors amb jocs, es mostrarà el jugador amb el màxim ID i es continuarà buscant cap enrere fins a trobar un jugador amb jocs.
      */
@@ -100,7 +99,6 @@ public class StatsManager {
 
     /**
      * Actualitza els identificadors del jugador (ID_P) i del joc (ID_G) per mostrar les estadístiques del següent jugador.
-     *
      * Si el següent jugador té jocs registrats, es mostrarà el primer joc d'aquest jugador. Si no, es continuarà buscant endavant fins a trobar un jugador amb jocs.
      * Si no existeixen jugadors següents amb jocs, es començarà des del primer jugador i es continuarà buscant endavant fins a trobar un jugador amb jocs.
      */
@@ -153,7 +151,6 @@ public class StatsManager {
 
     /**
      * Actualitza l'identificador del joc (ID_G) per mostrar les estadístiques del joc anterior del jugador actual.
-     *
      * Si existeix un joc anterior per al jugador actual (ID_P), es mostrarà aquest joc.
      * Si no, es buscarà el màxim identificador de joc (ID_G) per al jugador actual, i es mostrarà aquest joc.
      */
@@ -169,7 +166,6 @@ public class StatsManager {
 
     /**
      * Actualitza l'identificador del joc (ID_G) per mostrar les estadístiques del següent joc del jugador actual.
-     *
      * Si existeix un següent joc per al jugador actual (ID_P), es mostrarà aquest joc.
      * Si no, es reiniciarà l'ID del joc (ID_G) a 0.
      */
