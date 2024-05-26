@@ -183,7 +183,7 @@ public class SQLUserDAO{
      * @param name El nom de l'usuari a connectar.
      */
     public void connectedUser(String name) {
-        String query = "UPDATE user SET Connected = 1 WHERE User.UserName = '" + name + "';";
+        String query = "UPDATE user SET Connected = 1 WHERE User.UserName = '" + name + "' OR User.Email = '" + name + "';";
         Connector.getInstance().updateQuery(query);
     }
 
@@ -194,7 +194,7 @@ public class SQLUserDAO{
      * @param name El nom de l'usuari a desconnectar.
      */
     public void disconnectUser(String name) {
-        String query = "UPDATE user SET Connected = 0 WHERE User.UserName = '" + name + "';";
+        String query = "UPDATE user SET Connected = 0 WHERE User.UserName = '" + name + "' OR User.Email = '" + name + "';";
         Connector.getInstance().updateQuery(query);
     }
 

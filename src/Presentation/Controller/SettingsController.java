@@ -1,5 +1,6 @@
 package Presentation.Controller;
 
+import Business.Managers.GameManager;
 import Business.Managers.UserManager;
 
 import javax.swing.*;
@@ -16,6 +17,7 @@ public class SettingsController implements ActionListener {
     private final StartController startController;
     private final StatsController statsController;
     private final GameController gameController;
+
 
 
     /**

@@ -56,10 +56,9 @@ public class Main {
         StartController startController = new StartController(changeViewController, userManager, gameManager, generatorManager ,startView, statsManager, statsView);
         StatsController statsController = new StatsController(changeViewController, statsManager, statsView);
         GameController gameController = new GameController(changeViewController, gameView, generatorManager, gameManager, milloraManager);
-        SettingsController settingsController = new SettingsController(changeViewController, userManager, startController, statsController, gameController );
+        SettingsController settingsController = new SettingsController(changeViewController, userManager, startController, statsController, gameController);
 
         startView.buttonController(startController);
-        //startView.setButtonsEnabled(userManager.comprobarPartidesActives());
         statsView.buttonController(statsController);
         settingsView.buttonController(settingsController);
         registerView.buttonController(registerController);

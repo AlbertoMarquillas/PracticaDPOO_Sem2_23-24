@@ -140,6 +140,12 @@ public class RegisterController implements ActionListener {
         JOptionPane.showMessageDialog(registerView, "Les contrasenyes no coincideixen");
     }
 
+    /**
+     * Mostra un missatge en cas de que el format del correu sigui erroni.
+     */
+    private void wrongEmailFormat() {
+        JOptionPane.showMessageDialog(registerView, "Error de formato en el correo");
+    }
 
     /**
      * Mostra un missatge indicant que tots els camps són obligatoris.
@@ -168,16 +174,17 @@ public class RegisterController implements ActionListener {
                 case "FaltenCaractersEspecials" -> showErrorSpecialCounterPass();
                 case "UserNoCreat" -> showErrorCreateUser();
                 case "totBe" -> {
-                    //AQUI
                     changeViewController.changePan("start");
                     borrarInfoRegister();
                 }
                 case "JaExisteixEmail" -> showEmailExist();
                 case "JaExisteixUserName" -> nameAlreadyExist();
+                case "WrongEmailFormat" -> wrongEmailFormat();
             }
 
         } else if (e.getActionCommand().equals("login")) {
             changeViewController.changePan("login");
         }
     }
+
 }

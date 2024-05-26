@@ -36,7 +36,7 @@ public class SignUpManager {
             //comprovo que la contrasenya de confirmació estigui ben posada
         } else if (!password.equals(confirmPassword)) {
             return "DifferentPass";
-        } else{
+        } else {
             for (int i = 0; i < password.length(); i++) {
                 if (Character.isUpperCase(password.charAt(i))) //compto caractersen majuscules
                     uppercaseCounter++;
@@ -66,6 +66,9 @@ public class SignUpManager {
                 return "JaExisteixUserName";
             } else if (!userManager.createUser(username, email, password)) { //es guarda a la base de dades
                 return "UserNoCreat";
+            }
+            else if (!email.contains("@gmail.com") && !email.contains("@students.salle.url.edu") && !email.contains("@salle.url.edu") && ! email.contains("@hotmail.com")){
+                    return "WrongEmailFormat";
             } else {
                 connectedUser(username);
                 return "totBe";

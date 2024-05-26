@@ -53,4 +53,8 @@ public class User {
     public void setPartidaActiva(boolean partidaActiva) {
         this.partidaActiva = partidaActiva;
     }
+
+    public String getEmail() {
+        return email;
+    }
 }

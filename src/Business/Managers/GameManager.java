@@ -217,19 +217,19 @@ public class GameManager {
         Millora millora4 = new Millora("D", getQuantitatMillores(ID_P, ID_G));
 
         // Verifica si les millores del power-up es poden comprar amb la quantitat actual de cafè
-        if (currentCafe >= millora1.getPreu()) {
+        if (currentCafe >= millora1.getPreu() && generatorA.getQuantitat() > 0) {
             botonsEnables.add(true);
         } else {
             botonsEnables.add(false);
         }
 
-        if (currentCafe >= millora2.getPreu()) {
+        if (currentCafe >= millora2.getPreu() && generatorB.getQuantitat() > 0) {
             botonsEnables.add(true);
         } else {
             botonsEnables.add(false);
         }
 
-        if (currentCafe >= millora3.getPreu()) {
+        if (currentCafe >= millora3.getPreu() && generatorC.getQuantitat() > 0) {
             botonsEnables.add(true);
         } else {
             botonsEnables.add(false);
@@ -266,4 +266,5 @@ public class GameManager {
             return sqlGameDAO.getConnectedUserIdEndedGame();
         }
     }
+
 }
