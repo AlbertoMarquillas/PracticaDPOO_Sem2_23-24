@@ -105,6 +105,7 @@ public class Comptador {
 
     /**
      * Funció que setteja el comptador
+     * @param dadesInterficie la interficie creada per enviar les dades desde la base cap a la vista
      */
     public void setComptadorInterficie(DadesInterficie dadesInterficie) {
         this.dadesInterficie = dadesInterficie;

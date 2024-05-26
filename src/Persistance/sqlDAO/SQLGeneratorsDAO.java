@@ -43,17 +43,6 @@ public class SQLGeneratorsDAO{
     }
 
     /**
-     * Actualiza la cantidad de generadores de un tipo específico en la base de datos.
-     *
-     * @param quantitat La nueva cantidad de generadores.
-     * @param type El tipus de generador a actualizar.
-     */
-    public void actualitzarQuantitat(int quantitat, int ID_P, int ID_G, String type) {
-        String query = "UPDATE generators SET Quantitat = " + quantitat + " WHERE ID_P = " + ID_P + " AND ID_G = " + ID_G + " AND Type = '" + type + "'";
-        Connector.getInstance().updateQuery(query);
-    }
-
-    /**
      * Obté el cost actual del generador del tipus especificat per a l'usuari i joc indicats.
      *
      * @param ID_P L'ID de l'usuari.

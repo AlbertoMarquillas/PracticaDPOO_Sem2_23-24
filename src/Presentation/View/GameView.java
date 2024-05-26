@@ -42,7 +42,6 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
     private JButton imageButton;
     private JButton settingsButton;
     private JTable table;
-
     private String text = "0000";
     private final CustomLabel contador;
     private double cost1 = 10;
@@ -395,6 +394,15 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
 
     /**
      * Crea una JTable amb les dades dels potenciadors.
+     * @param overallPot1 la produccio total del generador 1
+     * @param overallPot2 la produccio total del generador 2
+     * @param overallPot3 la produccio total del generador 3
+     * @param produccioTotal1 la produccio total de tipus 1
+     * @param produccioTotal2 la produccio total de tipus 2
+     * @param produccioTotal3 la produccio total de tipus 3
+     * @param quantitatPotenciadors1  la quantitat de potenciadors de tipus 1
+     * @param quantitatPotenciadors2 la quantitat de potenciadors de tipus 2
+     * @param quantitatPotenciadors3 la quantitat de potenciadors de tipus 3
      * @return JTable amb les dades dels generadors
      */
     public static JTable createTable(int quantitatPotenciadors1, int quantitatPotenciadors2, int quantitatPotenciadors3,
@@ -538,6 +546,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
      * @param quantitatGenerados La quantitat de generadors 1.
      * @param baseProducction La producció total del generador 1.
      * @param prodActual La producció actual del generador 1 per unitat de temps.
+     * @param overall la producció total
      */
     public void updateGenerator1(int quantitatGenerados, double baseProducction, double prodActual, double overall) {
         // Obtener el modelo de la tabla
@@ -561,6 +570,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
      * @param quantitatGenerados La quantitat de generadors 2.
      * @param baseProduction La producció total del generador 2.
      * @param prodActual La producció actual del generador 2 per unitat de temps.
+     * @param overall la producció total
      */
     public void updateGenerator2(int quantitatGenerados, double baseProduction, double prodActual, double overall) {
         // Obtener el modelo de la tabla
@@ -583,6 +593,7 @@ public class GameView extends JPanel implements KeyListener, ActionListener {
      * @param quantitatGenerados La quantitat de generadors 3.
      * @param baseProduction La producció total del generador 3.
      * @param prodActual La producció actual del generador 3 per unitat de temps.
+     * @param overall la producció total
      */
     public void updateGenerator3(int quantitatGenerados, double baseProduction, double prodActual, double overall) {
         // Obtener el modelo de la tabla

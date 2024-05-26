@@ -15,6 +15,10 @@ import java.util.List;
 public class CustomStatisticsGraph extends JPanel{
     private ArrayList<Stats> stats;
 
+    /**
+     * Constructor de la clase CustomStatisticsGraph
+     * @param stats un arraylist amb les dades d'estadistiques
+     */
     public CustomStatisticsGraph(ArrayList<Stats> stats) {
         this.stats = stats;
     }

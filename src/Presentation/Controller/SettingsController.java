@@ -25,6 +25,9 @@ public class SettingsController implements ActionListener {
      *
      * @param changeViewController Controlador per a gestionar els canvis de pantalla.
      * @param userManager Gestor d'usuari per a realitzar operacions relacionades amb els usuaris.
+     * @param gameController el controlador del joc
+     * @param startController el controlador del start game
+     * @param statsController el controlador d'estadistiques
      */
     public SettingsController(ChangeViewController changeViewController, UserManager userManager, StartController startController, StatsController statsController, GameController gameController) {
         this.changeViewController = changeViewController;

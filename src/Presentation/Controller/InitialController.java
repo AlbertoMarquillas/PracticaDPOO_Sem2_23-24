@@ -34,6 +34,7 @@ public class InitialController implements ActionListener{
      * @param userManager          El gestor d'usuaris de l'aplicació.
      * @param startView            La vista d'inici de l'aplicació.
      * @param gameManager          El gestor de jocs de l'aplicació.
+     * @param milloraManager        El manager de millores
      */
     public InitialController(InitialView initialView, LogInManager logInManager, ChangeViewController changeViewController, UserManager userManager, StartView startView, GameManager gameManager, MilloraManager milloraManager) {
         this.initialView = initialView;

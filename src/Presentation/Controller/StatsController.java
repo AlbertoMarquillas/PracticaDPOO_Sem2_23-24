@@ -19,6 +19,8 @@ public class StatsController implements ActionListener {
      * Constructor de la classe StatsController.
      *
      * @param changeViewController Controlador per canviar de vistes.
+     * @param statsManager el manager d'estadistiques
+     * @param statsView la vista d'estadistiques
      */
     public StatsController(ChangeViewController changeViewController, StatsManager statsManager, StatsView statsView) {
         this.statsManager = statsManager;

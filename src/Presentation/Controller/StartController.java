@@ -32,6 +32,8 @@ public class StartController implements ActionListener {
      * @param gameManager Gestor de jocs per a realitzar operacions relacionades amb els jocs.
      * @param generatorManager Gestor de generadors per a realitzar operacions relacionades amb els generadors.
      * @param startView Vista d'inici per a mostrar la interfície d'usuari i rebre interaccions de l'usuari.
+     * @param statsManager el manager d'estadistiques
+     * @param statsView la vista d'estadistiques
      */
     public StartController(ChangeViewController changeViewController, UserManager userManager, GameManager gameManager, GeneratorManager generatorManager , StartView startView, StatsManager statsManager, StatsView statsView) {
         this.changeViewController = changeViewController;

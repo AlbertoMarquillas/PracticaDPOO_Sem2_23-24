@@ -36,6 +36,7 @@ public class UserManager {
 
     /**
      * Metode que crida al metode deleteUser de la classe SQLUserDAO per eliminar l'usuari
+     * @param name  el nom de l'usuari
      */
     public void deleteConnectedUser(String name){
         userDAO.deleteUser(name);

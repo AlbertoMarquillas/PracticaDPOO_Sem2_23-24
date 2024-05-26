@@ -19,6 +19,7 @@ public class User {
      * @param email    string que conté l'email de l'usuari
      * @param username string del nom d'usuari per identificar-se
      * @param password string de la contrasenya de l'usuari
+     * @param connected variable que diu si l'usuari està conectat
      */
     public User(int id, String username, String email, String password, boolean connected) {
         this.id = id;
@@ -54,7 +55,4 @@ public class User {
         this.partidaActiva = partidaActiva;
     }
 
-    public String getEmail() {
-        return email;
-    }
 }

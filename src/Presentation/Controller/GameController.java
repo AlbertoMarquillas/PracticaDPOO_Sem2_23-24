@@ -31,6 +31,7 @@ public class GameController implements ActionListener, DadesInterficie {
      * @param gameView  vista de la pantalla principal del joc
      * @param generatorManager manager dels generadors
      * @param gameManager manager del joc
+     * @param milloraManager el manager de millores
      */
     public GameController(ChangeViewController changeViewController, GameView gameView, GeneratorManager generatorManager, GameManager gameManager, MilloraManager milloraManager) {
         this.changeViewController = changeViewController;

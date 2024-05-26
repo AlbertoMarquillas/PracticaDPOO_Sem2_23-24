@@ -1,7 +1,6 @@
 import Business.Entities.Comptador;
 import Business.Entities.Millora;
 import Business.Managers.*;
-import Persistance.DataBaseDAO;
 import Persistance.sqlDAO.SQLGameDAO;
 import Persistance.sqlDAO.SQLGeneratorsDAO;
 import Persistance.sqlDAO.SQLStatsDAO;
@@ -22,8 +21,6 @@ public class Main {
      * @param args Arguments de la línia de comandes.
      */
     public static void main(String[] args){
-
-        DataBaseDAO dataBaseDAO = new DataBaseDAO();
 
         SQLGameDAO sqlGameDAO = new SQLGameDAO();
         SQLGeneratorsDAO sqlGeneratorsDAO = new SQLGeneratorsDAO();

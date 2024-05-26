@@ -33,6 +33,7 @@ public class SQLGameDAO {
     /**
      * Busca el numero de partides que portes per generar el ID_G
      * @param userID the id of the user that will delete the data.
+     * @return el numero de games
      */
     public int getGameCount(int userID) {
         int gameCount = 0;
@@ -108,6 +109,7 @@ public class SQLGameDAO {
      * Obté el valor de PowerUpClicker per a l'usuari especificat.
      *
      * @param ID_P L'ID de l'usuari.
+     * @param ID_G L'ID del game
      * @return El valor de PowerUpClicker per a l'usuari especificat.
      */
     public int getPowerUpClicker(int ID_P, int ID_G) {
@@ -129,6 +131,7 @@ public class SQLGameDAO {
      * Estableix el valor de PowerUpClicker per a l'usuari especificat.
      *
      * @param ID_P L'ID de l'usuari.
+     * @param ID_G L'ID del game
      * @param newPowerUpClicker El nou valor de PowerUpClicker a establir.
      */
     public void setPowerUpClicker(int ID_P, int ID_G, int newPowerUpClicker) {
